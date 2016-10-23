@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-15"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<!--c测试-->
     <modelVersion>4.0.0</modelVersion>
     <groupId>me.normanmaurer.nettyinaction</groupId>
     <artifactId>netty-in-action</artifactId>
