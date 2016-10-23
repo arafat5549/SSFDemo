@@ -2,6 +2,7 @@ package foo;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
@@ -10,9 +11,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * JodaTime 推荐度5星
- * 好用的日期时间处理包
- * 原版日期太蠢
+ * JodaTime 推荐度5星<p>
+ * 非常好用的日期时间处理包
+ * 原版日期Calendar包实在太蠢
  * @author wyy
  *
  */
@@ -23,6 +24,10 @@ public class JodaTimeDemo {
 	@Test
 	public void jodaDemo()
 	{
+		java.util.Date juDate = new Date();
+		DateTime dt = new DateTime(juDate);
+		logger.info(dt.toString());
+		
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(2000, Calendar.JANUARY, 1, 0, 0, 0);
 		logger.info(calendar.toString());
@@ -52,5 +57,11 @@ public class JodaTimeDemo {
 		LocalDate lastDayOfPreviousMonth =
 		  now.minusMonths(1).dayOfMonth().withMaximumValue();
 		logger.info(lastDayOfPreviousMonth.toString());
+//		//DateTime常用
+//		dateTime = new DateTime(2000, 1, 1, 0, 0, 0, 0);
+//		dateTime.plus(1000) //1.过多少毫秒
+//		.plusHours(1) //多少小时
+//		.plusYears(1) //多少年
+//		.dayOfWeek().withMaximumValue()
 	}
 }

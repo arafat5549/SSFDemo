@@ -19,9 +19,10 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * XML解析常用工具包
- * 1.Dom4j 推荐度4星
- * 2.XercesJ（apache力推，下一代解析器，JDK1.5版本自带） 推荐度5星
- * 3.
+ * #三种XML解析方式：DOM/SAX/PULL
+ * 1.XercesJ（apache力推，下一代XML解析器，JDK1.5版本自带） 推荐度5星
+ * 2.Dom4j 推荐度4星
+ * 3.XML PULL解析器：（在JavaWeb好像还不是很流行，在Android基本是标配了）
  * @author wyy
  *
  */

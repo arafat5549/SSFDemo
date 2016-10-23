@@ -19,9 +19,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import foo.entity.User;
 
 /**
- * 常用的JSON解析包工具
- * 1.jackson  推荐度5星
- * 2.gson     推荐度4星
+ * 常用的JSON解析包工具<p>
+ * 1.jackson  推荐度5星<br>
+ * 2.gson     推荐度4星<br>
  * @author wyy
  *
  */

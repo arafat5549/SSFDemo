@@ -1,15 +1,14 @@
 package foo;
 
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.junit.Assert.*;
 
 import java.util.LinkedList;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -17,10 +16,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import foo.dao.UserDao;
-import foo.entity.Person;
 import foo.entity.User;
 import foo.service.impl.UserServiceImpl;
 
+/**
+ * Mockito 推荐度5星<p>
+ * 模拟真实环境的Mock包
+ * @author wyy
+ *
+ */
 public class MockitoDemo 
 {
 	private Logger logger = LoggerFactory.getLogger(getClass());

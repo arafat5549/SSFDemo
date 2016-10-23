@@ -7,8 +7,8 @@ import java.util.Vector;
 
 import org.apache.commons.lang.reflect.FieldUtils;
 /** 
- * @author Gary Huang 
- * 博客地址：http://blog.csdn.net/hfmbook/article/details/41290641 
+ * 生成增删改查SQL
+ * @author wyy
  *  
  * */  
 public class Bean2Sql 
@@ -41,7 +41,7 @@ public class Bean2Sql
             break ; 
         case CREATE:  
             currentType = SqlType.CREATE ;  
-            createTableScheme(tableName) ;   
+            createTableScheme(this.tableName) ;   
             break ;
         }  
     }  

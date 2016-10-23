@@ -27,7 +27,11 @@ import org.slf4j.LoggerFactory;
 import foo.entity.User;
 
 /**
- * Apache Commons工具包集合提供了一系列实用的通用工具类
+ * Apache Commons工具包集合提供了一系列实用的通用工具类<p>
+ * 1.Commons-io包 推荐度5星<br>
+ * 2.commons-lang包 推荐度5星<br>
+ * 3.commons-codec密码包 推荐度4星<br>
+ * 4.
  * @author wyy
  *
  */

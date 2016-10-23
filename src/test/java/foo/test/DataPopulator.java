@@ -20,7 +20,12 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
+/**
+ * 根据JavaBean生成建表语句
+ * @author wyy
+ * 2016年10月24日
+ *
+ */
 public class DataPopulator 
 {
 	private static Logger logger = LoggerFactory.getLogger(DataPopulator.class);
