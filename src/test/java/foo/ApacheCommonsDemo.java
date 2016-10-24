@@ -1,10 +1,14 @@
 package foo;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,7 +35,7 @@ import foo.entity.User;
  * 1.Commons-io包 推荐度5星<br>
  * 2.commons-lang包 推荐度5星<br>
  * 3.commons-codec密码包 推荐度4星<br>
- * 4.
+ * 4.commons-dbutils原生JDBC操作 推荐度4星<br>
  * @author wyy
  *
  */
@@ -49,8 +53,9 @@ public class ApacheCommonsDemo
 		String url = "http://jakarta.apache.org";
 		File file = new File("F:\\dev\\servlet.txt");
 		InputStream in= null;
-//		//标准代码：  
-//		in = new URL(url).openStream();  
+		//标准代码：  
+//		//in = new URL(url).openStream(); 
+//		in = new FileInputStream(file);
 //		try {  
 //		       InputStreamReader inR = new InputStreamReader( in );  
 //		       BufferedReader buf = new BufferedReader( inR );  
@@ -127,12 +132,16 @@ public class ApacheCommonsDemo
         logger.info(StringUtils.left("abc", 2));  
 	}
 	/**
-	 * commons-codec密码包 推荐度4星
+	 * commons-codec密码包 推荐度4星<p>
+	 * Base64双向反编码回来<br>
+	 * MD5单向字符编码           <br>
 	 * 包含了一系列常用的加密解密
 	 */
 	@Test
 	public void CodecTest()
 	{
+		//传过来的就是username编码后的MD5
+		//后台我是不是知道原来的username叫什么,再把usernameMD5编码一下
 		String code ="abcdefg";
 		//1.
 		String out = Md5Crypt.md5Crypt(code.getBytes());
@@ -140,7 +149,7 @@ public class ApacheCommonsDemo
 		
 		String org = Md5Crypt.apr1Crypt(out.getBytes());
 		logger.info(org);
-		//2.
+		//2.Base64
 		byte b[] = Base64.encodeBase64(code.getBytes());
 		logger.info(new String(b));
 		byte c[] = Base64.decodeBase64(b);

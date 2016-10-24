@@ -5,11 +5,11 @@ package foo.concurrent;
  * 1.Thread线程：
  * 2.Process进程：
  * 3.Coroutine协程：
- * 
+ * 4.
  * 
  * 名词：
  * 竞争条件RaceCondition:
- * 互斥锁Mutex:synchronized就是互斥锁
+ * 互斥锁Mutex:synchronized就是互斥锁/监视器锁
  * Java内置锁机制synchronized：
  * 重排序reorder:
  * @author wyy

@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * JodaTime 推荐度5星<p>
+ * JodaTime 推荐度6星<p>
  * 非常好用的日期时间处理包
  * 原版日期Calendar包实在太蠢
  * @author wyy
