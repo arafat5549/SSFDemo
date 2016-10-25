@@ -15,6 +15,8 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import foo.entity.User;
 
@@ -110,6 +112,12 @@ public class JsonDemo
 	//Gson
 	@Test
 	public void GsonTest(){
-		
+		 GsonBuilder builder = new GsonBuilder();
+		 Gson gdon = new Gson();
+		 String json = "{\"name\":\"address\",\"id\":\"1\",\"password\":\"email\"}";
+		 //User user= new User();
+		 User user =gdon.fromJson(json,User.class);
+		 System.out.println(user);
+		 //gdon.toJson(jsonElement);
 	}
 }

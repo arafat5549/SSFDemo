@@ -28,7 +28,7 @@ http://mirrors.hust.edu.cn/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.
 
 6. 阿里的国内Maven仓库镜像不然下载很慢：
 
-   maven安装路径 \conf\settings.xml
+   maven安装路径 \conf\settings.xml <mirrors>标签对下面
 
 7. ```xml
     <mirror>

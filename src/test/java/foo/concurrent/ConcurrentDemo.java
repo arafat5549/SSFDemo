@@ -9,9 +9,10 @@ package foo.concurrent;
  * 
  * 名词：
  * 竞争条件RaceCondition:
- * 互斥锁Mutex:synchronized就是互斥锁/监视器锁
+ * 互斥锁Mutex:synchronized：就是互斥锁/监视器锁
  * Java内置锁机制synchronized：
  * 重排序reorder:
+ * volatile变量:
  * @author wyy
  *
  */
@@ -24,7 +25,11 @@ public class ConcurrentDemo
 	 * #3.[MultiThreading多线程系统]:多CPU计算机，在一个程序program里可以有多个线程Thread，
 	 * 多个线程在同一个程序里执行，相当于多个CPU同时处理同一个程序
 	 * 
+	 * 程序Program看成[主线程]的话:多任务系统相当于每个程序只有一个线程
+	 * 引入多线程 为了利用多个CPU的计算能力。
+	 * 
 	 * 当不同线程同时争夺同一个内存区域，比如一个线程要写数据 另一个线程要读数据就可能出现脏数据。
+	 * 
 	 * 
 	 * 多线程并发的优点：
 	 * #1.资源利用更加高效

@@ -125,6 +125,9 @@ public class MyBlockingQueueDemo
 		}
 		
 	}
+	//实现文档爬虫
+	
+	
 }
 
 
