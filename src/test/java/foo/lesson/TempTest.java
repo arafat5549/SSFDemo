@@ -1,4 +1,4 @@
-package foo.temp;
+package foo.lesson;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
