@@ -21,6 +21,15 @@ public class JodaTimeDemo {
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	
+	/**
+	 * JDK处理时间的方式
+	 */
+	@Test
+	public void JDKTimeDemo(){
+		
+		SimpleDateFormat format = new SimpleDateFormat();
+	}
+	
 	@Test
 	public void jodaDemo()
 	{

@@ -8,9 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
-@NoArgsConstructor
-@AllArgsConstructor
-public @Data class User implements Serializable{
+
+public  class User implements Serializable{
 	
    private String name;
    private String id;
@@ -18,35 +17,44 @@ public @Data class User implements Serializable{
    @ID
    private int uid;
    
-//public String getName() {
-//	return name;
-//}
-//public void setName(String name) {
-//	this.name = name;
-//}
-//public int getId() {
-//	return id;
-//}
-//public void setId(int id) {
-//	this.id = id;
-//}
-//public String getPassword() {
-//	return password;
-//}
-//public void setPassword(String password) {
-//	this.password = password;
-//}
-//public User(String name, int id, String password) {
-//		super();
-//		this.name = name;
-//		this.id = id;
-//		this.password = password;
-//	}
-//@Override
-//	public String toString() {
-//		return "User [name=" + name + ", id=" + id + ", password=" + password
-//				+ "]";
-//	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public int getUid() {
+		return uid;
+	}
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
+	public User(){}
+	public User(String name, String id, String password,int uid) {
+			super();
+			this.name = name;
+			this.id = id;
+			this.password = password;
+			this.uid = uid;
+		}
+	@Override
+		public String toString() {
+			return "User [name=" + name + ", id=" + id + ", password=" + password
+					+ "]";
+		}
 
    
 }

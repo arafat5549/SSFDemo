@@ -35,9 +35,9 @@ public class MockitoDemo
     @Before
     public void setUp() throws Exception
     {
-        MockitoAnnotations.initMocks( this );
-        userService = new UserServiceImpl();
-        userService.setUserDAO(userDAO);
+        //MockitoAnnotations.initMocks( this );
+        //userService = new UserServiceImpl();
+        //userService.setUserDAO(userDAO);
     }
 	
 	@Test

@@ -4,6 +4,7 @@ import org.junit.Test;
 
 /**
  * 自己编写各种常见的Error<p>
+ * 
  * 1.HeapOutOfMemory<br>
  * 2.Young OutOfMemory<br>
  * 3.MethodArea OutOfMemory<br>

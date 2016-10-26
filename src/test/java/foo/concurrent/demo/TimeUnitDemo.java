@@ -1,6 +1,5 @@
 package foo.concurrent.demo;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -8,28 +7,28 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.Test;
-
 /**
  * 
  * Concurrent包探秘<p>
-Executor ：具体Runnable任务的执行者。<br>
-ExecutorService ：一个线程池管理者，其实现类有多种，我会介绍一部分。我们能把Runnable,Callable提交到池中让其调度<br>
-Semaphore ：一个计数信号量<br>
-ReentrantLock ：一个可重入的互斥锁定 Lock，功能类似synchronized，但要强大的多。<br>
-Future ：是与Runnable,Callable进行交互的接口，比如一个线程执行结束后取返回的结果等等，还提供了cancel终止线程。<br>
-BlockingQueue ：阻塞队列。<br>
-CompletionService : ExecutorService的扩展，可以获得线程执行结果的<br>
-CountDownLatch ：一个同步辅助类，在完成一组正在其他线程中执行的操作之前，它允许一个或多个线程一直等待。<br>
-CyclicBarrier ：一个同步辅助类，它允许一组线程互相等待，直到到达某个公共屏障点<br>
-Future ：Future 表示异步计算的结果。<br>
-ScheduledExecutorService ：一个ExecutorService，可安排在给定的延迟后运行或定期执行的命令。<br>
-
+ * 
+ * Executor ：具体Runnable任务的执行者。<br>
+ * ExecutorService ：一个线程池管理者，其实现类有多种，我会介绍一部分。我们能把Runnable,Callable提交到池中让其调度<br>
+ * Semaphore ：一个计数信号量<br>
+ * ReentrantLock ：一个可重入的互斥锁定 Lock，功能类似synchronized，但要强大的多。<br>
+ * Future ：是与Runnable,Callable进行交互的接口，比如一个线程执行结束后取返回的结果等等，还提供了cancel终止线程。<br>
+ * BlockingQueue ：阻塞队列。<br>
+ * CompletionService : ExecutorService的扩展，可以获得线程执行结果的<br>
+ * CountDownLatch ：一个同步辅助类，在完成一组正在其他线程中执行的操作之前，它允许一个或多个线程一直等待。<br>
+ * CyclicBarrier ：一个同步辅助类，它允许一组线程互相等待，直到到达某个公共屏障点<br>
+ * Future ：Future 表示异步计算的结果。<br>
+ * ScheduledExecutorService ：一个ExecutorService，可安排在给定的延迟后运行或定期执行的命令。<br>
+ * 
  * @author wyy
  * 2016年10月25日
  *
@@ -38,14 +37,13 @@ public class TimeUnitDemo {
    public static void main(String[] args)  {
 	  //TimeUnit.NANOSECONDS
 	   
+	   //1.CopyOnWriteArrayList
 	   //读取频繁，但很少有写操作的集合，例如JavaBean事件的 Listeners。
-	   //CopyOnWriteArrayList
-       //BlockingQueue<String> drop = new ArrayBlockingQueue<String>(1, true);
-	   
+	   //2.BlockingQueue:阻塞队列（生产者和消费者模型）
+//	   BlockingQueue<String> drop = new ArrayBlockingQueue<String>(1, true);
 //	   BlockingQueue<String> drop = new SynchronousQueue<String>();
 //       (new Thread(new Producer(drop))).start();
 //       (new Thread(new Consumer(drop))).start();
-       
        
 	     //Semaphore
 //	     LimitedCall call = new LimitedCall();
@@ -71,8 +69,8 @@ public class TimeUnitDemo {
 //       } 
 //       catch (IOException e) {}
 //       catch(InterruptedException e){}
-	   	
-	   //ScheduledExecutorService
+
+	   //ScheduledExecutorService：固定时间，周期的线程池调用
 	   ScheduledExecutorService ses =
                Executors.newScheduledThreadPool(1);
            Runnable pinger = new Runnable() {
@@ -81,6 +79,7 @@ public class TimeUnitDemo {
                }
            };
            ses.scheduleAtFixedRate(pinger, 2, 2, TimeUnit.SECONDS);
+           
    }
    
    

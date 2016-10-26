@@ -27,7 +27,7 @@ public class MultiplexerTimeServer implements Runnable
             //2.绑定socket监听端口，设定为非阻塞模式
             serverSocketChannel.socket().bind(new InetSocketAddress(port),1024);
             serverSocketChannel.configureBlocking(false);
-            //3.创建Reactor线程，创建多路复用器selector
+            //3.创建Reactor线程，创建多路复用器selector (Reactive/EventDrivenModel),epoll
             selector = Selector.open();
             //4.将channel注册到selector上，并监听Accpet事件
             serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);

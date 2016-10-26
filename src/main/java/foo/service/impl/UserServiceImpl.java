@@ -10,7 +10,7 @@ import foo.entity.User;
 import foo.service.IUserService;
 
 @Service
-public @Data class UserServiceImpl implements IUserService{
+public class UserServiceImpl implements IUserService{
 
 	@Resource
 	private UserDao userDAO;
