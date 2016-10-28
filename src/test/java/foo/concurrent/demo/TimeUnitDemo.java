@@ -1,5 +1,6 @@
 package foo.concurrent.demo;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -13,10 +14,12 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
+import org.springframework.test.context.TestExecutionListeners;
+
 /**
  * 
  * Concurrent包探秘<p>
- * 
+ * Callable :
  * Executor ：具体Runnable任务的执行者。<br>
  * ExecutorService ：一个线程池管理者，其实现类有多种，我会介绍一部分。我们能把Runnable,Callable提交到池中让其调度<br>
  * Semaphore ：一个计数信号量<br>
@@ -45,40 +48,40 @@ public class TimeUnitDemo {
 //       (new Thread(new Producer(drop))).start();
 //       (new Thread(new Consumer(drop))).start();
        
-	     //Semaphore
+//	     //Semaphore
 //	     LimitedCall call = new LimitedCall();
 //	     for (int i=0; i<10; i++)
 //	         new Thread(call).start();
 	     
-	     //CountDownLatch
-//       System.out.println("准备开始...");
-//       Race r = new Race(
-//           "[#1孙悟空]",
-//           "[#2马大哈]",
-//           "[#3美女]",
-//           "[#4闪电]",
-//           "[#5科比]",
-//           "[#6呆呆]",
-//           "[#7詹姆斯]"
-//       );
-//       System.out.println("本场比赛的长度为 " + r.getDistance());
-//       System.out.println("输入Enter开始比赛....");
-//       try {
-//		 System.in.read();
-//		 r.run();
-//       } 
-//       catch (IOException e) {}
-//       catch(InterruptedException e){}
+	   //CountDownLatch
+       System.out.println("准备开始...");
+       Race r = new Race(
+           "[#1孙悟空]",
+           "[#2马大哈]",
+           "[#3美女]",
+           "[#4闪电]",
+           "[#5科比]",
+           "[#6呆呆]",
+           "[#7詹姆斯]"
+       );
+       System.out.println("本场比赛的长度为 " + r.getDistance());
+       System.out.println("输入Enter开始比赛....");
+       try {
+		 System.in.read();
+		 r.run();
+       } 
+       catch (IOException e) {}
+       catch(InterruptedException e){}
 
 	   //ScheduledExecutorService：固定时间，周期的线程池调用
-	   ScheduledExecutorService ses =
-               Executors.newScheduledThreadPool(1);
-           Runnable pinger = new Runnable() {
-               public void run() {
-                   System.out.println("PING!");
-               }
-           };
-           ses.scheduleAtFixedRate(pinger, 2, 2, TimeUnit.SECONDS);
+//	   ScheduledExecutorService ses =
+//               Executors.newScheduledThreadPool(1);
+//           Runnable pinger = new Runnable() {
+//               public void run() {
+//                   System.out.println("PING!");
+//               }
+//           };
+//           ses.scheduleAtFixedRate(pinger, 2, 2, TimeUnit.SECONDS);
            
    }
    
@@ -94,7 +97,7 @@ class LimitedCall implements Runnable
 {
 	
     final Random rand = new Random();
-    final Semaphore available = new Semaphore(5);
+    final Semaphore available = new Semaphore(2);
     int count = 0;
     @Override
     public void run()
@@ -177,10 +180,12 @@ class Race
                 }
             }).start();
         }
-
+        
+        Thread.sleep(1000L);//
         System.out.println("And... they're off!");
         start.countDown();        
-
+        
+        
         finish.await();
         System.out.println("WINNER IS!");
         System.out.println(places.get(0) + " 获得金牌...");
@@ -199,6 +204,13 @@ class Race
  * 
  */
 
+/**
+ * CyclicBarrier
+ */
+class CyclicBarrierDemo
+{
+	
+}
 
 /**
  * BlockingQueue

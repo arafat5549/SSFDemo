@@ -12,6 +12,7 @@
 
   <!-- 常量定义 -->
   <properties>
+    <jdk.version>1.7</jdk.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <spring.version>3.0.5.RELEASE</spring.version>
     <struts2.version>2.3.15.3</struts2.version>
@@ -144,7 +145,7 @@
 	<dependency>
 		<groupId>com.google.guava</groupId>
 		<artifactId>guava</artifactId>
-		<version>19.0</version>
+		<version>18.0</version>
 	</dependency>
 	<!-- Joda日期处理包 -->
 	<dependency>
@@ -316,6 +317,12 @@
 			<version>11.2.0</version>
 		</dependency>
 		 -->
+		 <!-- mongo-java-driver -->
+		<dependency>
+		    <groupId>org.mongodb</groupId>
+		    <artifactId>mongo-java-driver</artifactId>
+		    <version>3.2.2</version>
+		</dependency>
 		 
 		<!-- Scala -->
 		<dependency>

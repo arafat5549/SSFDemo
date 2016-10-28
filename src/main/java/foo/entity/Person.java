@@ -1,6 +1,7 @@
 package foo.entity;
 
-public class Person {
+public class Person 
+{
    private String name;
 
 @Override

@@ -1,6 +1,7 @@
 package foo;
 
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +17,7 @@ import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.stream.JsonReader;
 
 import foo.entity.User;
 
@@ -111,13 +112,61 @@ public class JsonDemo
 	}
 	//Gson
 	@Test
-	public void GsonTest(){
-		 GsonBuilder builder = new GsonBuilder();
+	public void GsonTest() throws IOException{
+		 //GsonBuilder builder = new GsonBuilder();
 		 Gson gdon = new Gson();
 		 String json = "{\"name\":\"address\",\"id\":\"1\",\"password\":\"email\"}";
 		 //User user= new User();
 		 User user =gdon.fromJson(json,User.class);
 		 System.out.println(user);
+		 String str = gdon.toJson(user);
+		 System.out.println(str);
 		 //gdon.toJson(jsonElement);
+//			String json = IOUtils.toString(new FileInputStream("F:\\data.json"));
+//			System.out.println(json);
+//			Gson gson = new Gson();
+//			User user =gson.fromJson(json, User.class);
+//			System.out.println(user);
+//			List<User> lists = new ArrayList<User>();
+//			lists.add(user);
+//			lists.add(user);
+//			lists.add(user);
+//			String s2 = gson.toJson(lists);  
+//			System.out.println(s2);
+			
+//			String[] strings = gson.fromJson(json, String[].class);
+//			for(String s:strings){
+//				System.out.println(s);
+//			}
+			
+			JsonReader reader = new JsonReader(new StringReader(json));
+			reader.beginObject(); 
+			while (reader.hasNext()) {
+			    String s = reader.nextName();
+			    System.out.println(s);
+			    switch (s) {
+			        case "cols":
+			        	reader.beginArray();
+			        	while(reader.hasNext()){
+			        		String xxxx = reader.nextString();
+				        	System.out.println("-"+xxxx);
+			        	}
+			        	reader.endArray();
+			            break;
+			        case "data":
+			        	reader.beginArray();
+			        	while(reader.hasNext()){
+			        		reader.beginArray();
+				        	while(reader.hasNext()){
+				        		String xxxx = reader.nextString();
+					        	System.out.println("#"+xxxx);
+				        	}
+				        	reader.endArray();
+			        	}
+			        	reader.endArray();
+			            break;
+			    }
+			}
+			reader.endObject();
 	}
 }

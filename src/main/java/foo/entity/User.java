@@ -2,19 +2,13 @@ package foo.entity;
 
 import java.io.Serializable;
 
-import foo.test.Bean2Sql.ID;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.extern.log4j.Log4j;
-
-
-public  class User implements Serializable{
+@SuppressWarnings("serial")
+public class User implements Serializable{
 	
    private String name;
    private String id;
    private String password;
-   @ID
+   
    private int uid;
    
 	public String getName() {
