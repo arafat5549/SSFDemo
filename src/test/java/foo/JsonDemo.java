@@ -1,5 +1,6 @@
 package foo;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.IOUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -110,13 +112,13 @@ public class JsonDemo
         System.out.println(acc.getName());
         System.out.println(acc);
 	}
-	//Gson
+	
 	@Test
 	public void GsonTest() throws IOException{
 		 //GsonBuilder builder = new GsonBuilder();
+		
 		 Gson gdon = new Gson();
 		 String json = "{\"name\":\"address\",\"id\":\"1\",\"password\":\"email\"}";
-		 //User user= new User();
 		 User user =gdon.fromJson(json,User.class);
 		 System.out.println(user);
 		 String str = gdon.toJson(user);
@@ -124,49 +126,87 @@ public class JsonDemo
 		 //gdon.toJson(jsonElement);
 //			String json = IOUtils.toString(new FileInputStream("F:\\data.json"));
 //			System.out.println(json);
-//			Gson gson = new Gson();
 //			User user =gson.fromJson(json, User.class);
 //			System.out.println(user);
-//			List<User> lists = new ArrayList<User>();
-//			lists.add(user);
-//			lists.add(user);
-//			lists.add(user);
-//			String s2 = gson.toJson(lists);  
-//			System.out.println(s2);
+			List<User> lists = new ArrayList<User>();
+			lists.add(user);
+			lists.add(user);
+			lists.add(user);
+			String s2 = gdon.toJson(lists);  
+			System.out.println(s2);
 			
 //			String[] strings = gson.fromJson(json, String[].class);
 //			for(String s:strings){
 //				System.out.println(s);
 //			}
 			
-			JsonReader reader = new JsonReader(new StringReader(json));
-			reader.beginObject(); 
-			while (reader.hasNext()) {
-			    String s = reader.nextName();
-			    System.out.println(s);
-			    switch (s) {
-			        case "cols":
-			        	reader.beginArray();
-			        	while(reader.hasNext()){
-			        		String xxxx = reader.nextString();
-				        	System.out.println("-"+xxxx);
-			        	}
-			        	reader.endArray();
-			            break;
-			        case "data":
-			        	reader.beginArray();
-			        	while(reader.hasNext()){
-			        		reader.beginArray();
-				        	while(reader.hasNext()){
-				        		String xxxx = reader.nextString();
-					        	System.out.println("#"+xxxx);
-				        	}
-				        	reader.endArray();
-			        	}
-			        	reader.endArray();
-			            break;
-			    }
-			}
-			reader.endObject();
+//			ArrayList<String> list =new ArrayList<String>();
+//			ArrayList<String> list2 =new ArrayList<String>();
+//			JsonReader reader = new JsonReader(new StringReader(json));
+//			reader.beginObject(); 
+//			while (reader.hasNext()) {
+//			    String s = reader.nextName();
+//			    switch (s) {
+//			        case "cols":
+//			        	reader.beginArray();
+//			        	while(reader.hasNext()){
+//			        		String colname = reader.nextString();
+//				        	//System.out.println("-"+xxxx);
+//			        		list.add(colname);
+//			        	}
+//			        	reader.endArray();
+//			            break;
+//			        case "data":
+//			        	reader.beginArray();
+//			        	while(reader.hasNext()){
+//			        		reader.beginArray();
+//				        	while(reader.hasNext()){
+//				        		String value = reader.nextString();
+//				        		list2.add(value);
+//				        		//System.out.println("#"+xxxx);
+//				        	}
+//				        	reader.endArray();
+//			        	}
+//			        	reader.endArray();
+//			            break;
+//			    }
+//			}
+//			reader.endObject();
+			
+			
+//			for (int i=0;i<list2.size();i+=4) 
+//			{
+//				User user = new User();
+//				for (String col : list) {
+//					if(col.equals("username")){
+//						user.setName(list2.get(i));
+//					}
+////					if(col.equals("uid")){
+////						user.setUid(Integer.parseInt(list2.get(i+1)));
+////					}
+//					else if(col.equals("password")){
+//						user.setPassword(list2.get(i+2));
+//					}
+//					if(col.equals("email")){
+//						user.setEmail(list2.get(i+3));
+//					}
+//				}
+//				System.out.println(user);
+//			}
+			
+//			int indexs[] = new int[list.size()];
+//			Field fs[] = User.class.getDeclaredFields();
+//			int idx = 0;
+//			for(String col : list){
+//				for (Field field : fs) 
+//				{
+//					if(col.equals(field.getName())){
+//						System.out.println(col+","+idx);
+//					}
+//				}
+//				idx++;
+//			}
+			
+			
 	}
 }

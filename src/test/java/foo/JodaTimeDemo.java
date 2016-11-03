@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeFieldType;
 import org.joda.time.LocalDate;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -72,5 +73,26 @@ public class JodaTimeDemo {
 //		.plusHours(1) //多少小时
 //		.plusYears(1) //多少年
 //		.dayOfWeek().withMaximumValue()
+	}
+	
+	@Test
+	public void CalanderDemo(){
+		//1.打印昨天的这个时刻
+		Date date = new Date();
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.DATE, -1);
+		System.out.println(calendar.getTime());
+		//
+		//java.util.Date juDate = new Date();
+		DateTime dt = new DateTime();
+		System.out.println(dt.plusDays(-1).toString("E MM/dd/yyyy HH:mm:ss.SSS"));
+		//System.out.println(dt.toString("E MM/dd/yyyy HH:mm:ss.SSS"));
+	
+		//2.本月的最后一天
+		calendar.add(Calendar.MONTH, -1);
+		int last = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+		System.out.println(last);
+		
+		System.out.println(dt.plusMonths(-1).dayOfMonth().withMaximumValue().get(DateTimeFieldType.dayOfMonth()));
 	}
 }

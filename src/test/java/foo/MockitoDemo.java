@@ -1,26 +1,26 @@
 package foo;
 
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import foo.dao.UserDao;
-import foo.entity.User;
 import foo.service.impl.UserServiceImpl;
 
 /**
  * Mockito 推荐度5星<p>
+ * 
+ * 测试真实环境
  * 模拟真实环境的Mock包
  * @author wyy
  *
@@ -43,10 +43,14 @@ public class MockitoDemo
 	@Test
 	public void MockitoWebTest()
 	{
-        User person = new User("Phillip" ,"1","123",1);
-        when( userDAO.fetchPerson(1) ).thenReturn( person );
-        boolean updated = userService.update( 1, "David" );
-        assertTrue( updated );
+		List mockedList = mock(List.class);
+		when(mockedList.get(0)).thenReturn("first");
+		System.out.println(mockedList.get(0));
+		
+//        User person = new User("Phillip" ,"1","123",1);
+//        when( userDAO.fetchPerson(1) ).thenReturn( person );
+//        boolean updated = userService.update( 1, "David" );
+//        assertTrue( updated );
         //logger.info(person.toString());
 //        verify( userDAO ).fetchPerson( 1 );
 //        ArgumentCaptor<User> personCaptor = ArgumentCaptor.forClass( User.class );

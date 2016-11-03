@@ -8,8 +8,15 @@ public class User implements Serializable{
    private String name;
    private String id;
    private String password;
+   private String email;
    
-   private int uid;
+   public String getEmail() {
+	return email;
+}
+public void setEmail(String email) {
+	this.email = email;
+}
+private int uid;
    
 	public String getName() {
 		return name;
@@ -45,10 +52,11 @@ public class User implements Serializable{
 			this.uid = uid;
 		}
 	@Override
-		public String toString() {
-			return "User [name=" + name + ", id=" + id + ", password=" + password
-					+ "]";
-		}
+	public String toString() {
+		return "User [name=" + name + ", id=" + id + ", password=" + password
+				+ ", email=" + email + ", uid=" + uid + "]";
+	}
+	
 
    
 }

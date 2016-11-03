@@ -5,7 +5,11 @@ import static com.google.common.base.Predicates.compose;
 import static com.google.common.base.Predicates.in;
 import static com.google.common.base.Predicates.not;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigInteger;
+import java.nio.charset.Charset;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -20,9 +24,11 @@ import com.google.common.base.Predicate;
 import com.google.common.base.Splitter;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
+import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
+import com.google.common.collect.Multiset;
+import com.google.common.io.Files;
 import com.google.common.primitives.Ints;
 /**
  * Guava工程包含了若干被Google的 Java项目广泛依赖 的核心库
@@ -134,6 +140,27 @@ public class GuavaDemo
 		System.out.println(biMap);
 		System.out.println(biMap.inverse());
 	}
+	@Test
+	public void UserTest() throws IOException{
+		String content = Files.toString(new File("F:\\SqlAnswer.sql"), Charset.defaultCharset());
+		Iterable texts = Splitter.on(CharMatcher.WHITESPACE)
+		                                                 .omitEmptyStrings()
+		                                                 .trimResults()
+		                                                 .split(content);
+		Multiset collection = HashMultiset.create(texts);
+		
+		System.out.println(collection.size()+","+collection);
+		
+		int size = 0;
+		Iterator it = texts.iterator();
+		while(it.hasNext()){
+			size++;
+			System.out.print(it.next()+",");
+		}
+		System.out.println();
+		System.out.println(size);
+	}
+	
 	//函数式编程
 	@Test
 	public void FunctionalTest(){

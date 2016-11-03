@@ -7,6 +7,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mchange.rmi.Cardable;
+
 /**
  * 多线程环境下生成随机树<p>
  * 1.原生Random<br>
@@ -16,7 +18,9 @@ import org.slf4j.LoggerFactory;
  * 总结：
  * 任何情况下都不要在多个线程间共享一个java.util.Random实例，而该把它放入ThreadLocal之中。
    Java7在所有情形下都更推荐使用java.util.concurrent.ThreadLocalRandom——它向下兼容已有的代码且运营成本更低。
-       对于较低的JDK版本可以自己实现（代码开源）
+       对于较低的JDK版本可以自己实现（代码开源）<p>
+   
+        随机经典应用：洗牌Shuffle<br>
  * @author wyy
  *
  */
@@ -168,5 +172,88 @@ public class RandomDemo
 	        }
 		}
 		
+	}
+}
+
+//扑克
+class Poker{
+	private static final String suits[]={"梅花","方块","黑桃","红心"};
+	private static final int faces[]={1,2,3,4,5,6,7,8,9,10,11,12,13};
+	private Card cards[];
+	
+	public Poker(){
+		cards = new Card[52];
+		for(int i=0;i<suits.length;i++){
+			for(int j=0;j<faces.length;j++){
+				cards[i*faces.length + j] =new Card(suits[i],faces[j]);
+				//System.out.println(cards[i*faces.length + j]);
+			}
+		}
+	}
+	//洗牌
+	public void shuffle(){
+		int n = cards.length;
+		int count = 0;
+		//1.最简单的洗牌
+		for (int i = 0; i < n; i++) {
+			int index = (int)(Math.random()* n);
+			System.out.println(index+","+i);
+			Card temp = cards[index];
+			cards[index] = cards[i];
+			cards[i] = temp;
+		}
+		//2.简易改进版
+//		for (int i = 0; i < n; i++) {
+//			int index = (int)(i+Math.random()* (n-i));
+//			if(i!=index){
+//				System.out.println(index+","+i);
+//				count++;
+//				Card temp = cards[index];
+//				cards[index] = cards[i];
+//				cards[i] = temp;
+//			}
+//		}
+		
+		
+		
+		System.out.println("count="+count);
+		
+//		for (int i = 0; i < cards.length; i++) {
+//			System.out.println(i+","+cards[i]);
+//		}
+	}
+	
+	public static void main(String[] args) {
+		Poker p = new Poker();
+		p.shuffle();
+	}
+	
+}
+class Card{
+	public String suit;
+	public int face;
+	
+	public Card(String suit, int face) {
+		super();
+		this.suit = suit;
+		this.face = face;
+	}
+
+	@Override
+	public String toString() {
+		String nface = String.valueOf(face);
+		if (face == 11) {
+			nface ="J";
+		}
+		else if (face == 12) {
+			nface ="Q";
+		}
+		else if (face == 13) {
+			nface ="K";
+		}
+		else if (face == 1) {
+			nface ="A";
+		}
+		return "Card [suit=" + suit + " " +nface + "]";
 	}
 }
