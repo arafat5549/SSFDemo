@@ -6,6 +6,12 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+/**
+ * 客户端
+ * @author wyy
+ * 2016年11月15日
+ *
+ */
 public class TimeClient implements Runnable{
 	private int Port = 8080;
     private String HostAddr = "127.0.0.1";

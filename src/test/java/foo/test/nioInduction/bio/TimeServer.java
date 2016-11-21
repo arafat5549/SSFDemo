@@ -13,7 +13,8 @@ import java.net.Socket;
  */
 public class TimeServer 
 {
-	
+	//%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;
+	//%JAVA_HOME%\jre\lib\rt.jar;
 	public static void main(String[] args) 
 	{
 		int port = 8080;
@@ -22,9 +23,12 @@ public class TimeServer
 		try {
 			server = new ServerSocket(port);
 			System.out.println("Server Start in port:"+port);
-			Socket socket = null;
-			socket = server.accept();
-			new Thread(new TimerServerHandler(socket)).start();
+			while(true){
+				Socket socket = null;
+				socket = server.accept();
+				new Thread(new TimerServerHandler(socket)).start();
+			}
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}finally{
