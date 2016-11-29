@@ -2,10 +2,15 @@ package foo.lesson.summary;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 /**
  * Spring框架<p>
  * 
+ * 0.搭建Spring框架
  * 1.IOC(InterverseOfControll)控制反转
  *  #我们把对象创建和管理的控制权移交给Spring容器
  *  #Spring容器来统一管理和生成Bean对象
@@ -32,6 +37,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class LessonSpringFramework 
 {
+	/**
+	 * 0.搭建Spring框架
+	 */
+	//1.导入包
+	//2.log4j-slf4j这两个日记包，log4j.properties
+	//3.spring的配置:springcontext.xml 放在classpath
+	//4.springcontext.xml生成Spring容器BeanFactory
+	//5.注册你的Bean对象：两种配置方式#1XML配置#2注解扫描的方式
+	
    /**
     * 1.Spring框架包的简单说明
     */
@@ -42,5 +56,18 @@ public class LessonSpringFramework
 	  //扩展了core包的内容
 	//ApplicationContext
 	//ClassPathXmlApplicationContext
+	
+	
+	/**
+	 * Spring常用的注解:
+	 */
+	//四个扫描标签：
+	//@Component
+	//@Repository
+	//@Service
+	//@Controller
+	//两个注入标签：
+	//@AutoWired  
+	//@Resource
 	
 }

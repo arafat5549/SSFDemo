@@ -11,18 +11,22 @@ package foo.lesson;
  * #3.enctype="multipart/form-data"
  * 
  * 2.后台方法
- * #1.无法使用req.getParameter()
- * #2.引入commons-fileUpload,commons-io
+ * #1.无法使用req.getParameter()  null
+ * #2.引入commons-fileUpload.jar,commons-io.jar
  * 
  * #3-1.factory = new DiskFileItemFactory() 从硬盘读取
- * #3-2.new ServletFileUpload(factory)
- * #3-3.List<FileItem>
+ * #3-2.sfu=new ServletFileUpload(factory)
+ * #3-3.List<FileItem> = sfu.paresRequest();
  * #
  * 3.怎么处理图片
- * #1.文件名要唯一 (UUID,当前时间)
+ * #1.文件名要唯一 (UUID,当前时间long)
  * #2.当前工程的upload  创建文件夹
  * #3.写入硬盘
  * #4.更新book的img字段
+ * 
+ * -每天建一个文件 20161124
+ * -设定文件大小
+ * -设定图片大小
  * 
  * #更新BOOK对象
  * 
