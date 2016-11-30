@@ -31,6 +31,20 @@ import org.springframework.stereotype.Service;
  * 优点：
  * #跟你依赖的对象解耦合
  * 
+ * AOP(AspectOrientProgram)面向切面编程：
+ * 
+ * 1.怎么实现面向切面（Spring怎么实现事务）
+ * 具体到方法上面
+ * 
+ * pointcut切点:   你要切入的哪个类哪个方法
+ * advice增强:     你要你所切面的方法增强 （事务） 
+ * 
+ * Aspect切面：-advice+pointcut
+ * advisor：  advice+pointcut
+ * 
+ * 什么是事务?为什么我们要使用事务？
+ * 事务的传播机制？事务的数据库隔离级别？
+ * 
  * @author wyy
  * 2016年11月24日
  *
