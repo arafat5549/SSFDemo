@@ -2,7 +2,16 @@ package foo.lesson.summary;
 
 /**
  * SpringMVC<p>
+ * 0.什么是MVC？为什么要引入MVC？<br>
+ * 1.什么是SpringMVC？为什么要引入SpringMVC?<br>
+ * 2.SpringMVC和其他WEBMVC框架有啥区别(Struts1,Struts2)?<br>
+ * 3.怎么使用SpringMVC？<br>
+ * 4.SpringMVC的工作流程？<br>
+ * 5.SpringMVC的常用注解？<br>
  * 
+ * 
+ * 
+ * 基础概念：
  * 1.web.xml配置的DispatcherServlet
  * 2.需要用到的Jar包
  * Spring基础包:
@@ -38,9 +47,8 @@ public class LessonSpringMvc {
       version="3.1">
 	 */
 	
-	
      /**
-      * 三、SpringMVC常用注解
+      * 5.SpringMVC常用注解
       */
 //	　　@Controller
 //	　　负责注册一个bean 到spring 上下文中
@@ -69,4 +77,39 @@ public class LessonSpringMvc {
 //
 //	　　@ControllerAdvice
 //	　　使一个Contoller成为全局的异常处理类，类中用@ExceptionHandler方法注解的方法可以处理所有Controller发生的异常
+	
+	   //不用框架写WEB前后台交互   你需要
+	   //#1.request.getParameter("")
+	   //#2.request.getDispacther("").forward()
+	
+	   //struts1.简化了哪一步
+	   //简化了第二部（页面跳转-页面转发）
+	
+	   //struts2
+	   //POJO(JavaBean)参数注入
+	   //页面跳转-页面转发
+	
+	   //SpringmVC
+	   //简化了POJO(JavaBean)参数注入
+	   //简化了页面跳转-页面转发
+	   //直接接收JSON-显示你的JavaBean对象为JSon数据
+	   //RESTful web网站的架构
+
+//json:
+//	{
+//		{"username":"1234","password":"2222"},
+//		 "email":"WSSS",
+//	}
+
+//xml:
+/**
+ * <? xml =>
+ *  <user> 
+ *     <username>12345</username>
+ *     <password>2222</password>
+ *  </user>
+ */
+	
+	  //JSON   优点：文件结构简单，数据量小（数据传输用JSON）
+	  //xml文件  优点：数据结构严谨，可读性强（配置文件本地读取）
 }

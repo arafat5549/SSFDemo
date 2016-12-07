@@ -22,12 +22,13 @@ import org.xml.sax.helpers.DefaultHandler;
  * #三种XML解析方式：DOM/SAX/PULL<br>
  * 1.XercesJ（apache力推，下一代XML解析器，JDK1.5版本自带） 推荐度5星<br>
  * 2.Dom4j 推荐度4星<br>
+ * 2.JDOM  推荐度4星<br>
  * 3.XML PULL解析器：（在JavaWeb好像还不是很流行，在Android基本是标配了）<br>
  * XML有哪三种解析方式：DOM SAX PULL<p>
- * DOM解析：<br>
+ * DOM文档对象模型（Document Object Model，简称DOM）解析：<br>
  * ·生成整个文件树结构，把一整颗树给导入进来，再根据节点一个解析他<br> 
  * ·阻塞型BlockingIO：占内存大，读取太慢<br>
- * SAX解析:<br>
+ * SAX（Simple API for XML）解析:<br>
  *  .事件驱动模型 Reactive Model/Event Drive Model /AssmeblyLine 流水线<br>
  *  ·非阻塞Non-BlockingIO： - 边读边解析<br>
  * PULL解析：<br>
@@ -85,7 +86,7 @@ class MyDefaultHandler extends DefaultHandler
         super.endElement(uri, localName, qName);  
         //当解析作者元素的结束的时候,设置isOK为false  
         if ("aop:config".equals(qName)) {  
-            isOk = false;  
+            isOk = true;  
             System.out.println("----------------");
         }  
     }  

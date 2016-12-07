@@ -20,7 +20,7 @@ public class JVMDemo
 	//VMVirtual栈：
     //本地方法栈：native
 	//程序计数器：
-	//Direct-buffer-memory:[NIO操作]
+	//Direct-buffer-memory直接访问内存:[NIO操作]
 	
 	//OutOfMemory ： Heap 
 	//StackOfFlow(OutOfMemory) ： 本地方法栈/VMVirtual栈

@@ -10,6 +10,22 @@ import org.springframework.stereotype.Service;
 /**
  * Spring框架<p>
  * 
+ * 1.什么是Spring框架？为什么要引入Spring框架?<br>
+ * 2.什么是IOC/DI?Spring是怎么实现DI(依赖注入)的?<br>
+ * 3.讲讲扫描注解？讲讲注入注解？<br>
+ * 4.什么是AOP(AspectOrientProgram)面向切面编程?<br>
+ * 5.pointcut切点,advice增强,Aspect切面,JoinPoint连接点是什么?
+ * 6.Spring是怎么实现AOP的?
+ * 7.什么是事务?为什么要使用事务?
+ * 8.讲讲事务的传播机制？讲讲事务的数据库隔离级别？
+ * 9.Spring怎么实现事务?
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
  * 0.搭建Spring框架
  * 1.IOC(InterverseOfControll)控制反转
  *  #我们把对象创建和管理的控制权移交给Spring容器
@@ -32,9 +48,10 @@ import org.springframework.stereotype.Service;
  * #跟你依赖的对象解耦合
  * 
  * AOP(AspectOrientProgram)面向切面编程：
+ * -
  * 
- * 1.怎么实现面向切面（Spring怎么实现事务）
- * 具体到方法上面
+ * 1.怎么实现面向切面
+ * 
  * 
  * pointcut切点:   你要切入的哪个类哪个方法
  * advice增强:     你要你所切面的方法增强 （事务） 
@@ -44,7 +61,7 @@ import org.springframework.stereotype.Service;
  * 
  * 什么是事务?为什么我们要使用事务？
  * 事务的传播机制？事务的数据库隔离级别？
- * 
+ * Spring怎么实现事务?
  * @author wyy
  * 2016年11月24日
  *
@@ -70,8 +87,6 @@ public class LessonSpringFramework
 	  //扩展了core包的内容
 	//ApplicationContext
 	//ClassPathXmlApplicationContext
-	
-	
 	/**
 	 * Spring常用的注解:
 	 */
@@ -84,4 +99,16 @@ public class LessonSpringFramework
 	//@AutoWired  
 	//@Resource
 	
+	/**
+	 * 1.什么是Spring框架？为什么要引入Spring框架?<br>
+	 */
+	
+	/**
+	 * 6.Spring是怎么实现AOP的?
+	 */
+	//aop靠动态代理来实现?  JDK动态代理（默认方式）-CGLIB动态代理
+	//JDK动态代理-传入的是接口（所以我们WEB的分层一般要面向接口编程）
+	
+	//为什么动态代理可以实现AOP?
+	//
 }

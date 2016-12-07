@@ -2,9 +2,7 @@ package foo;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +17,6 @@ import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
 
 import foo.entity.User;
 
@@ -34,6 +31,7 @@ public class JsonDemo
 {
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	
+	//1.jackson
 	private JsonGenerator jsonGenerator = null;
 	private ObjectMapper objectMapper = null;
 	private User bean = null;
@@ -71,46 +69,83 @@ public class JsonDemo
 	@Test
 	public void JacksonTest() throws IOException{
 		
-		//1.Java对象转Json
-		logger.info("1.将Java对象转Json");
-	    //writeObject可以转换java对象，eg:JavaBean/Map/List/Array等
-	    jsonGenerator.writeObject(bean); 
-	    System.out.println("");
-	    //writeValue具有和writeObject相同的功能
-	    //objectMapper.writeValue(System.out, bean);
+//		//1.Java对象转Json
+//		logger.info("1.将Java对象转Json");
+//	    //writeObject可以转换java对象，eg:JavaBean/Map/List/Array等
+//	    jsonGenerator.writeObject(bean); 
+//	    System.out.println("");
+//	    //writeValue具有和writeObject相同的功能
+//	    objectMapper.writeValue(System.out, bean);
 	    
-	    //2.将Map集合转换成Json字符串
-	    logger.info("2.将Map集合转换成Json字符串");
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("name", bean.getName());
-        map.put("account", bean);
-        map.put("account2", new User("e","1","12",1));
-        jsonGenerator.writeObject(map);
-        System.out.println("");
-        //logger.info("objectMapper");
-        //objectMapper.writeValue(System.out, map);
-        
-        //3.将List集合转换成json
-        logger.info("3.将List集合转换成json");
-        List<User> list = new ArrayList<User>();
-        list.add(bean);
-        list.add(new User("address2","2","haha2",1));
-        //list转换成JSON字符串
-        jsonGenerator.writeObject(list);
-        System.out.println();
-        //用objectMapper直接返回list转换成的JSON字符串
-        //System.out.println("1###" + objectMapper.writeValueAsString(list));
-        //System.out.print("2###");
-        //objectMapper.writeValue(System.out, list);
-        
+//	    //2.将Map集合转换成Json字符串
+//	    logger.info("2.将Map集合转换成Json字符串");
+//        Map<String, Object> map = new HashMap<String, Object>();
+//        map.put("name", bean.getName());
+//        map.put("account", bean);
+//        map.put("account2", new User("e","1","12",1));
+//        jsonGenerator.writeObject(map);
+//        System.out.println("");
+//        //logger.info("objectMapper");
+//        //objectMapper.writeValue(System.out, map);
+//        
+//        //3.将List集合转换成json
+//        logger.info("3.将List集合转换成json");
+//        List<User> list = new ArrayList<User>();
+//        list.add(bean);
+//        list.add(new User("address2","2","haha2",1));
+//        //list转换成JSON字符串
+//        jsonGenerator.writeObject(list);
+//        System.out.println();
+//        //用objectMapper直接返回list转换成的JSON字符串
+//        //System.out.println("1###" + objectMapper.writeValueAsString(list));
+//        //System.out.print("2###");
+//        //objectMapper.writeValue(System.out, list);
+//        
         //4.将json字符串转换成JavaBean对象
-        logger.info("3.将json字符串转换成JavaBean对象");
-        String json = "{\"name\":\"address\",\"id\":\"1\",\"password\":\"email\"}";
-        //String j2=StringEscapeUtils.escapeJava("{"name":"address","id":"1","password":"email"}");
-        logger.info(json);
-        User acc = objectMapper.readValue(json, User.class);
-        System.out.println(acc.getName());
-        System.out.println(acc);
+//        logger.info("3.将json字符串转换成JavaBean对象");
+//        String json = "{\"name\":\"address\",\"id\":\"1\",\"password\":\"email\"}";
+//        //String j2=StringEscapeUtils.escapeJava("{"name":"address","id":"1","password":"email"}");
+//        logger.info(json);
+//        User acc = objectMapper.readValue(json, User.class);
+//        System.out.println(acc.getName());
+//        System.out.println(acc); 
+		
+		
+		//5.解析特定结构
+		String json = IOUtils.toString(new FileInputStream("F:\\data.json"));
+		ArrayList<User> userlist = new ArrayList<User>();
+		//System.out.println(json); 
+		Map maps = objectMapper.readValue(json, Map.class);
+		ArrayList<String> list= (ArrayList<String>) maps.get("cols");
+		System.out.println(list); 
+		ArrayList<Object> list2= (ArrayList<Object>) maps.get("data");
+		
+		for(Object s:list2){
+			ArrayList<String> values = (ArrayList<String>)s;
+			User user = new User();
+			for (int i=0;i<values.size();i++) 
+			{
+				String col = list.get(i);
+				if(col.equals("name")){
+					user.setName(values.get(i));
+				}
+				else if(col.equals("uid")){
+					//user.setUid(Integer.parseInt(values.get(i)));
+				}
+				else if(col.equals("password")){
+					user.setPassword(values.get(i));
+				}
+				else if(col.equals("email")){
+					user.setEmail(values.get(i));
+				}
+			}
+			//System.out.println(user);
+			userlist.add(user);
+		}
+		
+		 jsonGenerator.writeObject(userlist);
+		//
+		
 	}
 	
 	@Test
@@ -120,9 +155,9 @@ public class JsonDemo
 		 Gson gdon = new Gson();
 		 String json = "{\"name\":\"address\",\"id\":\"1\",\"password\":\"email\"}";
 		 User user =gdon.fromJson(json,User.class);
-		 System.out.println(user);
+		 System.out.println("转化成对象:"+user);
 		 String str = gdon.toJson(user);
-		 System.out.println(str);
+		 System.out.println("转化成JSON:"+str);
 		 //gdon.toJson(jsonElement);
 //			String json = IOUtils.toString(new FileInputStream("F:\\data.json"));
 //			System.out.println(json);

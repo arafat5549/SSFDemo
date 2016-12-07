@@ -40,6 +40,9 @@ package foo.lesson;
  *   IOC/DI是什么，Spring怎么实现它们的?
  *      学会怎么使用:1.怎么跟你的项目整合(引入你的jar包，编写配置文件)
  *      配置文件推荐名称：spring-context.xml
+ *   AOP是什么，Spring是怎么实现他们的？
+ *      学会怎么使用:1.怎么跟你的项目整合(引入你的jar包，编写配置文件)
+ *      配置文件推荐名称：spring-context.xml
  *   #SpringMvc（WEB框架）：为什么我们要引入SpringMvc?SpringMvc的工作原理?
  *   跟其他WEB框架的比较(Struts1,Struts2)
  *      学会怎么使用:1.怎么跟你的项目整合 2.怎么跟Spring整合
@@ -57,8 +60,26 @@ package foo.lesson;
  *   跟其他缓存的比较(OSCache,MemCache)
  *   	学会怎么使用:1.怎么跟你的项目整合 2.怎么跟Spring整合
  *   	配置文件推荐名称：ehcahce-local.xml
+ *   
+ *  
+ *  其他个人素质：
+ *  1.你项目中遇到哪些问题？你是如何解决的？
+ *  2.你平时经常上哪些网站，社区？最近你看过什么书？
+ *  
+ *  其他技能-常用软件的使用：
+ *  1.Eclipse（Eclipse for javaEE）
+ *   #Eclispe插件的安装
+ *  2.EditPlus/NotePad++/SublimeText
+ *   #专业文本编辑器-为什么要使用专业文本编辑器？
+ *  3.PPT/Excel
+ *  4.技术相关的软件
+ *   4-1.
+ *  
+ *  
+ *  
  */
 
+import java.util.Hashtable;
 import java.util.regex.Pattern;
 
 import javassist.expr.NewArray;
@@ -69,16 +90,29 @@ import freemarker.core.Node;
 
 /**
  * 经典面试题解析<p>
- * 1.String,StringBuffer,StringBuilder的区别<br>
- * 2.String的split操作的优化<br>
+ * <b>JAVA基础部分</b> <br>
+ * 
+ * 1.String,StringBuffer,StringBuilder的区别?<br>
+ * 2.String的split操作的优化?<br>
  * 
  * 
  * 3.ArrayList, LinkedList, Vector的区别是什么？<br>
+ * 3-1.ArrayList和LinkedList 怎么实现栈结构Stack和队列结构Queue
+ * -Stack:特点FILO先进后出  pop(移除最后一位),push()
+ * -Queue:特点FIFO先进先出  pop(移除第一位),push()
  * 4.Map, Set, List, Queue、Stack的特点及用法。
  * 5.HashMap和HashTable的区别
  * 6.TreeMap, LinkedHashMap, HashMap的区别是什么？
- * 
  * 7.HashMap的实现原理
+ * 
+ * 
+ * <b>WEB基础部分</b> <br>
+ * 1.什么是Servlet?为什么我们要引入Servlet?
+ * 2.什么是JSP(JavaServletPage)?为什么我们要引入JSP?
+ * 3.什么是MVC?为什么要引入MVC？
+ * 4.什么是webMVC框架？为什么要引入webMVC框架?
+ * 5.SpringMVC的优点?
+ * 6.JSTL(JavaStandardTagLib)标签库,EL表达式(${})的简单用法?
  * 
  * @author wyy
  * 2016年11月23日
@@ -86,13 +120,26 @@ import freemarker.core.Node;
  */
 public class LessonInterView 
 {
+	
 	private static Pattern pattern = Pattern.compile("$\\#");
 	//1.String相关
 	@Test
 	public void StringDemo(){
+		/**
+		 * 1.
+		 */
+		
+		int i1 =1;
+		Integer i2 = 1;
+		Integer i3 = new Integer(1);
+		
+		System.out.println(i1 == i2); 
+		System.out.println(i1 == i3); 
+		System.out.println(i2 == i3); 
+		
 		String s1 = "hello";//常量池里
 		String s2 = "world";
-		String s3 = new String("hello");//堆里
+		String s3 = new String("hello");//堆里 Heap
 		//#引用对象s3在stack
 		//#"hello"常量池
 		//new String()堆里
@@ -183,6 +230,62 @@ public class LessonInterView
 		//如果你的hash码相同的话，需要进入判断 需要根据Equals
 		//相当于整合ArrayList和LinkedList的优点，比较适合大数据
 	}
+	//3.WEB基础部分
+	/**
+	 * 1.什么是Servlet?为什么我们要引入Servlet?
+	 */
+	//#Servlet的用法
+	//1.创建类 Servlet extends HttpServlet 继承HttpServlet（HttpServlet直接封装HTTP请求 ， HttpServletRequest）
+	//2.在web.xml里面配置它 映射的URL
+	//3.实现具体方法
+	//#什么是Servlet?
+	//web网站的发展过程：静态网页HTML->动态网页
+	//要引入动态网页，就要引入能处理动态WEB资源的技术  Servlet
+	//Servlet能够处理动态WEB资源->(引入为什么要引入JSP)
+	//#3.Servlet怎么处理动态WEB资源
+	//Servlet重新输出了HTML的结构 在其中插入可变的部分 达到动态网页的效果
+	//优点：可以处理动态WEB资源   （因为优点我们为什么要引入它）
+	//缺点：处理过于繁琐                   （因为缺点我们需要引入新的技术）
+	/**
+	 * 什么是JSP(JavaServletPage)?为什么我们要引入JSP?
+	 */
+	//#
+	//JSP本质上是个Servlet，有jasper解析器解析
+	//优点：JSP相当于HTML+Servlet，我们只需要编写可变的JAVA代码
+	//缺点：逻辑（JAVA代码）和显示（HTML页面显示）耦合在一起，在页面比较复杂的时候，修改和维护会很困难
+	//<%= %>  <% %>   <%@ page %>  
+	/**
+	 * 什么是MVC?为什么要引入MVC？
+	 */
+	//MVC并不是一种技术，一种编程规范和编程思想。(逻辑和显示分离)
+	//最原始的MVC：逻辑由Servlet处理，显示由JSP处理 
+	//缺点：要求程序员自觉遵守规范
+	/**
+	 * 什么是webMVC框架？为什么要引入webMVC框架?
+	 */
+	//优点：webMVC框架 强制要求你遵守MVC规范，按他的编码规范走一定是MVC的
+	
+	//#常见的webMVC框架有哪些？
+	//SpringMVC的优点：
+	//1.整合JSON解析模块， 接收和返回JSON数据
+	//2./user/1 # /user?id=1  :  根据URL路径传参数的方式：很容易实现RESTFUL风格
+	//3.天然跟Spring框架整合
+	//4.注解方式，定义URL路径更加简洁
+	
+	//Struts2的优点：
+	//1.简化了获取参数
+	//2.
+	//3.简化了返回参数
+	//4.简化了页面跳转
+	//5.指定到方法那一级别
+	
+	//不使用WEBMVC框架怎么处理请求?
+	//1.获取参数  request.getParameter("")
+	//2.业务方法
+	//3.返回参数  request.setAttribute()
+	//4.页面跳转  请求转发：request.getDispatcher("").forward() / 重定向：sendRedirect()
+	//5.默认的Servlet配置的粒度到哪一个级别：类
+	//如果指定到方法那一级别需要特殊处理：如带个参数来区分
 	
 }
 
