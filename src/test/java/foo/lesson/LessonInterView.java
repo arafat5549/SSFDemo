@@ -79,17 +79,24 @@ package foo.lesson;
  *  
  */
 
-import java.util.Hashtable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.regex.Pattern;
-
-import javassist.expr.NewArray;
 
 import org.junit.Test;
 
-import freemarker.core.Node;
-
 /**
- * 经典面试题解析<p>
+ * <b>经典面试题解析</b><p>
  * <b>JAVA基础部分</b> <br>
  * 
  * 1.String,StringBuffer,StringBuilder的区别?<br>
@@ -97,23 +104,52 @@ import freemarker.core.Node;
  * 
  * 
  * 3.ArrayList, LinkedList, Vector的区别是什么？<br>
- * 3-1.ArrayList和LinkedList 怎么实现栈结构Stack和队列结构Queue
+ * 3-1.ArrayList和LinkedList 怎么实现栈结构Stack和队列结构Queue<br>
  * -Stack:特点FILO先进后出  pop(移除最后一位),push()
- * -Queue:特点FIFO先进先出  pop(移除第一位),push()
- * 4.Map, Set, List, Queue、Stack的特点及用法。
- * 5.HashMap和HashTable的区别
- * 6.TreeMap, LinkedHashMap, HashMap的区别是什么？
- * 7.HashMap的实现原理
+ * -Queue:特点FIFO先进先出  pop(移除第一位),push()<br>
+ * 4.Map, Set, List, Queue、Stack的特点及用法。<br>
+ * 5.HashMap和HashTable的区别？<br>
+ * 6.TreeMap, LinkedHashMap, HashMap的区别是什么？<br>
+ * 7.HashMap的实现原理<br>
+ * 8.什么是JAVA序列化?有几种比较常见的序列化方式?<br>
+ * 9.JSON解析-XML解析？<br>
+ * 10.
+ * <br>
+ * 
+ * <b>WEB基础部分</b> <p>
+ * 1.什么是Servlet?为什么我们要引入Servlet?<br>
+ * 2.什么是JSP(JavaServletPage)?为什么我们要引入JSP?<br>
+ * 3.什么是MVC?为什么要引入MVC？<br>
+ * 4.什么是webMVC框架？为什么要引入webMVC框架?<br>
+ * 5.SpringMVC的优点?<br>
+ * 6.JSTL(JavaStandardTagLib)标签库,EL表达式(${})的简单用法?<br>
+ * 
+ * <br>
+ * <b>Java并发与同步机制,多线程</b><p>
+ * 1.Java有几种实现多线程的方式?<br>
+ * 2.Java中的锁机制?<br>
+ * 3.sleep和wait - wait和notify<br>
+ * 4.死锁Deadlock<br>
+ * 5.ConcurrentHashMap<br>
+ * 6.JAVA并发包：BlockingQueue,CountDownLatch,Semaphore ,Executors
+ * ConcurrentHashMap,CopyOnWriteArrayList<br>
+ * 7.JAVA怎么实现线程安全<br>
+ * 
+ * <br>
+ * <b>网络编程</b><p>
+ * 1.<br>
+ * <br>
+ * <b>操作系统</b><p>
+ * //1.常用的命令
+ * 1-1.ipconfig 
+ * 1-2.netstat
+ * 1-3.ping  
+ * 1-4.
+ * <br>
+ * <b>Java虚拟机与GC</b><p>
  * 
  * 
- * <b>WEB基础部分</b> <br>
- * 1.什么是Servlet?为什么我们要引入Servlet?
- * 2.什么是JSP(JavaServletPage)?为什么我们要引入JSP?
- * 3.什么是MVC?为什么要引入MVC？
- * 4.什么是webMVC框架？为什么要引入webMVC框架?
- * 5.SpringMVC的优点?
- * 6.JSTL(JavaStandardTagLib)标签库,EL表达式(${})的简单用法?
- * 
+ * <br>
  * @author wyy
  * 2016年11月23日
  *
@@ -287,8 +323,334 @@ public class LessonInterView
 	//5.默认的Servlet配置的粒度到哪一个级别：类
 	//如果指定到方法那一级别需要特殊处理：如带个参数来区分
 	
+	/**
+	 * 什么是线程Thread？什么是进程？Process/Program程序
+	 */
+	//单任务系统:单核CPU ，电脑同一时间只能处理一个程序
+	//多任务系统单核CPU ，进程调度，来处理多个程序
+	//多线程：一个程序有多个线程，每个CPU负责一个线程。（一般你开的线程数量跟你CPU的核心数相同）
+	
+	/**
+	 * 1.Java有几种实现多线程的方式?
+	 */
+	//1.继承Thread
+	//2.实现Runnable接口
+	//3.实现Callable接口 - 回调函数
+	/**
+	 * 3.sleep和wait - wait和notify
+	 */
+	//sleep 休眠不会不释放锁 ； wait 会释放锁。
+	//wait 释放锁 和 notify 获得锁
+	/**
+	 * 2.Java中的锁机制?
+	 */
+	//锁机制：多个线程访问同一个资源(临界区) 就有可能产生数据不同步的问题。
+	//怎么判断是不是线程安全
+	//1.原子性
+	//2.有序性
+	//3.可见性
+	
+	//JAVA里面怎么实现实现锁机制？
+	//1.synchronized  有序性和可见性
+	//2.Atmoic*       原子变量：保证我的变量是原子操作 / 原子性
+	//3.Lock/ReentrantLock: 显示锁,基本跟synchronized一致（由你自己控制的锁的加锁和释放）
+	
+	//4.volatile:可见性,只保证了可见性 无法保证线程安全
+	
+	//显示锁,隐式锁：
+	//* 锁的种类？
+	//* #互斥锁：同一时间只能有一个线程访问
+	//* #乐观锁：线程可以被抢占有一套抢占规则
+	//* #悲观锁：线程无法被抢占
+	//* #公平锁：线程可以被抢占的时候才有公平锁,每个锁每一次请求,计数加1
+	//*         轮询计数最高的锁来抢占线程
+	//* #非公平锁：只要我这个锁请求了，线程就一定是我的。
+	
+	//synchronized锁的类别
+	//不可重入的互斥锁 ， 非公平锁 ,悲观锁
+	//优点：安全性更高，
+	//缺点：更容易引起死锁，性能较低
+	//ReentrantLock
+	//可重入的互斥锁：（可自己配置是不是公平锁）乐观锁
+	
+	//指同一个线程，外层函数获得锁之后，内层递归函数仍有获得该锁的代码，但是不受影响。
+	//优点：可重入锁的最大作用可以避免死锁
+	//缺点：安全性要低一些，使用的粒度要更灵活。
+	
+	/**
+	 * 6.JAVA并发包：BlockingQueue,CountDownLatch,ExecutorService
+	 */
+	
+	/**
+	 * CountDownLatch
+	 * #awaits -> Thread.CurrentThread();调用了这个方法的线程都会被阻塞
+	 * #CountDown的时候统一释放这些线程
+	 * 闸门（所有线程会等待闸门开启的时候一起启动）
+	 */
+	
+	
+	//Main方法
+	public static void main(String[] args) {
+		
+//		for (int i = 0; i < 5; i++) {
+//			MyThread thread = new MyThread();
+//			thread.start();
+//		}
+//		//多次调用
+//		MyThread2 m2 = new MyThread2();
+//		for (int i = 0; i < 5; i++) {
+//			m2.run();
+//		}
+//		//启动一个线程执行一些操作，并将结果返回。
+//		MyCallable m3 = new MyCallable();
+//		try {
+//			int result = m3.call();
+//			System.out.println("result="+result);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+//		ExecutorService es = Executors.newFixedThreadPool(1);
+//		Counter counter = new Counter();
+//		SynCounter syncounter = new SynCounter();
+//		AtmoicCounter atmoicCounter = new AtmoicCounter();
+//		LockCounter lockCounter = new LockCounter();
+//		for (int i = 0; i < 10000; i++) 
+//		{
+//			es.execute(counter);
+//			es.execute(syncounter);
+//			//new Thread(counter).start();
+//			//new Thread(syncounter).start();
+//			//new Thread(atmoicCounter).start();
+//			//new Thread(lockCounter).start();
+//		}
+//		try {
+//			Thread.sleep(500);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
+//		System.out.println("counter="+counter.getCount());
+//		System.out.println("syncounter="+syncounter.getCount());
+		//System.out.println("atmoicCounter="+syncounter.getCount());
+		//System.out.println("lockCounter="+syncounter.getCount());
+		
+//		Race0 race0 = new Race0(
+//				 "[#1孙悟空]",
+//		          "[#2马大哈]",
+//		          "[#3美女]",
+//		          "[#4闪电]",
+//		          "[#5科比]",
+//		          "[#6呆呆]",
+//		          "[#7詹姆斯]"
+//		);
+//		
+//		try {
+//			race0.runRace();
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
+		
+		SemaPhoreDemo demo = new SemaPhoreDemo();
+		demo.runDemo();
+	}
+}
+//.计数器-线程不安全
+class Counter implements Runnable
+{
+	private int count;
+	public int getCount(){return count;}
+	@Override
+	public void run() {
+		inc();
+	}
+	private void inc(){
+		count++;//count+1 count=count+1
+	}
+	
 }
 
+/**
+ * 信号量Semaphore
+ * 控制n个线程访问，N为固定数目
+ *
+ */
+class SemaPhoreDemo {
+    public void runDemo()
+    {
+        // 线程池
+        ExecutorService exec = Executors.newCachedThreadPool();
+        // 只能5个线程同时访问
+        final Semaphore semp = new Semaphore(5);
+        // 模拟50个客户端访问
+        for (int index = 0; index < 50; index++) {
+            final int NO = index;
+            Runnable run = new Runnable() {
+                public void run() {
+                    try {
+                        // 获取许可
+                        semp.acquire();
+                        System.out.println("Accessing: " + NO);
+                        Thread.sleep((long) (Math.random() * 6000));
+                        // 访问完后，释放
+                        semp.release();
+                        //availablePermits()指的是当前信号灯库中有多少个可以被使用
+                        System.out.println("-----------------" + semp.availablePermits()); 
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            exec.execute(run);
+        }
+        // 退出线程池
+        exec.shutdown();
+    }
+}
+
+//1.Race
+class Race0{
+	private Random rand = new Random();
+	private int distance = rand.nextInt(100);
+	private ArrayList<String> horses = new ArrayList<String>();
+	
+	public Race0(String ...names){
+		horses.addAll(Arrays.asList(names));
+		//System.out.println(horses.size());
+	}
+	//比赛
+	public void runRace() throws InterruptedException
+	{
+		final CountDownLatch start  = new CountDownLatch(1);
+		final CountDownLatch finish = new CountDownLatch(horses.size());	
+		//ExecutorService es = Executors.newFixedThreadPool(10);		
+		for(final String horse:horses){
+			
+			new Thread(new Runnable() {//匿名内部类
+				int traveld = 0;
+				@Override
+				public void run() 
+				{
+					try {
+						System.out.println(horse+"..horse awaits.");
+						start.await();
+						
+						System.out.println(horse+"出发");
+						while (traveld < distance) {
+							 Thread.sleep(rand.nextInt(3) * 1000);
+							 traveld += rand.nextInt(15);
+							 System.out.println(horse+" traveld "+traveld);
+						}
+						finish.countDown();//一个马跑完 数值减1
+						System.out.println(horse+"冲过了终点"); 
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}).start();
+		}
+		
+		// 
+		Thread.sleep(1000L);
+		start.countDown(); 
+		System.out.println("--------------------------");
+		
+		finish.await();
+		
+		System.out.println("全都跑完啦@"); 
+	}
+}
+
+
+//1.synchronized (本质是锁,互斥锁，悲观锁，非公平锁)
+class SynCounter implements Runnable
+{
+	private int count;
+	public synchronized int getCount(){return count;}
+	@Override
+	public void run() {
+		inc();
+	}
+	private synchronized void inc(){
+//		synchronized(this)
+//		{
+//			count++;
+//		}
+		count++; //非原子操作- count+1 count=count+1
+		
+	}
+}
+//2.Atomic - CAS(Compare and set)先比对再赋值
+class AtmoicCounter implements Runnable
+{
+	private AtomicInteger count = new AtomicInteger(0);
+	public  int getCount(){return count.get();}
+	@Override
+	public void run() {
+		inc();
+	}
+	private  void inc(){
+		count.getAndIncrement();
+	}
+}
+//3.Lock
+class LockCounter implements Runnable{
+	private int count;
+	private Lock lock =new ReentrantLock();
+	
+	public int getCount(){return count;}
+	@Override
+	public void run() {
+		inc();
+	}
+	private void inc(){
+		lock.lock();
+		try {
+			count++;
+		} finally{
+			lock.unlock();//finally
+		}
+		
+	}
+}
+
+//1.继承Thread类
+class MyThread extends Thread{
+	private  int  count = 0;//static
+	@Override
+	public void run() {
+		//while(true)
+		{
+			System.out.println((count++)+",进程打印中---------");
+		}
+	}
+}
+//2.实现Runnable接口
+class MyThread2 implements Runnable
+{
+	private  int  count = 0;//static
+	@Override
+	public void run() {
+		System.out.println((count++)+",Runnable进程打印中---------");
+	}
+	
+}
+//3.回调
+class MyCallable implements Callable<Integer>
+{
+	private int count = 0;
+	@Override
+	public Integer call() throws Exception {
+		while(count<10)
+		{
+			count++;
+		}
+		return count;
+	}
+	
+}
+
+//
 class Fruit{
 	String string;
 	@Override

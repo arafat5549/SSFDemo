@@ -3,6 +3,7 @@ package foo.lesson.summary;
 /**
  * JavaWEB总结?<p>
  * 
+ * 0.java的优点？
  * 1.WEB的简单历程?<br>
  * 2.简单WEB开发流程？<br>
  * 3.常用的第三方工具类有哪些?<br>
@@ -16,6 +17,13 @@ package foo.lesson.summary;
  *
  */
 public class LessonJavaWeb {
+	/**
+	 * 0.java的优点？
+	 */
+	//1.跨平台 - JVM（代理-跟操作系统的代理）
+	//2.容易多人协作 - 语言特性,固定的语法,（默认你不会），高手跟新手的代码比较容易统一
+	//3.行业规范 - C#（开源框架多且大多数经过商业实战）
+	//4.易于扩展
 	/**
 	 * WEB的简单历程
 	 */
@@ -60,6 +68,9 @@ public class LessonJavaWeb {
 	
 	//5.很容易实现RESTFUL风格(利用URL路径来传参数)
 	//6.json解析：（对象和数据结构的映射 JSON）
+	//7.url映射到方法那一级别（粒度更细）
+	//8.注解的方式，简洁方便
+	
 	//导入jackson处理包  
 //    <!-- springmvc注解 处理JSON数据的注解 -->
 //    <mvc:annotation-driven>

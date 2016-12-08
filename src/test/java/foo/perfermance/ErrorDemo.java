@@ -1,4 +1,4 @@
-package foo.error;
+package foo.perfermance;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;

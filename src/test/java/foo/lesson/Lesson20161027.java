@@ -159,6 +159,21 @@ public class Lesson20161027
 	 */
 	@Test
 	public void TempTest(){
+		//1.synchronized 2.Atomic* 3.ReentrantLock
+		class Counter0 implements Runnable{
+			private int mycount = 0;
+			public  int getCount(){//读的锁
+				return mycount;
+			}
+			@Override
+			public void run() 
+			{
+				inc();
+			}
+			private  void inc(){//写的锁
+				++mycount;
+			}
+		}
 		//SYN-首选
 		class Counter implements Runnable{
 			private int mycount = 0;
@@ -217,13 +232,15 @@ public class Lesson20161027
 		//
 		
 		//
-		Counter counter = new Counter();//Servlet单例
+		//Counter counter = new Counter();//Servlet单例
+		Counter0 counter = new Counter0();
 		for(int i=0;i<10000;i++){
 			new Thread(counter).start();//
+			//counter.run();
 		}
 		
 		try {
-			Thread.sleep(700);
+			Thread.sleep(300);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

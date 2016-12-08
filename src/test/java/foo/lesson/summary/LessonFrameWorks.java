@@ -3,18 +3,26 @@ package foo.lesson.summary;
 /**
  * 第三方技术框架总结<p>
  * 
- * 1.安全框架：Shiro<br>
- * 权限管理<br>
- * 
- * 2.分布式的概念-微服务<br>
- * 集群的概念<br>
- * 
+ * 1.安全框架：Shiro/Spring Security<br>
+ * 1-1权限管理<br>
+ * 2.任务调度器: Quartz/SpringTask
  * 3.验证框架:Hibernate-validation
  *   前台验证框架:Jquery-validation
+ * 4.布局框架：SiteMesh/Tiles
+ * 5.搜索框架：Apache lucene/Apache solr/Elasticsearch 
+ * 6.缓存框架: Ehcache / Redis / MemCache
+ * 7.数据库连接池：Alibaba Druid/dbcp/C3P0
+ * 8.工作流引擎：Activiti/JBPM
+ * 9.消息队列机制:Apache ActiveMQ/Apache Kafka 
+ * 10.网络编程模块：netty
+ * 11.文档处理：Apache POI
  * 
- * 4.布局框架：SiteMesh
  * 
- * 5.UML统一建模语言
+ * 100.分布式的概念-微服务<br>
+ * 集群的概念<br>
+ * 
+ * 101.文件存放规范，命名规范
+ * 102.UML统一建模语言
  * 
  * 一些名词概念：
  * 分布式服务框架(DSF)DistributeServiceFrameWorks
