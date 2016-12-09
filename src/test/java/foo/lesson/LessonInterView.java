@@ -137,7 +137,13 @@ import org.junit.Test;
  * 
  * <br>
  * <b>网络编程</b><p>
- * 1.<br>
+ * 1.什么是TCP/IP?<br>
+ * 2.网络架构一共有几层?<br>
+ * 3.什么是Socket?会简单的Socket编程?Socket编程的几种方式?<br>
+ * 4.讲讲TCP协议？
+ * 5.讲讲UDP协议？
+ * 6.讲讲HTTP协议？
+ * 
  * <br>
  * <b>操作系统</b><p>
  * //1.常用的命令
