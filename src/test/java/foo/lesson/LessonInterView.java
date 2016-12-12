@@ -102,7 +102,6 @@ import org.junit.Test;
  * 1.String,StringBuffer,StringBuilder的区别?<br>
  * 2.String的split操作的优化?<br>
  * 
- * 
  * 3.ArrayList, LinkedList, Vector的区别是什么？<br>
  * 3-1.ArrayList和LinkedList 怎么实现栈结构Stack和队列结构Queue<br>
  * -Stack:特点FILO先进后出  pop(移除最后一位),push()
@@ -113,8 +112,13 @@ import org.junit.Test;
  * 7.HashMap的实现原理<br>
  * 8.什么是JAVA序列化?有几种比较常见的序列化方式?<br>
  * 9.JSON解析-XML解析？<br>
- * 10.
+ * 10.什么是线程安全?<br>
+ * 11.JAVA是如何实现线程安全的?<br>
+ * 12.描述一下的JAVA的内存模型(JMM),
+ * 
+ * 20.描述下常用的设计模式
  * <br>
+ * 
  * 
  * <b>WEB基础部分</b> <p>
  * 1.什么是Servlet?为什么我们要引入Servlet?<br>
@@ -143,6 +147,10 @@ import org.junit.Test;
  * 4.讲讲TCP协议？
  * 5.讲讲UDP协议？
  * 6.讲讲HTTP协议？
+ * (请求头 1.请求类型(GET/POST) 2.请求地址(URL) 3.请求参数 4. 请求约束（哪个浏览器过来的，传输的数据结构）)
+ * (响应头 1.状态码 2.Content-Type：内容的类别 3.内容编码gzip)
+ * 7.JAVA通信框架Mina和Netty
+ * 8.GET和POST的区别？
  * 
  * <br>
  * <b>操作系统</b><p>

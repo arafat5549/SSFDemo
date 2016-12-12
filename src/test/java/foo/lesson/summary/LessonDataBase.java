@@ -17,6 +17,7 @@ package foo.lesson.summary;
  * 12.你们会怎么做数据库优化?
  * 13.多表连接JOIN的用法？LEFT JOIN的用法?
  * 14.什么是一对多映射?什么是多对一映射?什么是多对多映射?
+ * 15.数据库设计需要考虑哪些问题？
  * 
  * <b>Hibernate相关</b><p>
  * 0.为什么你要使用Hibernate?他有什么优点?<br>
@@ -32,6 +33,18 @@ package foo.lesson.summary;
  * 1.为什么你要使用MyBatis?他有什么优点?<br>
  * 2.解释一下MyBatis中命名空间（namespace）的作用
  * 3.MyBatis中使用#和$书写占位符有什么区别？
+ * 
+ * 
+ * <<SQL必学必会>> SQL语法一定要不同的学，数据库框架会用就好
+ * 1.JOIN的用法
+ * 2.Group by
+ * 3.Order By
+ * 4.Having  分组之后过滤数据 和 Where 分组之前过滤数据
+ * 
+ * Select 民族
+ * FROM 中国
+ * Group By 民族
+ * Having sum(人口) > 1亿;
  * 
  * @author wyy
  * 2016年11月23日
