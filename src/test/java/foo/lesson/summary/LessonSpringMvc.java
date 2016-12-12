@@ -8,7 +8,7 @@ package foo.lesson.summary;
  * 3.怎么使用SpringMVC？<br>
  * 4.SpringMVC的工作流程？<br>
  * 5.SpringMVC的常用注解？<br>
- * 
+ * 6.SpringMVC怎么访问静态资源?<br>
  * 
  * 
  * 基础概念：
