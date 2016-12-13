@@ -161,9 +161,24 @@ import org.junit.Test;
  * 1-4.
  * <br>
  * <b>Java虚拟机与GC</b><p>
- * 
- * 
+ * 1.java内存模型(JMM)?它分为哪几个区域?
  * <br>
+ * <b>设计模式</b><p>
+ * 1.UML的类图和时序图?<br>
+ * 2.常用的设计模式?在哪些地方见过?<br>
+ * 3.什么是设计模式？为什么要有设计模式?<br>
+ * 
+ * <b>并发与多线程</b><p>
+ * 1.Java有几种实现多线程的方式?<br>
+ * 2.什么是线程安全问题?Java中怎么实现线程安全?<br>
+ * 3.sleep和wait - wait和notify<br>
+ * 4.死锁Deadlock<br>
+ * 5.ConcurrentHashMap<br>
+ * 6.线程池<br>
+ * 7.CountDownLatch<br>
+ * 
+ * 看懂UML：
+ * http://design-patterns.readthedocs.io/zh_CN/latest/read_uml.html
  * @author wyy
  * 2016年11月23日
  *
