@@ -179,6 +179,9 @@ import org.junit.Test;
  * 
  * 看懂UML：
  * http://design-patterns.readthedocs.io/zh_CN/latest/read_uml.html
+ * JAVA面试题: 内存相关
+ * http://www.importnew.com/22083.html 
+ * 
  * @author wyy
  * 2016年11月23日
  *

@@ -17,6 +17,10 @@ import java.util.EmptyStackException;
  * 2.什么是GC(GarbageCollect)?他是怎么工作的?【JAVA的内存管理机制】
  * 3.什么是内存泄漏?  怎么避免内存泄漏? 说说一个你遇到内存泄漏的例子?
  * 
+ * 看懂UML：
+ * http://design-patterns.readthedocs.io/zh_CN/latest/read_uml.html
+ * JAVA面试题: 内存相关
+ * http://www.importnew.com/22083.html 
  * @author wyy
  * 2016年12月12日
  *
@@ -129,7 +133,7 @@ public class LessonJavaSE
 	//#说说一个你遇到内存泄漏的例子?
 	//
 	
-	//JAVA面试题: http://www.importnew.com/22083.html 内存相关
+	
 	
 	public static void main(String[] args) {
 		ArrayList<Object> list = new ArrayList<Object>();
