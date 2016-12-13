@@ -1,11 +1,14 @@
 package foo.lesson.summary;
 
+import java.lang.reflect.Proxy;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+
 
 /**
  * Spring框架<p>
@@ -19,7 +22,7 @@ import org.springframework.stereotype.Service;
  * 7.什么是事务?为什么要使用事务?
  * 8.讲讲事务的传播机制？讲讲事务的数据库隔离级别？
  * 9.Spring怎么实现事务?
- * 
+ * 10.ApplicationContext与BeanFactory有什么区别？
  * 
  * 
  * 
@@ -102,13 +105,76 @@ public class LessonSpringFramework
 	/**
 	 * 1.什么是Spring框架？为什么要引入Spring框架?<br>
 	 */
+	//1.实现程序之间的解耦,IOC就相当于类之间的解耦,AOP相当于与第三方服务之间的解耦
+	//Spring提供了IOC容器，提供了AOP功能
+	//为了解决EJB复杂应用而引入
+	/**
+	 * 2.什么是IOC/DI?Spring是怎么实现DI(依赖注入)的?<br>
+	 */
+	//#1.ioc容器：控制反转，
+	//什么是IOC控制反转？
+	//你的javabean的生命周期维护交给IOC容器来管理，你不再手动创建Javabean而是从IOC容器里面去获取
+	//#2.什么是DI依赖注入？
+	//我们的一个JavaBean的功能一般要依赖另外一个Javabean来实现，就需要将这个依赖的JavaBean给注入进来。
+	//#3.Spring是怎么实现DI(依赖注入)的?
+	//注入有两种注入方式 setter和构造器注入，默认是setter注入方式
+	//XML配置的方式：
+	//1-首先你的JavaBean交给IOC容器来管理 相当于你要两个Bean标签
+	//2-在你要依赖的那个bean下面添加Property标签实现依赖注入                // <constructor-arg>
+	//注解的方式：
+	//1-扫描某个路径 <context:component-scan  base-package="*.*"/>
+	//2-四个扫描注解@Componnent @Reposity @Service @Contoller(四个注解是等价的) 
+	//相当于IOC容器注册的过程（在你的IOC容器里面创建了一个bean标签）
+	//3-两个注入注解 
+	//@Autowired： Spring注解 ， 按类别注入
+	//@resource：   JDK注解              按名称注入
 	
+	//ioc容器/BeanFactory：
+	//BeanFactory工厂类默认生成的Bean是单例模式，延迟加载/懒加载
+	/**
+	 * 4.什么是AOP(AspectOrientProgram)面向切面编程?<br>
+	 */
+	//弥补了计算机程序线性执行的弱点，利用AOP避免代码散落在程序的各个部分，
+	//而来统一管理他们
+	//AOP常用的地方（事务，缓存，日记等）
+	//#tips：要详细的描述AOP可以引入Spring事务的部分和Spring是如何实现AOP的
 	/**
 	 * 6.Spring是怎么实现AOP的?
 	 */
-	//aop靠动态代理来实现?  JDK动态代理（默认方式）-CGLIB动态代理
+	//aop靠动态代理和反射来实现?  JDK动态代理（默认方式）-CGLIB动态代理
 	//JDK动态代理-传入的是接口（所以我们WEB的分层一般要面向接口编程）
-	
 	//为什么动态代理可以实现AOP?
-	//
+	//1.把你要代理的类（我们自己实现的类）传给动态代理对象（AOP框架）
+	//2.把你要实现的功能写到你的动态代理类【提供我们需要功能的那个类如事务的提供类】里面去（DynamicProxyProvider）
+	/*
+	 //#1 JDK创建动态代理的过程
+	Class<IFontProvider> targetClass = IFontProvider.class;
+    return (IFontProvider) Proxy.newProxyInstance(
+  		  targetClass.getClassLoader(),
+        new Class[] { targetClass },
+        new DynamicProxyProvider(new NetFontProvider()));
+     //#2  
+     IFontProvider provider =  new NetFontProvider();  
+    */
+	/**
+	 * 7.什么是事务?为什么要使用事务?
+	 */
+	//#1.把多个sql操作封装成一个原子操作，来一起提交或者回退，从而保证数据的一致性和安全性。
+	//#2.acid特性：
+	//事务应该具有4个属性：原子性、一致性、隔离性、持续性。这四个属性通常称为ACID特性
+
+	//#3.为什么要使用事务
+	//保证数据的一致性和安全性。
+	//讲那个转账的例子。
+	//怎么保证数据的一致性和安全性?
+	
+	//#4.怎么样合理的使用事务?
+	//每一条sql语句默认会开启事务 
+	//当大量sql一起执行时，我们需要执行批处理Batch，我们可以手动关闭事务setAutocommit(false),再手动提交commit
+	
+    //事务的传播机制？为什么我们的传播机制默认是requried 默认开启且只开启一个事务
+	/**
+	 * 9.Spring怎么实现事务?
+	 */
+	//Spring利用AOP来实现事务。
 }
