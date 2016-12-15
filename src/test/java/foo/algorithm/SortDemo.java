@@ -6,8 +6,6 @@ import java.util.Random;
 
 import org.junit.Test;
 
-import scala.collection.parallel.ParIterableLike.Partition;
-
 import com.google.common.collect.Lists;
 
 /**

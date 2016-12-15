@@ -4,10 +4,6 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
-import org.ietf.jgss.Oid;
-
-import scala.collection.parallel.ParIterableLike.Max;
-
 /**
  * 生产者和消费者模型
  * 并发经典的案例

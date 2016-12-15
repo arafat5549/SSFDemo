@@ -4,7 +4,6 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import lombok.Data;
 import foo.dao.UserDao;
 import foo.entity.User;
 import foo.service.IUserService;

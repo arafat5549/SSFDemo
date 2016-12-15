@@ -1,7 +1,5 @@
 package foo.lesson;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
 
 
 public class Lesson20161107 {

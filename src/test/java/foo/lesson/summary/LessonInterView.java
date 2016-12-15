@@ -1,4 +1,4 @@
-package foo.lesson;
+package foo.lesson.summary;
 
 /**
  * 面试过程就是展示你自己的过程(适度包装)<p>
@@ -83,7 +83,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.Callable;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

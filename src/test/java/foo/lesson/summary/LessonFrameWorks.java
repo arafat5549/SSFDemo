@@ -5,9 +5,9 @@ package foo.lesson.summary;
  * 
  * 1.安全框架：Shiro/Spring Security<br>
  * 1-1权限管理<br>
- * 2.任务调度器: Quartz/SpringTask
- * 3.验证框架:Hibernate-validation
- *   前台验证框架:Jquery-validation
+ * 2.任务调度器: Quartz/SpringTask<br>
+ * 3.验证框架:Hibernate-validation<br>
+ *   前台验证框架:Jquery-validation<br>
  * 4.布局框架：SiteMesh/Tiles
  * 5.搜索框架：Apache lucene/Apache solr/Elasticsearch 
  * 6.缓存框架: Ehcache / Redis / MemCache
@@ -15,14 +15,31 @@ package foo.lesson.summary;
  * 8.工作流引擎：Activiti/JBPM
  * 9.消息队列机制:Apache ActiveMQ/Apache Kafka 
  * 10.网络编程模块：netty
- * 11.文档处理：Apache POI
+ * 11.文档处理：Apache POI<br>
  * 
+ * <p>前台框架</p><br>
+ * JS框架：JQuery 1.9<br>
+ * CSS框架：Twitter Bootstrap 2.3.1。
+ * 客户端验证：JQuery Validation Plugin 1.11。
+ * 树结构控件：jQuery zTree   / Jquery EasyUI
+ * 数据表格：jqGrid
+ * 日期控件： My97DatePicker
  * 
+ * 富文本：CKEcitor
+ * 文件管理：CKFinder
+ * 动态页签：Jerichotab
+ * 手机端框架：Jingle
+ * 对话框：jQuery jBox
+ * 下拉选择框：jQuery Select2<br>
+ * 
+ * <p>分布式系统</p>
  * 100.分布式的概念-微服务<br>
  * 集群的概念<br>
  * 
- * 101.文件存放规范，命名规范
- * 102.UML统一建模语言
+ * 
+ * <p>编码规范</p>
+ * 101.文件存放规范，命名规范<br>
+ * 102.UML统一建模语言<br>
  * 
  * 一些名词概念：
  * 分布式服务框架(DSF)DistributeServiceFrameWorks
@@ -84,7 +101,7 @@ public class LessonFrameWorks {
 	
 	
 	/**
-	 * 分布式的概念：（微服务-一个大的业务分拆成为若干个小的业务，部署在不同的服务器上）
+	 * 100.分布式的概念：（微服务-一个大的业务分拆成为若干个小的业务，部署在不同的服务器上）
 	 */
 	//1.只有单服务器单应用程序
 	//2.多服务器多应用程序
@@ -94,12 +111,16 @@ public class LessonFrameWorks {
 	//Mudo -》
 	
 	/**
-	 * 集群的概念：（同一个业务，部署在多个服务器上）
+	 * 100.集群的概念：（同一个业务，部署在多个服务器上）
 	 */
 	//负载均衡 
 	//1.Nginx怎么跟WEB服务器协作？
 	//2.Nginx的反向代理的概念？
-	
+	/**
+	 * 102.微服务
+	 */
+	//#序列化常用第三方工具
+	//hessain:使用二进制RPC协议传输数据，对象必须进行序列化，实现Serializable 接口
 	
 	/**
 	 * 怎么解决BUG？

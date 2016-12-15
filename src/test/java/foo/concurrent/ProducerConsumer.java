@@ -2,7 +2,8 @@ package foo.concurrent;
 
 import java.io.File;
 import java.io.FileFilter;
-import java.util.concurrent.*;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * 生产者和消费者模式

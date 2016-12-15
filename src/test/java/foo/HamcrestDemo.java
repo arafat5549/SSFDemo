@@ -1,12 +1,13 @@
 package foo;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.startsWith;
+
 import java.util.ArrayList;
 
 import org.junit.Test;
-
-import junit.framework.TestCase;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 /**
  * 单元测试断言 推荐度5星<p>

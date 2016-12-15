@@ -7,8 +7,6 @@ import java.util.concurrent.ThreadLocalRandom;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mchange.rmi.Cardable;
-
 /**
  * 多线程环境下生成随机树<p>
  * 1.原生Random<br>

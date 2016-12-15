@@ -48,7 +48,9 @@ package foo.lesson.summary;
  * 3.一旦有些事情看上去过于美好（就要多长点心眼）<p>
  * 4.商业借贷,信用卡机制过于发达(控制你们的欲望)<p>
  *  
- * 
+ * <b>常用软件</b><br>
+ * 1.IDE:Eclipse/MyEclipse/IntelliJ
+ * 2.多人协作-版本控制: Git/SVN/CVS
  * @author wyy
  * 2016年12月9日
  *

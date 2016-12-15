@@ -1,13 +1,5 @@
 package foo.lesson.summary;
 
-import java.lang.reflect.Proxy;
-
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 
 /**
