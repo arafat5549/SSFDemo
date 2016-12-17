@@ -51,6 +51,29 @@ package foo.lesson.summary;
  * <b>常用软件</b><br>
  * 1.IDE:Eclipse/MyEclipse/IntelliJ
  * 2.多人协作-版本控制: Git/SVN/CVS
+ * 3.文本编辑器:Editplus/SublimeText3
+ * 4.文档编写/统计图:word/markdown/ppt/(keynote)/Excel
+ * 5.UML画图:RoseRational/StarUML
+ * 6.浏览器:Chrome/FireFox
+ * 7.vpn:Google/Github/
+ * 8.数据库相关:PLSQL/Navicat
+ * 
+ * 
+ * <b>知识收集,碎片知识</b>
+ * 0.手机的知识点：记录一些简单的点
+ * 1.Pocket： readLater 收集网页的页签
+ * 2.印象笔记: 个人知识整理
+ * 2-2.注册个google的账号：管理你的收藏夹
+ * 3.MOOC在线课程(入门):网易云课堂/Coursra(创始人 百度AI部门BaiduMind 吴恩达)
+ * 4.学习网站/技术社区:github,stackoverflow,CSDN,一些UGC社区知乎,Quora
+ * 5.善于使用搜索:1.有一定专业词汇单词量  2.搜索技巧
+ * 6.脑图(百度脑图):定期整理你的知识脉络
+ * 7.学好英文:
+ * 
+ * 10.编程语言相关书籍(能写程序):EffectiveJava / SQL必知必会  / 图解TCP/IP / 鸟哥的Linux私房课
+ * 11.程序设计相关书籍(能写好程序): java并发编程实战 / 深入理解Java虚拟机
+ * 12.计算机底层相关书籍(能做到别人做不到的):深入理解计算机系统
+ * 13.计算机理论相关书籍(大神):
  * @author wyy
  * 2016年12月9日
  *

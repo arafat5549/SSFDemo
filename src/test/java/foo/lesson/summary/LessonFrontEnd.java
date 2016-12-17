@@ -19,6 +19,10 @@ package foo.lesson.summary;
  * 1.什么是AJAX?如何实现AJAX?
  * 2.
  * 
+ * 3.Jquery选择器的使用 
+ * 4.$.ajax / $.get   / $.post  / $.getJson
+ * 5.动画效果 $.fadeIn / $.hide / $.animate
+ * 
  * @author wyy
  * 2016年11月29日
  *

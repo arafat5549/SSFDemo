@@ -1,14 +1,23 @@
 package foo.lesson.summary;
 
-import java.util.ArrayList;
+import java.io.Serializable;
+import java.lang.ref.PhantomReference;
+import java.lang.ref.SoftReference;
+import java.lang.ref.WeakReference;
 import java.util.Arrays;
 import java.util.EmptyStackException;
+import java.util.regex.Pattern;
+
+import org.apache.commons.lang3.StringUtils;
 
 /**
- * 1.什么是线程安全?
+ * 1.什么是线程安全?CONCURRENT/Collection
  * 2.JAVA是怎么实现线程安全的?
  * 2-1.线程池的用法与优势?
  * 2-2.描述ArrayBlockingQueue, CountDownLatch , Semaphore ,Executors类的作用
+ * 2-3.ConcurrentHashMap的实现原理?
+ * 2-4.sleep和wait - wait和notify的区别?
+ * 2-5.mysql数据库中的锁机制?
  * 
  * 3.JAVA的类加载机制?
  * 4.java的异常处理?Error和Exception的区别?
@@ -28,10 +37,16 @@ import java.util.EmptyStackException;
  * 2.什么是GC(GarbageCollect)?他是怎么工作的?【JAVA的内存管理机制】
  * 3.什么是内存泄漏?  怎么避免内存泄漏? 说说一个你遇到内存泄漏的例子?
  * 
- * 看懂UML：
+ * <p><b>JAVAIO模型</b></p>
+ * 
+ * <p><b>引用网站</b></p>
+ * 【看懂UML】：
  * http://design-patterns.readthedocs.io/zh_CN/latest/read_uml.html
- * JAVA面试题: 内存相关
+ * 【JAVA面试题】: 内存相关
  * http://www.importnew.com/22083.html 
+ * 【JAVA高级特性】:反射 动态代理等
+ * http://www.jianshu.com/p/1990eb1f66eb
+ * 
  * @author wyy
  * 2016年12月12日
  *
@@ -294,29 +309,219 @@ public class LessonJavaSE
 	/**
 	 * 7.什么是动态代理?
 	 */
+	//代理：用一个例子讲出来(翻译等 我讲中文 客户A讲英文 客户B讲日文 
+	//代理类需要实现 中文/英文/日文之间的翻译)
+	//优点一：可以隐藏委托类的实现；
+	//优点二：可以实现客户与委托类间的解耦，在不修改委托类代码的情况下能够做一些额外的处理。
+	
+	//#静态代理
+	//若代理类在程序运行前就已经存在，那么这种代理方式被成为静态代理，这种情况下的代理类通常都是我们在Java代码中定义的。 
+	//通常情况下，静态代理中的代理类和委托类会实现同一接口或是派生自相同的父类。
+	
+	//优点：解耦
+	//缺点：静态代理的局限在于运行前必须编写好代理类
+	
+	//#动态代理
+	//代理类在程序运行时创建的代理方式被成为动态代理
+	//动态代理的优势在于可以很方便的对代理类的函数进行统一的处理，而不用修改每个代理类的函数。
+	
+	//#jdk动态代理-面向接口编程
+	//InvocationHandler接口
+	//DynamicProxy inter = new DynamicProxy(new Vendor()); 
+	//Sell sell = (Sell)(Proxy.newProxyInstance(Sell.class.getClassLoader(), new Class[] {Sell.class}, inter)); 
+	
+	//cglib动态代理-不依赖接口x
+	//ASM.jar -对你的字节码进行优化，提升你反射的性能
 	/**
 	 * 8.什么是反射?
 	 */
 	//反射的作用概括地说是运行时获取类的各种定义信息，
 	//比如定义了哪些属性与方法。原理是通过类的class对象来获取它的各种信息。
+	
+	//起效时期:运行时RunTime
+	//#三种获取类信息的方式？
+	//#1.User user=new User();   user.getClass
+	//#2.Class.forName("xx.xx");
+	//#3.User.class
+	
+	//#常用到的反射功能?
+	//1.在运行时判断任意一个对象所属的类。
+	//2.在运行时构造任意一个类的对象。
+	//3.在运行时判断任意一个类所具有的成员变量和方法。
+	//4.在运行时调用任意一个对象的方法。
+	//5.在运行时变更field的内容
+	
+	//默认只有public的字段会被获取到
+	//Object.class.getFields()
+	//获取定义的方法可以捕获private作用域
+	//Object.class.getDeclaredFields()
+	
 	/**
 	 * 9.什么是注解? 
 	 */
 //	注解可以看作是“增强版的注释”，它可以向编译器、虚拟机说明一些事情。
 //	注解是描述Java代码的代码，它能够被编译器解析，注解处理工具在运行时也能够解析注解。注解本身是“被动”的信息，只有主动解析它才有意义。
 //	除了向编译器/虚拟机传递信息，我们也可以使用注解来生成一些“模板化”的代码。
+	
+	//#元注解
+	//描述注解的注解
+	//1.@Target
+	//这个元注解说明了被修饰的注解的应用范围，也就是被修饰的注解可以用来注解哪些程序元素
+	//应用范围:
+	//2.@Retention
+	//它表示一个注解类型会被保留到什么时候，比如以下代码表示Developer注解会被保留到运行时
+	//source源码级别
+	//CLASS编译器
+	//runtime运行时
+	//3.@Documented
+	//javaDOC会被文档工具生成
+	//4.@Inherited
+	//自动被继承
+	
+	//#常见内建注解:@Override,@Deprecated
+	
+	//#自定义注解
+	//1.注解类型是通过”@interface“关键字定义的；
+	//2.在”注解体“中，所有的方法均没有方法体且只允许public和abstract这两种修饰符号（不加修饰符缺省为public），注解方法不允许有throws子句；
+	//3.注解方法的返回值只能为以下几种：原始数据类型）, String, Class, 枚举类型, 注解和它们的一维数组，可以为方法指定默认返回值。
+
+	//#注解有什么用？为什么我们要使用它？
+	//1.注解也是一种修饰符,可以传递信息。（空注解）
+	//2.除了传递信息，我们也可以使用注解生成代码。我们可以使用注解，然后让注解解析工具来解析它们，以此来生成一些”模板化“的代码。比如Hibernate、Spring、Axis这些框架大量使用了注解，来避免一些重复的工作。
 	/**
 	 * 10.什么是泛型?
 	 */
+	//为什么我们要引入泛型?
+	//举个例子，如果没有泛型 你想要实现一个通用的ArrayList，你应该传入的是一个Object对象
+	//这样会引起两个问题
+	//1.每次获取完对象都能做类型转换
+	//2.比如说我是一个User的list 但是我add的是一个Book对象。编译器不会出错，只有到运行期才会报错。
 	
+	//泛型类
+	//public class Pair<T, U>{}
+	
+	//泛型方法
+	
+	//类型变量的限定 <T extends BoundingType> //BoundingType是一个类或者接口
+	
+	//#注意事项
+	//1.不能用基本类型实例化类型参数
+	//2.不能抛出也不能捕获泛型类实例
+	//3.参数化类型的数组不合法
+	//不合法：   Pair<String,String>[] pairs = new Pair<String,String>[10];
+	//合法：       Pair<String,String>[] pairs = (Pair<String,String>[])new Pair[10];
+	
+	//#类型通配符 ?
+	//假设Student是People的子类，Pair<Student, Student>却不是Pair<People, People>的子类，它们之间不存在"is-a"关系。
+	//Pair<T, T>与它的原始类型Pair之间存在”is-a"关系，Pair<T, T>在任何情况下都可以转换为Pair类型。
+	
+	
+	//Pair<? extends People,? extends People>
+	//Pair<T, T>
+	//Pair<? super People,? super People>
+	/**
+	 * 11.什么是枚举类型Enum
+	 */
+	//一系列静态常量的集合
+	//限定了你静态常量的范围
+	/**
+	 * 12.Java中多态的实现原理
+	 */
+	//多态的实现的关键在于“动态绑定”。
+	//1.继承  2.有重写 3.父类引用指向子类对象
+    /**
+     * 13.Java中的四种引用及其应用场景是什么？
+     */
 	public static void main(String[] args) {
-		ArrayList<Object> list = new ArrayList<Object>();
-		Object testObject = new Object();
-		list.add(testObject);
-		
-		testObject = null;
-		
+//		ArrayList<Object> list = new ArrayList<Object>();
+//		Object testObject = new Object();
+//		list.add(testObject);
+//		testObject = null;
 		//ClassLoader
+		
+//		LessonJavaSE ddd =new LessonJavaSE();
+//		Animal a1 = ddd.new Animal();
+//		Animal a2 = ddd.new Dog();//动态绑定
+//		Cat a3 = ddd.new Cat();//静态绑定
+//		//List list = new ArrayList<E>();
+//		a1.bark();
+//		a2.bark();
+		
+		//Java中的四种引用及其应用场景是什么？
+		//#强引用  new出来的对象引用都是强引用
+		//只要某个对象有强引用与之关联，JVM必定不会回收这个对象，
+		//即使在内存不足的情况下，JVM宁愿抛出OutOfMemory错误也不会回收这种对象。
+		String str  =new String("string");
+		
+		//#软引用
+		//只有在内存不足的时候JVM才会回收该对象。
+		//可用于图片缓存中，内存不足时系统会自动回收不再使用的Bitmap
+		SoftReference<String> str2 = new SoftReference<String>(new String("string"));
+	
+	    //#弱引用
+		//当JVM进行垃圾回收时，无论内存是否充足，都会回收被弱引用关联的对象。
+		//弱引用能用来在回调函数中防止内存泄露
+		WeakReference<String> str3 = new WeakReference<String>(new String("string"));
+	    //#虚引用（PhantomReference）
+		//虚引用和前面的软引用、弱引用不同，它并不影响对象的生命周期。在java中用java.lang.ref.PhantomReference类表示。
+		//如果一个对象与虚引用关联，则跟没有引用与之关联一样，在任何时候都可能被垃圾回收器回收。
+		//PhantomReference<String> str4 = new PhantomReference<String>(new String("string"));
+	
+		Pattern pattern  = Pattern.compile("#");
+		//pattern.split("#")
+		///"".split("#")
+		
+		//StringUtils.split(str)
+	}
+	/**
+	 * 动态绑定
+	 */
+	
+	class Animal implements Serializable{
+		public void bark()
+		{
+			System.out.println("bark");
+		}
+	}
+	
+	class Dog extends Animal{
+		public void bark()
+		{
+			System.out.println("狗叫-bark");
+		}
+	}
+	class Cat extends Animal{
+		public void bark()
+		{
+			System.out.println("猫叫-bark");
+		}
+	}
+	/**
+	 * 枚举的简单用法
+	 */
+	public static String OS_WIN32 = "win32";
+	public static String OS_OSX   = "macos";
+	
+	public void enumtest(String param){
+		if(param == OS_WIN32){
+			//调用windows方法
+		}
+		else if(param == OS_OSX){
+			//
+		}
+	}
+	public void enumtest(OSTYPE ostype){
+		if(ostype == OSTYPE.OS_WIN32){
+			//调用windows方法
+		}
+		else if(ostype == OSTYPE.OS_OSX){
+			//
+		}
+	}
+	
+	enum OSTYPE{
+		OS_WIN32,
+		OS_OSX
 	}
 }
 

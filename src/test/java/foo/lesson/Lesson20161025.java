@@ -18,6 +18,9 @@ import org.apache.commons.io.IOUtils;
  * 3.统计指定路径下的所有文件  :知识点(文件夹遍历，文件过滤，递归)<br>
  * 4.非阻塞IO读取文件夹:知识点(多线程，非阻塞IO，线程池Executors-Java.util.concurretn并发包)<br>
  * 
+ * 
+ * 1.读取一个文本，统计他其中的英文 数字 中文 和其他字符
+ * 2.读取某个文件夹底下的所有文本(.txt or .java 结束的)
  * @author wyy
  * 2016年10月25日
  *

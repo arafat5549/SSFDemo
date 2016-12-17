@@ -1,5 +1,7 @@
 package foo.lesson.summary;
 
+import java.util.regex.Pattern;
+
 /**
  * <b>数据库相关</b><p>
  * 
@@ -51,6 +53,8 @@ package foo.lesson.summary;
  *
  */
 public class LessonDataBase {
+	
+	
 	/**
 	 * 1.主流数据库有哪些?<br>
 	 */

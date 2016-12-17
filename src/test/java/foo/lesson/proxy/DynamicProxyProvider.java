@@ -1,5 +1,6 @@
 package foo.lesson.proxy;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -49,6 +50,13 @@ public class DynamicProxyProvider implements InvocationHandler{
 		//getter方法-
       if (method.getName().matches("get.+") && (types.length == 1) &&
               (types[0] == String.class)) {
+//    	  Annotation[] anns = proxy.getClass().getAnnotations();
+//    	  for (Annotation annotation : anns) {
+//			if (annotation.equals(obj)) {
+//				
+//			}
+//    	  }
+    	  
     	  
 //    	  //做了缓存
 //          String key = (String) args[0];
@@ -76,11 +84,14 @@ public class DynamicProxyProvider implements InvocationHandler{
 	  public static IImageProvider getImageProvider() 
 	  {
 	      Class<IImageProvider> targetClass = IImageProvider.class;
+	      //1.中介类
+	      DynamicProxyProvider inter =new DynamicProxyProvider(new NetImageProvider());
+	      
 	      return (IImageProvider) 
-	    		  Proxy.newProxyInstance(
+	    	  Proxy.newProxyInstance(
 	    	  targetClass.getClassLoader(),
 	          new Class[] { targetClass },
-	          new DynamicProxyProvider(new NetImageProvider()));
+	          inter);
 	  }
 	
 	  public static void main(String[] args) 

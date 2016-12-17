@@ -16,6 +16,7 @@ package foo.lesson.summary;
  * 9.消息队列机制:Apache ActiveMQ/Apache Kafka 
  * 10.网络编程模块：netty
  * 11.文档处理：Apache POI<br>
+ * 12.静态网页模板: Velocity / FreeMarker / thymyleaf
  * 
  * <p>前台框架</p><br>
  * JS框架：JQuery 1.9<br>
