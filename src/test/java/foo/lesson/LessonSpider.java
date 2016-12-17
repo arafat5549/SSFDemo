@@ -33,8 +33,12 @@ package foo.lesson;
  * 加入右键菜单
  * http://www.tuicool.com/articles/ZfuiQr2
  * scrapyDemo:
- * apt-cyg：
+ * 安装apt-cyg：
  * http://zengrong.net/post/1792.htm
+ * 安装python:
+ * apt-cyg install python
+ * 
+ * pip install scrapy
  * 
  * @author wyy
  * 2016年12月17日
@@ -45,9 +49,17 @@ public class LessonSpider {
 	 * 安装wget 下载工具
 	 * 安装curl
 	 */
+	//安装apt-cyg:
+	
+	//安装python:
+	//apt-cyg install python
+	
 	//安装pip：
-	//wget "https://pypi.python.org/packages/source/p/pip/pip-1.5.4.tar.gz#md5=834b2904f92d46aaa333267fb1c922bb" --no-check-certificate
-
+	//1.wget "https://pypi.python.org/packages/source/p/pip/pip-1.5.4.tar.gz#md5=834b2904f92d46aaa333267fb1c922bb" --no-check-certificate
+    //2.tar -zxvf pip-1.5.4
+	//3.cd pip-1.5.4
+	//4.python setup.py install
+	
 	
 	//wget / curl/ pip / python / apt-cyg / scrapy
 	//cygwin/
