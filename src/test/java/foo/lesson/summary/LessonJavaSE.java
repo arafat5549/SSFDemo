@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.ref.PhantomReference;
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.EmptyStackException;
 import java.util.regex.Pattern;
@@ -38,6 +39,7 @@ import org.apache.commons.lang3.StringUtils;
  * 3.什么是内存泄漏?  怎么避免内存泄漏? 说说一个你遇到内存泄漏的例子?
  * 
  * <p><b>JAVAIO模型</b></p>
+ * 1.
  * 
  * <p><b>引用网站</b></p>
  * 【看懂UML】：
@@ -53,7 +55,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class LessonJavaSE 
 {
-	
+	//BigDecimal
 	/**
 	 * 1.什么是线程安全?
 	 */

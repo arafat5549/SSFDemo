@@ -46,6 +46,9 @@ package foo.lesson;
  */
 public class LessonSpider {
 	/**
+	 * 163镜像：
+	 * http://mirrors.163.com/
+	 * 
 	 * 安装wget 下载工具
 	 * 安装curl
 	 */

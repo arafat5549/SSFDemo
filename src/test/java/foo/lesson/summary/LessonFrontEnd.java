@@ -17,7 +17,7 @@ package foo.lesson.summary;
  * 
  * <p>相关的知识点</p><br>
  * 1.什么是AJAX?如何实现AJAX?
- * 2.
+ * 2.什么是RESTFUL?如何实现RESTFUL?
  * 
  * 3.Jquery选择器的使用 
  * 4.$.ajax / $.get   / $.post  / $.getJson

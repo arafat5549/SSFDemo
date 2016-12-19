@@ -70,6 +70,10 @@ RESTFUL
  * 4.什么是webMVC框架？为什么要引入webMVC框架?
  * 5.SpringMVC的优点?
  * 6.JSTL(JavaStandardTagLib)标签库,EL表达式(${})的简单用法?
+ * 7.主流的WEB服务器有哪些?<br>
+ * 8.WEB服务器和HTTP服务器的区别?<br>
+ * 9.什么是反向代理?什么是负载均衡?
+
 
  * <b>数据库相关</b><p>
  * 1.主流数据库有哪些?<br>

@@ -10,8 +10,26 @@ package foo.lesson.summary;
  * 3.你怎么设计你的权限系统?<br>
  * 4.怎么进行多表连接join的用法 (一对多，多对一)?<br>
  * 
+ * https/http的区别?
+ * 1.访问https://
+ * 2.服务器弹出一个页面要求你安装一证书CA
+ * 3.验证数字证书，发送数字证书给某宝
+ * CA：数字签名(RSA)
+ * --1.某宝的公钥
+ * --2.机密算法
+ * --3.HASH算法（秘钥）
+ * --4.证书到期时间?
+ * --5.私人秘钥
+ * 4.我发请求有人篡改我的证书怎么处理 ？
+ * 你把私人秘钥生成的HASH码负在你的证书后面，保证是你本人的操作
+ * 5.
+ * Hash算法：MD5,SHA,Base64
+ * 数字签名: RSA(非对称加密、有分公钥和秘钥)
+ * 
  * 例子：
  * http://blog.csdn.net/catoop/article/details/50520958
+ * 数字签名是什么?
+ * http://www.ruanyifeng.com/blog/2011/08/what_is_a_digital_signature.html
  * @author wyy
  * 2016年12月9日
  *

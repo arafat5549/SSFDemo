@@ -17,6 +17,7 @@ package foo.lesson.summary;
  * 10.网络编程模块：netty
  * 11.文档处理：Apache POI<br>
  * 12.静态网页模板: Velocity / FreeMarker / thymyleaf
+ * 13.分词:IKAnalyzer中文分词器
  * 
  * <p>前台框架</p><br>
  * JS框架：JQuery 1.9<br>
@@ -35,8 +36,13 @@ package foo.lesson.summary;
  * 
  * <p>分布式系统</p>
  * 100.分布式的概念-微服务<br>
- * 集群的概念<br>
- * 
+ * 	        集群的概念<br>
+ * 101.什么是JMS?什么是消息队列?常用场景(电商，日记系统)
+ * 102.消息队列框架: ActiveMQ / Apache kafka(Publish/Subscribe)
+ * 103.RPC(是远程过程调用的)框架:Dubbo/RMI/Hessian/
+ * 104.Zookeeper服务器注册机制?
+ * 105.消息队列与远程过程调用的区别
+ * 106.SOA/SOAP?
  * 
  * <p>编码规范</p>
  * 101.文件存放规范，命名规范<br>
@@ -122,6 +128,61 @@ public class LessonFrameWorks {
 	 */
 	//#序列化常用第三方工具
 	//hessain:使用二进制RPC协议传输数据，对象必须进行序列化，实现Serializable 接口
+	//1.每个模块能独立运行
+	//2.
+	/**
+	 * 101.什么是JMS?什么是消息队列?常用场景(电商，日记系统)
+	 */
+	//解决分布式和集群.
+	
+	//JMS(JavaMessageService):JAVA消息服务
+	//1.什么是消息？为什么我们要引入消息?
+	//不同程序之间的通信就是利用消息来传递.
+	//2.什么是消息队列?
+	//消息队列中间件是分布式系统中重要的组件，主要解决应用耦合，异步消息，流量削锋等问题。实现高性能，高可用，可伸缩和最终一致性架构。
+	
+	//P2P点对点: 
+	//如果希望发送的每个消息都会被成功处理的话，那么需要P2P模式。
+	//重要信息入库的话-P2P
+	
+	//发布-订阅(Publish/Subscribe):
+	//如果希望发送的消息可以不被做任何处理、或者只被一个消息者处理、或者可以被多个消费者处理的话，那么可以采用Pub/Sub模型
+	//日记系统
+	/**
+	 * 102.消息队列框架: Apache ActiveMQ(p2P)/ Apache kafka(Publish/Subscribe)
+	 */
+	//
+	/**
+	 * 103.RPC(是远程过程调用的)框架:Dubbo/RMI(JAVA原生远程调用)/Hessian()/
+	 */
+	//远程方法调用.
+	//解决服务间通讯步骤：
+	//1.建立tcp连接
+	//2.ip寻址
+	//3.Server端序列化对象并发送二进制流
+	//4.Client端接收二进制流，并反序列化对象，
+	//5.调用对象的方法
+	/**
+	 * 104.Zookeeper服务器注册机制?
+	 */
+	//Clients  -> [Registry] -> Servers
+	/**
+	 * 105.消息队列MQ与远程过程调用RPC(Remote Procedure Call)的区别
+	 */
+	 //消息队列MQ与RPC都是为了解决不同进程间的通信问题.
+	 //消息队列MQ多用于处理异步消息
+	 //RPC多用于进行同步操作。
+	/**
+	 * 106.什么是SOA/什么是SOAP?
+	 */
+	//SOAP:rpc+http+xml
+	//SOA:面向服务的架构（SOA）
+	
+	//rpc框架:
+	//http://blog.csdn.net/zhaowen25/article/details/45443951
+	//消息队列
+	//http://blog.csdn.net/shaobingj126/article/details/50585035
+	
 	
 	/**
 	 * 怎么解决BUG？
