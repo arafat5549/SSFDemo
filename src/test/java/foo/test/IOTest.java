@@ -2,10 +2,19 @@ package foo.test;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicLong;
+
+import org.apache.commons.io.IOUtils;
 
 /**
  * <b>文件读取与字符串操作</b><p>
@@ -15,12 +24,95 @@ import java.util.concurrent.atomic.AtomicLong;
  * 3.统计指定路径下的所有文件  :知识点(文件夹遍历，文件过滤，递归)<br>
  * 4.非阻塞IO读取文件夹:知识点(多线程，非阻塞IO，线程池Executors-Java.util.concurretn并发包)<br>
  * 
+ * <b>JDBC操作</b>
+ * 1.Statement和PreparedStatement的区别?
+ * 
+ * <b>SocketIO</b>
+ * 
  * @author wyy
  * 2016年12月16日
  *
  */
 public class IOTest 
 {
+	/**
+	 * <b>JDBC操作</b>
+	 */
+	//1.获取数据库连接
+	public static Connection Jdbc_openConnection() throws ClassNotFoundException, SQLException{
+		Connection connection = null;
+		//1.连接库的库 
+		String driver = "com.mysql.jdbc.Driver";
+		String url = "jdbc:mysql://127.0.0.1:3306/bookshop";
+		String username = "root";
+		String pwd      = "";//root
+		Class.forName(driver);
+		connection = DriverManager.getConnection(url, username, pwd);
+		return connection;
+	}
+	//2.Statement和PreparedStatement的区别?
+	public static void StatementDemo() throws ClassNotFoundException, SQLException{
+		Connection connection = Jdbc_openConnection();
+		Statement stmt = connection.createStatement();
+		String sql ="select * from user where id in(?,?,?)";
+		ResultSet rSet = stmt.executeQuery(sql);
+		//游标从1开始,0代表数据库连接成功
+		//rSet
+		PreparedStatement ptst = connection.prepareStatement(sql);
+		//1.尽量使用
+		
+		//SQL注入
+		String username = "xxxx' or '2=2'";
+		sql ="select * from user where name='"+username+"'";
+	}
+	
+	
+	
+	//1.读取文件-第三方 commons-io
+	public static String readFromFile_Utils(String path){
+		StringBuffer sb = new StringBuffer();
+		FileInputStream is = null;
+		try {
+			is = new FileInputStream(new File(path));
+			String ret = IOUtils.toString(is);
+			sb.append(ret);
+//			List<String> strings= IOUtils.readLines(is);
+//			for (String s:strings) {
+//				sb.append(s);
+//			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		finally{
+			IOUtils.closeQuietly(is);
+		}
+		return sb.toString();
+	}
+	
+	//1.读取文件-字符流
+	public static String readFromFile_Char(String path){
+		StringBuffer sb = new StringBuffer();
+		FileReader reader= null;
+		try {
+			reader = new FileReader(path);
+			char buf[] = new char[1024];
+			int index =0;
+			while ((index=reader.read(buf))!=0) {
+				sb.append(buf);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		finally{
+			try {
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return sb.toString();
+	}
+	
 	//1.读取文件
 	public  static String readFromFile(String path){
 		StringBuffer sb = new StringBuffer();

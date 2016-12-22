@@ -131,6 +131,7 @@ import org.junit.Test;
  * 9.什么是反向代理?什么是负载均衡?
  * 10.什么是AJAX?如何实现AJAX?
  * 11.什么是RESTFUL?如何实现RESTFUL?
+ * 12.什么是缓存？什么是分布式缓存?EhCache和MemCache/Redis的区别?
  * 
  * <br>
  * <b>Java并发与同步机制,多线程</b><p>

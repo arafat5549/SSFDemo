@@ -20,6 +20,8 @@ import java.util.regex.Pattern;
  * 13.多表连接JOIN的用法？LEFT JOIN的用法?
  * 14.什么是一对多映射?什么是多对一映射?什么是多对多映射?
  * 15.数据库设计需要考虑哪些问题？
+ * 16.PreparedStatement和Statement的区别?
+ * 17.什么是SQL注入？如何避免SQL注入?
  * 
  * <b>Hibernate相关</b><p>
  * 0.为什么你要使用Hibernate?他有什么优点?<br>

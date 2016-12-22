@@ -17,7 +17,8 @@ package foo.lesson.summary;
  * 10.网络编程模块：netty
  * 11.文档处理：Apache POI<br>
  * 12.静态网页模板: Velocity / FreeMarker / thymyleaf
- * 13.分词:IKAnalyzer中文分词器
+ * 13.分词:IKAnalyzer中文分词器 / padoing
+ * 14.日记模块: slf4j / log4j /
  * 
  * <p>前台框架</p><br>
  * JS框架：JQuery 1.9<br>

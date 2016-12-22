@@ -30,9 +30,9 @@ public class SortDemo
 		System.out.println("BaseArray:"+Arrays.toString(values));
 		//insertSort(values);
 		//shellSort(values);
-		//bubbleSort(values);
+		bubbleSort(values);
 		//quickSort(values,0,values.length-1);
-		mergeSort(values,0,values.length-1);
+		//mergeSort(values,0,values.length-1);
 		System.out.println(Arrays.toString(values));
 	}
 	/*
@@ -52,6 +52,18 @@ public class SortDemo
 			keys[i+1] = key;
 		}
 	}
+	//String str = new String("str");
+	//String str = "str";
+	
+	//HTML静态网站
+	//Servlet 动态网络资源 -> html :
+	//jsp:html+SERVLET : 显示和逻辑耦合
+    //mvc: SERVLET处理逻辑 、 jsp处理显示
+	//WEBMVC框架:SpringMVC,Struts2(漏洞，13官方把漏洞)
+	//restFUL ,json序列化
+	
+	//SSH
+	
 	/*
 	 * 插入排序：
 	 * 希尔排序（增量减半）
