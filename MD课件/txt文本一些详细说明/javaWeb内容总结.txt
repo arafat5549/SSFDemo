@@ -1,0 +1,155 @@
+1. html + css + javascript，前端
+  * javascript:
+    > 基本语法
+    > BOM、DOM
+2. xml
+  * 格式
+  * 约束：DTD（看懂即可）、Schema（看不懂也行，名称空间要明白）
+  * 解析：
+    > DOM4J应用！
+    > DOM、SAX：这两规范！
+      * DOM：它关注的不是怎么去解析，而关注解析的结果是一个Document对象，文档树！
+      * SAX：它关注的过滤，基于事件驱动！它不关注解析的过程！
+　　> JAXP：它是由Java提供的一组抽象类，它是一个抽象层！它也不是解析器！ （抽象工厂！）
+      * System.getProperties中查找实现类
+      * java安装目录下的某个位置
+      * classpath下jar中servies下的javax.xml.parsers.DocumentBuilderFactory
+      * 自己有个默认类，其实就是xerces修改之后的版本！
+　　> xerces：它是DOM和SAX解析的实现，是真正的解析器！它也实现了JAXP提供的接口和抽象类！
+
+3. Tomcat
+  * 安装：
+    >  配置JAVA_HOME
+  * 目录结构：
+    > bin：startup.bat、shutdown.bat
+    > lib：支持tomcat运行的jar包
+    > conf：四大配置文件：
+      * server.xml：主配置文件
+      * context.xml：这里的配置等同与给所有的应用添加了<Context>元素配置
+      * web.xml：它是所有的应用中的web.xml中的父文件！这里的东西等同与写在每个应用中的web.xml中
+      * tomcat-users.xml：这个配置tomcat管理员的文件！
+    > temp：tomcat运行时生成的临时文件，在关闭tomcat后，这个目录中的内容可以删除
+    > logs：日志文件
+    > webapps：这里的每个目录都是一个Web应用！
+    > work：tomcat会把编译后的jsp生成的.java和.class文件存放在这里
+  * 配置tomcat应用
+    * webapps下
+    * 外部应用：
+      > server.xml中<Host>下添加<Context>元素
+      > 在conf/catalina/localhost/添加自定义xml文件，在xml文件中添加<Context>元素
+    * 虚拟主机：
+      > 在Server.xml文件配置一个<Host>，指定虚拟主机的路径！在该路径下创建应用，这个路径等同与webapps
+
+4. HTTP
+  * 请求协议
+    > 请求首行：
+      * 请求方式
+      * 协议和版本
+      * 请求路径
+    > 请求头：
+      * Host：请求的服务器主机和端口号
+      * User-Agent：包含了客户端的浏览器以及操作系统信息
+      * Referer：请求的来源
+        > 防盗链
+	> 统计来自
+    > 请求体：
+      * POST请求方式有体，其中中文会被URL编码
+      * GET请求方式没体，参数需要在URL之后
+ 
+  * 响应协议
+    > 响应首行
+      * 状态码
+        > 200：成功
+	> 302：重定向
+	> 404：访问的资源找不到
+	> 500：服务器报错
+      * 对状态码的文本解释
+      * 协议和版本
+    > 响应头
+      * Content-Type：响应内容的类型，若是文本类型，还需要指定编码！服务器响应的内容类型！
+      * Location：在状态码为302时，必须存在这个头，它是浏览器下一个请求的目标地址！
+    > 响应体
+      * 响应的主体部分，通常是HTML，浏览器会解读它！
+
+ 5. Servlet
+   * Servlet的生命周期
+     > void init(ServleConfig config)：Servlet创建之后，马上调用！
+       * Servlet在第一次被访问时，Tomcat会创建它
+       * Servlet会在tomcat启动时被创建
+     > void service(ServletRequest,ServletResponse)
+       * 每次处理请求时都会实被调用
+     > void destroy()
+       * Tomcat在销毁Servlet之前调用该法
+         > 在关闭Tomcat时
+
+   * GenericServlet
+     > 提供了init()：由init(ServletConfig)来调用，而init(ServletConfig)会先保存ServletConfig到本类成员中
+     > 提供了getServletContext()方法，内部使用ServletConfig完成
+     > 提供了获取初始化参数的方法，内部使用ServletConfig完成
+     > 提供了destory()空方法
+   * HttpServlet
+     > service(HttpServletRequest, HttpServletResponse)：获取请求方式，通过请求方式来决定是调用doGet()、还是doPost()
+     > doGet()：默认为响应405，所以我们需要覆盖它！
+     > doPost()：默认为响应405，所以我们需要覆盖它！
+
+ 6. ServletContext
+   * 它是一个域对象：一个应用只有一个Servletcontext对象！
+     > setAttribute()
+     > getAttribute()
+     > removeAttribute()
+   * 获取真实路径：getRealPath()，得到的路径是包含盘符的！不是以http开头的！
+   * 获取MIME类型，getMimeType()，给它一个文件名称，它会返回一个MIME类型，例如：image/jpeg
+
+ 7. Request和Response
+   * Response：
+     > 发送状态码：
+       * setStatus()
+       * sendError()
+     > 发送响应头：
+       * setHeader(String,String)
+       * addHeader(String,String)
+     > 发送响应体
+       * PrintWriter response.getWriter()
+       * ServletOutputStream response.getOutputStream();
+       * 在一个请求内两个只能用一个
+     > 便捷方法：
+       > setContentType()：设置Content-Type响应头的便捷方法。
+         * 设置Content-Type响应头，用来告诉浏览器当前响应内使用的文本编码
+	 * 把响应体使用该编码进行处理
+       > sendRedirect()：重定向的便捷方法
+
+  8. 编码问题
+    > 请求：
+      * GET：先获取，再重编
+      * POST：在获取之前，调用request.setCharacterEncoding("utf-8")
+    > 响应：response.setContentType("text/html;charset=utf-8");
+ 
+ 9. Cookie和session
+   Cookie：
+     * HTTP协议的一部份
+     * 底层依赖：Cookies请求头，和Set-Cookie响应头
+     * Cookie保存在客户端
+     * 发送Cookie给浏览器：response.addCookie(cookie);
+     * 获取浏览器的Cookie：Cookie[] cs = request.getCookies();
+     * Cookie的生命：
+       > 0：指定的在客户端存活的秒数
+       < 0：指定只在浏览器内存中存活
+       = 0：指定为马上删除
+     * Cookie的path
+       每个Cookie都有一个path，若你当前访问的路径中包含了Cookie的路径，那么归还这个Cookie给服务器！
+       若在发送Cookie给浏览器时，没有指定path，那么默认为当前资源所在路径！
+
+   Session：
+     * 保存在服务器端
+     * 依赖Cookie或URL重与
+     * 得到session：request.getSession()
+     * session的生命周期
+       * 从第一次执行request.getSession()方法开始，到Session超时，被移除！
+
+     * session是域对象
+
+  10. 
+
+
+
+
