@@ -1,6 +1,6 @@
  * Java基础部分<p>
  * 1.String,StringBuffer,StringBuilder的区别?<br>
- * 2.String的split操作的优化?<br>
+ * 2.String的split操作的优化?<br>  compile编译
  * 3.ArrayList, LinkedList, Vector的区别是什么？<br>
  * 3-1.ArrayList和LinkedList 怎么实现栈结构Stack和队列结构Queue?
  * 4.Map, Set, List, Queue、Stack的特点及用法。?
@@ -19,6 +19,7 @@
  * 2-3.ConcurrentHashMap的实现原理?
  * 2-4.sleep和wait - wait和notify的区别?
  * 2-5.mysql数据库中的锁机制?
+ * 2-6.什么是死锁？如何避免死锁?
  * 3.JAVA的类加载机制?
  * 4.java的异常处理?Error和Exception的区别?
  * 4-0.常见的运行时异常有哪些?你们会编写一个来产生OOM或者SOF错误?
@@ -117,3 +118,10 @@ RESTFUL
 
  * <b>项目经验</b>
  * 
+<b>笔试题</b>
+1.文件读取
+2.文件夹遍历
+3.JDBC操作
+4.Sockt实现Echo服务器
+5.冒泡排序
+6.二分查找

@@ -7,6 +7,7 @@ import java.lang.ref.WeakReference;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.EmptyStackException;
+import java.util.TreeMap;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
@@ -19,6 +20,8 @@ import org.apache.commons.lang3.StringUtils;
  * 2-3.ConcurrentHashMap的实现原理?
  * 2-4.sleep和wait - wait和notify的区别?
  * 2-5.mysql数据库中的锁机制?
+ * 2-6.Java中的volatile变量是什么？
+ * 2-7.如何避免死锁？
  * 
  * 3.JAVA的类加载机制?
  * 4.java的异常处理?Error和Exception的区别?
@@ -31,6 +34,7 @@ import org.apache.commons.lang3.StringUtils;
  * 8.什么是反射?
  * 9.什么是注解?
  * 10.什么是泛型?
+ * 11.什么是枚举Enum?
  * 11.Java中的四种引用及其应用场景是什么？
  * 
  * <b>Java虚拟机与GC</b><p>
@@ -42,6 +46,14 @@ import org.apache.commons.lang3.StringUtils;
  * 1.字符流和字节流的区别?
  * 2.JAVA有几种常见IO模型?
  * 3.写一个简单的从文件读取的例子，并解析有多少个中文字符，英文字符，数字字符和其他字符。
+ * 
+ * <b>笔试题</b>
+ * 1.文件读取
+ * 2.文件夹遍历
+ * 3.JDBC操作
+ * 4.SOCKET实现EchoServer服务器
+ * 5.冒泡排序
+ * 6.二分查找
  * 
  * <p><b>引用网站</b></p>
  * 【看懂UML】：
@@ -57,7 +69,69 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class LessonJavaSE 
 {
-	//BigDecimal
+	
+	
+	//集合(数据结构),IO,并发，多线程,内存管理,算法
+	//数据库 ,网络编程 ,操作系统
+	/**
+	 * 集合(数据结构)
+	 */
+	//树->二叉树->二叉查找树(B树 BinaryTree[数据库的存储结构 B+树])->红黑树(平衡二叉树)
+	
+	//红黑树是特殊的AVL树，遵循红定理和黑定理
+	//红定理：不能有两个相连的红节点
+	//黑定理：根节点必须是黑节点，而且所有节点通向NULL的路径上，所经过的黑节点的个数必须相等
+	//红黑树: http://www.importnew.com/21818.html
+	/**
+	 * 线程安全 关键点
+	 */
+	//1.定义:什么时候产生：多个线程同时访问同一个资源()
+	//2.三个特性:
+	//3.怎么解决它？锁机制:1.synchorinzed 2.原子变量Atomic* 3.Lock
+	//4.synchorinzed和Lock的区别?
+	//5.synchorinzed要注意的地方?  Lock要注意的地方?
+	//6.并发包的内容
+	/**
+	 * 并发
+	 */
+	//JAVA—NIO模型:
+	//最佳实践:
+	//
+	/**
+	 * JAVA_IO模型
+	 */
+	//
+	/**
+	 * 内存管理
+	 */
+	//
+	/**
+	 * 算法
+	 */
+	//
+	/**
+	 * 类加载机制?
+	 */
+	//1.3个类加载器，他们各自的功能是什么?
+	//2.双亲委托模式?
+	//3.双亲委托模式的优点和缺点?
+	//4.自定义类加载器
+	/**
+	 * 数据库
+	 */
+	//1.主流数据库
+	//2.优化
+	//3.SQL注意点  
+	//insert xx values(?) , values(?)
+	//select * from   uyser  #  select a as a.id , name as a.name from user as a
+	//4.事务(锁机制)
+	//#什么是事务?我们要有事务?举个例子 转账
+	//#acid特性
+	//#使用事务有哪些要注意的地方(怎么兼顾安全和性能)
+	//#Spring的事务传播机制为什么默认是Required？
+	
+	//4-1.索引
+	//5.orm框架
 	/**
 	 * 1.什么是线程安全?
 	 */
@@ -437,6 +511,9 @@ public class LessonJavaSE
      * 13.Java中的四种引用及其应用场景是什么？
      */
 	public static void main(String[] args) {
+		//TreeMap<String, String> treeMap =new TreeMap<String, String>();
+		//treeMap.
+		
 //		ArrayList<Object> list = new ArrayList<Object>();
 //		Object testObject = new Object();
 //		list.add(testObject);
