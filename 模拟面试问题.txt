@@ -79,7 +79,11 @@ RESTFUL
  * 7.主流的WEB服务器有哪些?<br>
  * 8.WEB服务器和HTTP服务器的区别?<br>
  * 9.什么是反向代理?什么是负载均衡?
-
+ * 10.什么是AJAX?如何实现AJAX?
+ * 11.什么是RESTFUL?如何实现RESTFUL?
+ * 12.什么是缓存？什么是分布式缓存?EhCache和MemCache/Redis的区别?
+ * 13.Session和Cookie是什么?他们的用法?
+ * 14.WEB的四个作用域?
 
  * <b>数据库相关</b><p>
  * 1.主流数据库有哪些?<br>
@@ -96,6 +100,7 @@ RESTFUL
  * 12.你们会怎么做数据库优化?
  * 13.多表连接JOIN的用法？LEFT JOIN的用法?
  * 14.什么是一对多映射?什么是多对一映射?什么是多对多映射?
+ * 15.数据库安全?SQL注入?Statement和PreparedStatement
  * 
  * <b>Hibernate相关</b><p>
  * 0.为什么你要使用Hibernate?他有什么优点?<br>
