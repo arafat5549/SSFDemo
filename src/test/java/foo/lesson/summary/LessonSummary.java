@@ -7,6 +7,12 @@ package foo.lesson.summary;
  * 1.[CSDN] : http://bbs.csdn.net/home
  * 2.[GitHub] : https://github.com/ 
  * 
+ * <b>简历</b>
+ * 1.基本信息
+ * 2.相关技能
+ * 3.项目经历(技术点和你从事的部分，你学到了什么东西)
+ * 4.格外技能：额外技术技能和额外的生活技能
+ * 
  * <b>职业素养</b>
  * 
  * 1.个人形象（一旦你达标了他就不关键了）

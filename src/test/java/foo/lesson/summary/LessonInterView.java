@@ -101,7 +101,7 @@ import org.junit.Test;
  * 1.String,StringBuffer,StringBuilder的区别?<br>
  * 2.String的split操作的优化?<br>
  * 
- * 3.ArrayList, LinkedList, Vector的区别是什么？<br>
+ * 3.ArrayList, LinkedList, Vector的区别是什么？<br>  //随机访问  ,下标访问
  * 3-1.ArrayList和LinkedList 怎么实现栈结构Stack和队列结构Queue<br>
  * -Stack:特点FILO先进后出  pop(移除最后一位),push()
  * -Queue:特点FIFO先进先出  pop(移除第一位),push()<br>
@@ -140,8 +140,8 @@ import org.junit.Test;
  * 2.Java中的锁机制?<br>
  * 3.sleep和wait - wait和notify<br>
  * 4.死锁Deadlock<br>
- * 5.ConcurrentHashMap<br>
- * 6.JAVA并发包：BlockingQueue,CountDownLatch,Semaphore ,Executors
+ * 5.ConcurrentHashMap的实现原理?<br>
+ * 6.JAVA并发包：BlockingQueue,CountDownLatch,CycileBarrier,Semaphore ,Executors
  * ConcurrentHashMap,CopyOnWriteArrayList<br>
  * 7.JAVA怎么实现线程安全<br>
  * 
@@ -157,7 +157,10 @@ import org.junit.Test;
  * (响应头 1.状态码 2.Content-Type：内容的类别 3.内容编码gzip)
  * 7.JAVA通信框架Mina和Netty
  * 8.GET和POST的区别？
- * 
+ * 9.WebSocket是什么?
+ * 10.Pop3/SMTP/telnet   
+ * 11.常见的浏览器核心? IE核心 / Gecko核心（火狐/Chrome/） / WEBOS(苹果Safari) / Opera
+ *  
  * <br>
  * <b>操作系统</b><p>
  * //1.常用的命令
@@ -398,7 +401,7 @@ public class LessonInterView
 	
 	//显式锁,隐式锁并不是锁的类别（synchronized本质上是靠锁机制来实现）：
 	//* 锁的种类？
-	//* #互斥锁：同一时间只能有一个线程访问
+	//* #mutex互斥锁：同一时间只能有一个线程访问
 	
 	//* #乐观锁：线程可以被抢占有一套抢占规则
 	//* #悲观锁：线程无法被抢占
@@ -438,7 +441,7 @@ public class LessonInterView
 	 * //4.TCP/iP布置包含TCP协议和IP协议，还包含UDP协议等.-(3.需要注意的部分)
 	 * //5.什么是TCP协议?什么是UDP协议?
 	 * 
-	 * 2.网络架构一共有几层?<br>
+	 * 2.网络架构一共有几层?OSGI<br>
 	 * //1.物理层
 	 * //2.数字链路层（把电流转化为逻辑电路）
 	 * //#3.网络层(IP协议)
@@ -488,7 +491,7 @@ public class LessonInterView
 //		//多次调用
 //		MyThread2 m2 = new MyThread2();
 //		for (int i = 0; i < 5; i++) {
-//			m2.run();
+//			new Thread(m2).start();
 //		}
 //		//启动一个线程执行一些操作，并将结果返回。
 //		MyCallable m3 = new MyCallable();
@@ -502,18 +505,20 @@ public class LessonInterView
 		
 //		ExecutorService es = Executors.newFixedThreadPool(1);
 //		Counter counter = new Counter();
-//		SynCounter syncounter = new SynCounter();
-//		AtmoicCounter atmoicCounter = new AtmoicCounter();
-//		LockCounter lockCounter = new LockCounter();
+////		SynCounter syncounter = new SynCounter();
+////		AtmoicCounter atmoicCounter = new AtmoicCounter();
+////		LockCounter lockCounter = new LockCounter();
 //		for (int i = 0; i < 10000; i++) 
 //		{
-//			es.execute(counter);
-//			es.execute(syncounter);
+//			counter.run();
+////			es.execute(counter);
+////			es.execute(syncounter);
 //			//new Thread(counter).start();
-//			//new Thread(syncounter).start();
-//			//new Thread(atmoicCounter).start();
-//			//new Thread(lockCounter).start();
+////			//new Thread(syncounter).start();
+////			//new Thread(atmoicCounter).start();
+////			//new Thread(lockCounter).start();
 //		}
+//		
 //		try {
 //			Thread.sleep(500);
 //		} catch (InterruptedException e) {
@@ -544,23 +549,10 @@ public class LessonInterView
 		demo.runDemo();
 	}
 }
-//.计数器-线程不安全
-class Counter implements Runnable
-{
-	private int count;
-	public int getCount(){return count;}
-	@Override
-	public void run() {
-		inc();
-	}
-	private void inc(){
-		count++;//count+1 count=count+1
-	}
-	
-}
+
 
 /**
- * 信号量Semaphore
+ * 信号量Semaphore=1
  * 控制n个线程访问，N为固定数目
  *
  */
@@ -569,6 +561,7 @@ class SemaPhoreDemo {
     {
         // 线程池
         ExecutorService exec = Executors.newCachedThreadPool();
+        //Executors.newFixedThreadPool(10);
         // 只能5个线程同时访问
         final Semaphore semp = new Semaphore(5);
         // 模拟50个客户端访问
@@ -584,7 +577,7 @@ class SemaPhoreDemo {
                         // 访问完后，释放
                         semp.release();
                         //availablePermits()指的是当前信号灯库中有多少个可以被使用
-                        System.out.println("-----------------" + semp.availablePermits()); 
+                        System.out.println(NO+"------relase-----------" + semp.availablePermits()); 
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -650,7 +643,20 @@ class Race0{
 	}
 }
 
-
+//.计数器-线程不安全
+class Counter implements Runnable
+{
+	private int count;
+	public int getCount(){return count;}
+	@Override
+	public void run() {
+		inc();
+	}
+	private void inc(){
+		count++;//count+1; count=count+1;
+	}
+	
+}
 //1.synchronized (本质是锁,互斥锁，悲观锁，非公平锁)
 class SynCounter implements Runnable
 {

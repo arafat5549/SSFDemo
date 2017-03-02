@@ -1,6 +1,6 @@
  * Java基础部分<p>
  * 1.String,StringBuffer,StringBuilder的区别?<br>
- * 2.String的split操作的优化?<br>  compile编译
+ * 2.String的split操作的优化?<br>
  * 3.ArrayList, LinkedList, Vector的区别是什么？<br>
  * 3-1.ArrayList和LinkedList 怎么实现栈结构Stack和队列结构Queue?
  * 4.Map, Set, List, Queue、Stack的特点及用法。?
@@ -11,6 +11,7 @@
  * 9.JSON解析-XML解析？<br>
  * 10.什么是线程安全?<br>
  * 11.JAVA是如何实现线程安全的?<br>
+ * 12.你在生活中遇到哪些二叉树的例子？JAVA是如何实现二叉树的?
 
  * 1.什么是线程安全?
  * 2.JAVA是怎么实现线程安全的?
@@ -117,16 +118,31 @@ RESTFUL
  * 3.什么是Socket?会简单的Socket编程?Socket编程的几种方式?<br>
  * 4.讲讲TCP协议？
  * 5.讲讲UDP协议？
- * 6.讲讲HTTP协议？
+ * 6.讲讲HTTP协议？  keep-alive , Chrome/开发者工具 - FIREBUG
  * 7.JAVA通信框架Mina和Netty
  * 8.GET和POST的区别？
+ * 9.WebSocket是什么?
+ * 10.Pop3/SMTP/telnet   
+ * 11.常见的浏览器核心? IE核心 / Gecko核心（火狐/Chrome/） / WEBOS(苹果Safari) / Opera
+
+ * <b>提高部分</b>
+ * 深入理解计算机系统
+ * 编译原理
+ * 算法导论
 
  * <b>项目经验</b>
  * 
 <b>笔试题</b>
 1.文件读取
 2.文件夹遍历
-3.JDBC操作
+3.JDBC操作-数据库  写sql语句
 4.Sockt实现Echo服务器
-5.冒泡排序
+5.冒泡排序/九种排序
 6.二分查找
+7.二叉树？怎么用java实现二叉树
+8.NIO读取文件/SOCKET等
+
+压缩，图像处理，加密解密，POI生成excel报表，word文档
+
+自我介绍?
+你项目中遇到什么问题，你是如何解决的？ 开源 看API
