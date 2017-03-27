@@ -21,7 +21,10 @@ public class UserDao implements BaseDao<User>{
 			+ " a.password ";
 	       //+ a.dept_id AS 'deptId'
 	
-	//根据名字超照你有没有该对象
+	
+	/**
+	 * 根据名称查找用户
+	 */
 	public User findByName(String name){
 		//
 		String sql ="SELECT "+COLUMN+" FROM sys_user a WHERE username=?";		
@@ -29,13 +32,20 @@ public class UserDao implements BaseDao<User>{
 		User exist = DBUtils.getInstance().queryBean(sql,User.class,name);
 		return exist;
 	}
-	
+	/**
+	 * 测试-废弃类
+	 */
 	public User findByName_stmt(String name){
 		String sql ="SELECT "+COLUMN+" FROM sys_user a WHERE username='"+name+"'";	
 		User exist = DBUtils.getInstance().queryBean_stmt(sql,User.class);
 		return exist;
 	}
-
+	
+	//is 返回的如果是boolean类型就用is开头
+	public boolean isInDeptByEmpAndDept(){
+		return false;
+	}
+	
 	@Override
 	public List<User> findAll() {
 		return null;
