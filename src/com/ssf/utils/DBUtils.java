@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -126,12 +127,25 @@ public class DBUtils {
 		}
 		return lists;
 	}
+	//Statement的方式
+	/**
+	 * queryBean 只返回一个结果
+	 * 
+	 * @param sql
+	 * @param cls
+	 * @return
+	 */
+	public <T> T queryBean_stmt(String sql,Class<T> cls){
+		List<T> lists = listBean_stmt(sql, cls);
+		return lists.size()>0 ? lists.get(0)  : null;
+	}
+	
 	/**
 	 * 2-3.通用的查询模块(泛型方法) 泛型和反射
 	 * @param sql 数据库sql语句
 	 * @param cls 你需要指定的类的模板
 	 */
-	public <T> List<T> query3(String sql,Class<T> cls){
+	public <T> List<T> listBean_stmt(String sql,Class<T> cls){
 		List<T> lists = new ArrayList<T>();
 		Connection conn = null;
 		Statement  stmt = null;
@@ -162,23 +176,110 @@ public class DBUtils {
 			}
 		} catch (SQLException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();
+		}finally{
+			try {
+				if(rs!=null )   rs.close();
+				if(stmt!=null ) stmt.close();
+				if(conn!=null ) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return lists;
 	}
+	//PreparedStatement的做法（推荐方式）
+	public <T> T queryBean(String sql,Class<T> cls,Object... params)
+	{
+		List<T> lists = listBean(sql, cls, params);
+		return lists.size()>0 ? lists.get(0)  : null;
+	}
+	
+	//1.参数是可变长度 (只能有一份，一定要放在最后)
+	public <T> List<T> listBean(String sql,Class<T> cls,Object... params)
+	{
+		List<T> lists = new ArrayList<T>();
+		Connection conn = null;
+		PreparedStatement ptmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = openConnection();
+			ptmt = conn.prepareStatement(sql);
+			//参数绑定
+			for (int i = 0; i < params.length; i++) {
+				ptmt.setObject(i+1, params[i]);
+			}
+			
+			rs = ptmt.executeQuery();
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columnCount = rsmd.getColumnCount();
+			while(rs.next()){
+				Map<String,Object> maps =new HashMap<String, Object>();
+				for (int i = 0; i < columnCount; i++) {
+					String key = rsmd.getColumnName(i+1);
+					Object obj = rs.getObject(key);
+					maps.put(key, obj);
+				}
+				T t = cls.newInstance();
+				BeanUtils.populate(t, maps);
+				lists.add(t);
+			}
+			
+		} catch (SQLException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				if(rs!=null )   rs.close();
+				if(ptmt!=null ) ptmt.close();
+				if(conn!=null ) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return lists;
+	}
+	
+	//执行SQL
+	public boolean execute(String sql,Object... params){
+		Connection conn = null;
+		PreparedStatement ptmt = null;
+		try {
+			conn = openConnection();
+			ptmt = conn.prepareStatement(sql);
+			//参数绑定
+			for (int i = 0; i < params.length; i++) {
+				ptmt.setObject(i+1, params[i]);
+			}
+			
+			int ret = ptmt.executeUpdate();
+			return ret >=1;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				if(ptmt!=null ) ptmt.close();
+				if(conn!=null ) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+	
 	
 	public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException {
 		DBUtils db = DBUtils.getInstance();
 		//Connection conn = db.openConnection();
 		//System.out.println(conn);
-		String sql = "SELECT * FROM sys_user";
-		List<User> lists = db.query3(sql,User.class);
-		
-		System.out.println(lists);
-		
-		String sql2 = "SELECT * FROM test_department";
-		List<Department> lists2 = db.query3(sql2,Department.class);
-		System.out.println(lists2);
+//		String sql = "SELECT * FROM sys_user";
+//		List<User> lists = db.listBean(sql,User.class);
+//		
+//		System.out.println(lists);
+//		
+//		String sql2 = "SELECT * FROM test_department";
+//		List<Department> lists2 = db.listBean(sql2,Department.class);
+//		System.out.println(lists2);
 		
 		//1.泛型 （类，方法，属性，参数）
 		/**

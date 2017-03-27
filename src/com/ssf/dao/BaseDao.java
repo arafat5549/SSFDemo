@@ -22,7 +22,15 @@ public interface BaseDao<T> {
 	 * 保存对象(泛型的参数)
 	 * @param t
 	 */
-	void save(T t);
+	boolean save(T t);
+	/**
+	 * 更新对象
+	 */
+	void update(T t);
+	/**
+	 * 删除对象
+	 */
+	void delete(Integer id);
 }
 
 
