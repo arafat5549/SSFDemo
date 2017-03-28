@@ -6,7 +6,7 @@ package com.ssf.model;
  * 2017年3月25日
  *
  */
-public class Department {
+public class Department extends DateEntity{
     //{1,"公司",0} 父类id代表没有父类 一级分类
 	//{2,"研发部",1}
 	//{3,"手机研发部",2}

@@ -6,12 +6,19 @@ package com.ssf.model;
  * 2017年3月28日
  *
  */
-public class Employee {
+public class Employee extends DateEntity{
 	private Integer id;
 	private String name;
 	//驼峰命名方式#数据库命令规范
 	private Integer deptId;//部门ID,跟其他表之间的关联
-	
+//	private int testId;
+//	
+//	public int getTestId() {
+//		return testId;
+//	}
+//	public void setTestId(int testId) {
+//		this.testId = testId;
+//	}
 	public Integer getId() {
 		return id;
 	}
