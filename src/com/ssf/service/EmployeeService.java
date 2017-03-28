@@ -11,7 +11,9 @@ import com.ssf.model.Employee;
 public class EmployeeService {
 	EmployeeDao employeeDao = new EmployeeDao();
 	DepartmentDao departmentDao = new DepartmentDao();
-	//3. 编写程序实现：给定员工和部门，给出员工是否在这个部门。
+	/**
+	 * 3. 编写程序实现：给定员工和部门，给出员工是否在这个部门。
+	 */
 	public boolean isInDeptByEmpAndDept(Integer empId,Integer deptId){
 	
 		Employee emp = employeeDao.findById(empId);

@@ -7,13 +7,18 @@ import com.ssf.utils.DBUtils;
 
 public class DepartmentDao implements BaseDao<Department>{
 	
+	//指定列查询 和 别名AS
 	private static final String COLUMN = 
 			  " a.id,"
 			+ " a.name,"
 			+ " a.parent_id AS 'parentId', "
 			+ " a.parent_ids AS 'parentIds'";
 	
-	//1.无限级分类  第一种做法#递归
+	/**
+	 * 1.无限级分类  第一种做法#递归
+	 * @param dept
+	 * @param lists
+	 */
 	public void getChilds(Department dept,List<Department> lists){//1
 		
 		String sql = "SELECT " + COLUMN +" FROM sys_department a WHERE a.parent_id=?";
@@ -23,7 +28,11 @@ public class DepartmentDao implements BaseDao<Department>{
 		}
 		lists.addAll(childs);
 	}
-    //2. 第二种做法 parenids 记录所有父类的id  模糊查询
+    /**
+     * 2. 第二种做法 parentids 记录所有父类的id  模糊查询
+     * @param dept
+     * @return
+     */
 	public List<Department> getChilds2(Department dept){
 		String sql = "SELECT " + COLUMN +" FROM sys_department a WHERE a.parent_ids LIKE '"+dept.getParentIds()+"%'";
 		return DBUtils.getInstance().listBean(sql, Department.class);
