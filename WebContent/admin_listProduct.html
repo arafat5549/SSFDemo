@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="static/js/jquery/2.0.0/jquery.min.js"></script>
+	<link href="static/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+	<script src="static/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+	<!--<link href="static/css/fore/style.css" rel="stylesheet">-->
+	<link href="static/css/back/style.css" rel="stylesheet">
+	
+    <meta http-equiv="Expires" content="0">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-store">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>产品管理</title>
+</head>
+
+<body>
+
+<div class="navitagorDiv">
+	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+		<img style="margin-left:10px;margin-right:0px" class="pull-left" src="static/img/site/tmallbuy.png" height="45px">
+		<a class="navbar-brand" href="#nowhere">天猫后台</a>
+		
+		<a class="navbar-brand" href="admin_listCategory.html">分类管理</a>
+		<a class="navbar-brand" href="admin_listUser.html">用户管理</a>
+		<a class="navbar-brand" href="admin_listOrder.html">订单管理</a>
+	</nav>
+</div>
+
+<div class="workingArea">
+
+	<ol class="breadcrumb">
+	  <li><a href="admin_listCategory.html">所有分类</a></li>
+	  <li><a href="admin_listProduct.html?cid=${c.id}">${c.name}</a></li>
+	  <li class="active">产品管理</li>
+	</ol>
+
+
+
+	<div class="listDataTableDiv">
+		<table
+			class="table table-striped table-bordered table-hover  table-condensed">
+			<thead>
+				<tr class="success">
+					<th>ID</th>
+					<th>图片</th>
+					<th>产品名称</th>
+					<th>产品小标题</th>
+					<th width="53px">原价格</th>
+					<th width="80px">优惠价格</th>
+					<th width="80px">库存数量</th>
+					<th width="80px">图片管理</th>
+					<th width="80px">设置属性</th>
+					<th width="42px">编辑</th>
+					<th width="42px">删除</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${ps}" var="p">
+					<tr>
+						<td>${p.id}</td>
+						<td>
+						
+						<c:if test="${!empty p.firstProductImage}">
+							<img width="40px" src="img/productSingle/${p.firstProductImage.id}.jpg">
+						</c:if>
+						
+						</td>
+						<td>${p.name}</td>
+						<td>${p.subTitle}</td>
+						<td>${p.orignalPrice}</td>
+						<td>${p.promotePrice}</td>
+						<td>${p.stock}</td>
+						<td><a href="admin_listproductImage.html?pid=${p.id}"><span
+								class="glyphicon glyphicon-picture"></span></a></td>
+						<td><a href="admin_product_editPropertyValue?id=${p.id}"><span
+								class="glyphicon glyphicon-th-list"></span></a></td>
+						
+						<td><a href="admin_editProduct.html?id=${p.id}"><span
+								class="glyphicon glyphicon-edit"></span></a></td>
+						<td><a deleteLink="true"
+							href="admin_product_delete?id=${p.id}"><span
+								class=" 	glyphicon glyphicon-trash"></span></a></td>
+
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="pageDiv">
+		<%@include file="../include/admin/adminPage.jsp"%>
+	</div>
+
+	<div class="panel panel-warning addDiv">
+		<div class="panel-heading">新增产品</div>
+		<div class="panel-body">
+			<form method="post" id="addForm" action="admin_product_add">
+				<table class="addTable">
+					<tr>
+						<td>产品名称</td>
+						<td><input id="name" name="name" type="text" 
+							class="form-control"></td>
+					</tr>
+					<tr>
+						<td>产品小标题</td>
+						<td><input id="subTitle" name="subTitle" type="text"
+							class="form-control"></td>
+					</tr>
+					<tr>
+						<td>原价格</td>
+						<td><input id="orignalPrice" value="99.98" name="orignalPrice" type="text"
+							class="form-control"></td>
+					</tr>
+					<tr>
+						<td>优惠价格</td>
+						<td><input id="promotePrice"  value="19.98" name="promotePrice" type="text"
+							class="form-control"></td>
+					</tr>
+					<tr>
+						<td>库存</td>
+						<td><input id="stock"  value="99" name="stock" type="text"
+							class="form-control"></td>
+					</tr>
+					<tr class="submitTR">
+						<td colspan="2" align="center">
+							<input type="hidden" name="cid" value="${c.id}">
+							<button type="submit" class="btn btn-success">提 交</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

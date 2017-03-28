@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>在线测试</title>
+   
+    <!--暂时只能处理单选 -->
+    <style type="text/css" media="all">
+        /*css reset */
+        html,body,div,span,h1,h2,h3,h4,h5,h6,p,code,small,strike,strong,sub,sup,b,u,i,label{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0;} 
+        article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;} 
+        body{line-height:1; font:normal 0.9em/1em "Helvetica Neue", Helvetica, Arial, sans-serif;} 
+        ol,ul{list-style:none;}
+        strong{font-weight:700;}
+
+        #frame{max-width:620px;width:auto;border:1px solid #ccc;background:#fff;padding:10px;margin:3px;}
+        h1{font:normal bold 2em/1.8em "Helvetica Neue", Helvetica, Arial, sans-serif;text-align:left;border-bottom:1px solid #999;padding:0;width:auto}
+        h2{font:italic bold 1.3em/1.2em "Helvetica Neue", Helvetica, Arial, sans-serif;padding:0;text-align:center;margin:20px 0;}
+        p.pager{margin:5px 0 5px; font:bold 1em/1em "Helvetica Neue", Helvetica, Arial, sans-serif;color:#999;}
+        img.question-image{display:block;max-width:250px;margin:10px auto;border:1px solid #ccc;width:100%;height:auto;}
+        #choice-block{display:block;list-style:none;margin:0;padding:0;}
+        #submitbutton{background:#5a6b8c;}
+        #submitbutton:hover{background:#7b8da6;}
+        #explanation{margin:0 auto;padding:20px;width:75%;}
+        .choice-box{display:block;margin:8px auto;padding:10px 0;border:1px solid #666;cursor:pointer;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;}
+
+        .mycheckbox{     
+        	margin-left:18px;
+        	margin-right: 18px;
+        	text-align:left;   	
+        	cursor: help;
+        	background:#7b8da6;
+        }
+
+    </style>
+</head>
+<body>
+   <div id="frame" role="content"> </div>
+
+
+<script src="static/js/jquery/2.0.0/jquery.min.js"></script>
+<script src="quizs.js"></script>
+
+<script type="text/javascript">
+   /*
+   var quiz = [
+        {
+            "question"      :   "Q1: Who came up with the theory of relativity?",
+            "image"         :   "http://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Albert_Einstein_Head.jpg/220px-Albert_Einstein_Head.jpg",
+            "choices"       :   [
+                                    "Sir Isaac Newton",
+                                    "Nicolaus Copernicus",
+                                    "Albert Einstein",
+                                    "Ralph Waldo Emmerson"
+                                ],
+            "correct"       :   "Albert Einstein",
+            "explanation"   :   "Albert Einstein drafted the special theory of relativity in 1905.",
+        },
+        {
+            "question"      :   "Q2: Who is on the two dollar bill?",
+            "image"         :   "http://upload.wikimedia.org/wikipedia/commons/thumb/9/94/US_%242_obverse-high.jpg/320px-US_%242_obverse-high.jpg",
+            "choices"       :   [
+                                    "Thomas Jefferson",
+                                    "Dwight D. Eisenhower",
+                                    "Benjamin Franklin",
+                                    "Abraham Lincoln"
+                                ],
+            "correct"       :   "Thomas Jefferson",
+            "explanation"   :   "The two dollar bill is seldom seen in circulation. As a result, some businesses are confused when presented with the note.",
+        },
+        {
+            "question"      :   "Q3: What event began on April 12, 1861?",
+            "image"         :   "",
+            "choices"       :   [
+                                    "First manned flight",
+                                    "California became a state",
+                                    "American Civil War began",
+                                    "Declaration of Independence"
+                                ],
+            "correct"       :   "American Civil War began",
+            "explanation"   :   "South Carolina came under attack when Confederate soldiers attacked Fort Sumter. The war lasted until April 9th 1865.",
+        },
+    ];
+    */
+	 //json对象为quiz
+ 	 var quiztitle = "测试";
+ 	 var _checkAnswerTxt = "检查答案";
+ 	 var _nextAnswerTxt = "下一题>>";//'NEXT QUESTION &raquo;'
+ 	 //quiz测试对象几大属性
+     var attrQuestion    = "question";
+     var attrImage       = "image";
+     var attrChoices     = "choices";
+     var attrExplanation = "explanation";
+     var attrCorrect     = "correct";
+ 	 //Class和Id 的定义
+	 var _frameClass    = ".frame";  
+	 var _pagerClass    = ".pager";
+	 var _questionClass = ".question";
+	 var _choiceClass   = ".choice";
+
+ 	 var _frameId       = "#frame";//主div的名称
+ 	 var _choiceBlockId = "#choice-block";
+ 	 var _paperId       = "#pager";
+ 	 var _questionId    = "#question";
+ 	 var _submitId      = "#submitbutton";
+ 	 var _explanationId = "#explanation";
+ 	 var _qustionImgId  = "#question-image";
+
+ 	 var cssGrey = {'color':'#222','background-color':'#CCCCCC','cursor':'default','text-align':'center'};
+ 	 //currentquestion 当前问题索引
+ 	 //score 答对题目数
+ 	 //submt 是否当前题目已提交
+ 	 //picked 选择的答案-索引号
+ 	 var currentquestion = 0, score = 0, submt=true, picked;
+
+	   function htmlEncode(value){
+           return $(document.createElement('div')).text(value).html();
+       }
+
+       function addChoices(quiz){
+            var choices = quiz[currentquestion][attrChoices];
+            if(typeof choices !== "undefined" && $.type(choices) == "array"){
+                $(_choiceBlockId).empty();
+
+                for(var i=0;i<choices.length; i++){
+                    var input = '<input id="mycheckbox'+i+'" type="radio" class="mycheckbox"/>';
+                     var label ='<label>'+choices[i]+'</label>';     
+                    $("<li></li>").append(input).append(label)
+                    .addClass('choice choice-box').attr('data-index', i).appendTo(_choiceBlockId);                    
+                }
+            }
+        }
+
+        function endQuiz(quiz){
+            $(_explanationId).empty();
+            $(_questionId).empty();
+            $(_choiceBlockId).empty();
+            $(_submitId).remove();
+            $(_questionId).text("你的正确题目为:"+score+"/"+ quiz.length);
+            $(document.createElement('h2')).css({'text-align':'center', 'font-size':'4em'}).text(Math.round(score/quiz.length * 100) + '%').insertAfter(_questionId);
+        }
+
+        function nextQuestion(quiz){
+            submt = true;
+            $(_explanationId).empty();
+            $(_questionId).text(quiz[currentquestion][attrQuestion]);
+            $(_paperId).text('习题 ' + Number(currentquestion + 1) + ' / ' + quiz.length);
+            if(quiz[currentquestion].hasOwnProperty(attrImage) && quiz[currentquestion][attrImage] != ""){
+                if($(_qustionImgId).length == 0){
+                    $(document.createElement('img')).addClass('question-image').attr('id', 'question-image').attr('src', quiz[currentquestion][attrImage]).attr('alt', htmlEncode(quiz[currentquestion][attrQuestion])).insertAfter(_questionId);
+                } else {
+                    $(_qustionImgId).attr('src', quiz[currentquestion][attrImage]).attr('alt', htmlEncode(quiz[currentquestion][attrQuestion]));
+                }
+            } else {
+                $(_qustionImgId).remove();
+            }
+            addChoices(quiz);
+            setupButtons(quiz);
+        } 
+        //
+        function processQuestion(quiz,choice){
+            if(quiz[currentquestion][attrChoices][choice] === quiz[currentquestion][attrCorrect]){
+                $(_choiceClass).eq(choice).css({'background-color':'#50D943'});
+                $(_explanationId).html('<strong>正确!</strong> ' + htmlEncode(quiz[currentquestion][attrExplanation]));
+                score++;
+            } else {
+                $(_choiceClass).eq(choice).css({'background-color':'#D92623'});
+                $(_explanationId).html('<strong>错误.</strong> ' + htmlEncode(quiz[currentquestion][attrExplanation]));
+            }
+            currentquestion++;
+
+            //
+            var gSeconds = 3;
+            var setId = setInterval(function(){
+            	 gSeconds--;
+            	 if (gSeconds<=0) {
+            	 	if(currentquestion == quiz.length){
+	                    endQuiz(quiz);
+	                } else {
+	                    $(_submitId).text(_checkAnswerTxt).css(cssGrey).off('click');
+	                    nextQuestion(quiz);
+	                }
+
+            	 	clearInterval(setId);
+            	 }
+            	 else{
+            	 	$(_submitId).html(_nextAnswerTxt+gSeconds);
+            	 }
+            },1000);
+
+            //console.log(currentquestion);
+            $(_submitId).html(_nextAnswerTxt+gSeconds).css({'background-color':'#5a6b8c','cursor':'pointer','display':'block'}).on('click', function(){
+            	clearInterval(setId);
+                if(currentquestion == quiz.length){
+                    endQuiz(quiz);
+                } else {
+                    $(this).text(_checkAnswerTxt).css(cssGrey).off('click');
+                    nextQuestion(quiz);
+                }
+            });
+        }
+        /**
+         * Sets up the event listeners for each button.
+         */
+        function setupButtons(quiz){
+            $(_choiceClass).on('mouseover', function(){
+                $(this).css({'background-color':'#e1e1e1'});
+            });
+            $(_choiceClass).on('mouseout', function(){
+                $(this).css({'background-color':'#fff'});
+            })
+            $(_choiceClass).on('click', function(){
+                picked = $(this).attr('data-index');
+                $(_choiceClass).removeAttr('style').off('mouseout mouseover');
+                $(this).css({'border-color':'#222','font-weight':700,'background-color':'#c1c1c1'});
+
+                if($("#mycheckbox"+picked).attr("type") === "checkbox"){
+                	$("#mycheckbox"+picked).attr('checked','true');
+                }
+                if($("#mycheckbox"+picked).attr("type") === "radio"){
+					$("#mycheckbox"+picked).attr('checked','true');
+                }
+
+                if(submt){
+                    submt=false;
+                    //$(_submitId).css({'color':'#000'}).on('click', function(){
+                        $(_choiceClass).off('click');
+                        $(this).off('click');
+                        processQuestion(quiz,picked);
+                   //});
+                }
+            })
+        }
+     //初始化
+	 function init(quiz){
+	 	//1.生成Title
+	 	if(typeof quiztitle !== "undefined" && $.type(quiztitle) === "string"){
+              $(document.createElement('h1')).text(quiztitle).appendTo(_frameId);
+              
+        } else {
+             $(document.createElement('h1')).text("测试").appendTo(_frameId);
+        }
+        //2.生成测试
+        /**/
+        if(typeof quiz !== "undefined" && $.type(quiz) === "array"){
+			//add pager
+            $(document.createElement('p')).addClass('pager').attr('id','pager').text('习题 1 / ' + quiz.length).appendTo(_frameId);
+            //add first question
+            $(document.createElement('h2')).addClass('question').attr('id', 'question').text(quiz[0][attrQuestion]).appendTo(_frameId);
+            //添加img
+            if(quiz[0].hasOwnProperty(attrImage) && quiz[0][attrImage] != ""){
+            	
+                 $(document.createElement('img')).addClass('question-image').attr('id', 'question-image').attr('src', quiz[0][attrImage]).attr('alt', (quiz[0][attrQuestion])).appendTo(_frameId);
+            }
+            //正确答案说明
+            $(document.createElement('p')).addClass('explanation').attr('id','explanation').html('&nbsp;').appendTo(_frameId);
+            //questions holder
+            $(document.createElement('ul')).attr('id', 'choice-block').appendTo(_frameId);
+			//添加选项
+             addChoices(quiz);
+             //添加提交按钮
+             $(document.createElement('div')).addClass('choice-box').attr('id', 'submitbutton').text(_checkAnswerTxt)
+             .css({'font-weight':700,'padding':'30px 0'})
+             .css(cssGrey)
+             .appendTo(_frameId);
+
+             setupButtons(quiz);
+        }
+        
+	 }
+
+	 init(quiz);
+</script>
+
+</body>
+</html>

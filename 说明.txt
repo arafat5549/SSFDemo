@@ -1,0 +1,12 @@
+先运行shopdemo_schema_DDL.sql创建数据库表结构
+在运行shopdemo_data.sql插入测试数据
+
+现在暂时只有 home.jsp作为主页
+后台DAO方法以写完
+
+WEB-INF下 index.html就是天猫商城的前台页面
+WEB-INF\views\home.jsp 就是index.html的JSP化
+
+新页面就是把WebContent底下的HTML改为JSP。
+
+我用的c3p0数据库连接池 修改c3p0-config.xml

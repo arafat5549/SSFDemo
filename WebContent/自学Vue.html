@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://unpkg.com/vue"></script>
+	<script src="static/js/jquery/2.0.0/jquery.min.js"></script>
+	<title>自学Vue</title>
+</head>
+<body>
+	<div id="app">
+		{{message}}
+	</div>
+
+<script type="text/javascript">
+	
+	$(function(){
+		var app = new Vue({
+			el: '#app',
+			data: {
+			    message: 'Hello Vue!'
+			}
+		});
+	});
+	
+</script>
+
+</body>
+</html>

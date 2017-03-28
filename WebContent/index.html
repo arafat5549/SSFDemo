@@ -1,0 +1,308 @@
+<!DOCTYPE html>  
+<!--!DOCTYPE 配置可以使用HTML5的特性-->
+<head>
+	<script src="static/js/jquery/2.0.0/jquery.min.js"></script>
+	<link href="static/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+	<script src="static/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+	
+	<!--<link href="css/demo.css" rel="stylesheet">-->
+	<link href="static/css/fore/style.css" rel="stylesheet">
+
+    <script type="text/javascript">
+
+    function showProductsAsideCategorys(cid){
+		$("div.eachCategory[cid="+cid+"]").css("background-color","white");
+		$("div.eachCategory[cid="+cid+"] a").css("color","#87CEFA");
+		$("div.productsAsideCategorys[cid="+cid+"]").show();
+	}
+
+
+	function hideProductsAsideCategorys(cid){
+		$("div.eachCategory[cid="+cid+"]").css("background-color","#e2e2e3");
+		$("div.eachCategory[cid="+cid+"] a").css("color","#000");
+		$("div.productsAsideCategorys[cid="+cid+"]").hide();
+	}
+
+    $(function(){	
+	    $("div.eachCategory").mouseenter(function(){
+	        var cid = $(this).attr("cid");
+	        showProductsAsideCategorys(cid);
+	    });
+	    $("div.eachCategory").mouseleave(function(){
+	        var cid = $(this).attr("cid");
+	        hideProductsAsideCategorys(cid);
+	    });
+	    $("div.productsAsideCategorys").mouseenter(function(){
+    		var cid = $(this).attr("cid");
+    		showProductsAsideCategorys(cid);
+   		 });
+	    $("div.productsAsideCategorys").mouseleave(function(){
+	    	var cid = $(this).attr("cid");
+	    	hideProductsAsideCategorys(cid);
+	    });
+
+    	$("div.rightMenu span").mouseenter(function(){
+			var left = $(this).position().left;
+			var top = $(this).position().top;
+			var width = $(this).css("width");
+			var destLeft = parseInt(left) + parseInt(width)/2;
+			$("img#catear").css("left",destLeft);
+			$("img#catear").css("top",top-2);
+			$("img#catear").fadeIn(500);
+
+		});
+
+		$("div.rightMenu span").mouseleave(function(){
+			$("img#catear").hide();
+		});
+
+		var left = $("div#carousel-of-product").offset().left;
+		$("div.categoryMenu").css("left",left-20);
+		$("div.categoryWithCarousel div.head").css("margin-left",left);
+		$("div.productsAsideCategorys").css("left",left-20);
+
+	});
+    </script>
+
+    <script type="text/javascript">
+		$(function(){
+			$("div.productsAsideCategorys div.row a").each(function(){
+				var v = Math.round(Math.random() *6);
+				if(v == 1)
+					$(this).css("color","#87CEFA");
+			});
+		});
+	</script>
+
+    
+    <!-- 商品展示 -->
+
+    <meta http-equiv="Expires" content="0">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-store">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>模仿天猫官网</title>
+
+</head>
+
+<body>
+
+<!-- common top 顶部区域 -->
+<nav class="top ">
+		<a href="">
+			<span style="color:#C40000;margin:0px" class="glyphicon glyphicon-home redColor"></span>
+			天猫首页
+		</a>	
+		
+		<span>喵，欢迎来天猫</span>
+		
+		<c:if test="${!empty user}">
+			<a href="">${user.name}</a>
+			<a href="#">退出</a>		
+		</c:if>
+		
+		<c:if test="${empty user}">
+			<a href="login.html">请登录</a>
+			<a href="">免费注册</a>		
+		</c:if>
+
+
+		<span class="pull-right">
+			<a href="orderList.html">我的订单</a>
+			<a href="cart.html">
+			<span style="color:#C40000;margin:0px" class="glyphicon glyphicon-shopping-cart redColor"></span>
+			购物车<strong>${cartTotalItemNumber}</strong>件</a>		
+		</span>
+</nav>
+
+
+
+
+<div class="homepageDiv">
+
+
+<img src="static/img/site/catear.png" id="catear" class="catear"/>
+<!-- BEGIN分类区域 -->	
+<div class="categoryWithCarousel">
+<div class="headbar show1">
+	<div class="head ">
+	
+		<span style="margin-left:10px" class="glyphicon glyphicon-th-list"></span>
+		<span style="margin-left:10px" >商品分类</span>
+		
+	</div>
+	
+	<div class="rightMenu">
+		<span><a href=""><img src="static/img/site/chaoshi.png"/></a></span>
+		<span><a href=""><img src="static/img/site/guoji.png"/></a></span>
+        <!--
+		<c:forEach items="${cs}" var="c" varStatus="st">
+			<c:if test="${st.count<=4}">
+				<span>
+				<a href="forecategory?cid=${c.id}">
+					${c.name}
+				</a>
+				</span>			
+			</c:if>
+		</c:forEach>
+		-->
+		<span>
+			<a href="forecategory?cid=1">分类</a>
+		</span>	
+	</div>
+	
+</div>
+
+<!-- categoryMenu分类菜单 -->
+<div style="position: relative">
+	<div class="categoryMenu">
+			<div cid="1" class="eachCategory">
+					<span class="glyphicon glyphicon-link"></span>
+					<a href="forecategory?cid=1">
+						商品分类
+					</a>
+			</div>
+
+			<div cid="2" class="eachCategory">
+					<span class="glyphicon glyphicon-link"></span>
+					<a href="forecategory?cid=2">
+						美食分类
+					</a>
+			</div>
+	</div>  
+</div>
+<!-- productsAsideCategorys隐藏分类区域 -->
+<div style="position: relative;left: 0;top: 0;">
+	<div cid="1" class="productsAsideCategorys">
+
+		<div class="row show1">
+			<a href="foreproduct?pid=1">商品子类1 ></a>
+
+			<a href="foreproduct?pid=1">商品孙子类</a> |
+			<a href="foreproduct?pid=1">商品孙子类</a> |
+		</div>
+		<div class="seperator"></div>
+
+		<div class="row show1">
+			<a href="foreproduct?pid=1">商品子类2 ></a>
+
+			<a href="foreproduct?pid=1">商品孙子类</a> |
+			<a href="foreproduct?pid=1">商品孙子类</a> |
+			<a href="foreproduct?pid=1">商品孙子类</a> |
+			<a href="foreproduct?pid=1">商品孙子类</a> |
+		</div>
+		<div class="seperator"></div>
+	</div>
+
+	<div cid="2" class="productsAsideCategorys">
+		<div class="row show1">
+			<a href="foreproduct?pid=1">美食子类 ></a>
+
+			<a href="foreproduct?pid=1">美食孙子类</a> |
+			<a href="foreproduct?pid=1">美食孙子类</a> |
+			<a href="foreproduct?pid=1">美食孙子类</a> |
+			<a href="foreproduct?pid=1">美食孙子类</a> |
+		</div>
+		<div class="seperator"></div>
+	</div>
+
+</div>
+
+<!-- carousel 商品轮播 -->
+<div id="carousel-of-product"  class="carousel-of-product carousel slide1" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-of-product" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-of-product" data-slide-to="1"></li>
+    <li data-target="#carousel-of-product" data-slide-to="2"></li>
+    <li data-target="#carousel-of-product" data-slide-to="3"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img class="carousel carouselImage" src="static/img/lunbo/1.jpg" >
+    </div>
+    <div class="item">
+      <img  class="carouselImage" src="static/img/lunbo/2.jpg" >
+    </div>
+    <div class="item">
+		<img  class="carouselImage" src="static/img/lunbo/3.jpg" >
+    </div>
+
+    <div class="item">
+        <img  class="carouselImage" src="static/img/lunbo/4.jpg" >
+    </div>
+
+  </div>
+</div>	
+
+<div class="carouselBackgroundDiv"></div>
+
+</div>
+
+<!-- BEGIN商品展示区域 -->
+<div class="homepageCategoryProducts">
+	<div class="eachHomepageCategoryProducts">
+		<div class="left-mark"></div>
+		<span class="categoryTitle">商品分类</span>
+		<br>
+		<div class="productItem" >
+			<a href="productDetail.html?pid=1">
+			<img width="100px" src="static/img/productSingle_middle/19.jpg"></a>
+			<a class="productItemDescLink" href="productDetail.html?pid1">
+				<span class="productItemDesc">
+				[热销]夏普
+				</span>
+			</a>
+			<span class="productPrice">
+				¥12.0
+			</span>
+
+			<a class="productAddCart" target="_blank" href="">
+        		<span style="color:#C40000;margin:0px" class="glyphicon glyphicon-shopping-cart redColor"></span>
+        		<strong>加入购物车</strong>
+			</a>
+		</div>
+
+		<div class="productItem" >
+			<a href="productDetail.html?pid=1">
+			<img width="100px" src="static/img/productSingle_middle/19.jpg"></a>
+			<a class="productItemDescLink" href="productDetail.html?pid1">
+				<span class="productItemDesc">
+				[热销]夏普
+				</span>
+			</a>
+			<span class="productPrice">
+				12.0
+			</span>
+		</div>
+
+		<div style="clear:both"></div>
+	</div>
+
+	<div class="eachHomepageCategoryProducts">
+		<div class="left-mark"></div>
+		<span class="categoryTitle">美食分类</span>
+		<br>
+		<div class="productItem" >
+			<a href="productDetail.html?pid=2">
+			<img width="100px" src="static/img/productSingle_middle/19.jpg"></a>
+			<a class="productItemDescLink" href="productDetail.html?pid1">
+				<span class="productItemDesc">
+				[热销]夏普
+				</span>
+			</a>
+			<span class="productPrice">
+				12.0
+			</span>
+		</div>
+
+		<div style="clear:both"></div>
+	</div>
+</div>
+</div>
+
+<!-- footer根部区域 -->
+</body>
+</html>

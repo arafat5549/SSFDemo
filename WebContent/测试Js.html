@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="static/js/jquery/2.0.0/jquery.min.js"></script>
+	<title></title>
+
+	<script type="text/javascript">
+		
+		
+         var globalName = "44444";
+		function display(result){
+			document.getElementById("name").innerHTML=Date();
+			globalName = "33333";
+			//return 6;
+			if(5==5){
+				var x = Math.round(12.2);
+				alert(x+",111111111"+globalName);
+			}
+		}
+
+		$(function(){
+
+			$("#username").change(function(){
+				$("p#demo").html($("#username").val());
+			});
+
+			$("button#btn2").click(function(){
+				//alert("111111111");
+				//$("#name2").html(Date());
+				var res = display();
+                //globalName = "11111"; //全局变量
+                //alert("全局变量"+globalName);
+				//1.弱类型
+				var id = 1;
+				id = 1.1111;
+				id = "UserName";
+
+				id = [1,2,"2323232-",[3,3,3]];  //数组
+
+
+				id = {id:1 , username:"wang" ,methodName:function(data){
+						alert("methodName$22222$"+data);
+					}
+				};  //js对象
+				//alert(id.id+","+id.username);
+				//id.methodName(res);
+				var txt;// = undefined;
+                var person = {id:1 , username:"wang"};
+				for (var x in person) {
+				  txt = txt + person[x];
+				  //alert(person[x]);
+				}
+				//alert(txt);
+
+				var carname=new String;
+				carname ="111111";
+
+				carname = 123;
+
+				alert(typeof "John");
+				//debugger;  //设置断点
+				//alert(carname);
+				console.log("consloe");
+
+				var text = '{ "sites" : [' +
+				    '{ "name":"Runoob" , "url":"www.runoob.com" },' +
+				    '{ "name":"Google" , "url":"www.google.com" },' +
+				    '{ "name":"Taobao" , "url":"www.taobao.com" } ]}';
+				    
+				obj = JSON.parse(text);
+
+				var Vehicle  = function(){
+                    this.price = 1;
+				};
+				var vec = new Vehicle();
+				console.log(obj);
+				console.log(JSON.stringify(person));
+				console.log(vec);
+				console.log(JSON.stringify(vec));
+			});
+		});
+	</script>
+
+	<style type="text/css">
+		
+		.btnClass{
+			/*background-color: #f00;*/
+		}
+		div,p{
+
+		}
+		div{
+
+		}
+		p{
+
+		}
+		div p{
+			font-weight: bold;
+		}
+		div>p{
+			background-color: #f00;
+		}
+		div[id]{
+			background-color: #ff0;
+		}
+		/*
+		div#mainDiv button #btn2{
+			background-color: #f00;
+		} 
+		button #btn2{background-color: #f00;} 
+
+		button{
+			font-weight: bold;
+		}
+		*/
+	</style>
+</head>
+<body>
+
+  <p id="name">内容---</p>
+
+  <div id="mainDiv">
+	  <h1 id="btn2">我的第一个JavaScript程序</h1>
+
+	  <span>
+	  <p id="name">内容</p>
+      </span>
+
+	  <button id="btn"  class="btnClass" onclick="display();" >点击</button>
+
+
+	  <h1>我的第一个Jquery程序</h1>
+	  <p id="name2">内容2</p>
+	  <button id="btn2">点击2</button>
+  </div>
+
+<div style="height: 500px;">
+  <p id="demo">demo</p>
+  <input type="text" name="username" id="username">
+  <a href="javascript:void(alert('Warning!!!'))">点我!</a>
+
+  <a href="#pos">尾部定位点我!</a>
+</div>
+<p id="pos">尾部定位点</p>
+</body>
+</html>

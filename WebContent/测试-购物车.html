@@ -1,0 +1,218 @@
+<!DOCTYPE html>  
+<!--!DOCTYPE 配置可以使用HTML5的特性-->
+<head>
+	<script src="static/js/jquery/2.0.0/jquery.min.js"></script>
+	<link href="static/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+	<script src="static/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+	<link href="static/css/fore/style.css" rel="stylesheet">
+	<!-- JS区域 -->
+	
+	
+    <meta http-equiv="Expires" content="0">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-store">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>天猫官网</title>
+	
+	<script src="products.js"></script>
+
+    <script type="text/javascript">
+        var products = productConfig.slice(0,2);
+   		console.log(products);
+    	function init(p){
+    		var _frame = $("#frame");
+    		//var p = products[0];
+    		var oiid = p.id;
+    		var pname = p.name;
+    		var td1 = 
+    		'<img selectit="false" oiid="'+oiid+'" class="cartProductItemIfSelected" src="static/img/site/cartNotSelected.png">'+
+			'<a style="display:none" href="#nowhere"><img src="img/site/cartSelected.png"></a>'+
+			'<img class="cartProductImg"  src="static/img/productSingle_middle/${oi.product.firstProductImage.id}.jpg">';
+
+			var td2 =
+			'<div class="cartProductLinkOutDiv">'+
+			'<a href="foreproduct?pid=${oi.product.id}" class="cartProductLink">'+pname+'</a>'+
+			'<div class="cartProductLinkInnerDiv">'+
+			'<img src="static/img/site/creditcard.png" title="支持信用卡支付">'+
+			'<img src="static/img/site/7day.png" title="消费者保障服务,承诺7天退货">'+
+			'<img src="static/img/site/promise.png" title="消费者保障服务,承诺如实描述">'+
+			'</div>'+
+			'</div>';
+
+			//$(document.createElement("tr")) 等价于  $("<tr>")
+			//创建tr标签 # <tr oiid="${oi.id}" class="cartProductItemTR">
+    		$("<tr>").attr("oiid",oiid).addClass("cartProductItemTR")
+    		//添加一个td标签
+    		.append($("<td>").append(td1))
+    		.append($("<td>").append(td2))
+
+    		.appendTo(_frame);
+    	}
+
+    	$(function(){
+    		for (var i = 0;i<products.length;i++) {
+    			init(products[i]);
+    		}
+
+            var selectit = "true";
+    		function syncCreateOrderButton(){
+    			var selectAny = false;
+    			$("img.cartProductItemIfSelected").each(function(){
+					if(selectit==$(this).attr("selectit")){
+						selectAny = true;
+					}
+				});
+				
+				if(selectAny){
+					//$("button.createOrderButton").css({"background":"#C40000",})
+					$("button.createOrderButton").css("background-color","#C40000");
+					$("button.createOrderButton").removeAttr("disabled");
+				}
+				else{
+					$("button.createOrderButton").css("background-color","#AAAAAA");
+					$("button.createOrderButton").attr("disabled","disabled");		
+				}
+    		}
+
+    		//添加事件
+    		$("img.cartProductItemIfSelected").click(function(){
+                console.log($(this).attr("oiid"));
+                if($(this).attr("selectit") === "false")
+                {
+                	$(this).attr("src","static/img/site/cartSelected.png");
+                	$(this).attr("selectit",selectit);
+                }	
+                else{
+                	$(this).attr("src","static/img/site/cartNotSelected.png");
+                	$(this).attr("selectit","false");
+                }
+
+                syncCreateOrderButton();
+    		});
+
+    		//全选
+			$("img.selectAllItem").click(function(){
+				if($(this).attr("selectit") === "false")
+                {
+                	$(this).attr("src","static/img/site/cartSelected.png");
+                	$(this).attr("selectit",selectit);
+
+                	$("img.cartProductItemIfSelected").attr("src","static/img/site/cartSelected.png");
+                	$("img.cartProductItemIfSelected").attr("selectit","true");
+                }	
+                else{
+                	$(this).attr("src","static/img/site/cartNotSelected.png");
+                	$(this).attr("selectit","false");
+
+                	$("img.cartProductItemIfSelected").attr("src","static/img/site/cartNotSelected.png");
+                	$("img.cartProductItemIfSelected").attr("selectit","false");
+                }
+
+                syncCreateOrderButton();
+			});
+			//
+
+    	});
+    </script>
+</head>
+
+<body>
+
+<div class="cartDiv">
+	<div class="cartTitle pull-right">
+		<span>已选商品  (不含运费)</span>
+		<span class="cartTitlePrice">￥0.00</span>
+		<button class="createOrderButton" disabled="disabled">结 算</button>
+	</div>
+	
+	
+	<div class="cartProductList">
+		<table class="cartProductTable">
+			<thead>
+				<tr>
+					<th class="selectAndImage">
+							<img selectit="false" class="selectAllItem" src="static/img/site/cartNotSelected.png">				
+					全选
+					
+					</th>
+					<th>商品信息</th>
+					<th>单价</th>
+					<th>数量</th>
+					<th width="120px">金额</th>
+					<th class="operation">操作</th>
+				</tr>
+			</thead>
+			<tbody id="frame">
+			    <!-- for循环构建
+				<c:forEach items="${ois }" var="oi">
+					<tr oiid="${oi.id}" class="cartProductItemTR">
+						<td>
+							<img selectit="false" oiid="${oi.id}" class="cartProductItemIfSelected" src="static/img/site/cartNotSelected.png">
+							<a style="display:none" href="#nowhere"><img src="img/site/cartSelected.png"></a>
+							<img class="cartProductImg"  src="static/img/productSingle_middle/${oi.product.firstProductImage.id}.jpg">
+						</td>
+						<td>
+							<div class="cartProductLinkOutDiv">
+								<a href="foreproduct?pid=${oi.product.id}" class="cartProductLink">${oi.product.name}</a>
+								<div class="cartProductLinkInnerDiv">
+									<img src="static/img/site/creditcard.png" title="支持信用卡支付">
+									<img src="static/img/site/7day.png" title="消费者保障服务,承诺7天退货">
+									<img src="static/img/site/promise.png" title="消费者保障服务,承诺如实描述">
+								</div>
+							</div>
+							
+						</td>
+						<td>
+							<span class="cartProductItemOringalPrice">￥${oi.product.orignalPrice}</span>
+							<span  class="cartProductItemPromotionPrice">￥${oi.product.promotePrice}</span>
+							
+						</td>
+						<td>
+						
+							<div class="cartProductChangeNumberDiv">
+								<span class="hidden orderItemStock " pid="${oi.product.id}">${oi.product.stock}</span>
+								<span class="hidden orderItemPromotePrice " pid="${oi.product.id}">${oi.product.promotePrice}</span>
+								<a  pid="${oi.product.id}" class="numberMinus" href="#nowhere">-</a>
+								<input pid="${oi.product.id}" oiid="${oi.id}" class="orderItemNumberSetting" autocomplete="off" value="${oi.number}">
+								<a  stock="${oi.product.stock}" pid="${oi.product.id}" class="numberPlus" href="#nowhere">+</a>
+							</div>					
+						
+						 </td>
+						<td >
+							<span class="cartProductItemSmallSumPrice" oiid="${oi.id}" pid="${oi.product.id}" >
+							￥<fmt:formatNumber type="number" value="${oi.product.promotePrice*oi.number}" minFractionDigits="2"/>
+							</span>
+						
+						</td>
+						<td>
+							<a class="deleteOrderItem" oiid="${oi.id}"  href="#nowhere">删除</a>
+						</td>
+					</tr>
+				</c:forEach>
+				-->
+			</tbody>
+		
+		</table>
+	</div>
+	
+	<div class="cartFoot">
+		<img selectit="false" class="selectAllItem" src="static/img/site/cartNotSelected.png">
+		<span>全选</span>
+<!-- 		<a href="#">删除</a> -->
+		
+		<div class="pull-right">
+			<span>已选商品 <span class="cartSumNumber" >0</span> 件</span>
+			
+			<span>合计 (不含运费): </span> 
+			<span class="cartSumPrice" >￥0.00</span>
+			<button class="createOrderButton" disabled="disabled" >结  算</button>
+		</div>
+		
+	</div>
+	
+</div>
+
+
+</body>
+
+</html>

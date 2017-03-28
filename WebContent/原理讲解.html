@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>mytest</title>
+	<script src="static/js/jquery/2.0.0/jquery.min.js"></script>
+	<style type="text/css">
+		p{
+			font-weight: bold;
+		}
+	</style>
+
+	<script type="text/javascript">
+	    //'use strict';
+	    var phases = {
+		  1: 'capture',
+		  2: 'target',
+		  3: 'bubble'
+		};
+	    function callback(event) {
+		  var tag = event.currentTarget.tagName;
+		  var phase = phases[event.eventPhase];
+		  //console.log("Tag: '" + tag + "'. EventPhase: '" + phase + "'");
+		}
+
+		var A = {
+		  name: '张三',
+		  describe: function () {
+		    return '姓名：'+ this.name;
+		  }
+		};
+
+		var B = {
+		  name: '李四'
+		};
+
+		//B.describe = A.describe;
+		var s = A.describe();
+		console.log(s);
+		//页面加载完毕 才开始执行
+		window.onload = function(){
+			var count = document.getElementById("count"); //DOM对象
+			count.onclick = function(){
+				//1.
+				var b1 = document.getElementById("b1");
+				//b1.va = "123";
+				console.log("s1");//JS的测试
+
+			};
+
+			count.onclick = function(){
+				//1.
+				var b1 = document.getElementById("b1");
+				//b1.va = "123";
+				console.log("s2");//JS的测试
+
+			};
+			//添加click事件
+			count.addEventListener("click",function(){
+				console.log("时间1");//JS的测试
+			});
+			count.addEventListener("click",function(){
+				console.log("时间2");//JS的测试 
+			});
+
+
+			var pnode = document.getElementById("p1"); 
+			//pnode.onclick = function(){
+			//	console.log("pnode");
+			//	return false;
+			//};
+
+			var div1 = document.getElementById("div1"); 
+			//div1.onclick = function(){
+			//	console.log("div1");
+			//};
+			//div1.addEventListener('click', callback, true);
+			//pnode.addEventListener('click', callback, true);
+			//div1.addEventListener('click', callback, false);
+			//pnode.addEventListener('click', callback, false);
+
+			//var box= "1121212121";//JS对象
+			//var tnode= document.createTextNode("1121212121");
+			//p1.appendChild(box);
+			var ajax_P = document.getElementById("ajax"); //DOM对象
+			ajax_P.onclick= function(){
+
+				var ajax = new XMLHttpRequest();
+				ajax.open('GET', 'http://javascript.ruanyifeng.com/', true);
+				ajax.onreadystatechange = function(){
+					  // 通信成功时，状态值为4
+					  if (ajax.readyState === 4){
+					    if (ajax.status === 200){
+					      //console.log(ajax.responseText);
+					    } else {
+					      //console.error(ajax.statusText);
+					    }
+					  }
+					  console.log(ajax.readyState,ajax.status);
+				};
+				ajax.onerror = function (e) {
+				  console.error(ajax.statusText);
+				};
+				// 发送HTTP请求
+				//ajax.send(null);
+
+				//AJAX
+				/*
+				$.ajax(
+					  async: true,  //默认
+					  url: '/url/to/json',
+					  type: 'GET',
+					  data : { id : 123 },
+					  dataType: 'json',   //   text/html
+					  timeout: 30000,
+					  success: successCallback,
+					  error: errorCallback,
+					  complete: completeCallback,
+					  statusCode: {
+					    404: handler404,
+					    500: handler500
+					  }
+				);
+				*/
+
+				$.ajax('http://javascript.ruanyifeng.com/',{
+				  //type: 'GET',
+				  //dataType: 'json',   //text/html
+				  success: function(result){
+				  	  //result.success  //我们自己写的
+                      //console.log("111111111111"+result);
+				  }
+				  //,error: errorCallback
+				});
+
+				//$.get()
+				//$.post()
+
+
+				$.getJSON('http://omucc0pv4.bkt.clouddn.com/products.json',
+					function(result){
+					//JSON.parse()
+					console.log("result="+JSON.stringify(result));
+				});
+
+			}
+			
+		};
+		/*
+		function xxxx(){
+
+		};
+		//$("input").click(xxxx);
+		$("input").click(function(){
+			//this//获取额是Jquery对象
+			//this.style = '';
+			this.css("backgroundColor","red").css();
+		});
+        //document.querySelector("input");;
+		var list = document.querySelectorAll("input");//NodeList dom对象的List
+		for (var i = 0 ; i < is.length; i++) {
+            var ele = list.item(i);//dom对象
+            ele.onclick = function(){
+            	this.style = '';
+            };
+           
+         }
+		//list.onclick = function(){
+		//
+		//};
+		*/
+	</script>
+</head>
+<body>
+   <div id="div1">
+       <p id="p1" style="background-color: red;">21312312</p> <!--加一段文本-->
+	   <p>1、加法计算器。两个文本框中输入数字，点击【=】按钮将相加的结果放到第三个文本框中。</p>
+	  <input type="text" name="" id="b1"> + <input type="text" name="" id="b2"> 
+	  <input type="button" name="" value="=" id="count" > =
+	  <p id="ajax">发送Ajax</p> 
+	  <!--<input type="text" name="" id="result">-->
+  </div>
+</body>
+</html>
