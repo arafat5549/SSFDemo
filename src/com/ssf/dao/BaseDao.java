@@ -16,6 +16,11 @@ public interface BaseDao<T> {
      */
 	List<T> findAll(); //如果是泛型类的话不需要必须指定为泛型方法
 	
+	/**
+	 * 根据ID获取对象
+	 */
+	T findById(Integer id);
+	
 	//(泛型方法)
 	///<T> List<T> query3(String sql);
 	/**

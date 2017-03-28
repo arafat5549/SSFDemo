@@ -217,7 +217,8 @@ public class DBUtils {
 			while(rs.next()){
 				Map<String,Object> maps =new HashMap<String, Object>();
 				for (int i = 0; i < columnCount; i++) {
-					String key = rsmd.getColumnName(i+1);
+					//String key = rsmd.getColumnName(i+1);
+					String key =rsmd.getColumnLabel(i+1);
 					Object obj = rs.getObject(key);
 					maps.put(key, obj);
 				}

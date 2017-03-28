@@ -69,4 +69,9 @@ public class UserDao implements BaseDao<User>{
 	public void delete(Integer id) {
 		
 	}
+	@Override
+	public User findById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

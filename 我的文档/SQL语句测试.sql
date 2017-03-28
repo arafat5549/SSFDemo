@@ -49,6 +49,40 @@ INSERT INTO `sys_user` VALUES(99,"lisi","45678","des"); -- 如果不写指定列
 .. 字段名 `user` 不知道是 `user_id` 还是 `user_name`。 
 */
 
+-- 员工表
+DROP TABLE IF EXISTS `sys_employee`;
+CREATE TABLE `sys_employee` (
+	`id`	    INT(11) NOT NULL AUTO_INCREMENT COMMENT '主键自增长',
+	`name`		VARCHAR(50) NOT NULL COMMENT '员工姓名',
+	`dept_id`	INT(11) NOT NULL  COMMENT '外键 所在的部门ID',
+	primary key(`id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO sys_employee(id,name,dept_id) VALUES(1,"公司总部文员",1);
+INSERT INTO sys_employee(id,name,dept_id) VALUES(2,"研发部文员",11);
+INSERT INTO sys_employee(id,name,dept_id) VALUES(4,"技术员",111);
+INSERT INTO sys_employee(id,name,dept_id) VALUES(5,"技术员",1111);
+
+-- 部门表
+DROP TABLE IF EXISTS `sys_department`;
+CREATE TABLE `sys_department` (
+	`id`	    INT(11) NOT NULL AUTO_INCREMENT COMMENT '主键自增长',
+	`name`		VARCHAR(50) NOT NULL COMMENT '部门名称',
+	`parent_id`	INT(11) NOT NULL  COMMENT '外键 父部门ID',
+	`parent_ids` VARCHAR(100) NOT NULL COMMENT '记录所有父部门的ID',
+	primary key(`id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO sys_department(id,name,parent_id,parent_ids) VALUES(1,"公司",0,'0,1');
+INSERT INTO sys_department(id,name,parent_id,parent_ids) VALUES(11,"研发部 ",1,'0,1,11');
+INSERT INTO sys_department(id,name,parent_id,parent_ids) VALUES(21,"市场部 ",1,'0,1,21');
+INSERT INTO sys_department(id,name,parent_id,parent_ids) VALUES(201,"福建市场部 ",21,'0,1,21,201');
+INSERT INTO sys_department(id,name,parent_id,parent_ids) VALUES(111,"客户端研发部",11,'0,1,11,111');
+INSERT INTO sys_department(id,name,parent_id,parent_ids) VALUES(1111,"Android研发部",111,'0,1,11,111,1111');
+
+
+
+
+
 
 -- 以下为测试数据
 -- 测试学生表(Student)
