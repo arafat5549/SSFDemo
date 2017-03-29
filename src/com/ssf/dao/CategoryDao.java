@@ -18,13 +18,43 @@ public class CategoryDao implements BaseDao<Category>{
 	
 	
 	/**
+	 * 根据分类Id获取所有分类(包含子分类)
+	 */
+	public List<Category> findAllCategorysById(Integer categoryId){
+		List<Category> lists = new ArrayList<Category>();
+		//1.判断有没有这个分类
+		Category cate = findById(categoryId);
+		if(cate == null){
+		   return lists;//一般集合不返回null	
+		}
+		//2.获取无限级别分类
+		String sql = "SELECT " +COLUMNS +" FROM sys_category a WHERE a.parent_ids LIKE '"+cate.getParentIds()+"%'";
+		return DBUtils.getInstance().listBean(sql, Category.class);
+		//return null;
+	}
+	
+	/**
 	 * 获取一级分类(父类id为0)
 	 */
 	public List<Category> findFirstCategorys(){
-		List<Category> lists = new ArrayList<Category>();
-		String sql = "SELECT " + COLUMNS +" FROM sys_category a WHERE a.parent_id=0";;
-		lists = DBUtils.getInstance().listBean(sql, Category.class);
+		//List<Category> lists = new ArrayList<Category>();
+		//String sql = "SELECT " + COLUMNS +" FROM sys_category a WHERE a.parent_id=0";;
+		//lists = DBUtils.getInstance().listBean(sql, Category.class);
+		List<Category> lists = findByParentId(0);
+		for (Category category : lists) {
+			List<Category> childs = findByParentId(category.getId());
+			category.setChilds(childs);
+			for (Category grand : childs) {
+				List<Category> grands = findByParentId(grand.getId());
+				grand.setChilds(grands);
+			}
+		}
 		return lists;
+	}
+	
+	List<Category> findByParentId(Integer pid){
+		String sql = "SELECT " + COLUMNS +" FROM sys_category a WHERE a.parent_id=?";;
+		return DBUtils.getInstance().listBean(sql, Category.class,pid);
 	}
 	
 	@Override

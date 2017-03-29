@@ -32,9 +32,13 @@ public class CategoryTest {
 	}
 	@Test
 	public void categoryTest(){
-		List<Category> lists = categoryDao.findFirstCategorys();
+		List<Category> lists = null;
+		//lists =	categoryDao.findFirstCategorys();
+		lists = categoryDao.findAllCategorysById(1);
 		for (Category category : lists) {
 			System.out.println(category);
 		}
+		
+		
 	}
 }

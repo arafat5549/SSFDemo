@@ -102,11 +102,12 @@ DROP TABLE IF EXISTS `sys_product`;
 CREATE TABLE `sys_product` (
 	`id`	    INT(11) NOT NULL AUTO_INCREMENT COMMENT '主键自增长',
 	`name`		VARCHAR(50) NOT NULL COMMENT '商品名称',
+	`subTitle`  VARCHAR(150) NOT NULL COMMENT '商品描述',
 	`originPrice`  decimal(10,2) NOT NULL COMMENT '商品初始价格',
 	`promotoPrice` decimal(10,2) NOT NULL COMMENT '商品初始价格',
 	`stock`       INT(11) DEFAULT 0 COMMENT '库存', 
 	`category_id` INT(11) NOT NULL COMMENT '外键 关联商品',
 	`create_time` datetime NOT NULL COMMENT '创建时间',
-	`update_time` datetime NOT NULL COMMENT '更新时间',
+	`update_time` datetime DEFAULT NULL COMMENT '更新时间',
 	primary key(`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;

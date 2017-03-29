@@ -10,6 +10,7 @@ public class ProductDao implements BaseDao<Product>{
 	private static final String COLUMNS =
 			" a.id,"
 	       + " a.name,"
+	       + " a.subTitle,"		
 	       + " a.originPrice,"
 	       + " a.promotoPrice,"
 	       + " a.stock,"
@@ -17,6 +18,15 @@ public class ProductDao implements BaseDao<Product>{
 	       
 	       + " a.create_time AS 'createTime', "
 	       + " a.update_time AS 'updateTime' ";
+	
+	/**
+	 * 根据分类Id获取商品（会包含子分类）
+	 */
+	public List<Product> findProductsByCateId(Integer categoryId){
+		String sql ="SELECT " + COLUMNS +" FROM sys_product a WHERE a.category_id=?";
+		return DBUtils.getInstance().listBean(sql, Product.class,categoryId);
+	}
+	
 	
 	@Override
 	public List<Product> findAll() {

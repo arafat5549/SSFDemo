@@ -1,4 +1,4 @@
-<%-- 所有头部相关的配置一般是css和js文件 --%>
+<%-- 所有头部相关的配置一般是css和js文件 注意要放在head标签对里面 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -7,7 +7,7 @@
 <meta http-equiv="Cache-Control" content="no-cache">
 <meta http-equiv="Cache-Control" content="no-store">
 
-
+<!-- Jquery和BootStrap代码库 -->
 <script src="${context }/static/js/jquery/2.0.0/jquery.min.js"></script>
 <link href="${context }/static/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
 <script src="${context }/static/js/bootstrap/3.3.6/bootstrap.min.js"></script>	
