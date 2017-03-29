@@ -92,6 +92,7 @@
 <img src="static/img/site/catear.png" id="catear" class="catear"/>
 <!-- BEGIN分类区域 -->	
 <div class="categoryWithCarousel">
+
 <div class="headbar show1">
 	<div class="head ">
 	
@@ -188,12 +189,8 @@
 </div>
    
 </div> 
-
- <%--
-    <c:forEach items="${firstCategorys }" var="item">
-        ${item.name }
-    </c:forEach>
-    
-    @ include file="/static/include/footer.jsp" --%>
+</div>
+  
+    <%@ include file="/static/include/footer.jsp" %>
 </body>
 </html>
