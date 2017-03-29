@@ -8,6 +8,12 @@ import com.ssf.dao.EmployeeDao;
 import com.ssf.model.Department;
 import com.ssf.model.Employee;
 
+/**
+ * 员工Service业务层
+ * @author wyy
+ * 2017年3月29日
+ *
+ */
 public class EmployeeService {
 	EmployeeDao employeeDao = new EmployeeDao();
 	DepartmentDao departmentDao = new DepartmentDao();

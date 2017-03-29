@@ -5,8 +5,9 @@ import java.util.List;
 import com.ssf.model.User;
 import com.ssf.utils.DBUtils;
 /**
- * DataAccessObject(DAO层) # Resposity层
- * 用户DAO接口层 
+ * 用户DAO接口层  <br>
+ * (DAO即 DataAccessObject 用户访问对象)又叫 Resposity层，是用来处理 和数据库交互的
+ * 一般在该行编写SQL语句
  * @author wyy
  * 2017年3月23日
  *
@@ -26,7 +27,6 @@ public class UserDao implements BaseDao<User>{
 	 * 根据名称查找用户
 	 */
 	public User findByName(String name){
-		//
 		String sql ="SELECT "+COLUMN+" FROM sys_user a WHERE username=?";		
 		System.out.println(sql);
 		User exist = DBUtils.getInstance().queryBean(sql,User.class,name);
@@ -34,17 +34,14 @@ public class UserDao implements BaseDao<User>{
 	}
 	/**
 	 * 测试-废弃类
+	 * 根据名称查找用户
 	 */
-	public User findByName_stmt(String name){
+	public User test_findByName_stmt(String name){
 		String sql ="SELECT "+COLUMN+" FROM sys_user a WHERE username='"+name+"'";	
 		User exist = DBUtils.getInstance().queryBean_stmt(sql,User.class);
 		return exist;
 	}
 	
-	//is 返回的如果是boolean类型就用is开头
-	public boolean isInDeptByEmpAndDept(){
-		return false;
-	}
 	
 	@Override
 	public List<User> findAll() {
@@ -71,7 +68,6 @@ public class UserDao implements BaseDao<User>{
 	}
 	@Override
 	public User findById(Integer id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

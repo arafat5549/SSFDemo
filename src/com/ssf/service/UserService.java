@@ -4,7 +4,7 @@ import com.ssf.dao.UserDao;
 import com.ssf.model.User;
 
 /**
- * 业务层 - 处理逻辑
+ * 用户Service业务层 - 处理逻辑
  * @author wyy
  * 2017年3月23日
  *

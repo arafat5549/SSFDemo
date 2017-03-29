@@ -21,6 +21,7 @@ import com.ssf.service.UserService;
  * 2017年3月23日
  *
  */
+@SuppressWarnings("serial")
 public class UserController extends HttpServlet
 {
 	private UserService userService = new UserService();

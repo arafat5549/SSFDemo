@@ -12,11 +12,14 @@ import com.ssf.model.Category;
 import com.ssf.service.CategoryService;
 
 /**
- * 主页
+ * 主页WEB层
+ * 
+ * 通过index.jsp跳转到后台，由主页WEB层处理
  * @author wyy
  * 2017年3月29日
  *
  */
+@SuppressWarnings("serial")
 public class IndexController extends HttpServlet{
 
 	CategoryService categoryService  = new CategoryService();

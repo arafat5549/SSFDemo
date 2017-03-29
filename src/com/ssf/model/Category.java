@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 分类模块
+ * 分类实体类
  * @author wyy
  * 2017年3月29日
  *

@@ -16,11 +16,11 @@ import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-import com.ssf.model.Department;
 import com.ssf.model.User;
 
 /**
- * 工具类(只有一份实例,单例模式)
+ * DBUtils工具类(只有一份实例,单例模式)
+ * 用来处理数据ORM映射(ObjectRelativeMapping即数据库类型到Java对象的映射)
  * 
  * @author wyy
  * 2017年3月24日
@@ -74,7 +74,7 @@ public class DBUtils {
 					int id = rs.getInt("id");
 					String username = rs.getString("username");
 					String password = rs.getString("password");
-					String describe = rs.getString("describe");
+					//String describe = rs.getString("describe");
 					user.setId(id);
 					user.setUsername(username);
 					user.setPassword(password);
@@ -287,7 +287,7 @@ public class DBUtils {
 	
 	
 	public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException {
-		DBUtils db = DBUtils.getInstance();
+		//DBUtils db = DBUtils.getInstance();
 		//Connection conn = db.openConnection();
 		//System.out.println(conn);
 //		String sql = "SELECT * FROM sys_user";
@@ -324,7 +324,6 @@ public class DBUtils {
 
 		User user =new User();//我就知道了用户的所有信息
 		Class cls3 = user.getClass();
-		
 		Class cls = User.class;
 		Class cls2 = Class.forName("com.ssf.model.User");
 		

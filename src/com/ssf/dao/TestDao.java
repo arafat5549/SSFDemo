@@ -1,7 +1,7 @@
 package com.ssf.dao;
 
 /***
- * 测试面向接口编程
+ * 废弃类-测试面向接口编程
  * 
  * 用接口编程
  * @author wyy

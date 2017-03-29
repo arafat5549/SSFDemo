@@ -6,6 +6,12 @@ import java.util.List;
 import com.ssf.model.Category;
 import com.ssf.utils.DBUtils;
 
+/**
+ * 分类Dao层
+ * @author wyy
+ * 2017年3月29日
+ *
+ */
 public class CategoryDao implements BaseDao<Category>{
 
 	private static final String COLUMNS =
@@ -30,11 +36,10 @@ public class CategoryDao implements BaseDao<Category>{
 		//2.获取无限级别分类
 		String sql = "SELECT " +COLUMNS +" FROM sys_category a WHERE a.parent_ids LIKE '"+cate.getParentIds()+"%'";
 		return DBUtils.getInstance().listBean(sql, Category.class);
-		//return null;
 	}
 	
 	/**
-	 * 获取一级分类(父类id为0)
+	 * 获取一级分类(父类id为0),会包含所有的子分类
 	 */
 	public List<Category> findFirstCategorys(){
 		//List<Category> lists = new ArrayList<Category>();
@@ -51,8 +56,10 @@ public class CategoryDao implements BaseDao<Category>{
 		}
 		return lists;
 	}
-	
-	List<Category> findByParentId(Integer pid){
+	/**
+	 * 根据父id获取所有的子分类
+	 */
+	private List<Category> findByParentId(Integer pid){
 		String sql = "SELECT " + COLUMNS +" FROM sys_category a WHERE a.parent_id=?";;
 		return DBUtils.getInstance().listBean(sql, Category.class,pid);
 	}

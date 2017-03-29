@@ -8,16 +8,21 @@ import org.junit.Test;
 import com.ssf.dao.DepartmentDao;
 import com.ssf.dao.EmployeeDao;
 import com.ssf.model.Department;
-import com.ssf.model.Employee;
 import com.ssf.service.EmployeeService;
 
+/**
+ * 单元测试相关类-员工部分的测试
+ * @author wyy
+ * 2017年3月29日
+ *
+ */
 public class EmployeeTest {
     EmployeeDao employeeDao = new EmployeeDao();
     DepartmentDao departmentDao = new DepartmentDao();
     
     EmployeeService employeeService = new EmployeeService();
 	@Test
-	public void daoTest(){
+	public void baseTest(){
 //		List<Employee> lists = employeeDao.findAll();
 //		System.out.println(lists);
 		

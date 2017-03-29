@@ -1,5 +1,12 @@
 package com.ssf.utils;
 
+/**
+ * 废弃类
+ * 只用于一些描述
+ * @author wyy
+ * 2017年3月29日
+ *
+ */
 public class Describe{
    /*
     * JDk可以分为几大模块

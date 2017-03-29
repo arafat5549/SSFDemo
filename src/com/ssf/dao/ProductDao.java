@@ -5,6 +5,12 @@ import java.util.List;
 import com.ssf.model.Product;
 import com.ssf.utils.DBUtils;
 
+/**
+ * 商品Dao层
+ * @author wyy
+ * 2017年3月29日
+ *
+ */
 public class ProductDao implements BaseDao<Product>{
 	
 	private static final String COLUMNS =
@@ -20,7 +26,7 @@ public class ProductDao implements BaseDao<Product>{
 	       + " a.update_time AS 'updateTime' ";
 	
 	/**
-	 * 根据分类Id获取商品（会包含子分类）
+	 * 根据分类Id获取商品
 	 */
 	public List<Product> findProductsByCateId(Integer categoryId){
 		String sql ="SELECT " + COLUMNS +" FROM sys_product a WHERE a.category_id=?";

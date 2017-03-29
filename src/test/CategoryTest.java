@@ -7,6 +7,13 @@ import org.junit.Test;
 import com.ssf.dao.CategoryDao;
 import com.ssf.model.Category;
 
+/**
+ * 单元测试相关类-分类部分的测试
+ * 
+ * @author wyy
+ * 2017年3月29日
+ *
+ */
 public class CategoryTest {
     CategoryDao categoryDao= new CategoryDao();
 	@Test

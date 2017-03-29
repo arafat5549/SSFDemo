@@ -18,14 +18,18 @@ import com.ssf.service.ProductService;
  * 2017年3月29日
  *
  */
+@SuppressWarnings("serial")
 public class ProductController extends HttpServlet{
 
-	ProductService  productService = new  ProductService();
+	ProductService  productService = new ProductService();
+	
 	public static final String VIEW_PATH = "/WEB-INF/views/product/";
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		//将前台传过来的字符串转化为int类型
 		int categoryId = Integer.parseInt(req.getParameter("cid"));
+		
 		List<Product> products = productService.findAllSub(categoryId);
 		
 		req.setAttribute("products", products);
