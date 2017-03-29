@@ -11,6 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.ssf.model.Product;
 import com.ssf.service.ProductService;
 
+/**
+ * 商品WEB层
+ * 
+ * @author wyy
+ * 2017年3月29日
+ *
+ */
 public class ProductController extends HttpServlet{
 
 	ProductService  productService = new  ProductService();

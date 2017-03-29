@@ -80,6 +80,7 @@
 			});
 		});
 	</script>
+	
 </head>
 <body>
    
@@ -142,7 +143,7 @@
     <c:forEach items="${firstCategorys }" var="item">
         <div cid="${item.id }" class="productsAsideCategorys">
            <c:forEach items="${item.childs }" var="child">
-              <a href="${context }/product?cid=${child.id}">${child.name } ></a>
+              <a href="${context }/product?cid=${child.id}"><strong>${child.name } ></strong></a>
               <c:forEach items="${child.childs }" var="grand">
                   <a href="${context }/product?cid=${grand.id}">${grand.name }</a> |
               </c:forEach>
