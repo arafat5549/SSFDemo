@@ -34,13 +34,11 @@ public class EmployeeDao implements BaseDao<Employee>{
 
 	@Override
 	public void update(Employee t) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void delete(Integer id) {
-		// TODO Auto-generated method stub
 		
 	}
 

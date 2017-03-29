@@ -189,13 +189,25 @@ public class DBUtils {
 		return lists;
 	}
 	//PreparedStatement的做法（推荐方式）
+	/**
+	 * 从数据库获取(SELECT)一个对象
+	 * @param sql    sql语句
+	 * @param cls    实体的Class,比如User.class
+	 * @param params 参数是可变长度 (一个参数列表只能有一个可变参数，一定要放在最后)
+	 */
 	public <T> T queryBean(String sql,Class<T> cls,Object... params)
 	{
 		List<T> lists = listBean(sql, cls, params);
 		return lists.size()>0 ? lists.get(0)  : null;
 	}
 	
-	//1.参数是可变长度 (只能有一份，一定要放在最后)
+	/**
+	 * 从数据库获取(SELECT)一个对象
+	 * @param sql    sql语句
+	 * @param cls    实体的Class,比如User.class
+	 * @param params 参数是可变长度 (一个参数列表只能有一个可变参数，一定要放在最后)
+	 * @return
+	 */
 	public <T> List<T> listBean(String sql,Class<T> cls,Object... params)
 	{
 		List<T> lists = new ArrayList<T>();
@@ -241,7 +253,12 @@ public class DBUtils {
 		return lists;
 	}
 	
-	//执行SQL
+	/**
+	 * 执行SQL
+	 * @param sql     sql语句
+	 * @param params  参数是可变长度 (一个参数列表只能有一个可变参数，一定要放在最后)
+	 * @return 是否执行成功
+	 */
 	public boolean execute(String sql,Object... params){
 		Connection conn = null;
 		PreparedStatement ptmt = null;
