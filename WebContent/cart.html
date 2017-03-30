@@ -1,0 +1,207 @@
+<!DOCTYPE html>  
+<!--!DOCTYPE 配置可以使用HTML5的特性-->
+<head>
+
+	<script src="static/js/jquery/2.0.0/jquery.min.js"></script>
+	<link href="static/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+	<script src="static/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+	<link href="static/css/fore/style.css" rel="stylesheet">
+	<!-- JS区域 -->
+	
+	
+    <meta http-equiv="Expires" content="0">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-store">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>天猫官网</title>
+	
+	<script src="products.js"></script>
+
+    <script type="text/javascript">
+
+        var products = productConfig.slice(0,2);
+   		console.log(products);
+    	function init(p){
+    		var _frame = $("#frame");
+    		//var p = products[0];
+    		var oiid = p.id;
+    		var pid  = p.id;
+    		var pname = p.name;
+    		var pprice = p.price;
+    		var ppromote = p.promotePrice;
+    		p.count = 2;//生成数量字段
+    		var pcount = p.count;
+    		var td1 = 
+    		'<img selectit="false" oiid="'+oiid+'" class="cartProductItemIfSelected" src="static/img/site/cartNotSelected.png">'+
+			'<a style="display:none" href="#nowhere"><img src="static/img/site/cartSelected.png"></a>'+
+			'<img class="cartProductImg"  src="static/img/productSingle_middle/19.jpg">';
+
+			var td2 =
+			'<div class="cartProductLinkOutDiv">'+
+			'<a href="productDetail.html?pid=${oi.product.id}" class="cartProductLink">'+pname+'</a>'+
+			'<div class="cartProductLinkInnerDiv">'+
+			'<img src="static/img/site/creditcard.png" title="支持信用卡支付">'+
+			'<img src="static/img/site/7day.png" title="消费者保障服务,承诺7天退货">'+
+			'<img src="static/img/site/promise.png" title="消费者保障服务,承诺如实描述">'+
+			'</div>'+
+			'</div>';
+
+			var td3 =
+			'<span class="cartProductItemOringalPrice">￥'+pprice+'</span>'+
+			'<span  class="cartProductItemPromotionPrice">￥'+ppromote+'</span>';
+
+			var td4 =
+			'<div class="cartProductChangeNumberDiv">'+
+				'<span class="hidden orderItemStock " pid="${oi.product.id}">${oi.product.stock}</span>'+
+				'<span class="hidden orderItemPromotePrice " pid="${oi.product.id}">${oi.product.promotePrice}</span>'+
+				'<a  pid="${oi.product.id}" class="numberMinus" href="#nowhere">-</a>'+
+				'<input pid="${oi.product.id}" oiid="${oi.id}" class="orderItemNumberSetting" autocomplete="off" value="'+pcount+'">'+
+				'<a  stock="${oi.product.stock}" pid="${oi.product.id}" class="numberPlus" href="#nowhere">+</a>'+
+			'</div>';
+
+			var td5 =
+			'<span class="cartProductItemSmallSumPrice" oiid="${oi.id}" pid="${oi.product.id}" >'+
+			'￥'+(Number(ppromote)*pcount)+ //<fmt:formatNumber type="number" value="${oi.product.promotePrice*oi.number}" minFractionDigits="2"/>'+
+			'</span>';
+
+			var td6 =
+			'<a class="deleteOrderItem" oiid="'+oiid+'"  href="#nowhere">删除</a>';
+
+			//$(document.createElement("tr")) 等价于  $("<tr>")
+			//创建tr标签 # <tr oiid="${oi.id}" class="cartProductItemTR">
+    		$("<tr>").attr("oiid",oiid).addClass("cartProductItemTR")
+    		//添加一个td标签
+    		.append($("<td>").append(td1))
+    		.append($("<td>").append(td2))
+			.append($("<td>").append(td3))
+			.append($("<td>").append(td4))
+			.append($("<td>").append(td5))
+			.append($("<td>").append(td6))
+    		.appendTo(_frame);
+    	}
+
+    	$(function(){
+    		for (var i = 0;i<products.length;i++) {
+    			init(products[i]);
+    		}
+
+            var selectitTrue = "true";
+    		function syncCreateOrderButton(){
+    			var selectAny = false;
+    			$("img.cartProductItemIfSelected").each(function(){
+					if(selectitTrue==$(this).attr("selectit")){
+						selectAny = true;
+					}
+				});
+				
+				if(selectAny){
+					//$("button.createOrderButton").css({"background":"#C40000",})
+					$("button.createOrderButton").css("background-color","#C40000");
+					$("button.createOrderButton").removeAttr("disabled");
+				}
+				else{
+					$("button.createOrderButton").css("background-color","#AAAAAA");
+					$("button.createOrderButton").attr("disabled","disabled");		
+				}
+    		}
+
+    		//添加事件
+    		$("img.cartProductItemIfSelected").click(function(){
+                console.log($(this).attr("oiid"));
+                if($(this).attr("selectit") === "false")
+                {
+                	$(this).attr("src","static/img/site/cartSelected.png");
+                	$(this).attr("selectit",selectitTrue);
+                	$(this).parents("tr.cartProductItemTR").css("background-color","#FFF8E1");
+                	
+                }	
+                else{
+                	$(this).attr("src","static/img/site/cartNotSelected.png");
+                	$(this).attr("selectit","false");
+                	$(this).parents("tr.cartProductItemTR").css("background-color","#fff");
+                }
+
+                syncCreateOrderButton();
+    		});
+
+    		//全选
+			$("img.selectAllItem").click(function(){
+				if($("img.selectAllItem").attr("selectit") === "false")
+                {
+                	$("img.selectAllItem").attr("src","static/img/site/cartSelected.png");
+                	$("img.selectAllItem").attr("selectit",selectitTrue);
+
+                	$("img.cartProductItemIfSelected").attr("src","static/img/site/cartSelected.png");
+                	$("img.cartProductItemIfSelected").attr("selectit",selectitTrue);
+                	$("img.cartProductItemIfSelected").parents("tr.cartProductItemTR").css("background-color","#FFF8E1");
+                }	
+                else{
+                	$("img.selectAllItem").attr("src","static/img/site/cartNotSelected.png");
+                	$("img.selectAllItem").attr("selectit","false");
+
+                	$("img.cartProductItemIfSelected").attr("src","static/img/site/cartNotSelected.png");
+                	$("img.cartProductItemIfSelected").attr("selectit","false");
+                	$("img.cartProductItemIfSelected").parents("tr.cartProductItemTR").css("background-color","#fff");
+                }
+
+                syncCreateOrderButton();
+			});
+			//加 减按钮
+
+    	});
+    </script>
+</head>
+
+<body>
+
+<div class="cartDiv">
+	<div class="cartTitle pull-right">
+		<span>已选商品  (不含运费)</span>
+		<span class="cartTitlePrice">￥0.00</span>
+		<button class="createOrderButton" disabled="disabled">结 算</button>
+	</div>
+	
+	
+	<div class="cartProductList">
+		<table class="cartProductTable">
+			<thead>
+				<tr>
+					<th class="selectAndImage">
+							<img selectit="false" class="selectAllItem" src="static/img/site/cartNotSelected.png">				
+					全选
+					
+					</th>
+					<th>商品信息</th>
+					<th>单价</th>
+					<th>数量</th>
+					<th width="120px">金额</th>
+					<th class="operation">操作</th>
+				</tr>
+			</thead>
+			<tbody id="frame">
+			</tbody>
+		
+		</table>
+	</div>
+	
+	<div class="cartFoot">
+		<img selectit="false" class="selectAllItem" src="static/img/site/cartNotSelected.png">
+		<span>全选</span>
+<!-- 		<a href="#">删除</a> -->
+		
+		<div class="pull-right">
+			<span>已选商品 <span class="cartSumNumber" >0</span> 件</span>
+			
+			<span>合计 (不含运费): </span> 
+			<span class="cartSumPrice" >￥0.00</span>
+			<button class="createOrderButton" disabled="disabled" >结  算</button>
+		</div>
+		
+	</div>
+	
+</div>
+
+
+</body>
+
+</html>

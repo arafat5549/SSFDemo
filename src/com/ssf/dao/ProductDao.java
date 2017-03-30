@@ -33,7 +33,6 @@ public class ProductDao implements BaseDao<Product>{
 		return DBUtils.getInstance().listBean(sql, Product.class,categoryId);
 	}
 	
-	
 	@Override
 	public List<Product> findAll() {
 		String sql ="SELECT " + COLUMNS +" FROM sys_product a";
@@ -108,6 +107,13 @@ public class ProductDao implements BaseDao<Product>{
 	public void delete(Integer id) {
 		String sql = "DELETE FROM sys_product WHERE id=?";
 		DBUtils.getInstance().execute(sql, id);
+	}
+
+
+	@Override
+	public Integer findMaxId() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

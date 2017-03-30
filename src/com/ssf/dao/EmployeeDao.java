@@ -48,4 +48,10 @@ public class EmployeeDao implements BaseDao<Employee>{
 		return DBUtils.getInstance().queryBean(sql, Employee.class,id);
 	}
 
+	@Override
+	public Integer findMaxId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

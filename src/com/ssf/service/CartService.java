@@ -1,0 +1,29 @@
+package com.ssf.service;
+
+import com.ssf.dao.CartDao;
+import com.ssf.model.Cart;
+
+public class CartService {
+	
+	CartDao cartDao = new CartDao();
+	
+	public boolean save(Cart t){
+		return cartDao.save(t);
+	}
+	public Integer findMaxId(){
+		return cartDao.findMaxId() + 1;
+	}
+	
+	/**
+	 * 取用户关联的购物车
+	 */
+	public Cart findCartByUserId(Integer userId){
+		return cartDao.findCartByUserId(userId);
+	}
+	
+	/**
+	 * 添加入购物车
+	 */
+	
+	
+}

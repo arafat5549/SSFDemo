@@ -189,6 +189,126 @@
 </div>
    
 </div> 
+
+<!-- carousel 商品轮播 -->
+<div id="carousel-of-product"  class="carousel-of-product carousel slide1" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-of-product" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-of-product" data-slide-to="1"></li>
+    <li data-target="#carousel-of-product" data-slide-to="2"></li>
+    <li data-target="#carousel-of-product" data-slide-to="3"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img class="carousel carouselImage" src="static/img/lunbo/1.jpg" >
+    </div>
+    <div class="item">
+      <img  class="carouselImage" src="static/img/lunbo/2.jpg" >
+    </div>
+    <div class="item">
+		<img  class="carouselImage" src="static/img/lunbo/3.jpg" >
+    </div>
+
+    <div class="item">
+        <img  class="carouselImage" src="static/img/lunbo/4.jpg" >
+    </div>
+
+  </div>
+</div>	
+
+<!-- BEGIN商品展示区域 -->
+<div class="homepageCategoryProducts">
+
+	<c:forEach items="${firstCategorys}" var="item">
+	   <div class="left-mark"></div>
+	   <span class="categoryTitle">${item.name}</span>
+	   <br>
+	   
+	   <c:forEach items="${item.products}" var="p">
+	   	<div class="productItem" >
+			<a href="#">
+			<img width="100px" src="${contextStatic }/img/productSingle_middle/19.jpg"></a>
+			<a class="productItemDescLink" href="#">
+				<span class="productItemDesc">
+				[热销]${fn:substring(p.name, 0, 20)}
+				</span>
+			</a>
+			<span class="productPrice">
+				¥${p.promotoPrice }
+			</span>
+
+			<a class="productAddCart" target="_blank" href="${context }/cart?method=add&pid=${p.id}">
+        		<span style="color:#C40000;margin:0px" class="glyphicon glyphicon-shopping-cart redColor"></span>
+        		<strong>加入购物车</strong>
+			</a>
+		</div>
+	   </c:forEach>
+	</c:forEach>
+
+    <!--  
+	<div class="eachHomepageCategoryProducts">
+		<div class="left-mark"></div>
+		<span class="categoryTitle">商品分类</span>
+		<br>
+		<div class="productItem" >
+			<a href="productDetail.html?pid=1">
+			<img width="100px" src="static/img/productSingle_middle/19.jpg"></a>
+			<a class="productItemDescLink" href="productDetail.html?pid1">
+				<span class="productItemDesc">
+				[热销]夏普
+				</span>
+			</a>
+			<span class="productPrice">
+				¥12.0
+			</span>
+
+			<a class="productAddCart" target="_blank" href="">
+        		<span style="color:#C40000;margin:0px" class="glyphicon glyphicon-shopping-cart redColor"></span>
+        		<strong>加入购物车</strong>
+			</a>
+		</div>
+
+		<div class="productItem" >
+			<a href="productDetail.html?pid=1">
+			<img width="100px" src="static/img/productSingle_middle/19.jpg"></a>
+			<a class="productItemDescLink" href="productDetail.html?pid1">
+				<span class="productItemDesc">
+				[热销]夏普
+				</span>
+			</a>
+			<span class="productPrice">
+				12.0
+			</span>
+		</div>
+
+		<div style="clear:both"></div>
+	</div>
+
+	<div class="eachHomepageCategoryProducts">
+		<div class="left-mark"></div>
+		<span class="categoryTitle">美食分类</span>
+		<br>
+		<div class="productItem" >
+			<a href="productDetail.html?pid=2">
+			<img width="100px" src="static/img/productSingle_middle/19.jpg"></a>
+			<a class="productItemDescLink" href="productDetail.html?pid1">
+				<span class="productItemDesc">
+				[热销]夏普
+				</span>
+			</a>
+			<span class="productPrice">
+				12.0
+			</span>
+		</div>
+
+		<div style="clear:both"></div>
+	</div>
+	-->
+</div>
+
 </div>
   
     <%@ include file="/static/include/footer.jsp" %>

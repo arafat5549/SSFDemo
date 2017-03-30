@@ -18,7 +18,15 @@ public class Category extends DateEntity{
 	
 	//只包含下级分类
 	private List<Category> childs = new ArrayList<Category>();
+	//每个分类包含的前5位要显示的商品（）
+	private List<Product> products = new ArrayList<Product>(); 
 	
+	public List<Product> getProducts() {
+		return products;
+	}
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
 	public List<Category> getChilds() {
 		return childs;
 	}

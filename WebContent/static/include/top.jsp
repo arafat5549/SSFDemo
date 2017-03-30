@@ -24,7 +24,7 @@
 			<a href="${context }/order?method=list">我的订单</a>
 			<a href="${context }/cart?method=list">
 			<span style="color:#C40000;margin:0px" class="glyphicon glyphicon-shopping-cart redColor"></span>
-			购物车<strong>${session_cart.cartItemCount}</strong>件</a>		
+			购物车<strong>0</strong>件</a>		
 		</span>
 </nav>
 

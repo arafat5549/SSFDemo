@@ -111,3 +111,25 @@ CREATE TABLE `sys_product` (
 	`update_time` datetime DEFAULT NULL COMMENT '更新时间',
 	primary key(`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 购物车
+DROP TABLE IF EXISTS `sys_cart`;
+CREATE TABLE `sys_cart` (
+	`id`	    INT(11) NOT NULL AUTO_INCREMENT COMMENT '主键自增长',
+	`user_id`	INT(11) NOT NULL  COMMENT '外键 所关联的用户',
+	`create_time` datetime NOT NULL COMMENT '创建时间',
+	`update_time` datetime NOT NULL COMMENT '更新时间',
+	primary key(`id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 购物车项
+DROP TABLE IF EXISTS `sys_cart_item`;
+CREATE TABLE `sys_cart_item` (
+	`id`	    INT(11) NOT NULL AUTO_INCREMENT COMMENT '主键自增长',
+	`cart_id`	INT(11) NOT NULL  COMMENT '外键 所关联的购物车',
+	`product_id`	INT(11) NOT NULL  COMMENT '外键 所关联的商品',
+	`count`	INT(11) NOT NULL  COMMENT '所关联的商品 购买数量',
+	`create_time` datetime NOT NULL COMMENT '创建时间',
+	`update_time` datetime NOT NULL COMMENT '更新时间',
+	primary key(`id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -12,6 +12,16 @@ import com.ssf.model.User;
 public class UserService {
 
 	private UserDao userDao = new UserDao();
+	
+	
+	/**
+	 * 根据名称查找用户
+	 */
+	public User findByName(String username) {
+		return userDao.findByName(username);
+	}
+	
+	
 	//面向对象
 	/**
 	 * 登录功能
@@ -48,4 +58,5 @@ public class UserService {
 		}
 		return "";
 	}
+	
 }

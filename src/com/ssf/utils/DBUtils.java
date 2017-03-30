@@ -278,13 +278,51 @@ public class DBUtils {
 			try {
 				if(ptmt!=null ) ptmt.close();
 				if(conn!=null ) conn.close();
-			} catch (SQLException e) {
+			} catch (SQLException e)
+			{
 				e.printStackTrace();
 			}
 		}
 		return false;
 	}
-	
+	/**
+	 * 返回可用id
+	 * @param sql
+	 * @return
+	 * @throws SQLException
+	 */
+	public int execute_max(String sql) 
+	{
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		try {
+			conn = openConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if(rs!=null){
+				while(rs.next()){
+					int max = rs.getInt(1);
+					return max;
+				}
+			}
+			
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(rs!=null)   rs.close();
+				if(stmt!=null) stmt.close();
+				if(conn!=null) conn.close();
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+			
+		}
+		return 0;
+	}
 	
 	public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException {
 		//DBUtils db = DBUtils.getInstance();

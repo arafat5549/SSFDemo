@@ -46,4 +46,14 @@
      <servlet-name>productController</servlet-name>
      <url-pattern>/product</url-pattern>
   </servlet-mapping>
+   <!-- 购物车 -->
+  <servlet>
+     <servlet-name>cartController</servlet-name>
+     <servlet-class>com.ssf.web.CartController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+     <servlet-name>cartController</servlet-name>
+     <url-pattern>/cart</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -133,4 +133,10 @@ public class CategoryDao implements BaseDao<Category>{
 		DBUtils.getInstance().execute(sql, id);
 	}
 
+	@Override
+	public Integer findMaxId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

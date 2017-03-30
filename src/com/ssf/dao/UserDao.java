@@ -70,4 +70,9 @@ public class UserDao implements BaseDao<User>{
 	public User findById(Integer id) {
 		return null;
 	}
+	@Override
+	public Integer findMaxId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

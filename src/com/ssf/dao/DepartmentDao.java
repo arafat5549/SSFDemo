@@ -83,5 +83,10 @@ public class DepartmentDao implements BaseDao<Department>{
 		String sql = "DELETE FROM sys_department WHERE id = ?";
 		DBUtils.getInstance().execute(sql, id);
 	}
+	@Override
+	public Integer findMaxId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
