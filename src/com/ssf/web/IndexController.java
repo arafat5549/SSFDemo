@@ -23,7 +23,7 @@ import com.ssf.service.UserService;
 @SuppressWarnings("serial")
 public class IndexController extends HttpServlet{
 
-	private UserService userService = new UserService();
+	//private UserService userService = new UserService();
 	private CategoryService categoryService  = new CategoryService();
 	
 	//所有页面要放到WEB-INF底下

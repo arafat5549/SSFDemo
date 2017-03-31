@@ -40,7 +40,7 @@ public class CartItemService {
 	 * @return
 	 */
 	public Integer findMaxId(){
-		return cartItemDao.findMaxId();
+		return cartItemDao.findMaxId() + 1;
 	}
 	/**
 	 * 保存对象
@@ -56,5 +56,9 @@ public class CartItemService {
 	 */
 	public void update(CartItem t){
 		cartItemDao.update(t);
+	}
+	
+	public CartItem findById(Integer id){
+		return cartItemDao.findById(id);
 	}
 }

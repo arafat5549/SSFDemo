@@ -15,6 +15,29 @@ public class Cart extends DateEntity{
 	
 	private List<CartItem> items =new ArrayList<CartItem>();//从数据库里面取出所有的购物车项目
 	
+	
+	public void clearByIds(String[] ids){
+		for (String s : ids) {
+			int id = Integer.parseInt(s);
+			CartItem i = findItemById(id);
+			items.remove(i);
+		}
+	}
+	
+	/**
+	 * 根据id返回购物车项
+	 * @param id
+	 * @return
+	 */
+	public CartItem findItemById(int id){
+		for (CartItem i : items) {
+			if(id > 0 && i.getId() == id){
+				return i;
+			}
+		}
+		return null;
+	}
+	
 	/**
 	 * 根据商品id获取购物车项
 	 * @param pid

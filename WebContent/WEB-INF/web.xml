@@ -7,6 +7,10 @@
   version="3.0"
   metadata-complete="true">
  
+ 	<!-- 设置session过期时间，默认为30分钟.设置为0代表永远不过期 -->
+	<session-config>
+      <session-timeout>300</session-timeout>
+	</session-config>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>

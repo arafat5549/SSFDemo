@@ -133,11 +133,11 @@ $(function(){
 		$(".cartProductItemIfSelected").each(function(){
 			if("selectit"==$(this).attr("selectit")){
 				var oiid = $(this).attr("oiid");
-				params += "&oiid="+oiid+",";
+				params += "&oiid="+oiid;
 				//params += (oiid +",");
 			}
 		});
-		params = params.substring(1);
+		//params = params.substring(1);
 		location.href="order?method=add&"+params;
 		//location.href="order?method=add&oiids="+params;
 	});

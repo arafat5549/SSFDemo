@@ -1,6 +1,8 @@
 package com.ssf.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 订单实体类
@@ -15,6 +17,7 @@ public class Order extends DateEntity{
 	private Integer userId; //可以有多个订单
 	
 	//所有的商品集合
+	private List<OrderItem> items = new ArrayList<OrderItem>();
 	
 	private String address;//收货地址    
 	private String post;   //邮政编号
@@ -36,6 +39,9 @@ public class Order extends DateEntity{
 		WAIT_REVIEW("waitReview");
 		
 		private String status;
+		public String getValue(){
+			return status;
+		}
 		OrderStatus(String status){
 			this.status = status;
 		}
@@ -135,6 +141,14 @@ public class Order extends DateEntity{
 
 	public void setConfirmDate(Date confirmDate) {
 		this.confirmDate = confirmDate;
+	}
+
+	public List<OrderItem> getItems() {
+		return items;
+	}
+
+	public void setItems(List<OrderItem> items) {
+		this.items = items;
 	};
 	
 	

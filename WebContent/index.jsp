@@ -9,5 +9,7 @@
 <body>
      <!-- 跳转到后台，通过后台获取参数 传递给前台 -->
     <jsp:forward page="/index"/>
+   
+    <!-- req.getRequestDispatcher("/index").forward(req, resp); -->
 </body>
 </html>

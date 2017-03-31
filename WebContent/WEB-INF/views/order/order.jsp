@@ -97,26 +97,26 @@
 						</td>
 						<td>
 						
-						<span class="orderItemProductPrice">￥<fmt:formatNumber type="number" value="${oi.product.promotePrice}" minFractionDigits="2"/></span>
+						<span class="orderItemProductPrice">￥<fmt:formatNumber type="number" value="${oi.product.promotoPrice}" minFractionDigits="2"/></span>
 						</td>
 						<td>
 						<span class="orderItemProductNumber">${oi.count}</span>
 						</td>
 						<td><span class="orderItemUnitSum">
-						￥<fmt:formatNumber type="number" value="${oi.count*oi.product.promotePrice}" minFractionDigits="2"/>
+						￥<fmt:formatNumber type="number" value="${oi.count*oi.product.promotoPrice}" minFractionDigits="2"/>
 						</span></td>
 						<c:if test="${st.count==1}">
-						<td rowspan="5"  class="orderItemLastTD">
-						<label class="orderItemDeliveryLabel">
-							<input type="radio" value="" checked="checked">
-							普通配送
-						</label>
-						
-						<select class="orderItemDeliverySelect" class="form-control">
-							<option>快递 免邮费</option>
-						</select>
-
-						</td>
+							<td rowspan="5"  class="orderItemLastTD">
+							<label class="orderItemDeliveryLabel">
+								<input type="radio" value="" checked="checked">
+								普通配送
+							</label>
+							
+							<select class="orderItemDeliverySelect" class="form-control">
+								<option>快递 免邮费</option>
+							</select>
+	
+							</td>
 						</c:if>
 						
 					</tr>
