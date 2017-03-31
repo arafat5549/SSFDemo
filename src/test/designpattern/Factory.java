@@ -48,6 +48,7 @@ public class Factory{
 				return f;
 			}
 			Fruit value = new Apple();
+			//System.out.println(value.getClass().getName());
 			cache.put(className, value);
 			return value;
 		}

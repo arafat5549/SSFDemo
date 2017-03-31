@@ -133,3 +133,39 @@ CREATE TABLE `sys_cart_item` (
 	`update_time` datetime NOT NULL COMMENT '更新时间',
 	primary key(`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+-- 订单表
+DROP TABLE IF EXISTS `sys_order`;
+CREATE TABLE `sys_order` (
+	`id`	    INT(11) NOT NULL AUTO_INCREMENT COMMENT '主键自增长',
+
+   `ordercode` varchar(255) NOT NULL COMMENT '唯一ID 订单号',
+   `address` varchar(255) NOT NULL  COMMENT '收获地址',
+   `post` varchar(50) DEFAULT NULL  COMMENT '邮编区号',
+   `receiver` varchar(50) NOT NULL COMMENT '收件人',
+   `mobile` varchar(50) NOT NULL COMMENT '手机',
+    `message` varchar(255) DEFAULT NULL  COMMENT '用户信息-备注信息',
+   `user_id` int(11) NOT NULL COMMENT '外键 用户ID',
+   `status` varchar(50) DEFAULT NULL COMMENT '订单状态',
+   `pay_date` datetime DEFAULT NULL   COMMENT '订单付款时间',
+   `delivery_date` datetime DEFAULT NULL COMMENT '订单发货时间',
+   `confirm_date` datetime DEFAULT NULL  COMMENT '订单确认到货时间',
+
+	`create_time` datetime NOT NULL COMMENT '创建时间',
+	`update_time` datetime NOT NULL COMMENT '更新时间',
+	primary key(`id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 订单项目表
+DROP TABLE IF EXISTS `sys_order_item`;
+CREATE TABLE `sys_order_item` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL COMMENT '外键 商品id',
+  `order_id` int(11) NOT NULL COMMENT '外键 订单id',
+  `user_id` int(11) NOT NULL COMMENT '外键 用户id',
+  `count` int(11) NOT NULL  COMMENT '订单商品数量',
+  `create_time`  datetime NOT NULL COMMENT '创建时间',
+  `update_time` datetime NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -23,6 +23,9 @@ import org.junit.Test;
 	3.在运行时调用任意一个对象的方法。
 	5.在运行时变更field的内容
  * 
+ * 反射体现了Java的一个十分显著的特点(一切皆对象)
+ * 怎么实现反射? 把类信息的每一个元素(属性Filed ,方法Method,构造器Constructor,注解Annotation)
+ * 都封装成对象
  * @author wyy
  * 2016年11月24日
  *

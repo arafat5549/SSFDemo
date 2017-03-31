@@ -127,18 +127,19 @@ $(function(){
 		syncPrice(pid,num,price);
 	});	
 	
+	//提交订单- 结算购物车
 	$("button.createOrderButton").click(function(){
 		var params = "";
 		$(".cartProductItemIfSelected").each(function(){
 			if("selectit"==$(this).attr("selectit")){
 				var oiid = $(this).attr("oiid");
-				//params += "&oiid="+oiid;
-				params += (oiid +",");
+				params += "&oiid="+oiid+",";
+				//params += (oiid +",");
 			}
 		});
-		//params = params.substring(1);
-		//location.href="forebuy?"+params;
-		location.href="order?method=add&oiids="+params;
+		params = params.substring(1);
+		location.href="order?method=add&"+params;
+		//location.href="order?method=add&oiids="+params;
 	});
 	
 	

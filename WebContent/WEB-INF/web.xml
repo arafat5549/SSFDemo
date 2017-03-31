@@ -56,4 +56,14 @@
      <servlet-name>cartController</servlet-name>
      <url-pattern>/cart</url-pattern>
   </servlet-mapping>
+  <!-- 订单 -->
+    <servlet>
+     <servlet-name>orderController</servlet-name>
+     <servlet-class>com.ssf.web.OrderController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+     <servlet-name>orderController</servlet-name>
+     <url-pattern>/order</url-pattern>
+  </servlet-mapping>
 </web-app>
