@@ -5,6 +5,13 @@ import java.util.List;
 import com.ssf.model.CartItem;
 import com.ssf.utils.DBUtils;
 
+/**
+ * 购物车项目Dao层
+ * 
+ * @author wyy
+ * 2017年3月30日
+ *
+ */
 public class CartItemDao implements BaseDao<CartItem>{
 
 	private static final String COLUMNS =
@@ -35,38 +42,76 @@ public class CartItemDao implements BaseDao<CartItem>{
 	
 	@Override
 	public List<CartItem> findAll() {
-		
-		return null;
+		String sql ="SELECT " + COLUMNS +" FROM sys_cart_item a";
+		return DBUtils.getInstance().listBean(sql, CartItem.class);
 	}
 
 	@Override
 	public CartItem findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql ="SELECT " + COLUMNS +" FROM sys_cart_item a WHERE a.id=?";
+		return DBUtils.getInstance().queryBean(sql, CartItem.class,id);
 	}
 
 	@Override
 	public boolean save(CartItem t) {
-		// TODO Auto-generated method stub
-		return false;
+		String idStr = "";
+		String idSuffix ="";
+		boolean hasId = t!=null && t.getId()!=null && t.getId() >0;
+		if(hasId)
+		{
+			idStr = "id,";
+			idSuffix="?,";
+		}
+		String sql ="INSERT INTO sys_cart_item("
+				+ idStr+"cart_id,product_id,count,create_time,update_time) "
+				+ " VALUES("+idSuffix+"?,?,?,?,?)";
+		//System.out.println(sql);
+		t.preInsert();
+		
+		if(hasId){
+			return DBUtils.getInstance().execute(sql,
+					t.getId(),
+					t.getCartId(),
+					t.getProductId(),
+					t.getCount(),
+					t.getCreateTime(),
+					t.getUpdateTime());
+		}
+		else{
+			return DBUtils.getInstance().execute(sql, 
+					t.getCartId(),
+					t.getProductId(),
+					t.getCount(),
+					t.getCreateTime(),
+					t.getUpdateTime());
+		}
 	}
-
+	
 	@Override
 	public void update(CartItem t) {
-		// TODO Auto-generated method stub
-		
+		String sql = "UPDATE sys_cart_item SET "
+				+ "cart_id=?,product_id=?,count=?,create_time=?,update_time=? "
+				+ " WHERE id=?";
+		 t.preUpdate();
+		 DBUtils.getInstance().execute(sql, 
+					t.getCartId(),
+					t.getProductId(),
+					t.getCount(),
+					t.getCreateTime(),
+					t.getUpdateTime(),
+					t.getId());
 	}
 
 	@Override
 	public void delete(Integer id) {
-		// TODO Auto-generated method stub
-		
+		String sql = "DELETE FROM sys_cart_item WHERE id=?";
+		DBUtils.getInstance().execute(sql, id);
 	}
 
 	@Override
 	public Integer findMaxId() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT MAX(id) FROM sys_cart_item";
+		return DBUtils.getInstance().execute_max(sql);
 	}
 
 }

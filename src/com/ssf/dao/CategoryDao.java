@@ -89,7 +89,7 @@ public class CategoryDao implements BaseDao<Category>{
 		String sql ="INSERT INTO sys_category("
 				+ idStr+"name,parent_id,parent_ids,create_time,update_time) "
 				+ " VALUES("+idSuffix+"?,?,?,?,?)";
-		System.out.println(sql);
+		//System.out.println(sql);
 		t.preInsert();
 		
 		if(hasId){
@@ -135,8 +135,8 @@ public class CategoryDao implements BaseDao<Category>{
 
 	@Override
 	public Integer findMaxId() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT MAX(id) FROM sys_category";
+		return DBUtils.getInstance().execute_max(sql);
 	}
 
 }

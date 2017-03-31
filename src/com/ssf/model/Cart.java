@@ -1,7 +1,6 @@
 package com.ssf.model;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -14,7 +13,7 @@ public class Cart extends DateEntity{
 	private Integer id;
 	private Integer userId;//一个用户只能有一份购物车
 	
-	private List<CartItem> items =new ArrayList<CartItem>();
+	private List<CartItem> items =new ArrayList<CartItem>();//从数据库里面取出所有的购物车项目
 	
 	/**
 	 * 根据商品id获取购物车项

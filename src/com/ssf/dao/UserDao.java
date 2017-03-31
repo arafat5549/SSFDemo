@@ -16,7 +16,7 @@ public class UserDao implements BaseDao<User>{
 	//注意事项：数据库不要使用*
 	//1.节省了数据库解析的过程
 	//2.只会获取我需要的字段
-	private static final String COLUMN = 
+	private static final String COLUMNS = 
 			  " a.id,"
 			+ " a.username,"
 			+ " a.password ";
@@ -27,8 +27,7 @@ public class UserDao implements BaseDao<User>{
 	 * 根据名称查找用户
 	 */
 	public User findByName(String name){
-		String sql ="SELECT "+COLUMN+" FROM sys_user a WHERE username=?";		
-		System.out.println(sql);
+		String sql ="SELECT "+COLUMNS+" FROM sys_user a WHERE username=?";		
 		User exist = DBUtils.getInstance().queryBean(sql,User.class,name);
 		return exist;
 	}
@@ -37,7 +36,7 @@ public class UserDao implements BaseDao<User>{
 	 * 根据名称查找用户
 	 */
 	public User test_findByName_stmt(String name){
-		String sql ="SELECT "+COLUMN+" FROM sys_user a WHERE username='"+name+"'";	
+		String sql ="SELECT "+COLUMNS+" FROM sys_user a WHERE username='"+name+"'";	
 		User exist = DBUtils.getInstance().queryBean_stmt(sql,User.class);
 		return exist;
 	}
@@ -45,34 +44,49 @@ public class UserDao implements BaseDao<User>{
 	
 	@Override
 	public List<User> findAll() {
-		return null;
+		String sql ="SELECT "+COLUMNS+" FROM sys_user a";		
+		return DBUtils.getInstance().listBean(sql,User.class);
 	}
 
 	@Override
 	public boolean save(User t) {
-		String sql = "INSERT INTO sys_user(username,password) VALUES (?,?)";
-		return DBUtils.getInstance().execute(sql, 
+		String sql = "INSERT INTO sys_user(username,password,create_time,update_time) VALUES (?,?,?,?)";
+		t.preInsert();
+		return DBUtils.getInstance().execute(
+				sql, 
 				t.getUsername(),
-				t.getPassword());
+				t.getPassword(),
+				t.getCreateTime(),
+				t.getUpdateTime());
 		
 	}
 
 	@Override
 	public void update(User t) {
-		
+		String sql = "UPDATE sys_user SET "
+				+ "username=?,password=?create_time=?,update_time=? "
+				+ " WHERE id=?";
+		 t.preUpdate();
+		 DBUtils.getInstance().execute(sql, 
+					t.getUsername(),
+					t.getPassword(),
+					t.getCreateTime(),
+					t.getUpdateTime(),
+					t.getId());
 	}
 
 	@Override
 	public void delete(Integer id) {
-		
+		String sql = "DELETE FROM sys_user WHERE id=?";
+		DBUtils.getInstance().execute(sql, id);
 	}
 	@Override
 	public User findById(Integer id) {
-		return null;
+		String sql ="SELECT " + COLUMNS +" FROM sys_user a WHERE a.id=?";
+		return DBUtils.getInstance().queryBean(sql, User.class,id);
 	}
 	@Override
 	public Integer findMaxId() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

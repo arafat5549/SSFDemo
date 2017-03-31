@@ -5,6 +5,13 @@ import java.util.List;
 import com.ssf.model.Cart;
 import com.ssf.utils.DBUtils;
 
+/**
+ * 购物车Dao层
+ * 
+ * @author wyy
+ * 2017年3月30日
+ *
+ */
 public class CartDao implements BaseDao<Cart>{
 	
 	private static final String COLUMNS =
@@ -23,14 +30,14 @@ public class CartDao implements BaseDao<Cart>{
 	
 	@Override
 	public List<Cart> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql ="SELECT " + COLUMNS +" FROM sys_cart a";
+		return DBUtils.getInstance().listBean(sql, Cart.class);
 	}
 
 	@Override
 	public Cart findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql ="SELECT " + COLUMNS +" FROM sys_cart a WHERE a.id=?";
+		return DBUtils.getInstance().queryBean(sql, Cart.class,id);
 	}
 
 	@Override
@@ -66,14 +73,21 @@ public class CartDao implements BaseDao<Cart>{
 
 	@Override
 	public void update(Cart t) {
-		// TODO Auto-generated method stub
-		
+		String sql = "UPDATE sys_cart SET "
+				+ "user_id=?,create_time=?,update_time=? "
+				+ " WHERE id=?";
+		 t.preUpdate();
+		 DBUtils.getInstance().execute(sql, 
+					t.getUserId(),
+					t.getCreateTime(),
+					t.getUpdateTime(),
+					t.getId());
 	}
 
 	@Override
 	public void delete(Integer id) {
-		// TODO Auto-generated method stub
-		
+		String sql = "DELETE FROM sys_cart WHERE id=?";
+		DBUtils.getInstance().execute(sql, id);
 	}
 
 	@Override

@@ -19,10 +19,12 @@ import com.ssf.service.CartItemService;
  * 2017年3月30日
  *
  */
+@SuppressWarnings("serial")
 public class CartController extends HttpServlet{
 
 	CartItemService cartItemService = new CartItemService();
 	ProductDao productDao = new ProductDao();
+	
 	public static final String VIEW_PATH = "/WEB-INF/views/cart/";
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -46,11 +48,11 @@ public class CartController extends HttpServlet{
 			//
 			Cart cart = (Cart)req.getSession().getAttribute("session_cart");
 			
-			System.out.println(cart);
+			//System.out.println(cart);
 			if(cart!=null){
 				int cartId = cart.getId();
 				
-				 CartItem item = cart.findByProductId(pid);
+				 CartItem item = cart.findByProductId(pid);//为什么这时候从缓存获取而不是数据库
 				 //cartItemService.findByCartIdAndProductId(cartId, pid);
 				 if(item == null ){//1.item还没有 需要创建
 					 item = new CartItem();
@@ -60,7 +62,7 @@ public class CartController extends HttpServlet{
 					 item.setProductId(pid);
 					 item.setProduct(productDao.findById(pid));
 					 
-					 cartItemService.save(item);
+					 cartItemService.save(item);//更新数据库
 					 cart.getItems().add(item);//更新你的缓存
 				 }
 				 else{//2.item已经创建完了 需要更新
@@ -69,6 +71,9 @@ public class CartController extends HttpServlet{
 				 }
 				 req.getRequestDispatcher(VIEW_PATH+"cartInfo.jsp").forward(req, resp);
 			}
+		}
+		else if("list".equals(method)){
+			 req.getRequestDispatcher(VIEW_PATH+"cartInfo.jsp").forward(req, resp);
 		}
 		
 	}

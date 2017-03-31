@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ssf.model.Category;
 import com.ssf.service.CategoryService;
+import com.ssf.service.UserService;
 
 /**
  * 主页WEB层
@@ -22,7 +23,8 @@ import com.ssf.service.CategoryService;
 @SuppressWarnings("serial")
 public class IndexController extends HttpServlet{
 
-	CategoryService categoryService  = new CategoryService();
+	private UserService userService = new UserService();
+	private CategoryService categoryService  = new CategoryService();
 	
 	//所有页面要放到WEB-INF底下
 	public static final String VIEW_PATH = "/WEB-INF/views/";

@@ -10,6 +10,10 @@ public class CartService {
 	public boolean save(Cart t){
 		return cartDao.save(t);
 	}
+	/**
+	 * 获取可用的Id
+	 * @return
+	 */
 	public Integer findMaxId(){
 		return cartDao.findMaxId() + 1;
 	}

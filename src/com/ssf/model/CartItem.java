@@ -12,7 +12,7 @@ public class CartItem extends DateEntity{
 	private Integer productId;//商品ID
 	private Integer count;//商品数量
 	
-	private Product product;
+	private Product product;//前台显示需要的是商品对象，根据pid获取
 	
 	public Product getProduct() {
 		return product;

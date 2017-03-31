@@ -112,7 +112,6 @@ public class ProductDao implements BaseDao<Product>{
 
 	@Override
 	public Integer findMaxId() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

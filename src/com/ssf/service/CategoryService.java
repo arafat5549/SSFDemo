@@ -18,7 +18,7 @@ public class CategoryService {
 	ProductService productService = new ProductService();
 	/**
 	 * 找到一级分类 （一级分类代表父id为0）<br>
-	 * 包含子分类
+	 * 也包含子分类
 	 * @return
 	 */
 	public List<Category> findFirstCategorys(){

@@ -35,13 +35,25 @@ public class CartItemService {
 	public CartItem findByCartIdAndProductId(Integer cartId,Integer pid){
 		return cartItemDao.findByCartIdAndProductId(cartId,pid);
 	}
-	
+	/**
+	 * 获取可用的ID
+	 * @return
+	 */
 	public Integer findMaxId(){
 		return cartItemDao.findMaxId();
 	}
+	/**
+	 * 保存对象
+	 * @param t
+	 * @return
+	 */
 	public boolean save(CartItem t){
 		return cartItemDao.save(t);
 	}
+	/**
+	 * 更新对象
+	 * @param t
+	 */
 	public void update(CartItem t){
 		cartItemDao.update(t);
 	}
