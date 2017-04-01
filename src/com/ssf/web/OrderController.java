@@ -20,10 +20,22 @@ import com.ssf.service.CartItemService;
 import com.ssf.service.OrderItemService;
 import com.ssf.service.OrderService;
 
+/**
+ * 订单WEB层
+ * 
+ * 1.需要验证参数(所有用户输入的地方都需要验证参数)
+ * 2.判断用户登录没有
+ * 3.怎么保证数据库同时失败 同时失败（数据库事务）
+ * 
+ * @author wyy
+ * 2017年3月31日
+ *
+ */
+@SuppressWarnings("serial")
 public class OrderController extends HttpServlet{
-	private CartItemService cartItemService = new CartItemService();
+	//private CartItemService cartItemService = new CartItemService();
 	private OrderService orderService = new OrderService();
-	private OrderItemService orderItemService = new OrderItemService();
+	//private OrderItemService orderItemService = new OrderItemService();
 	
 	public static final String VIEW_PATH = "/WEB-INF/views/order/";
 	//
@@ -52,6 +64,9 @@ public class OrderController extends HttpServlet{
 			//orderItems
 			req.setAttribute("orderItems", items);
 			req.getRequestDispatcher(VIEW_PATH+"order.jsp").forward(req, resp);
+		}
+		else if("list".equals(method)){
+			
 		}
 	}
 	

@@ -30,7 +30,7 @@ public class OrderItemDao implements BaseDao<OrderItem>{
 	public boolean save(OrderItem t) {
 		String idStr = "";
 		String idHolder ="";
-		boolean hasId = t.getId()!=null &&  t.getId()> 0;
+		boolean hasId = t!=null && t.getId()!=null &&  t.getId()> 0;
 		if(hasId){
 			idStr = "id,";
 			idHolder = "?,";
@@ -55,6 +55,7 @@ public class OrderItemDao implements BaseDao<OrderItem>{
 					t.getCreateTime(),
 					t.getUpdateTime());
 		}
+		
 		return DBUtils.getInstance().execute(sql, 
 				t.getOrderId(),
 				t.getProductId(),

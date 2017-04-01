@@ -14,8 +14,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.sql.DataSource;
+
 import org.apache.commons.beanutils.BeanUtils;
 
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.ssf.model.User;
 
 /**
@@ -27,6 +30,8 @@ import com.ssf.model.User;
  *
  */
 public class DBUtils {
+	private  DataSource dataSource = new ComboPooledDataSource();
+	
 	private DBUtils(){}
 	private static DBUtils instance = null;
 	public  static DBUtils getInstance(){
@@ -35,28 +40,45 @@ public class DBUtils {
 		}
 		return instance;
 	}
-	//-----------------------------------------------
-	private static String driver = "com.mysql.jdbc.Driver";//Mysql驱动类
-	private static String url ="jdbc:mysql://localhost:3306/myshop";
-	private static String username = "root";
-	private static String password = "123456";
+	//C3P0数据库连接池
 	
+	//-----------------------------------------------
+//	private static String driver = "com.mysql.jdbc.Driver";//Mysql驱动类
+//	private static String url ="jdbc:mysql://localhost:3306/myshop";
+//	private static String username = "root";
+//	private static String password = "123456";
+//	
+//	/**
+//	 * 1.获取数据库连接
+//	 * @return
+//	 */
+//	public Connection openConnection(){
+//		
+//		try {
+//			//1.加载驱动 # 把java的class加载到JVM里面
+//			Class.forName(driver);
+//			//反射：Class.forName(driver).newInstance() , new Driver();
+//			return DriverManager.getConnection(url, username, password);			
+//		} catch (ClassNotFoundException | SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
 	/**
-	 * 1.获取数据库连接
+	 * 获取连接池连接
 	 * @return
 	 */
 	public Connection openConnection(){
-		
+		Connection conn = null;
 		try {
-			//1.加载驱动 # 把java的class加载到JVM里面
-			Class.forName(driver);
-			//反射：Class.forName(driver).newInstance() , new Driver();
-			return DriverManager.getConnection(url, username, password);			
-		} catch (ClassNotFoundException | SQLException e) {
+			conn =  dataSource.getConnection();
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return conn;
 	}
+	
+	
 	/**
 	 * 2.操作数据库 (让Java执行SQL语句) - executeQuery查询获取返回数据
 	 * @param sql
@@ -253,17 +275,33 @@ public class DBUtils {
 		return lists;
 	}
 	
+	
+	public boolean execute(String sql,Object... params)
+	{
+		Connection conn = openConnection();
+		boolean f = execute(conn,sql, params);
+		if(conn!=null )
+		{
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return f;
+	}
+	
 	/**
 	 * 执行SQL
 	 * @param sql     sql语句
 	 * @param params  参数是可变长度 (一个参数列表只能有一个可变参数，一定要放在最后)
 	 * @return 是否执行成功
 	 */
-	public boolean execute(String sql,Object... params){
-		Connection conn = null;
+	public boolean execute(Connection conn,String sql,Object... params){
+		//Connection conn = null;
 		PreparedStatement ptmt = null;
 		try {
-			conn = openConnection();
+			//conn = openConnection();
 			ptmt = conn.prepareStatement(sql);
 			//参数绑定
 			for (int i = 0; i < params.length; i++) {
@@ -277,7 +315,7 @@ public class DBUtils {
 		}finally{
 			try {
 				if(ptmt!=null ) ptmt.close();
-				if(conn!=null ) conn.close();
+				
 			} catch (SQLException e)
 			{
 				e.printStackTrace();

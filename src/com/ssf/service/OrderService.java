@@ -13,10 +13,21 @@ public class OrderService {
 	OrderDao orderDao = new OrderDao();
 	OrderItemDao orderItemDao = new OrderItemDao();
 	CartItemDao cartItemDao = new CartItemDao();
+	
+	/**
+	 * 根据用户id获取所有的订单
+	 * @param userId
+	 */
+	public void findOrdersByUserId(int userId){
+		
+	}
+	
 	/**
 	 * 生成订单
 	 */
 	public String order(Order order,List<CartItem> items){
+		
+		//需要添加事务
 		
 		boolean flag = orderDao.save(order);//不一定两张表能同时成功
 		for (OrderItem oi: order.getItems()) {

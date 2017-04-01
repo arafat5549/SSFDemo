@@ -169,3 +169,4 @@ CREATE TABLE `sys_order_item` (
   `update_time` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

@@ -1,7 +1,5 @@
 package com.ssf.dao;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.ssf.model.Order;
@@ -30,7 +28,19 @@ public class OrderDao implements BaseDao<Order>{
 			+ "a.confirm_date AS 'confirmDate',"
 			+ "a.user_id AS 'userId',"
 			+ "a.create_time AS 'createTime', "
-			+ "a.update_time AS 'updateTime', ";
+			+ "a.update_time AS 'updateTime' ";
+	
+	/**
+	 * 根据用户id获取所有的订单
+	 * @param userId
+	 */
+	public List<Order> findOrdersByUserId(int userId){
+		String sql ="SELECT "+ COLUMNS+" FROM sys_order a WHERE a.user_id=?";
+		return DBUtils.getInstance().listBean(sql, Order.class, userId);
+	}
+	
+	
+	
 	@Override
 	public List<Order> findAll() {
 		String sql ="SELECT "+ COLUMNS+" FROM sys_order a";

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<c3p0-config>
+	<default-config> 
+		<property name="jdbcUrl">jdbc:mysql://localhost:3306/myshop</property>
+		<property name="driverClass">com.mysql.jdbc.Driver</property>
+		<property name="user">root</property>
+		<property name="password">123456</property>
+		
+		<!-- 连接池的配置 -->
+		<property name="acquireIncrement">3</property><!-- 每次增长3 -->
+		<property name="initialPoolSize">10</property><!-- 初始化创建多少连接 -->
+		<property name="minPoolSize">2</property> <!-- 池子最低保留的连接数 -->
+		<property name="maxPoolSize">100</property><!-- 池子的最大连接数（你创建的连接数不能超过这个） -->
+	</default-config>
+</c3p0-config>
