@@ -48,13 +48,11 @@ public class OrderController extends HttpServlet{
 		int userId = user.getId();
 		
 		String method = req.getParameter("method");
-		if("order".equals(method)){ //1.去订单页面
-			req.getRequestDispatcher(VIEW_PATH+"order.jsp").forward(req, resp);
-		}
-		else if("add".equals(method)){
-			
-			//Cart cart = (Cart)req.getSession().getAttribute("session_cart");
-			
+//		if("order".equals(method)){ 
+//			req.getRequestDispatcher(VIEW_PATH+"order.jsp").forward(req, resp);
+//		}
+//		else 
+		if("add".equals(method)){//1-1.去订单页面
 			String[] oids  = req.getParameterValues("oiid");
 			List<CartItem> items = new ArrayList<CartItem>();
 			for (String s : oids) {
@@ -64,12 +62,10 @@ public class OrderController extends HttpServlet{
 				CartItem item = cart.findItemById(id);
 				items.add(item);
 			}
-			//orderItems
 			req.setAttribute("orderItems", items);
 			req.getRequestDispatcher(VIEW_PATH+"order.jsp").forward(req, resp);
 		}
-		else if("list".equals(method)){
-			
+		else if("list".equals(method)){//2.获取订单列表
 			//orders
 			List<Order> orders = orderService.findOrdersByUserId(userId);
 			req.setAttribute("orders", orders); 
@@ -82,7 +78,7 @@ public class OrderController extends HttpServlet{
 			throws ServletException, IOException {
 		//
 		String method = req.getParameter("method");
-		if("add".equals(method)){ //提交订单
+		if("add".equals(method)){ //1-2.提交订单
 			Cart cart = (Cart)req.getSession().getAttribute("session_cart");
 			User user = (User)req.getSession().getAttribute("session_user");
 			
@@ -96,13 +92,13 @@ public class OrderController extends HttpServlet{
 			//cartItemId  有多个id，怎么传多个相同名称的参数?
 			//URL路径类似于: localhost/Myshop/order?oid="1,2,3"
 			//1. "id1,id2,id3" #  构建一个String
-			
 			//URL路径类似于: localhost/Myshop/order?oid=1&oid=2&oid=3
 			String[] oids  = req.getParameterValues("oid");
 			
 			address = "地址";
 			receiver = "王耀";
 			mobile = "123456789";
+			//TODO 参数验证(用户传过来的参数一定要做参数验证)
 			
 			//生成新的Order订单
 			Order order =new Order();
@@ -112,10 +108,10 @@ public class OrderController extends HttpServlet{
 			order.setReceiver(receiver);
 			order.setMobile(mobile);
 			order.setMessage(message);
-			order.setStatus(OrderStatus.WAIT_PAY.getValue()); 
+			order.setStatus(OrderStatus.WAIT_PAY.getValue());//下订单就是等待付款状态
 			order.setUserId(userId);
 			order.setOrdercode(UUID.randomUUID().toString());//唯一的编码
-			
+			//将购物车的项目转为订单项目
 			List<CartItem> items = new ArrayList<CartItem>();
 			for (String s : oids) {
 				int id = Integer.parseInt(s);

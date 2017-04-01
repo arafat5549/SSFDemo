@@ -13,6 +13,13 @@ import com.ssf.model.Order.OrderStatus;
 import com.ssf.model.OrderItem;
 import com.ssf.model.Product;
 
+/**
+ * 订单业务层
+ * 
+ * @author wyy
+ * 2017年4月1日
+ *
+ */
 public class OrderService {
 	OrderDao orderDao = new OrderDao();
 	OrderItemDao orderItemDao = new OrderItemDao();
@@ -43,8 +50,7 @@ public class OrderService {
 	 */
 	public String order(Order order,List<CartItem> items){
 		
-		//需要添加事务
-		
+		//TODO 需要添加事务
 		boolean flag = orderDao.save(order);//不一定两张表能同时成功
 		for (OrderItem oi: order.getItems()) {
 			flag = flag | orderItemDao.save(oi);
@@ -56,8 +62,6 @@ public class OrderService {
 				cartItemDao.delete(s.getId());
 			}
 		}
-		
-		
 		if(!flag){
 			return "插入数据库错误-订单";
 		}

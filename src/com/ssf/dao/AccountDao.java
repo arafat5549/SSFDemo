@@ -4,10 +4,18 @@ import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import com.ssf.utils.DBUtils;
 
+/**
+ * 测试账户Dao
+ * 
+ * 测试转账和批量插入batch批处理
+ * 
+ * @author wyy
+ * 2017年4月1日
+ *
+ */
 public class AccountDao {
 
 	/**
@@ -38,6 +46,12 @@ public class AccountDao {
 		
 		//
 	}
+	
+	/**
+	 * 批量插入和批处理
+	 * 看底下四种方式的时间差异 为什么会这样?
+	 * 
+	 */
 	
 	//大批量插入--方法1
 	public void batchInsert(){

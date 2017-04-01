@@ -30,7 +30,6 @@ public class CartController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		//TODO 1.判断你登录了没有
 		String method = req.getParameter("method");
 		if("add".equals(method)){//加入购物车
 			String pidStr   = req.getParameter("pid");
@@ -45,8 +44,6 @@ public class CartController extends HttpServlet{
 			}
 			//
 			Cart cart = (Cart)req.getSession().getAttribute("session_cart");
-			
-			//System.out.println(cart);
 			if(cart!=null){
 				int cartId = cart.getId();
 				

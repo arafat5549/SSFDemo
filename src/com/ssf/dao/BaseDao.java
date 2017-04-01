@@ -37,7 +37,7 @@ public interface BaseDao<T> {
 	 */
 	void delete(Integer id);
 	/**
-	 * 获取可用的Id
+	 * 获取可用的Id-id的最大值
 	 * @return
 	 */
 	Integer findMaxId();
