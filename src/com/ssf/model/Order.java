@@ -1,5 +1,6 @@
 package com.ssf.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,6 +33,35 @@ public class Order extends DateEntity{
 	private Date deliverDate;//发货时间
 	private Date confirmDate;//确认收货时间
 	
+	//
+	private Integer totalCount;//所有商品的数量
+	private BigDecimal total;  //所有商品的价格
+	
+	
+	public Integer getTotalCount() {
+		int totalCount = 0;
+		for (OrderItem item : items) {
+			totalCount+=item.getCount();
+		}
+		return totalCount;
+	}
+//	public void setTotalCount(Integer totalCount) {
+//		this.totalCount = totalCount;
+//	}
+
+	public BigDecimal getTotal() {
+		BigDecimal total = new BigDecimal(0);
+		for (OrderItem item : items) {
+			total = total.add(item.getProduct().getPromotoPrice());
+		}
+		//System.out.println(total);
+		return total;
+	}
+
+//	public void setTotal(BigDecimal total) {
+//		this.total = total;
+//	}
+
 	public enum OrderStatus{
 		WAIT_PAY("waitPay"),
 		WAIT_DELIVER("waitDeliver"),

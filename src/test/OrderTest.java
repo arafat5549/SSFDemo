@@ -47,4 +47,9 @@ public class OrderTest {
 		//List<Order> orders = orderService.findAllByUserId(1);
 		//System.out.println(orders);		
 	}
+	
+	@Test
+	public void baseTest(){
+		orderService.findOrdersByUserId(1);
+	}
 }

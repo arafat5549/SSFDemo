@@ -254,7 +254,8 @@ public class DBUtils {
 					//String key = rsmd.getColumnName(i+1);
 					String key =rsmd.getColumnLabel(i+1);
 					Object obj = rs.getObject(key);
-					maps.put(key, obj);
+					if(obj!=null)
+						maps.put(key, obj);
 				}
 				T t = cls.newInstance();
 				BeanUtils.populate(t, maps);

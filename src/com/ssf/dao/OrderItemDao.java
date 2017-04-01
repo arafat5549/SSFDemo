@@ -16,6 +16,13 @@ public class OrderItemDao implements BaseDao<OrderItem>{
 			+ "a.create_time AS 'createTime', "
 			+ "a.update_time AS 'updateTime' ";
 	
+	//根据orderid找到Item列表
+	public List<OrderItem> findOrderItemsByOrderId(int oid){
+		String sql = "SELECT " + COLUMNS +" FROM sys_order_item a WHERE a.order_id=?";
+		return DBUtils.getInstance().listBean(sql, OrderItem.class, oid);
+	}
+	
+	
 	@Override
 	public List<OrderItem> findAll() {
 		return null;

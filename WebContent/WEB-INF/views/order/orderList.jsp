@@ -123,7 +123,7 @@ $(function(){
 						
 					</td>
 				</tr>
-				<c:forEach items="${o.orderItems}" var="oi" varStatus="st">
+				<c:forEach items="${o.items}" var="oi" varStatus="st">
 					<tr class="orderItemProductInfoPartTR" >
 						<td class="orderItemProductInfoPartTD"><img width="80" height="80" src="static/img/productSingle_middle/19.jpg"></td>
 						<td class="orderItemProductInfoPartTD">
@@ -138,21 +138,21 @@ $(function(){
 						</td>
 						<td  class="orderItemProductInfoPartTD" width="100px">
 						
-							<div class="orderListItemProductOriginalPrice">￥<fmt:formatNumber type="number" value="${oi.product.price}" minFractionDigits="2"/></div>
-							<div class="orderListItemProductPrice">￥<fmt:formatNumber type="number" value="${oi.product.promotePrice}" minFractionDigits="2"/></div>
+							<div class="orderListItemProductOriginalPrice">￥<fmt:formatNumber type="number" value="${oi.product.originPrice}" minFractionDigits="2"/></div>
+							<div class="orderListItemProductPrice">￥<fmt:formatNumber type="number" value="${oi.product.promotoPrice}" minFractionDigits="2"/></div>
 		
 		
 						</td>
 						<c:if test="${st.count==1}">
 						 
-							<td valign="center" rowspan="${fn:length(o.orderItems)}" class="orderListItemNumberTD orderItemOrderInfoPartTD" width="100px">
+							<td valign="center" rowspan="${fn:length(o.items)}" class="orderListItemNumberTD orderItemOrderInfoPartTD" width="100px">
 								<span class="orderListItemNumber">${o.totalCount}</span>
 							</td>
-							<td valign="center" rowspan="${fn:length(o.orderItems)}" width="120px" class="orderListItemProductRealPriceTD orderItemOrderInfoPartTD">
+							<td valign="center" rowspan="${fn:length(o.items)}" width="120px" class="orderListItemProductRealPriceTD orderItemOrderInfoPartTD">
 								<div class="orderListItemProductRealPrice">￥<fmt:formatNumber  minFractionDigits="2"  maxFractionDigits="2" type="number" value="${o.total}"/></div>
 								<div class="orderListItemPriceWithTransport">(含运费：￥0.00)</div>
 							</td>
-							<td valign="center" rowspan="${fn:length(o.orderItems)}" class="orderListItemButtonTD orderItemOrderInfoPartTD" width="100px">
+							<td valign="center" rowspan="${fn:length(o.items)}" class="orderListItemButtonTD orderItemOrderInfoPartTD" width="100px">
 								<c:if test="${o.status=='waitConfirm' }">
 										<form action="${context}/order" method="post">
 									   		<input type="hidden" name="method" value="confirm">

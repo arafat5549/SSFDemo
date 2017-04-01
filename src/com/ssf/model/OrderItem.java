@@ -8,6 +8,14 @@ public class OrderItem extends DateEntity{
 	private Integer userId;
 	private Integer count;
 	
+	private Product product;  //${order.product}
+	
+	public Product getProduct() {
+		return product;
+	}
+	public void setProduct(Product product) {
+		this.product = product;
+	}
 	public Integer getId() {
 		return id;
 	}

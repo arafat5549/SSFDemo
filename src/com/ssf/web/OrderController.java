@@ -42,6 +42,10 @@ public class OrderController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		Cart cart = (Cart)req.getSession().getAttribute("session_cart");
+		User user = (User)req.getSession().getAttribute("session_user");
+		
+		int userId = user.getId();
 		
 		String method = req.getParameter("method");
 		if("order".equals(method)){ //1.去订单页面
@@ -49,7 +53,7 @@ public class OrderController extends HttpServlet{
 		}
 		else if("add".equals(method)){
 			
-			Cart cart = (Cart)req.getSession().getAttribute("session_cart");
+			//Cart cart = (Cart)req.getSession().getAttribute("session_cart");
 			
 			String[] oids  = req.getParameterValues("oiid");
 			List<CartItem> items = new ArrayList<CartItem>();
@@ -60,13 +64,16 @@ public class OrderController extends HttpServlet{
 				CartItem item = cart.findItemById(id);
 				items.add(item);
 			}
-			
 			//orderItems
 			req.setAttribute("orderItems", items);
 			req.getRequestDispatcher(VIEW_PATH+"order.jsp").forward(req, resp);
 		}
 		else if("list".equals(method)){
 			
+			//orders
+			List<Order> orders = orderService.findOrdersByUserId(userId);
+			req.setAttribute("orders", orders); 
+			req.getRequestDispatcher(VIEW_PATH+"orderList.jsp").forward(req, resp);
 		}
 	}
 	

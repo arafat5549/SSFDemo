@@ -14,6 +14,7 @@ import com.ssf.model.User;
 import com.ssf.service.CartItemService;
 import com.ssf.service.CartService;
 import com.ssf.service.UserService;
+import com.ssf.utils.CookieUtils;
 
 /**
  * 用户控制层
@@ -31,12 +32,25 @@ public class UserController extends HttpServlet
 	private CartService cartService = new CartService();
 	private CartItemService cartItemService = new CartItemService();
 	
+	
+	private static String session_remember_username = "c_username";
+	private static String session_remember_password = "c_password";
+	
 	public static final String VIEW_PATH = "/WEB-INF/views/user/";
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		String method = req.getParameter("method");
 		if("login".equals(method)){
+			
+			//从cookie里获取登录名和密码
+			String username = CookieUtils.getCookie(req, session_remember_username);
+			String password = CookieUtils.getCookie(req, session_remember_password);
+			User user = new User();
+			user.setUsername(username);
+			user.setPassword(password);
+			req.setAttribute("session_user", user);
+			
 			req.getRequestDispatcher(VIEW_PATH+"login.jsp").forward(req, resp);
 		}
 		else if("logout".equals(method)){
@@ -75,6 +89,11 @@ public class UserController extends HttpServlet
 			req.getRequestDispatcher(VIEW_PATH+"login.jsp").forward(req, resp);
 		}
 		else{
+			//登录为存cookie
+			CookieUtils.setCookie(resp, session_remember_username, username);
+			CookieUtils.setCookie(resp, session_remember_password, password);
+			
+			
 			req.setAttribute("msg", "登录成功");
 			User exist = userService.findByName(username);
 			req.getSession().setAttribute("session_user", exist);

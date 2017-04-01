@@ -23,7 +23,7 @@ public class OrderDao implements BaseDao<Order>{
 			+ "a.post,"
 			+ "a.message,"
 			+ "a.status,"
-			+ "a.pay_date AS 'payDate',"
+			+ "a.pay_date AS 'payDate'," //"a.pay_date AS 'payDate',"
 			+ "a.delivery_date AS 'deliverDate',"
 			+ "a.confirm_date AS 'confirmDate',"
 			+ "a.user_id AS 'userId',"

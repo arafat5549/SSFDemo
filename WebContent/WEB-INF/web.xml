@@ -70,4 +70,29 @@
      <servlet-name>orderController</servlet-name>
      <url-pattern>/order</url-pattern>
   </servlet-mapping>
+  
+  
+  <!-- 编码过滤器 -->
+  <filter>
+      <filter-name>encodingFilter</filter-name>
+      <filter-class>filter.EncodingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  		<filter-name>encodingFilter</filter-name>
+  		<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <!-- 检测登录过滤器 -->
+    <filter>
+      <filter-name>checkFilter</filter-name>
+      <filter-class>filter.CheckFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  		<filter-name>checkFilter</filter-name>
+  		<url-pattern>/cart/*</url-pattern>
+  </filter-mapping>
+  
+  <filter-mapping>
+  		<filter-name>checkFilter</filter-name>
+  		<url-pattern>/order/*</url-pattern>
+  </filter-mapping>
 </web-app>
