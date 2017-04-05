@@ -8,7 +8,7 @@ package com.ssf.model;
  * 2017年3月23日
  *
  */
-public class User{
+public class User extends DateEntity{
 	private Integer id;
 	private String username;
 	private String password;

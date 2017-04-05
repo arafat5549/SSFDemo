@@ -17,7 +17,7 @@ import com.ssf.model.User;
  *
  */
 
-@Repository  //Dao层
+//@Repository  //Dao层
 public class UserDaoImpl implements IUserDao{
 	
 	@Autowired
