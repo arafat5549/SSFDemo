@@ -9,7 +9,7 @@ import com.ssf.model.Product;
 
 public class CartItemService {
 
-	CartItemDao cartItemDao= new CartItemDao();
+	CartItemDao cartItemDao = new CartItemDao();
 	ProductDao productDao = new ProductDao();
 	/**
 	 * 根据购物车id获取所有的购物车项目
