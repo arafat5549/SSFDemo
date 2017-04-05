@@ -1,0 +1,176 @@
+
+.show {
+	border: 1px dotted skyblue !important;
+}
+
+body {
+	font-size: 12px;
+	font-family: Arial;
+	min-width:1024px;
+   /* width:1920px; */
+}
+
+a {
+	color: #999;
+}
+a:hover {
+	text-decoration: none;
+	color: #C40000;
+}
+
+/* 头部区域 */
+nav.top {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #e7e7e7;
+}
+
+.redColor {
+	color: #C40000;
+}
+
+.boldWord {
+	font-weight: bold;
+}
+
+nav.top span {
+	margin-right: 20px;
+}
+
+nav.top span, nav.top a {
+	color: #999;
+	margin: 0px 10px 0px 10px;
+}
+
+nav.top a:hover {
+	color: #C40000;
+}
+
+nav.top {
+	background-color: #f2f2f2;
+}
+
+nav.top div.row div {
+	margin: 5px 0px;
+}
+
+nav.top div.row div {
+	background-color: lightgray;
+	border: 1px solid gray;
+	text-align: center;
+}
+
+/* 分类头条相关 */
+div.categoryWithCarousel div.headbar {
+	background-color: #DD2727;
+}
+
+div.categoryWithCarousel div.rightMenu {
+	display: inline-block;
+}
+
+div.categoryWithCarousel div.rightMenu img {
+	height: 30px;
+}
+
+div.categoryWithCarousel div.rightMenu span {
+	margin: 0px 20px 0px 20px;
+}
+
+div.categoryWithCarousel div.rightMenu a {
+	font-size: 16px;
+	color: white;
+}
+
+div.categoryWithCarousel div.head {
+	width: 200px;
+	background-color: #C60A0A;
+	height: 36px;
+	line-height: 36px;
+	font-size: 16px;
+	font-weight: bold;
+	color: white;
+	margin-left: 20px;
+	display: inline-block;
+}
+
+div.categoryWithCarousel div.categoryMenu {
+	width: 200px;
+	background-color: #e2e2e3;
+	/* 	padding-bottom:10px; */
+	margin-left: 20px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 1;
+}
+div.categoryWithCarousel div.productsAsideCategorys {
+	width: 825px;
+	height: 510px;
+	background-color: white;
+	/* 	padding-bottom:10px; */
+	margin-left: 220px;
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 1;
+}
+
+div.categoryWithCarousel div.eachCategory:hover {
+	background-color: white;
+}
+
+div.categoryWithCarousel div.eachCategory span {
+	margin-right: 10px;
+}
+
+div.categoryWithCarousel div.eachCategory {
+	/* 	height:30px; */
+	line-height: 30px;
+	padding-left: 10px;
+	/* 	border:1px dashed lightgray; */
+	font-size: 14px;
+	/* 	background-image:url(../../img/site/eachcategory.png); */
+	/* 	background-repeat: no-repeat; */
+}
+/* 分类头条相关Menu */
+div.categoryMenu a {
+	color: #000;
+}
+
+div.categoryMenu a:hover {
+	color: lightskyblue;
+	text-decoration: none;
+}
+
+div.productsAsideCategorys a {
+	color: #999;
+	font-size: 14px;
+	margin: 8px;
+}
+
+div.productsAsideCategorys a:hover {
+	color: #C40000;
+	text-decoration: none;
+}
+
+div.productsAsideCategorys div.row {
+	margin: 20px 80px 0px 80px;
+}
+
+div.productsAsideCategorys div.row div.seperator {
+	margin-top: 20px;
+	border-bottom-style: dashed;
+	border-bottom-width: 1px;
+	border-bottom-color: #e7e7e7;
+}
+
+
+img.catear {
+	position: absolute;
+	height: 15px;
+	display: none;
+}

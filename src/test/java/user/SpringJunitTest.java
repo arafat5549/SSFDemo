@@ -15,11 +15,13 @@ public class SpringJunitTest {
 
 	@Autowired
 	IUserDao userDao;
-	
-	@Test
+	//
+	//010
+    //011
+	@Test  
 	public void userTest(){
 		userDao.sayHello();
-		
+		System.out.println(2&3);
 		System.out.println(userDao.findAll());
 	}
 }
