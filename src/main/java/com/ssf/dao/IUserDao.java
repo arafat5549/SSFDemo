@@ -1,5 +1,7 @@
 package com.ssf.dao;
 
+import org.springframework.cache.annotation.Cacheable;
+
 import com.ssf.model.User;
 
 /**
@@ -10,5 +12,8 @@ import com.ssf.model.User;
  */
 public interface IUserDao extends BaseDao<User>
 {
+	
 	void sayHello();
+	
+	
 }

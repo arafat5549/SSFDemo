@@ -1,8 +1,12 @@
 package com.ssf.service;
 
-import org.springframework.stereotype.Service;
+import java.math.BigDecimal;
 
-import com.ssf.dao.IUserDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.ssf.dao.IAccountDao;
 import com.ssf.model.User;
 
 /**
@@ -44,7 +48,21 @@ public class UserService {
 //		myDao.sayHello();
 //	}
 	
-	IUserDao userDao;
+	//IUserDao userDao;
+	
+	@Autowired
+	IAccountDao accountDao;
+	
+	/**
+	 * 直接使用事务的注解
+	 */
+	@Transactional
+	public void transferAccount(int from ,int to ,BigDecimal money) 
+	{
+		accountDao.minusMoney(from, money);
+		int i= 1/0;
+		accountDao.addMoney(to, money);
+	}
 	
 	
 	public String login(User user){

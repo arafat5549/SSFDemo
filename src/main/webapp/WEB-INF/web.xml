@@ -39,4 +39,38 @@
         <servlet-name>Spring</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+    
+    
+     <!-- druid -->
+	<servlet>
+		<servlet-name>DruidStatView</servlet-name>
+		<servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DruidStatView</servlet-name>
+		<url-pattern>/druid/*</url-pattern>
+	</servlet-mapping>
+	<filter>
+		<filter-name>DruidWebStatFilter</filter-name>
+		<filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>
+		<init-param>
+			<param-name>exclusions</param-name>
+			<param-value>*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>DruidWebStatFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+    
+    <!-- 错误页面配置(不是代码逻辑的错误) -->
+    <error-page>
+      <error-code>404</error-code><!-- 无法找到资源 -->
+      <location>/WEB-INF/views/error/404.jsp</location>
+    </error-page>
+    
+    <error-page>
+      <error-code>500</error-code><!-- (服务器内部错误)服务器遇到错误，无法完成请求。 -->
+      <location>/WEB-INF/views/error/500.jsp</location>
+    </error-page>
 </web-app>

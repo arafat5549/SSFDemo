@@ -55,6 +55,11 @@ public class AdminController
 		return VIEW_PATH+"listUser";
 	}
 	
+	@RequestMapping(value="/test")
+	public void test(){
+		userDao.sayHello();
+	}
+	
 	
 	
 }

@@ -15,6 +15,7 @@ public class AdminService {
 	
 	
 	public String adminLogin(User user){
+		System.out.println("ADMIN登录");
 		return "";
 	}
 }
