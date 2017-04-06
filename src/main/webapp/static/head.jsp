@@ -12,7 +12,7 @@
 <link href="${context }/static/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
 <script src="${context }/static/js/bootstrap/3.3.6/bootstrap.min.js"></script>	
 <link href="${context }/static/css/fore/style.css" rel="stylesheet">
-
+<link href="${context }/static/css/back/style.css" rel="stylesheet">
 <script>
 function formatMoney(num){
 	num = num.toString().replace(/\$|\,/g,'');  

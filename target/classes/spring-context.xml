@@ -45,12 +45,12 @@
 		
     </bean>
     
-    <!-- 扫描basePackage下所有以@MyBatisDao注解的接口 
+    <!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-        <property name="basePackage" value="com.ssf.bookshop.dao"/>
+        <property name="basePackage" value="com.ssf.dao"/>
     </bean>
-	-->
+	
 	
 	<!-- IOC控制反转，在容器里面注册
 	<bean id="userDao" class="com.ssf.dao.impl.UserDaoImpl"></bean>

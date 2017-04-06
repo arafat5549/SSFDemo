@@ -11,6 +11,7 @@
     	
     <!-- 启动扫描所有的controller -->
     <context:component-scan base-package="com.ssf.web"/>
+    <context:component-scan base-package="com.ssf.web.back"/>
     
     <mvc:annotation-driven/>
     
@@ -30,4 +31,17 @@
     -->
     <!-- 对静态资源文件的访问， 将无法mapping到Controller的path交给default servlet handler处理 -->
     <mvc:default-servlet-handler/>
+    
+    
+    
+    <!-- 配置HibernateValidation验证框架-basename#框架的properties文件的名字 -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+	    <property name="basename" value="ValidationMessages"/>
+	</bean>
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+         <property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
+         <!-- 这里配置将使用上面国际化配置的messageSource -->
+         <property name="validationMessageSource" ref="messageSource" />
+     </bean> 
+	<mvc:annotation-driven validator="validator" />
 </beans>

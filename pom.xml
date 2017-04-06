@@ -200,7 +200,7 @@
 	</dependency>
 	
 	
-	<!-- 组件-参数验证框架 4.2.0.Final-->
+	<!-- 组件-参数验证框架 5.1.1.Final-->
 	<dependency>
 		<groupId>org.hibernate</groupId>
 		<artifactId>hibernate-validator</artifactId>
@@ -282,6 +282,25 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.6</version>
 			</plugin>
+			
+			<!-- 插件-导出所有的包 
+			 <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            -->
 		</plugins>
   </build>
 </project>

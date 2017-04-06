@@ -16,7 +16,7 @@ import com.ssf.utils.DBUtils;
  *
  */
 
-@Repository
+//@Repository
 public class OriginUserDaoImpl implements IUserDao{
 	//注意事项：数据库不要使用*
 	//1.节省了数据库解析的过程
