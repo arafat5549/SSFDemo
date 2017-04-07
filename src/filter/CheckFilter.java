@@ -33,6 +33,8 @@ public class CheckFilter implements Filter{
 		if(req instanceof HttpServletRequest){
 			HttpServletRequest httpReq = (HttpServletRequest)req;
 			HttpServletResponse httpResp = (HttpServletResponse)resp;
+			
+			//httpReq.getMethod()
 			User user = (User)httpReq.getSession().getAttribute("session_user");
 			if(user == null){
 				//httpReq.getRequestDispatcher(UserController.VIEW_PATH+"login.jsp").

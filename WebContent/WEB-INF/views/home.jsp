@@ -239,7 +239,17 @@
 			<span class="productPrice">
 				¥${p.promotoPrice }
 			</span>
-
+			
+			<a class="productAddCart" target="_blank" href="${context }/review?method=add&pid=${p.id}">
+        		<span style="color:#C40000;margin:0px" class="glyphicon glyphicon-shopping-cart redColor"></span>
+        		<strong>添加评论</strong>
+			</a>
+			
+			<a class="productAddCart" target="_blank" href="${context }/review?method=list&pid=${p.id}">
+        		<span style="color:#C40000;margin:0px" class="glyphicon glyphicon-shopping-cart redColor"></span>
+        		<strong>查看评论</strong>
+			</a>
+			
 			<a class="productAddCart" target="_blank" href="${context }/cart?method=add&pid=${p.id}">
         		<span style="color:#C40000;margin:0px" class="glyphicon glyphicon-shopping-cart redColor"></span>
         		<strong>加入购物车</strong>

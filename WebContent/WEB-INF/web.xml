@@ -70,7 +70,16 @@
      <servlet-name>orderController</servlet-name>
      <url-pattern>/order</url-pattern>
   </servlet-mapping>
+  <!-- 评论 -->
+    <servlet>
+     <servlet-name>reviewController</servlet-name>
+     <servlet-class>com.ssf.web.ReviewController</servlet-class>
+  </servlet>
   
+  <servlet-mapping>
+     <servlet-name>reviewController</servlet-name>
+     <url-pattern>/review</url-pattern>
+  </servlet-mapping>
   
   <!-- 编码过滤器 -->
   <filter>
@@ -94,5 +103,10 @@
   <filter-mapping>
   		<filter-name>checkFilter</filter-name>
   		<url-pattern>/order/*</url-pattern>
+  </filter-mapping>
+  
+  <filter-mapping>
+  		<filter-name>checkFilter</filter-name>
+  		<url-pattern>/review/*</url-pattern>
   </filter-mapping>
 </web-app>
