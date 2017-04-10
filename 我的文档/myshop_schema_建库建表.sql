@@ -85,6 +85,71 @@ INSERT INTO `sys_department` VALUES(201,"福建市场部 ",21,'0,1,21,201',now()
 INSERT INTO `sys_department` VALUES(111,"客户端研发部",11,'0,1,11,111',now(),now());
 INSERT INTO `sys_department` VALUES(1111,"Android研发部",111,'0,1,11,111,1111',now(),now());
 
+-- 资源表
+DROP TABLE IF EXISTS `sys_resource`;
+CREATE TABLE `sys_resource`(
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO sys_resource VALUES(1,"图像资源");
+INSERT INTO sys_resource VALUES(2,"人力资源");
+INSERT INTO sys_resource VALUES(3,"市场资源");
+INSERT INTO sys_resource VALUES(4,"影视资源");
+INSERT INTO sys_resource VALUES(5,"后备资源");
+
+-- 权限表
+DROP TABLE IF EXISTS `sys_permission`;
+CREATE TABLE `sys_permission` (
+	`id`	    INT(11) NOT NULL AUTO_INCREMENT COMMENT '主键自增长',
+	`resource_id`	INT(11) NOT NULL COMMENT '外键 资源ID',
+	`action`        VARCHAR(50) NOT NULL COMMENT '权限操作或者说类型',
+	`create_time` datetime NOT NULL COMMENT '创建时间',
+	`update_time` datetime NOT NULL COMMENT '更新时间',
+	primary key(`id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO sys_permission VALUES(1,1,"add",now(),now());	
+INSERT INTO sys_permission VALUES(2,1,"upd",now(),now());
+INSERT INTO sys_permission VALUES(3,1,"del",now(),now());
+INSERT INTO sys_permission VALUES(4,1,"query",now(),now());
+
+INSERT INTO sys_permission VALUES(11,2,"add",now(),now());
+INSERT INTO sys_permission VALUES(12,2,"upd",now(),now());
+INSERT INTO sys_permission VALUES(13,2,"del",now(),now());
+INSERT INTO sys_permission VALUES(14,2,"query",now(),now());
+
+INSERT INTO sys_permission VALUES(111,4,"add",now(),now());
+INSERT INTO sys_permission VALUES(112,4,"upd",now(),now());
+INSERT INTO sys_permission VALUES(113,4,"del",now(),now());
+INSERT INTO sys_permission VALUES(114,4,"query",now(),now());
+
+INSERT INTO sys_permission VALUES(1111,5,"add",now(),now());
+INSERT INTO sys_permission VALUES(1112,5,"upd",now(),now());
+INSERT INTO sys_permission VALUES(1113,5,"del",now(),now());
+INSERT INTO sys_permission VALUES(1114,5,"query",now(),now());
+
+-- 关联表（不是实体表 没有主键）
+DROP TABLE IF EXISTS `sys_dept_permission`;
+CREATE TABLE `sys_dept_permission` (
+	`dept_id`	    INT(11) NOT NULL COMMENT '外键 ',
+	`permission_id`	INT(11) NOT NULL COMMENT '外键 '
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO sys_dept_permission(dept_id,permission_id) VALUES(11,1); 
+
+INSERT INTO sys_dept_permission(dept_id,permission_id) VALUES(1,1); 
+INSERT INTO sys_dept_permission(dept_id,permission_id) VALUES(1,2);
+INSERT INTO sys_dept_permission(dept_id,permission_id) VALUES(1,3);
+INSERT INTO sys_dept_permission(dept_id,permission_id) VALUES(1,4);
+
+INSERT INTO sys_dept_permission(dept_id,permission_id) VALUES(1,11); 
+INSERT INTO sys_dept_permission(dept_id,permission_id) VALUES(1,12);
+INSERT INTO sys_dept_permission(dept_id,permission_id) VALUES(1,13);
+INSERT INTO sys_dept_permission(dept_id,permission_id) VALUES(1,14);
+
+INSERT INTO sys_dept_permission(dept_id,permission_id) VALUES(1,111);
 -- 分类表
 DROP TABLE IF EXISTS `sys_category`;
 CREATE TABLE `sys_category` (

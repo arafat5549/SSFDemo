@@ -21,6 +21,18 @@ public class DepartmentDao implements BaseDao<Department>{
 			+ " a.parent_ids AS 'parentIds'";
 	
 	/**
+	 * 根据员工id获取部门
+	 */
+	public Department getDepartmentByEmpid(int empid){
+		//String sql = "SELECT " + COLUMN +" FROM sys_department a WHERE a.parent_id=?";
+		String sql = 
+				"SELECT "+COLUMN+" FROM sys_department a"
+				+" JOIN sys_employee e"
+				+" ON a.id = e.dept_id AND e.dept_id=?";
+		return DBUtils.getInstance().queryBean(sql, Department.class, empid);
+	}
+	
+	/**
 	 * 1.无限级分类  第一种做法#递归
 	 * @param dept  部门对象
 	 * @param lists
