@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import org.apache.ibatis.annotations.Update;
 
+import com.ssf.base.BaseDao;
 import com.ssf.model.Account;
 
 public interface IAccountDao extends BaseDao<Account>{

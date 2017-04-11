@@ -1,4 +1,4 @@
-package com.ssf.dao;
+package com.ssf.base;
 
 import java.util.List;
 

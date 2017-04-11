@@ -84,6 +84,9 @@
         <property name="basePackage" value="com.ssf.dao"/>
     </bean>
 	
+	
+	
+	
 	<!-- 缓存配置 -->
 	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"
           p:cacheManager-ref="ehcacheManager"/>
@@ -91,6 +94,9 @@
 	<bean id="ehcacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
         p:configLocation="classpath:ehcache-local.xml"/>
     <cache:annotation-driven/>   <!--开启缓存注解--> 
+	
+	
+	
 	
 	<!-- 自定义AOP 
 	<bean id="proxy" class="com.ssf.proxy.AOPProxy"></bean>
@@ -119,7 +125,6 @@
             <tx:method name="insert*"   propagation="REQUIRED"/>
             <tx:method name="change*"   propagation="REQUIRED"/>
             <tx:method name="do*"       propagation="REQUIRED"/>
-            <!-- --> 
             <tx:method name="*"         propagation="REQUIRED" read-only="true"/>
             
         </tx:attributes>

@@ -2,6 +2,7 @@ package com.ssf.dao;
 
 import org.springframework.cache.annotation.Cacheable;
 
+import com.ssf.base.BaseDao;
 import com.ssf.model.User;
 
 /**

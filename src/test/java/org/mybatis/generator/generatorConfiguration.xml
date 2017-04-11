@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration  
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<context id="DB2Tables" targetRuntime="MyBatis3" defaultModelType="flat">
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+		<!-- 自定义的分页插件 -->
+		<plugin type="org.mybatis.generator.plugins.SelectListPlugin" />
+		<!-- 是否需要自动生成注释 --> 
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		
+		<jdbcConnection 
+			driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://127.0.0.1:3306/myshop" 
+			userId="root"
+			password="123456">
+		</jdbcConnection>
+		
+		<!--  Oracle配置 
+		<jdbcConnection 
+		`	driverClass="oracle.jdbc.driver.OracleDriver"
+			connectionURL="jdbc:oracle:thin:@192.168.0.222:1521:orcl" userId="hxsystem"
+			password="hxsystem8">
+		</jdbcConnection>
+		-->	
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="true" />
+		</javaTypeResolver>
+		
+		
+		<!--生成Model类存放位置-->
+		<javaModelGenerator targetPackage="com.ssf.model"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="false" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		
+		 <!--生成映射文件存放位置-->
+		<sqlMapGenerator targetPackage="mappings"
+			targetProject="src/main/resources">
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+		<!--生成Dao类存放位置-->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.ssf.dao" targetProject="src/main/java">
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+		
+		
+		<!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+		<!--  
+		<table tableName="sys_category" 
+			domainObjectName="Category"
+			enableCountByExample="false" 
+			enableUpdateByExample="false"
+			enableDeleteByExample="false" 
+			enableSelectByExample="false"
+			selectByExampleQueryId="false">x
+        	<property name="useActualColumnNames" value="false"/>x
+        	<generatedKey column="id" sqlStatement="Mysql"/>
+		</table>
+		-->
+
+		 <!--生成对应表及类名
+		<table tableName="MEMBERADDRESS" domainObjectName="MemberAddress"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="maid"
+				sqlStatement="SELECT SEQ_MemberAddress.NEXTVAL FROM DUAL" />
+		</table>
+		
+		<table tableName="BANKCODE" domainObjectName="BankCode"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		<table tableName="PAYTYPE" domainObjectName="PayType"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		<table tableName="SYSLOG" domainObjectName="SysLog"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="slid"
+				sqlStatement="SELECT SEQ_SysLog.NEXTVAL FROM DUAL" />
+		</table>
+
+		<table tableName="AREA" domainObjectName="Area"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		<table tableName="IPAREA" domainObjectName="IPArea"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="iaid"
+				sqlStatement="SELECT SEQ_IPArea.NEXTVAL FROM DUAL" />
+		</table>
+
+		<table tableName="COLUMNTBL" domainObjectName="ColumnTbl"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="coid"
+				sqlStatement="SELECT SEQ_ColumnTbl.NEXTVAL FROM DUAL" />
+		</table>
+
+		<table tableName="INDUSTRYCLASS" domainObjectName="IndustryClass"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+
+		<table tableName="ALLMENU" domainObjectName="AllMenu"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="menuid"
+				sqlStatement="SELECT SEQ_AllMenu.NEXTVAL FROM DUAL" />
+		</table>
+		
+		<table tableName="AIUSER" domainObjectName="AiUser"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		<table tableName="ROLE" domainObjectName="Role"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="roleid" sqlStatement="SELECT SEQ_Role.NEXTVAL FROM DUAL" />
+		</table>
+		
+		<table tableName="USERROLE" domainObjectName="UserRole"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="urid"
+				sqlStatement="SELECT SEQ_UserRole.NEXTVAL FROM DUAL" />
+		</table>
+		
+		<table tableName="ROLEMENU" domainObjectName="RoleMenu"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="rmid"
+				sqlStatement="SELECT SEQ_RoleMenu.NEXTVAL FROM DUAL" />
+		</table>
+
+		<table tableName="SHOPCOMMENTS" domainObjectName="ShopComments"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="scid"
+				sqlStatement="SELECT SEQ_ShopComments.NEXTVAL FROM DUAL" />
+		</table>
+
+		<table tableName="POSDZ" domainObjectName="POSDZ"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="dzid"
+				sqlStatement="SELECT SEQ_POSDZ.NEXTVAL FROM DUAL" />
+		</table>
+
+		<table tableName="MPProvider" domainObjectName="MPProvider"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+
+		<table tableName="smsrecorder" domainObjectName="Smsrecorder"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="srid"
+				sqlStatement="SELECT SEQ_Smsrecorder.NEXTVAL FROM DUAL" />
+		</table>
+
+		<table tableName="TradeNoTemp" domainObjectName="TradeNoTemp"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="tradeno"
+				sqlStatement="SELECT SEQ_TRADENO.NEXTVAL FROM DUAL" />
+		</table>
+
+		<table tableName="News" domainObjectName="News"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="newsid" sqlStatement="SELECT SEQ_News.NEXTVAL FROM DUAL" />
+		</table>
+
+		<table tableName="Message" domainObjectName="Message"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="msgid"
+				sqlStatement="SELECT SEQ_Message.NEXTVAL FROM DUAL" />
+		</table>
+
+		<table tableName="CARD" domainObjectName="Card"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="cardid" sqlStatement="SELECT SEQ_CARD.NEXTVAL FROM DUAL" />
+		</table>
+
+		<table tableName="CARDOFFER" domainObjectName="CardOffer"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="ocid"
+				sqlStatement="SELECT SEQ_CARDOFFER.NEXTVAL FROM DUAL" />
+		</table>
+
+		<table tableName="CARDMERGER" domainObjectName="CardMerger"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="mcid"
+				sqlStatement="SELECT SEQ_CARDMERGER.NEXTVAL FROM DUAL" />
+		</table>
+		
+		<table tableName="DocUpload" domainObjectName="DocUpload"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="docid"
+				sqlStatement="SELECT SEQ_DocUpload.NEXTVAL FROM DUAL" />
+		</table>
+		
+		<table tableName="DocPermission" domainObjectName="DocPermission"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="pid"
+				sqlStatement="SELECT SEQ_DocPermission.NEXTVAL FROM DUAL" />
+		</table>
+
+		<table tableName="TMEMBERMESSAGE" domainObjectName="TMemberMessage"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="tid"
+				sqlStatement="SELECT SEQ_TMemberMessage.NEXTVAL FROM DUAL" />
+		</table>
+
+		<table tableName="BankTradeList" domainObjectName="BankTradeList"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="tlid"
+				sqlStatement="SELECT SEQ_BankTradeList.NEXTVAL FROM DUAL" />
+		</table>
+		
+		<table tableName="WebTerm" domainObjectName="WebTerm"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="wtid"
+				sqlStatement="SELECT SEQ_WebTerm.NEXTVAL FROM DUAL" />
+		</table>
+	
+			
+		<table tableName="ACCOUNTTRADELIST" domainObjectName="AccountTradeList"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		<table tableName="DayendClientRev" domainObjectName="DayendClientRev"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="id"
+				sqlStatement="SELECT SEQ_DayendClientRev.NEXTVAL FROM DUAL" />
+		</table>
+		
+		<table tableName="MemAssociated" domainObjectName="MemAssociated"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="maid"
+				sqlStatement="SELECT SEQ_MemAssociated.NEXTVAL FROM DUAL" />
+		</table>
+
+		<table tableName="CLIENTTDSET" domainObjectName="ClientTDSet"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="ctdsid"
+				sqlStatement="SELECT SEQ_ClientTDSet.NEXTVAL FROM DUAL" />
+		</table>
+		
+		
+		<table tableName="REFERPEOPLE" domainObjectName="ReferPeople"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="rpid"
+				sqlStatement="SELECT SEQ_ReferPeople.NEXTVAL FROM DUAL" />
+		</table>
+						
+		<table tableName="DAYENDMPFLOW" domainObjectName="DayendMPFlow"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="id"
+				sqlStatement="SELECT SEQ_DayendMPFlow.NEXTVAL FROM DUAL" />
+		</table>	
+		
+		<table tableName="SYSSET" domainObjectName="SysSet"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+	
+			
+		<table tableName="CollectAD" domainObjectName="CollectAD"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="id"
+				sqlStatement="SELECT SEQ_CollectAD.NEXTVAL FROM DUAL" />
+		</table>
+		
+		
+		<table tableName="ClientADFound" domainObjectName="ClientADFound"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="cfid"
+				sqlStatement="SELECT SEQ_ClientADFound.NEXTVAL FROM DUAL" />
+		</table>
+		
+		<table tableName="MemAD" domainObjectName="MemAD"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="maid"
+				sqlStatement="SELECT SEQ_MemAD.NEXTVAL FROM DUAL" />
+		</table>
+		
+		
+		<table tableName="ClientAD" domainObjectName="ClientAD"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		<table tableName="MPPosExtDevice" domainObjectName="MPPosExtDevice"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="medid"
+				sqlStatement="SELECT SEQ_MPPosExtDevice.NEXTVAL FROM DUAL" />
+		</table>
+		<table tableName="ClientAgentNum" domainObjectName="ClientAgentNum"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		<table tableName="ClientAgentNumDetail" domainObjectName="ClientAgentNumDetail"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="cdid"
+				sqlStatement="SELECT SEQ_ClientAgentNumDetail.NEXTVAL FROM DUAL" />
+		</table>
+		<table tableName="MPPOS" domainObjectName="MPPos"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="mpid"
+				sqlStatement="SELECT SEQ_MPPos.NEXTVAL FROM DUAL" />
+		</table>
+		<table tableName="MPPOS" domainObjectName="MPPos"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="mpid"
+				sqlStatement="SELECT SEQ_MPPos.NEXTVAL FROM DUAL" />
+		</table>
+		<table tableName="SMSCodeTemp" domainObjectName="SMSCodeTemp"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>	
+		<table tableName="MEMBERINFO" domainObjectName="MemberInfo"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="miid"
+				sqlStatement="SELECT SEQ_MemberInfo.NEXTVAL FROM DUAL" />
+		</table>
+		<table tableName="ClientAccountChange" domainObjectName="ClientAccountChange"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="ccid"
+				sqlStatement="SELECT SEQ_ClientAccountChange.NEXTVAL FROM DUAL" />
+		</table>
+		<table tableName="ExtDevice" domainObjectName="ExtDevice"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>	
+		<table tableName="ClientRecharge" domainObjectName="ClientRecharge"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="creid"
+				sqlStatement="SELECT SEQ_ClientRecharge.NEXTVAL FROM DUAL" />
+		</table>
+		<table tableName="CLIENTMESSAGE" domainObjectName="ClientMessage"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="cmid"
+				sqlStatement="SELECT SEQ_ClientMessage.NEXTVAL FROM DUAL" />
+		</table>	
+		<table tableName="DAYENDMPFLOW" domainObjectName="DayendMPFlow"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="id"
+				sqlStatement="SELECT SEQ_DayendMPFlow.NEXTVAL FROM DUAL" />
+		</table>
+		<table tableName="CLIENTINFO" domainObjectName="ClientInfo"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="ciid"
+				sqlStatement="SELECT SEQ_ClientInfo.NEXTVAL FROM DUAL" />
+		</table>	
+		<table tableName="ClientShowMessage" domainObjectName="ClientShowMessage"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="csmid"
+				sqlStatement="SELECT SEQ_ClientShowMessage.NEXTVAL FROM DUAL" />
+		</table>
+		<table tableName="BankCardCode" domainObjectName="BankCardCode"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="bccid"
+				sqlStatement="SELECT SEQ_BankCardCode.NEXTVAL FROM DUAL" />
+		</table>
+		<table tableName="MemberLoginCount" domainObjectName="MemberLoginCount"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="mid"
+				sqlStatement="SELECT SEQ_MEMBERLOGINCOUNT.NEXTVAL FROM DUAL" />
+		</table>
+		
+		
+		<table tableName="CLIENTFORMEMBER" domainObjectName="ClientForMember"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="cmid"
+				sqlStatement="SELECT SEQ_ClientForMember.NEXTVAL FROM DUAL" />
+		</table>
+		
+		<table tableName="ORDERSINFO" domainObjectName="OrdersInfo"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="id"
+				sqlStatement="SELECT SEQ_ordersInfo.NEXTVAL FROM DUAL" />
+		</table>
+		
+			
+		<table tableName="CmsTemp" domainObjectName="CmsTemp"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>	
+		
+		
+		<table tableName="TRADELIST" domainObjectName="TradeList"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="tlid"
+				sqlStatement="SELECT SEQ_TradeList.NEXTVAL FROM DUAL" />
+		</table>
+		
+		<table tableName="POSMEMBERTD" domainObjectName="PosMemberTd"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="pmid"
+				sqlStatement="SELECT SEQ_PosMemberTd.NEXTVAL FROM DUAL" />
+		</table>
+		
+		<table tableName="MemberCard" domainObjectName="MemberCard"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		<table tableName="CLIENTACCOUNT" domainObjectName="ClientAccount"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="caid"
+				sqlStatement="SELECT SEQ_ClientAccount.NEXTVAL FROM DUAL" />
+		</table>	
+		
+		<table tableName="MEMACCOUNT" domainObjectName="MemAccount"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="acid"
+				sqlStatement="SELECT SEQ_MemAccount.NEXTVAL FROM DUAL" />
+		</table>
+		
+		<table tableName="ALIPAYQRCODE" domainObjectName="AlipayQrCode"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="aqid"
+				sqlStatement="SELECT SEQ_AlipayQrCode.NEXTVAL FROM DUAL" />
+		</table>
+		
+		<table tableName="TRADELIST" domainObjectName="TradeList"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="tlid"
+				sqlStatement="SELECT SEQ_TradeList.NEXTVAL FROM DUAL" />
+		</table>
+			
+		<table tableName="HOURENDMPFLOW" domainObjectName="HourEndMPFlow"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="id"  
+				sqlStatement="SELECT SEQ_HOURENDMPFLOW.NEXTVAL FROM DUAL" />
+		</table>	
+		<table tableName="ORDERS" domainObjectName="Orders"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="id"
+				sqlStatement="SELECT SEQ_orders.NEXTVAL FROM DUAL" />
+		</table>
+		<table tableName="GOODS" domainObjectName="Goods"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="id"
+				sqlStatement="SELECT SEQ_goods.NEXTVAL FROM DUAL" />
+		</table>
+		<table tableName="MONITORRULE" domainObjectName="MonitorRule"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="id"
+				sqlStatement="SELECT SEQ_MONITORRULE.NEXTVAL FROM DUAL" />
+		</table>
+		
+		<table tableName="LARGEDATAMONITOR" domainObjectName="LargeDataMonitor"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="id"
+				sqlStatement="SELECT SEQ_LARGEDATAMONITOR.NEXTVAL FROM DUAL" />
+		</table>
+		
+		<table tableName="BANKNUM" domainObjectName="BankNum"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="bnid"
+				sqlStatement="SELECT SEQ_BankNum.NEXTVAL FROM DUAL" />
+		</table>
+		<table tableName="TRADELISTDS" domainObjectName="TradeListDs"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="tldsid"
+				sqlStatement="SELECT SEQ_TradeListDs.NEXTVAL FROM DUAL" />
+		</table>
+		<table tableName="TRADELIST" domainObjectName="TradeList"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="tlid"
+				sqlStatement="SELECT SEQ_TradeList.NEXTVAL FROM DUAL" />
+		</table>
+		<table tableName="CHECKPOSTRADE" domainObjectName="CheckPosTrade"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="cptid"
+				sqlStatement="SELECT SEQ_CheckPosTrade.NEXTVAL FROM DUAL" />
+		</table>
+		<table tableName="ARTICLE" domainObjectName="Article"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="id"
+				sqlStatement="SELECT SEQ_ARTICLE.NEXTVAL FROM DUAL" />
+		</table>
+		<table tableName="ARTICLECATEGORY" domainObjectName="ArticleCategory"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="id"
+				sqlStatement="SELECT SEQ_ARTICLECATEGORY.NEXTVAL FROM DUAL" />
+		</table>
+		<table tableName="ACCOUNTDETAIL" domainObjectName="AccountDetail"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="id"
+				sqlStatement="SELECT SEQ_AccountDetail.NEXTVAL FROM DUAL" />
+		</table>
+		<table tableName="ACCOUNTSUBJECT" domainObjectName="AccountSubject"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		<table tableName="HISTORYLIST" domainObjectName="HistoryList"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="hlid"
+				sqlStatement="SELECT SEQ_HistoryList.NEXTVAL FROM DUAL" />
+		</table>
+		<table tableName="CHECKPOSTRADE" domainObjectName="CheckPosTrade"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="cptid"
+				sqlStatement="SELECT SEQ_CheckPosTrade.NEXTVAL FROM DUAL" />
+		</table>
+		<table tableName="GeneralAccount" domainObjectName="GeneralAccount"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		<table tableName="MemAccountChange" domainObjectName="MemAccountChange"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="mcid"
+				sqlStatement="SELECT SEQ_MemAccountChange.NEXTVAL FROM DUAL" />
+		</table>
+		<table tableName="GaDetails" domainObjectName="GaDetails"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="GdId"
+				sqlStatement="SELECT SEQ_GaDetails.NEXTVAL FROM DUAL" />
+		</table>
+		<table tableName="ClientReceivables" domainObjectName="ClientReceivables"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="crid"
+				sqlStatement="SELECT SEQ_ClientReceivables.NEXTVAL FROM DUAL" />
+		</table>
+		-->
+	</context>
+</generatorConfiguration> 

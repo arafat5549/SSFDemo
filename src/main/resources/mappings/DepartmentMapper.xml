@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssf.dao.IDepartmentDao">
+    
+    <sql id="columns">
+       a.id,
+       a.name,
+       a.parent_id AS 'parentId',
+       a.parent_ids AS 'parentIds',
+       a.leader_id AS 'leaderId',
+       a.create_time AS 'createTime',
+       a.update_time AS 'updateTime'
+    </sql>
+    
+    <select id="findAll" resultType="Department"><!-- 如果你定义了别名你就可以简化你的写法 -->
+         SELECT 
+         	<include refid="columns"/> 
+         FROM sys_category a
+    </select>
+    
+    <select id="findById" resultType="Department">
+		SELECT
+			<include refid="columns"/>
+		FROM sys_category a
+		WHERE a.id = #{id}
+	</select>
+  
+</mapper>
