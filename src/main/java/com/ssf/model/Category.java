@@ -3,17 +3,23 @@ package com.ssf.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)//所有不为空的对象都会被转化
 public class Category implements Serializable {
     private Integer id;
 
     private String name;
-
+    
+    @JsonProperty("pId")  //jackson的注解
     private Integer parentId;
-
+    @JsonIgnore
     private String parentIds;
-
+    @JsonIgnore
     private Date createTime;
-
+    @JsonIgnore
     private Date updateTime;
 
     private static final long serialVersionUID = 1L;

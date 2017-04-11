@@ -13,7 +13,8 @@
     <context:component-scan base-package="com.ssf.web"/>
     <context:component-scan base-package="com.ssf.web.back"/>
     
-    <mvc:annotation-driven/>
+     
+    <mvc:annotation-driven/><!-- 默认开启所有配置 -->
     
     <!--jsp页面解析器，当Controller返回XXX字符串时，
     先通过拦截器，然后该类就会在/WEB-INF/views/目录下，查找XXX.jsp文件 -->
