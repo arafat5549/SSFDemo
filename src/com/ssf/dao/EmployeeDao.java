@@ -18,7 +18,9 @@ public class EmployeeDao implements BaseDao<Employee>{
 	private static final String COLUMN = 
 			  " a.id,"
 			+ " a.name,"
-			+ " a.dept_id AS 'deptId' ";
+			+ " a.dept_id AS 'deptId', "
+			+ " a.create_time AS 'createTime', "
+		    + " a.update_time AS 'updateTime' ";
 	
 //	/**
 //	 * 根据部门id获取所有的上级领导

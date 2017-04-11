@@ -20,7 +20,9 @@ public class DepartmentDao implements BaseDao<Department>{
 			+ " a.name,"
 			+ " a.parent_id AS 'parentId', "
 			+ " a.parent_ids AS 'parentIds',"
-			+ " a.leader_id AS 'leaderId'";
+			+ " a.leader_id AS 'leaderId',"
+			+ " a.create_time AS 'createTime', "
+		    + " a.update_time AS 'updateTime' ";
 	
 	
 	
