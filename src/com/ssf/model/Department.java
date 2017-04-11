@@ -18,7 +18,14 @@ public class Department extends DateEntity{
    //无限级分类，树结构
    private Integer parentId;//我的父类是谁,有且只有一个父类
    private String parentIds;//记录你所有的父类
+   private Integer leaderId;
    
+	public Integer getLeaderId() {
+	return leaderId;
+	}
+	public void setLeaderId(Integer leaderId) {
+		this.leaderId = leaderId;
+	}
 	public Integer getParentId() {
 		return parentId;
 	}

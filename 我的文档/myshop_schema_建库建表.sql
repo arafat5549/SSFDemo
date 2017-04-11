@@ -74,16 +74,17 @@ CREATE TABLE `sys_department` (
 	`name`		VARCHAR(50) NOT NULL COMMENT '部门名称',
 	`parent_id`	INT(11) NOT NULL  COMMENT '外键 父部门ID',
 	`parent_ids` VARCHAR(100) NOT NULL COMMENT '记录所有父部门的ID',
+	`leader_id`  INT(11) DEFAULT 0  COMMENT '外键 领导ID(员工) 0代表暂时没有领导',
 	`create_time` datetime NOT NULL COMMENT '创建时间',
 	`update_time` datetime NOT NULL COMMENT '更新时间',
 	primary key(`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
-INSERT INTO `sys_department` VALUES(1,"公司",0,'0,1',now(),now());
-INSERT INTO `sys_department` VALUES(11,"研发部 ",1,'0,1,11',now(),now());
-INSERT INTO `sys_department` VALUES(21,"市场部 ",1,'0,1,21',now(),now());
-INSERT INTO `sys_department` VALUES(201,"福建市场部 ",21,'0,1,21,201',now(),now());
-INSERT INTO `sys_department` VALUES(111,"客户端研发部",11,'0,1,11,111',now(),now());
-INSERT INTO `sys_department` VALUES(1111,"Android研发部",111,'0,1,11,111,1111',now(),now());
+INSERT INTO `sys_department` VALUES(1,"公司",0,'0,1',1,now(),now()); 
+INSERT INTO `sys_department` VALUES(11,"研发部 ",1,'0,1,11',2,now(),now());
+INSERT INTO `sys_department` VALUES(21,"市场部 ",1,'0,1,21',0,now(),now());
+INSERT INTO `sys_department` VALUES(201,"福建市场部 ",21,'0,1,21,201',0,now(),now());
+INSERT INTO `sys_department` VALUES(111,"客户端研发部",11,'0,1,11,111',0,now(),now());
+INSERT INTO `sys_department` VALUES(1111,"Android研发部",111,'0,1,11,111,1111',0,now(),now());
 
 -- 资源表
 DROP TABLE IF EXISTS `sys_resource`;
@@ -130,11 +131,11 @@ INSERT INTO sys_permission VALUES(1112,5,"upd",now(),now());
 INSERT INTO sys_permission VALUES(1113,5,"del",now(),now());
 INSERT INTO sys_permission VALUES(1114,5,"query",now(),now());
 
--- 关联表（不是实体表 没有主键）
+-- 部门权限 关联表（不是实体表 没有主键）
 DROP TABLE IF EXISTS `sys_dept_permission`;
 CREATE TABLE `sys_dept_permission` (
-	`dept_id`	    INT(11) NOT NULL COMMENT '外键 ',
-	`permission_id`	INT(11) NOT NULL COMMENT '外键 '
+	`dept_id`	    INT(11) NOT NULL COMMENT '外键 部门ID',
+	`permission_id`	INT(11) NOT NULL COMMENT '外键 权限ID'
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO sys_dept_permission(dept_id,permission_id) VALUES(11,1); 
@@ -150,6 +151,19 @@ INSERT INTO sys_dept_permission(dept_id,permission_id) VALUES(1,13);
 INSERT INTO sys_dept_permission(dept_id,permission_id) VALUES(1,14);
 
 INSERT INTO sys_dept_permission(dept_id,permission_id) VALUES(1,111);
+
+-- 员工权限 关联表
+DROP TABLE IF EXISTS `sys_emp_permission`;
+CREATE TABLE `sys_emp_permission` (
+	`emp_id`	    INT(11) NOT NULL COMMENT '外键 员工ID',
+	`permission_id`	INT(11) NOT NULL COMMENT '外键 权限ID',
+  	UNIQUE KEY `unq(emp,permission)` (`emp_id`,`permission_id`) USING BTREE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO sys_emp_permission VALUES(1,1);
+INSERT INTO sys_emp_permission VALUES(1,2);
+INSERT INTO sys_emp_permission VALUES(1,3);
+
 -- 分类表
 DROP TABLE IF EXISTS `sys_category`;
 CREATE TABLE `sys_category` (

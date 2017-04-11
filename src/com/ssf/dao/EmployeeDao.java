@@ -1,7 +1,9 @@
 package com.ssf.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.ssf.model.Department;
 import com.ssf.model.Employee;
 import com.ssf.utils.DBUtils;
 
@@ -17,6 +19,16 @@ public class EmployeeDao implements BaseDao<Employee>{
 			  " a.id,"
 			+ " a.name,"
 			+ " a.dept_id AS 'deptId' ";
+	
+//	/**
+//	 * 根据部门id获取所有的上级领导
+//	 */
+//	public List<Employee> findLeadersByDept(Department dept){
+//		List<Employee> lists = new ArrayList<Employee>();
+//		
+//		return lists;
+//	}
+	
 	
 	@Override
 	public List<Employee> findAll() {

@@ -323,14 +323,20 @@ public class DBUtils {
 		}
 		return false;
 	}
+	
+	public int execute_max(String sql){
+		List<Integer> lists = execute_list(sql);
+		return lists.size()>0 ? lists.get(0)  : 0;
+	}
 	/**
 	 * 返回可用id
 	 * @param sql
 	 * @return
 	 * @throws SQLException
 	 */
-	public int execute_max(String sql) 
+	public List<Integer> execute_list(String sql) 
 	{
+		List<Integer> lists = new ArrayList<Integer>();
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -341,10 +347,9 @@ public class DBUtils {
 			if(rs!=null){
 				while(rs.next()){
 					int max = rs.getInt(1);
-					return max;
+					lists.add(max);
 				}
 			}
-			
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -359,7 +364,7 @@ public class DBUtils {
 			}
 			
 		}
-		return 0;
+		return lists;
 	}
 	
 	public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException {
