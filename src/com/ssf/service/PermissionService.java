@@ -19,14 +19,47 @@ public class PermissionService {
 	
 	/**
 	 * 给定员工和资源，查询其所具有该资源的权限列表
+	 * 1.获取部门的所有权限
+	 * 2.获取员工的所有权限
 	 * @param empid 员工id
 	 * @param resid 资源id
 	 */
-	public void findPermissionsByEmpAndRes(int empid,int resid ){
+	public void findPermissionsByEmpAndRes(int empId,int resId ){
 		// 1.查询员工属于哪个部门#empid
-		Department d = departmentDao.getDepartmentByEmpid(empid);
+		Department d = departmentDao.getDepartmentByEmpid(empId);
 		
-		permissionDao.findPermissionsByDeptAndRes(d.getId(), resid);
+		//1.获取部门的所有权限
+		System.out.println("部门权限---------------------------------");
+		List<Permission> lists = new ArrayList<Permission>();
+		if(d!=null)
+		{
+			lists.addAll(permissionDao.findPermissionsByDeptAndRes(d.getId(), resId));
+			for (Permission permission : lists) {
+				System.out.println(permission);
+			}	
+		}
+		//2.获取员工的所有权限
+		System.out.println("员工权限---------------------------------");
+		List<Permission> lists2 = permissionDao.findPermissionsByEmpAndRes(empId, resId);
+		for (Permission permission : lists2) {
+			System.out.println(permission);
+		}
+		//3.去除重复的部分
+		List<Permission> ps = new ArrayList<Permission>();
+		for (Permission p : lists) {
+			if(!ps.contains(p)){
+				ps.add(p);
+			}
+		}
+		for (Permission p : lists2) {
+			if(!ps.contains(p)){
+				ps.add(p);
+			}
+		}
+		System.out.println("权限---------------------------------");
+		for (Permission permission : ps) {
+			System.out.println(permission);
+		}
 	}
 	/**
 	 * 1. 请设计关系型数据库表结构及编写相关代码，实现『赋予某个部门的所有上级具有某项权限』。

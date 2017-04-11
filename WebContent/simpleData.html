@@ -56,7 +56,19 @@
 	var zNodes =[{"id":1,"pId":0,"name":"个人用品/服饰"},{"id":2,"pId":0,"name":"家用电器"},{"id":11,"pId":1,"name":"男装"},{"id":12,"pId":1,"name":"女装"},{"id":13,"pId":1,"name":"配饰"},{"id":21,"pId":2,"name":"家具"},{"id":22,"pId":2,"name":"生活家电"},{"id":23,"pId":2,"name":"大电器"},{"id":60,"pId":21,"name":"安全座椅"},{"id":64,"pId":13,"name":"太阳镜"},{"id":68,"pId":12,"name":"品牌女装"},{"id":69,"pId":11,"name":"时尚男鞋"},{"id":71,"pId":11,"name":"男士西服"},{"id":72,"pId":11,"name":"男士手拿包"},{"id":73,"pId":11,"name":"男表"},{"id":74,"pId":12,"name":"女表"},{"id":75,"pId":23,"name":"空调"},{"id":76,"pId":23,"name":"冰箱"},{"id":77,"pId":22,"name":"原汁机"},{"id":78,"pId":23,"name":"扫地机器人"},{"id":79,"pId":23,"name":"平衡车"},{"id":80,"pId":22,"name":"电热水器"},{"id":81,"pId":21,"name":"沙发"},{"id":82,"pId":22,"name":"马桶"},{"id":83,"pId":22,"name":"平板电视"}];
 
 		$(document).ready(function(){
-			$.fn.zTree.init($("#treeDemo"), setting, zNodes);
+
+			$.ajax(
+				{ 
+					url: "/getJson", 
+					//context: document.body,
+				 	success: function(data){
+        			//$("#treeDemo")
+        				$.fn.zTree.init($("#treeDemo"), setting, data);
+     				}
+     			}
+      		);
+
+			//$.fn.zTree.init($("#treeDemo"), setting, zNodes);
 		});
 		//-->
 	</SCRIPT>

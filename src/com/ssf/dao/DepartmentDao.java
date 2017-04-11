@@ -34,7 +34,7 @@ public class DepartmentDao implements BaseDao<Department>{
 		String sql = 
 				"SELECT "+COLUMN+" FROM sys_department a"
 				+" JOIN sys_employee e"
-				+" ON a.id = e.dept_id AND e.dept_id=?";
+				+" ON a.id = e.dept_id AND e.id=?";
 		return DBUtils.getInstance().queryBean(sql, Department.class, empid);
 	}
 	

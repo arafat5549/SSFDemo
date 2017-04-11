@@ -45,6 +45,22 @@ public class PermissionDao implements BaseDao<Permission>{
 	}
 	
 	/**
+	 * 查询员工拥有的所有权限()
+	 * @param empId
+	 * @param resId
+	 * @return
+	 */
+	public List<Permission> findPermissionsByEmpAndRes(int empId,int resId)
+	{
+		String sql =
+			"SELECT "+COLUMN+" FROM sys_permission a"
+			+" JOIN sys_emp_permission ep ON a.id = ep.permission_id"
+		    +" JOIN sys_employee e ON ep.emp_id = e.id"
+		    +" WHERE e.id = ? AND a.resource_id=?";
+		return DBUtils.getInstance().listBean(sql, Permission.class, empId,resId);
+	}
+	
+	/**
 	 * 2.查询部门所拥有的所有权限
 	 * 并过滤对应资源的权限
 	 * @param deptId
@@ -53,11 +69,12 @@ public class PermissionDao implements BaseDao<Permission>{
 	 */
 	public List<Permission> findPermissionsByDeptAndRes(int deptId,int resId)
 	{
+		
 		String sql =
-			"SELECT "+COLUMN+" FROM sys_permission p"
-			+" JOIN sys_dept_permission dp ON p.id = dp.permission_id"
+			"SELECT "+COLUMN+" FROM sys_permission a"
+			+" JOIN sys_dept_permission dp ON a.id = dp.permission_id"
 			+" JOIN sys_department d ON dp.dept_id = d.id"
-			+" WHERE d.id = ? AND p.resource_id=?";
+			+" WHERE d.id = ? AND a.resource_id=?";
 		
 		return DBUtils.getInstance().listBean(sql, Permission.class, deptId,resId);
 	}
