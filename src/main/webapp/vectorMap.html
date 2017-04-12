@@ -1,0 +1,326 @@
+ <!DOCTYPE html>
+ <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  	 <meta charset="utf-8">
+     <title>中国地图</title>
+     <style type="text/css">
+         *{margin: 0;padding: 0}
+         #container{width: 708px; height: 600px}
+         #container_world{width: 708px; height: 600px}
+     </style>
+
+      <link rel="stylesheet" type="text/css" href="Public/css/plugins/jvectormap/jquery-jvectormap-2.0.3.css">
+
+
+      <script src="Public/js/jquery.min.js-v=2.1.4"></script>
+      <script src="Public/js/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
+      
+      
+      <script src="Public/js/plugins/jvectormap/jquery-jvectormap-world-mill.js"></script>
+      
+	  <script src="Public/js/plugins/jvectormap/jquery-jvectormap-cn-mill.js"></script>
+      
+     <script type="text/javascript">
+
+     	        	var gdpData = {
+  "AF": 16.63,
+  "AL": 11.58,
+  "DZ": 158.97,
+  "AO": 85.81,
+  "AG": 1.1,
+  "AR": 351.02,
+  "AM": 8.83,
+  "AU": 1219.72,
+  "AT": 366.26,
+  "AZ": 52.17,
+  "BS": 7.54,
+  "BH": 21.73,
+  "BD": 105.4,
+  "BB": 3.96,
+  "BY": 52.89,
+  "BE": 461.33,
+  "BZ": 1.43,
+  "BJ": 6.49,
+  "BT": 1.4,
+  "BO": 19.18,
+  "BA": 16.2,
+  "BW": 12.5,
+  "BR": 2023.53,
+  "BN": 11.96,
+  "BG": 44.84,
+  "BF": 8.67,
+  "BI": 1.47,
+  "KH": 11.36,
+  "CM": 21.88,
+  "CA": 1563.66,
+  "CV": 1.57,
+  "CF": 2.11,
+  "TD": 7.59,
+  "CL": 199.18,
+  "CN": 5745.13,
+  "CO": 283.11,
+  "KM": 0.56,
+  "CD": 12.6,
+  "CG": 11.88,
+  "CR": 35.02,
+  "CI": 22.38,
+  "HR": 59.92,
+  "CY": 22.75,
+  "CZ": 195.23,
+  "DK": 304.56,
+  "DJ": 1.14,
+  "DM": 0.38,
+  "DO": 50.87,
+  "EC": 61.49,
+  "EG": 216.83,
+  "SV": 21.8,
+  "GQ": 14.55,
+  "ER": 2.25,
+  "EE": 19.22,
+  "ET": 30.94,
+  "FJ": 3.15,
+  "FI": 231.98,
+  "FR": 2555.44,
+  "GA": 12.56,
+  "GM": 1.04,
+  "GE": 11.23,
+  "DE": 3305.9,
+  "GH": 18.06,
+  "GR": 305.01,
+  "GD": 0.65,
+  "GT": 40.77,
+  "GN": 4.34,
+  "GW": 0.83,
+  "GY": 2.2,
+  "HT": 6.5,
+  "HN": 15.34,
+  "HK": 226.49,
+  "HU": 132.28,
+  "IS": 12.77,
+  "IN": 1430.02,
+  "ID": 695.06,
+  "IR": 337.9,
+  "IQ": 84.14,
+  "IE": 204.14,
+  "IL": 201.25,
+  "IT": 2036.69,
+  "JM": 13.74,
+  "JP": 5390.9,
+  "JO": 27.13,
+  "KZ": 129.76,
+  "KE": 32.42,
+  "KI": 0.15,
+  "KR": 986.26,
+  "UNDEFINED": 5.73,
+  "KW": 117.32,
+  "KG": 4.44,
+  "LA": 6.34,
+  "LV": 23.39,
+  "LB": 39.15,
+  "LS": 1.8,
+  "LR": 0.98,
+  "LY": 77.91,
+  "LT": 35.73,
+  "LU": 52.43,
+  "MK": 9.58,
+  "MG": 8.33,
+  "MW": 5.04,
+  "MY": 218.95,
+  "MV": 1.43,
+  "ML": 9.08,
+  "MT": 7.8,
+  "MR": 3.49,
+  "MU": 9.43,
+  "MX": 1004.04,
+  "MD": 5.36,
+  "MN": 5.81,
+  "ME": 3.88,
+  "MA": 91.7,
+  "MZ": 10.21,
+  "MM": 35.65,
+  "NA": 11.45,
+  "NP": 15.11,
+  "NL": 770.31,
+  "NZ": 138,
+  "NI": 6.38,
+  "NE": 5.6,
+  "NG": 206.66,
+  "NO": 413.51,
+  "OM": 53.78,
+  "PK": 174.79,
+  "PA": 27.2,
+  "PG": 8.81,
+  "PY": 17.17,
+  "PE": 153.55,
+  "PH": 189.06,
+  "PL": 438.88,
+  "PT": 223.7,
+  "QA": 126.52,
+  "RO": 158.39,
+  "RU": 1476.91,
+  "RW": 5.69,
+  "WS": 0.55,
+  "ST": 0.19,
+  "SA": 434.44,
+  "SN": 12.66,
+  "RS": 38.92,
+  "SC": 0.92,
+  "SL": 1.9,
+  "SG": 217.38,
+  "SK": 86.26,
+  "SI": 46.44,
+  "SB": 0.67,
+  "ZA": 354.41,
+  "ES": 1374.78,
+  "LK": 48.24,
+  "KN": 0.56,
+  "LC": 1,
+  "VC": 0.58,
+  "SD": 65.93,
+  "SR": 3.3,
+  "SZ": 3.17,
+  "SE": 444.59,
+  "CH": 522.44,
+  "SY": 59.63,
+  "TW": 426.98,
+  "TJ": 5.58,
+  "TZ": 22.43,
+  "TH": 312.61,
+  "TL": 0.62,
+  "TG": 3.07,
+  "TO": 0.3,
+  "TT": 21.2,
+  "TN": 43.86,
+  "TR": 729.05,
+  "TM": 0,
+  "UG": 17.12,
+  "UA": 136.56,
+  "AE": 239.65,
+  "GB": 2258.57,
+  "US": 14624.18,
+  "UY": 40.71,
+  "UZ": 37.72,
+  "VU": 0.72,
+  "VE": 285.21,
+  "VN": 101.99,
+  "YE": 30.02,
+  "ZM": 15.69,
+  "ZW": 5.57
+};
+
+var dataStatus = 
+ [
+         	{ id: 'CN-32', name: '江苏', event: '', url: '' },
+// 　　　　{ id: 'HKG', name: '香港', event: '', url: '' },
+// 　　　　{ id: 'HAI', name: '海南', event: '', url: '' },
+// 　　　　{ id: 'YUN', name: '云南', event: '', url: '' },
+ 　　　　{ id: 'CN-11', name: '北京', event: '(3个活动)', url: '/event/1' }
+// 　　　　{ id: 'TAJ', name: '天津', event: '', url: '' },
+// 　　　　{ id: 'XIN', name: '新疆', event: '', url: '' },
+// 　　　　{ id: 'TIB', name: '西藏', event: '', url: '' },
+// 　　　　{ id: 'QIH', name: '青海', event: '', url: '' },
+// 　　　　{ id: 'GAN', name: '甘肃', event: '', url: '' },
+// 　　　　{ id: 'NMG', name: '内蒙古', event: '', url: '' },
+// 　　　　{ id: 'NXA', name: '宁夏', event: '', url: '' },
+// 　　　　{ id: 'SHX', name: '山西', event: '', url: '' },
+// 　　　　{ id: 'LIA', name: '辽宁', event: '', url: '' },
+// 　　　　{ id: 'JIL', name: '吉林', event: '', url: '' },
+// 　　　　{ id: 'HLJ', name: '黑龙江', event: '', url: '' },
+// 　　　　{ id: 'HEB', name: '河北', event: '', url: '' },
+// 　　　　{ id: 'SHD', name: '山东', event: '', url: '' },
+// 　　　　{ id: 'HEN', name: '河南', event: '', url: '' },
+// 　　　　{ id: 'SHA', name: '陕西', event: '', url: '' },
+// 　　　　{ id: 'SCH', name: '四川', event: '(1个活动)', url: '/event/2' },
+// 　　　　{ id: 'CHQ', name: '重庆', event: '', url: '' },
+// 　　　　{ id: 'HUB', name: '湖北', event: '(1个活动)', url: '/event/3' },
+// 　　　　{ id: 'ANH', name: '安徽', event: '', url: '' },
+// 　　　　{ id: 'JSU', name: '江苏', event: '', url: '' },
+// 　　　　{ id: 'SHH', name: '上海', event: '', url: '' },
+// 　　　　{ id: 'ZHJ', name: '浙江', event: '', url: '' },
+// 　　　　{ id: 'FUJ', name: '福建', event: '', url: '' },
+// 　　　　{ id: 'TAI', name: '台湾', event: '', url: '' },
+// 　　　　{ id: 'JXI', name: '江西', event: '', url: '' },
+// 　　　　{ id: 'HUN', name: '湖南', event: '', url: '' },
+// 　　　　{ id: 'GUI', name: '贵州', event: '', url: '' },
+// 　　　　{ id: 'GXI', name: '广西', event: '', url: '' }, 
+// 　　　　{ id: 'GUD', name: '广东', event: '', url: '' }
+　　];
+
+
+         $(function(){
+ 
+             // $('#container_world').vectorMap({
+             //     map: 'world_mill'
+             // });
+
+              $('#container_world').vectorMap({
+			    map: 'world_mill',
+			    series: {
+			      regions: [{
+			        values: gdpData,
+			        scale: ['#C8EEFF', '#0071A4'],
+			        normalizeFunction: 'polynomial'
+			      }]
+			    },
+			    onRegionTipShow: function(e, el, code){
+			      el.html(el.html()+' (GDP - '+gdpData[code]+')');
+			    }
+			  });
+
+             /*
+             $('#container').vectorMap({
+             	map: 'cn_mill',
+             	//backgroundColor: "#EEE",
+             	regionsSelectable:true,
+				markersSelectable:true,
+				regionStyle: {
+                    initial: {
+                        fill: '#1d8d8d'
+                    },
+                    hover: {
+				    	"fill-opacity": 0.8,
+				   		cursor: 'pointer'
+				 	},
+					 selected: {
+					    fill: 'white'
+					}
+                 },
+				markers: [
+				    {latLng: [34.62, 112.45], name: '河南 - 洛阳  家'},
+					{latLng: [34.74, 113.66], name: '河南 - 郑州  2010,2011,2012'},
+					{latLng: [39.95, 116.34], name: '北京  2013'},
+					{latLng: [38.97, 121.53], name: '辽宁 - 大连  2010-2014'},
+					{latLng: [29.88, 121.64], name: '浙江 - 宁波  2014.04'},
+				],
+                 //显示各地区名称和活动
+　　　　　　　　 onRegionTipShow: function (event, label, code) {
+	                //alert("1111");
+		　　　　　　$.each(dataStatus, function (i, items) {
+		　　　　　　　　if (code == items.id) {
+							//alert("1111"+code);
+		　　　　　　　　　　label.html(items.name + items.event);
+		　　　　　　　　}
+		　　　　　　});
+　　　　　　　　},
+				//点击有活动的省份区域，打开对应活动列表页面
+		　　　　onRegionClick: function(event, code){
+		　　　　　　$.each(dataStatus, function (i, items) {
+		　　　　　　　　if ((code == items.id) && (items.event != '')) {
+		　　　　　　　　　　window.location.href = items.url;
+		　　　　　　　　}
+		　　　　　　});
+		　　　　}
+				//　
+        	 });
+			*/
+         });
+       
+     </script>
+ </head>
+
+
+ <body>
+    
+     <div id="container_world"></div>
+ </body>
+ </html>
