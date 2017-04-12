@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<script src="static/js/jquery/2.0.0/jquery.min.js"></script>
+	<title>Jquery测试题</title>
+	<style type="text/css">
+	   p{
+	   	  font-weight: bold;
+	   }
+
+	   caption{
+ 		 font-weight: bold;
+ 		 /*color: #00DDAA;*/
+	   }
+	   div#div4 input{
+	   	  margin-bottom:2px;
+	   }
+	</style>
+
+	 <script type="text/javascript">
+		 /*
+        //原生JS做法
+        window.onload = function(){
+        	//习题1-----------------------------------
+             var btn = document.getElementById("btn");
+             btn.onclick = function(){
+             	var b1 = document.getElementById("btnFirst");
+             	var b2 = document.getElementById("btnSecond");
+
+             	var x1= Number(b1.value);
+             	var x2= Number(b2.value);
+
+             	document.getElementById("btnResult").value = (x1+x2);
+             };
+            //习题2------------------------------------
+            var _i = 5; //避免和底下的变量i重复 修改为私有变量以下划线开头
+            var btnShow = document.getElementById("btnShow");
+            btnShow.value = '请仔细阅读协议(' + _i + ')';
+            var setId= setInterval(function(){
+            	_i--;
+            	if (_i <= 0) {                    
+                    btnShow.value = "同意";
+                    btnShow.disabled = false;
+                    clearInterval(setId);
+                }
+                else {
+                    btnShow.value = '请仔细阅读协议(' + _i + ')';
+                }
+            },1000);
+            //习题3
+            var btn1 = document.getElementById("btn1");
+            btn1.onclick = function(){
+				//创建一行和两个单元格
+				var txt = document.getElementById("txt");
+				var textContent = document.getElementById("textContent");
+				var tb = document.getElementById("tb");
+				var _ttr = document.createElement("tr");
+				_ttr.innerHTML = '<td>' + txt.value + '</td><td>' + textContent.value + '</td>';
+				//innerText // &lt;
+				tb.appendChild(_ttr);
+            };
+            //习题4
+            var is = document.querySelectorAll('div#div4 input');
+            for (var i = 0 ; i < is.length; i++) {
+            	var ele = is.item(i);
+            	ele.onblur = function(){
+                    console.log(this.value);
+                    if (this.value.length == 0) {
+                      this.style.backgroundColor = 'red';
+	                }
+	                else {
+	                   this.style.backgroundColor = '';
+	                }
+            	};
+            };
+            //习题5
+            var uul = document.querySelectorAll('#uul li');
+            console.log(uul.length);
+            for (var i = 0 ; i < uul.length; i++) {
+            	var ele = uul.item(i);
+            	ele.onmouseover = function(){
+                   this.style.cursor = 'pointer';
+                   this.style.backgroundColor = 'red';
+				};
+				ele.onmouseout = function(){
+	                this.style.cursor = 'pointer';
+	                this.style.backgroundColor = '';
+				};
+				ele.onclick= function(){
+	                this.style = '';
+	                this.onmouseover = null;//清空时间
+	                this.onmouseout = null;
+	                this.onclick = null;
+	                document.getElementById("ul2").appendChild(this);
+				};
+            };
+			
+        };
+		*/
+         
+	    //Jquery的做法
+        
+        $(function () {
+            //习题1
+             $('#btn').click(function () {
+                var first  = parseInt($('#btnFirst').val());
+                var second = parseInt($('#btnSecond').val());//不会处理小数
+                first  = Number($('#btnFirst').val());
+                second = Number($('#btnSecond').val());
+                var sum = first + second;
+                $('#btnResult').val(sum);
+            });
+
+			//习题2
+            var i = 5;
+            var setId = setInterval(function () {
+                i--;
+                if (i <= 0) {                    
+                    $('#btnShow').val('同意').attr('disabled', false);
+                    clearInterval(setId);
+                }
+                else {
+                    $('#btnShow').val('请仔细阅读协议(' + i + ')');
+                }
+            }, 500);
+            
+            //习题3
+            $("#btn1").click(function () {
+                //创建一行和两个单元格
+                $('<tr><td>' + $('#txt').val() + '</td><td>' + $('#textContent').val() + '</td></tr>').appendTo($("#tb"));
+            });
+
+            //习题4
+            $('div#div4 input').blur(function () {
+                if ($(this).val().length == 0) {
+                    $(this).css('backgroundColor', 'red');
+                }
+                else {
+                    $(this).css('backgroundColor','');
+                }
+            });
+
+            //习题5
+            $('#uul li').mouseover(function(){
+				$(this).css('cursor', 'pointer').css('backgroundColor', 'red');
+            }).mouseout(function(){
+            	$(this).css('cursor', 'pointer').css('backgroundColor', '');
+            }).click(function(){
+            	$(this).unbind().removeAttr('style').appendTo($('#ul2'));
+            })
+            ;
+            
+        });
+        /**/
+    </script>
+
+</head>
+<body>
+   <div id="div1">
+      <p>1、加法计算器。两个文本框中输入数字，点击【=】按钮将相加的结果放到第三个文本框中。</p>
+      <input type="text" name="name" value="" id="btnFirst" />+
+      <input type="text" name="name" value="" id="btnSecond" />
+      <input type="button" name="name" value="=" id="btn" />
+      <input type="text" name="name" value="" id="btnResult" />
+   </div>
+
+   <div id="div2">
+  		 <p>2、5秒钟后协议文本框下的注册按钮才能点击，时钟倒数。设置可用性等jQuery未封装方法：attr("")setInterval()
+		</p>
+		<input type="button" name="name" value="请仔细阅读协议(5)" id="btnShow" disabled="disabled" />
+		
+		<button id="btnShow2" disabled="disabled">请仔细阅读协议(5)</button>
+	</div>
+
+	<div id="div3">
+	<p>3、无刷新评论。(已做)</p>
+
+    <table id="tb" style="border:1px solid red;">
+        <tr>
+            <td>
+                猫猫：
+            </td>
+            <td>
+                沙发耶！
+            </td>
+        </tr>
+    </table>
+    <br />
+    昵称：<input type="text" id="txt" value="" /> <br />
+    <textarea id="textContent" rows="10" cols="15"></textarea> <br />
+    <input type="button" value="评论" id="btn1" />
+	</div>
+
+	<div id="div4">
+		<p>4、案例1：创建若干个输入文本框，当光标离开文本框的时候如果文本框为空，则将文本框背景色设置为红色，如果不为空则为白色。提示：焦点进入控件的事件是focus，焦点离开控件的事件是blur。</p>
+		<input type="text" name="txt1" id="txt1"> <br>
+		<input type="text" name="txt2" id="txt2"> <br>
+		<input type="text" name="txt3" id="txt3"> <br>
+		<input type="text" name="txt4" id="txt4"> <br>
+	</div>
+
+    <div id="div5">
+    	<p>5、案例：选择球队,两个ul。被悬浮行高亮显示（背景是红色），点击球队将它放到另一个的球队列表。//清除所有事件。.unbind();
+		</p>
+	    <ul id="uul">
+	   		<p>西区</p>
+	    	<li>湖人</li>
+	    	<li>马刺</li>
+	    	<li>热火</li>
+	    	<li>尼克斯</li>
+	    	<li>勇士</li>
+	    	<li>骑士</li>
+	    	<li>凯尔特人</li>
+	    	<li>山猫</li>
+	    	<li>公牛</li>
+	    	<li>活塞</li>
+	    </ul>
+
+	    <ul id="ul2"><p>东区</p></ul>
+    </div>
+
+</body>
+</html>

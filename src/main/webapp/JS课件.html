@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>第一个jS程序</title>
+
+    <!-- CSS的选择器 
+       具体查看：http://www.runoob.com/cssref/css-selectors.html
+       #content2  #ID选择器#ID         表示为id为content2的元素添加样式
+   	   .cls       .类选择器.class      表示为class为cls的元素添加样式
+   	   div        标签名选择器tagName  表示为标签为为div的元素添加样式
+   	   [attribute]	属性选择器[target] 表示为选择所有带有target属性元素
+	-->
+    <!-- 内嵌式样式 -->
+	<style type="text/css">
+		#content2{
+			color: blue;
+		}
+		.cls{
+			text-decoration: line-through;
+		}
+		button{
+			color: orange;
+		}
+		p,span{
+			color: orange;
+		}
+		p span{  /*子类选择器*/
+			color: purple;
+		}
+		p > span{  /*父类选择器*/
+			
+		}
+	</style>
+    <!-- 外联式样式 -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+
+
+	<!-- 内嵌式JS代码 -->
+	<script type="text/javascript">
+		function showDate(){
+			//为我的这个div写入HTML的元素
+			document.getElementById("content").innerHTML = Date();
+			//document.getElementsByTagName("div")[0].innerHTML = "<h1>哇哈哈</h1>";
+
+			//1.测试工具
+			//alert("测试-----print");//弹出对话框
+			console.log("测试-----print");//在谷歌浏览器的按F12或者右键审查元素 有个Console
+
+			
+
+		}
+		//修改属性
+		function changeImg(){
+			//document.getElementById("image").src = "Public/img/favicon.ico";
+			document.getElementById("image")["src"] = "Public/img/favicon.ico";
+		}
+
+		//页面加载完，我们才执行js代码（不然的话网页的DOM都还没构建好你就执行）
+		window.onload =function(){
+			//第一步找到你要操作的元素节点集合
+
+			//1.通过id找到元素节点Node
+			//2.通过标签名  返回的是元素的集合 NodeList
+			document.getElementsByTagName("div")[0].innerHTML = "<h1>哇哈哈</h1>";
+			//3.根据类名来获取 返回的是元素的集合 NodeList
+			document.getElementsByClassName("cls")[1].innerHTML = "<h5>哇dddd哈哈</h5>";
+
+			//第二步操作元素的内容和属性
+
+			//1.操作它的属性 attr
+			//document.getElementById("image").src = "Public/img/favicon.ico";
+			//2.修改页面内容
+			//document.getElementById("content").innerHTML = Date();
+			//3.只有document可以直接写入流对象 你的body里面的所有标签变为你写的东西
+			//document.write("<h1>这是一个标题</h1>"); //覆盖掉你所有的元素
+
+			//改变元素的样式
+
+
+			//操作元素的事件
+			//1.怎么为一个元素添加事件
+			//click事件
+			//方式一：<button onclick="showDate();">查看时间</button>
+			//方式二：
+			var p2 = document.getElementById("p2");
+			p2.onclick = function(){
+				//console.log("1111111111111");
+				p2.style.textDecoration = "line-through";
+			};
+			//方式三:  如果你想挂多个click事件的话 就要使用这种方式
+			var f = function(){
+				p2.style.color = "#124323";
+			};
+			p2.addEventListener("click",f);
+
+			//移除事件
+			//p2.onclick = null;
+			//p2.removeEventListener("click",f);
+
+
+			//有哪些常用的事件
+			//1.click事件:当用户点击鼠标时
+			//2.onload事件：当网页已加载时 基本上是跟window这个对象走
+			//3.onload：当图像已加载时
+			var image = document.getElementById("image");
+			image.onload = function(){
+				alert("图像加载完成");
+			};
+			//4.mouseover:当鼠标移动到元素上时
+			image.onmouseover = function(){
+				image.style.cursor = "pointer";
+			}
+			//5.mouseout:
+			//6.change:当输入字段被改变时
+			//7.submit:当提交 HTML 表单时
+			//8.onfocus:获得焦点
+
+
+		};
+
+		
+	</script>
+
+	<!-- 外联式JS -->
+	<script src="Public/js/jquery.min.js-v=2.1.4"></script>
+</head>
+<body>
+	<div id="content"  class="cls" ></div>
+	<div id="content2" class="cls"></div>
+	<img id="image" src="Public/img/borrow_log_600x600.png" onclick="changeImg();">
+	<p>p标签</p>
+	<span>块元素</span>
+
+	<p>
+	   <span>子元素</span>
+	</p>
+	<div>
+		<button onclick="showDate();">查看时间</button>
+		<button onclick="showDate();">查看时间</button>
+		<input type="text" name="" value="自带的">
+	</div>
+    
+    <p id="p0" style="text-decoration: line-through;color:#5C05A1;">Hello World!</p>
+    <p id="p1" >Hello World!</p>
+	<p id="p2" >Hello World!</p>
+	<script>
+		document.getElementById("p2").style.color="blue";
+		document.getElementById("p2").style.fontFamily="Arial";
+		document.getElementById("p2").style.fontSize="larger";
+	</script>
+</body>
+</html>
