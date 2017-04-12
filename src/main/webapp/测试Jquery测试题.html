@@ -19,7 +19,50 @@
 	</style>
 
 	 <script type="text/javascript">
-		 /*
+        
+         function checkNumber(n){
+
+         }
+
+        document.ready = function(){
+            //习题1-----------------------------------
+            var btn = document.getElementById("btn");
+            var b1 = document.getElementById("btnFirst");
+            var b2 = document.getElementById("btnSecond");
+
+            btn.onclick = function(){
+                //执行加法操作
+                //console.log(b1.value + b2.value);
+                var x1 = Number(b1.value);//parseInt(b1.value)
+                var x2 = Number(b2.value);
+                //赋值
+                document.getElementById("btnResult").value = (x1+x2);
+            };
+            //习题1额外需求： 只能输入数字和小数点
+            //键盘事件 keyup # keydown
+            b1.onkeypress = function(event){
+                //console.log(event);
+                if(event.keyCode >= 48 && event.keyCode<=57 ){
+                    //b1.preventDefault();//阻止默认事件
+                    return true;
+                }
+                return false;
+            };
+            b1.onchange = function(event){
+                if(isNaN(b1.value))
+                {
+                    b1.value = 0;
+                    return false;
+                }
+            };
+
+
+            //习题2--------------------------------------------------------
+
+        };
+
+
+		/*
         //原生JS做法
         window.onload = function(){
         	//习题1-----------------------------------
@@ -100,7 +143,7 @@
 		*/
          
 	    //Jquery的做法
-        
+        /*
         $(function () {
             //习题1
              $('#btn').click(function () {
@@ -152,7 +195,7 @@
             ;
             
         });
-        /**/
+        */
     </script>
 
 </head>
