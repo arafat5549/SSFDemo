@@ -25,7 +25,9 @@
 	<!-- Data Tables 基于jQuery表格插件 -->
     <script src="Public/js/plugins/dataTables/jquery.dataTables.js"></script>
     <script src="Public/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+	
 
+	<script src="products.js"></script><!--测试数据-->
     <script type="text/javascript">
     	var data = [
         [
@@ -83,12 +85,23 @@
          //        dataSrc: 'data',
          //    },
 	         "ordering": true,
-	         "serverSide": true,
-	        // "orderMulti": true,
-	        // "processing": true,
+	        //"serverSide": true,  //服务端
+	        // "orderMulti": true, //多列排序
+	        // "processing": true, //进度条
 	        "dom": 't<".col-sm-4"l><".col-sm-4"i><".col-sm-4"p>',
 	        "order": [ 1, 'asc' ],
-	        data: data
+	        data: productConfig,
+	        // "columnDefs": 
+	        // [ {
+            //         "targets": 3,
+            //         "orderable": false //关闭第三列的排序
+            //    }],
+	        "columns": [
+            { data: 'id' },
+            { data: 'name' },
+            { data: 'price' },
+            { data: 'createTime' }
+        	]
 	    });
  	});
     
@@ -101,11 +114,9 @@
             <thead>
                    <tr>
                         <th>编号</th>
-                        <th>借款序号</th>
-                        <th>借款人</th>
-                        <th>还款金额</th>
-                        <th>应还款时间</th>
-                        <th>实际还款时间</th>
+                        <th>商品名称</th>
+                        <th>商品价格</th>
+                        <th>创建时间</th>
                     </tr>
                 </thead>
             <tbody>

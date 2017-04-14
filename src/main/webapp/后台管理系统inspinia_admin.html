@@ -126,11 +126,13 @@
                         <div class="navbar-header">
                             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
                         </div>
+
                         <ul class="nav navbar-top-links navbar-left">
                             <li>
                                 <a class="m-r-lg text-muted welcome-message">{$title}</a>
                             </li>
                         </ul>
+
                         <ul class="nav navbar-top-links navbar-right">
                         <span class="m-r-sm text-muted welcome-message">欢迎你,</span>
                         <li class="dropdown">
@@ -142,7 +144,7 @@
                                         <strong><a href="__MODULE__/login/logout">退出登陆</a></strong>
                                     </li>
                                 </ul>
-                            </li>
+                          </li>
                         </ul>
                     </nav>
                 </div>
@@ -152,9 +154,9 @@
 
 
 
-<!-- 主题部分 -->
-<div class="wrapper wrapper-content animated fadeInRight">
 
+<div class="wrapper wrapper-content animated fadeInRight">
+ <!-- 主题部分-->
 <div class="row">
 	<div class="col-sm-3">
 	    <div class="ibox float-e-margins">
@@ -169,6 +171,7 @@
 	        </div>
 	    </div>
 	</div>
+  
       <div class="col-sm-3">
           <div class="ibox float-e-margins">
               <div class="ibox-title">
@@ -353,12 +356,14 @@
             </div>
         </div>
 	</div>
-</div>
+  
 </div>
 
+</div>
 
+<!--
 <IFRAME ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING=AUTO width=100%  height=600px SRC="plugin_jqueryValidate.html"></IFRAME>
-
+-->
 <!-- 选择还款时间模态窗口开始 -->
 <div class="modal inmodal fade" id="user_relation" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
           <div class="modal-dialog modal-sm">
@@ -433,7 +438,8 @@
     <script src="Public/js/jquery-ui.custom.min.js"></script>
     <script src="Public/js/plugins/fullcalendar/fullcalendar.min.js"></script>
 
-    
+    <script src="products.js"></script><!--测试数据-->
+
     <!-- 时间选择插件 laydate -->
     <script>
         laydate({elem:"#hello",event:"focus"});
@@ -768,24 +774,7 @@
                 '</table>';
             };
 
-            var index_data = [
-                  [
-                      "Tiger Nixon",
-                      "System Architect",
-                      "Edinburgh",
-                      "5421",
-                      "2011/04/25",
-                      "$3,120"
-                  ],
-                  [
-                      "Garrett Winters",
-                      "Director",
-                      "Edinburgh",
-                      "8422",
-                      "2011/07/25",
-                      "$5,300"
-                  ]
-              ];
+            
             $(document).ready(function() {
 
                 // 还款列表
@@ -814,12 +803,12 @@
                       "dom": 't<".col-sm-4"l><".col-sm-4"i><".col-sm-4"p>',
                       "orderMulti": true,
                       "processing": true,
-                      "serverSide": true,
+                      //"serverSide": true,
                       // ajax: {
                       //       url: '__MODULE__/Index/ajaxquery',
                       //       dataSrc: 'data',
                       // },
-                      data:index_data,
+                      data:productConfig,
                       "columnDefs": [ {
                       "targets": 8,
                       "orderable": false
@@ -832,13 +821,9 @@
                                       "defaultContent": ''
                                 },
                                 { "data": "id" },
-                                { "data":"borrow_number"},
                                 { "data": "name"},
-                                { "data": "repayment_money"},
-                                { "data": "repayment_time" },
-                                { "data": "real_repayment_time"},
-                                { "data": "is_late" },
-                                { "data": "action"}
+                                { "data": 'price' },
+                                { "data": 'createTime' }
                       ],
                       "order": [ 5, 'asc' ],
                       "lengthMenu": [ [ 50, 100, 200], [ 50, 100, 200] ]
