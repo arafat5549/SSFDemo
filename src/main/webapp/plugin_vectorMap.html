@@ -2,27 +2,35 @@
  <html xmlns="http://www.w3.org/1999/xhtml">
  <head>
   	 <meta charset="utf-8">
-     <title>中国地图</title>
-     <style type="text/css">
+     <title>jvectorMap地图插件</title>
+      <!--  
+        ####################CSS区域####################
+      -->
+      <!-- jvectormap CSS -->
+      <link rel="stylesheet" type="text/css" href="Public/css/plugins/jvectormap/jquery-jvectormap-2.0.3.css">
+
+      <style type="text/css">
          *{margin: 0;padding: 0}
          #container{width: 708px; height: 600px}
          #container_world{width: 708px; height: 600px}
-     </style>
-
-      <link rel="stylesheet" type="text/css" href="Public/css/plugins/jvectormap/jquery-jvectormap-2.0.3.css">
-
+      </style>
+  
+      <!--  
+        ####################JS插件区域####################
+      -->
 
       <script src="Public/js/jquery.min.js-v=2.1.4"></script>
+      
+      <!-- jvectormap插件 -->
       <script src="Public/js/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
-      
-      
+      <!-- jvectormap世界地图数据 -->
       <script src="Public/js/plugins/jvectormap/jquery-jvectormap-world-mill.js"></script>
-      
-	  <script src="Public/js/plugins/jvectormap/jquery-jvectormap-cn-mill.js"></script>
+      <!-- jvectormap中国地图数据 -->
+	    <script src="Public/js/plugins/jvectormap/jquery-jvectormap-cn-mill.js"></script>
       
      <script type="text/javascript">
 
-     	        	var gdpData = {
+  var gdpData = {//GDP数据
   "AF": 16.63,
   "AL": 11.58,
   "DZ": 158.97,

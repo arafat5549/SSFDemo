@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>dataTables</title>
+	<!--  
+        ####################CSS区域####################
+    -->
+
+    <!-- 主体CSS -->
+	<link href="Public/css/bootstrap.min.css-v=3.3.5.css" rel="stylesheet">
+    
+    <!-- 一套绝佳的图标字体库和CSS框架 -->
+    <link href="Public/font-awesome/css/font-awesome.css" rel="stylesheet">
+	<link href="Public/css/animate.css" rel="stylesheet">
+    <link href="Public/css/style.css" rel="stylesheet"><!-- 自定义style风格 -->
+	
+	<!--  
+        ####################JS插件区域####################
+      -->
+    <!-- 主体JS框架 -->
+	<script src="Public/js/jquery.min.js-v=2.1.4"></script>
+	<script src="Public/js/bootstrap.min.js-v=3.3.5"></script>
+
+	<!-- Data Tables 基于jQuery表格插件 -->
+    <script src="Public/js/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="Public/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+    <script type="text/javascript">
+    	var data = [
+        [
+            "Tiger Nixon",
+            "System Architect",
+            "Edinburgh",
+            "5421",
+            "2013/04/25",
+            "$13,120"
+        ],
+        [
+            "Garrett Winters",
+            "Director",
+            "Edinburgh",
+            "8422",
+            "2011/07/25",
+            "$5,300"
+        ],
+        [
+            "Garrett Winters",
+            "Director",
+            "Edinburgh",
+            "8422",
+            "2011/07/25",
+            "$5,300"
+        ]
+    ];
+
+ 	$(function(){
+		//然后 DataTables 这样初始化：
+	    $('#example').DataTable( {
+	    	"language": {
+                            "decimal":        "",
+                            "emptyTable":     "没有数据",
+                            "info":           "从 第_START_ 到 _END_条 /共 _TOTAL_ 条数据",
+                            "infoEmpty":      "从 0到 0 /共 0条数据",
+                            "infoFiltered":   "(从 _MAX_ 条数据中检索)",
+                            "infoPostFix":    "",
+                            "thousands":      ",",
+                            "lengthMenu":     "每页显示 _MENU_ 条记录",
+                            "loadingRecords": "加载中...",
+                            "processing":     "搜索中...",
+                            "search":         "搜索:",
+                            "zeroRecords":    "没有检索到数据",
+                            "paginate": {
+                                "first":      "首页",
+                                "last":       "尾页",
+                                "next":       "后一页",
+                                "previous":   "前一页"
+                            },
+                      },
+	        
+	     // ajax: {
+         //        url: '__MODULE__/Index/ajaxquery',
+         //        dataSrc: 'data',
+         //    },
+	         "ordering": true,
+	         "serverSide": true,
+	        // "orderMulti": true,
+	        // "processing": true,
+	        "dom": 't<".col-sm-4"l><".col-sm-4"i><".col-sm-4"p>',
+	        "order": [ 1, 'asc' ],
+	        data: data
+	    });
+ 	});
+    
+    </script>
+</head>
+<body>
+<div class="ibox-content">
+   <div class="row">
+   		<table class="table table-striped table-bordered table-hover dataTables-example" id="example">
+            <thead>
+                   <tr>
+                        <th>编号</th>
+                        <th>借款序号</th>
+                        <th>借款人</th>
+                        <th>还款金额</th>
+                        <th>应还款时间</th>
+                        <th>实际还款时间</th>
+                    </tr>
+                </thead>
+            <tbody>
+            </tbody>
+        </table>
+   </div>
+</div>
+</body>
+</html>

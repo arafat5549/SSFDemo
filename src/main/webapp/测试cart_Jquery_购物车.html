@@ -18,9 +18,10 @@
 	<script src="products.js"></script>
 
     <script type="text/javascript">
-
-        var products = productConfig.slice(0,2);
+        //取了前两个对象
+        var products = productConfig.slice(0,5);
    		console.log(products);
+    	
     	function init(p){
     		var _frame = $("#frame");
     		//var p = products[0];
@@ -29,6 +30,7 @@
     		var pname = p.name;
     		var pprice = p.price;
     		var ppromote = p.promotePrice;
+    		var stock = p.stock;
     		p.count = 2;//生成数量字段
     		var pcount = p.count;
     		var td1 = 
@@ -48,19 +50,19 @@
 
 			var td3 =
 			'<span class="cartProductItemOringalPrice">￥'+pprice+'</span>'+
-			'<span  class="cartProductItemPromotionPrice">￥'+ppromote+'</span>';
+			'<span class="cartProductItemPromotionPrice">￥'+ppromote+'</span>';
 
 			var td4 =
 			'<div class="cartProductChangeNumberDiv">'+
-				'<span class="hidden orderItemStock " pid="${oi.product.id}">${oi.product.stock}</span>'+
-				'<span class="hidden orderItemPromotePrice " pid="${oi.product.id}">${oi.product.promotePrice}</span>'+
-				'<a  pid="${oi.product.id}" class="numberMinus" href="#nowhere">-</a>'+
-				'<input pid="${oi.product.id}" oiid="${oi.id}" class="orderItemNumberSetting" autocomplete="off" value="'+pcount+'">'+
-				'<a  stock="${oi.product.stock}" pid="${oi.product.id}" class="numberPlus" href="#nowhere">+</a>'+
+				'<span class="hidden orderItemStock " pid="'+pid+'">'+stock+'</span>'+
+				'<span class="hidden orderItemPromotePrice " pid="'+pid+'">'+ppromote+'</span>'+
+				'<a  pid="'+pid+'" class="numberMinus" href="#nowhere">-</a>'+
+				'<input pid="'+pid+'" oiid="${oi.id}" class="orderItemNumberSetting" autocomplete="off" value="'+pcount+'">'+
+				'<a  stock="${oi.product.stock}" pid="'+pid+'" class="numberPlus" href="#nowhere">+</a>'+
 			'</div>';
 
 			var td5 =
-			'<span class="cartProductItemSmallSumPrice" oiid="${oi.id}" pid="${oi.product.id}" >'+
+			'<span class="cartProductItemSmallSumPrice" oiid="${oi.id}" pid="'+pid+'" >'+
 			'￥'+(Number(ppromote)*pcount)+ //<fmt:formatNumber type="number" value="${oi.product.promotePrice*oi.number}" minFractionDigits="2"/>'+
 			'</span>';
 
@@ -81,11 +83,13 @@
     	}
 
     	$(function(){
+    		//初始化商品
     		for (var i = 0;i<products.length;i++) {
     			init(products[i]);
     		}
 
             var selectitTrue = "true";
+            //同步结算按钮
     		function syncCreateOrderButton(){
     			var selectAny = false;
     			$("img.cartProductItemIfSelected").each(function(){
@@ -95,7 +99,6 @@
 				});
 				
 				if(selectAny){
-					//$("button.createOrderButton").css({"background":"#C40000",})
 					$("button.createOrderButton").css("background-color","#C40000");
 					$("button.createOrderButton").removeAttr("disabled");
 				}
@@ -104,10 +107,28 @@
 					$("button.createOrderButton").attr("disabled","disabled");		
 				}
     		}
+    		//同步总金额和总数量
+    		function syncTotalPriceAndCount(){
+    			var totalCount = 0;  //总数量
+    			var totalPrice =0.0; //总金额
+    			$("img.cartProductItemIfSelected").each(function(){
+    				var pid = $(this).attr("oiid");
+					if(selectitTrue==$(this).attr("selectit")){
+						var count = Number($(".orderItemNumberSetting[pid="+pid+"]").val());
+						var price = Number($(".cartProductItemSmallSumPrice[pid="+pid+"]").text().replace("￥",""));
+						totalCount += count;
+						totalPrice += price;
+					}
+				});
+				//
+				$(".cartSumNumber").text(totalCount);
+				$(".cartSumPrice").text('￥'+totalPrice);
+				$(".cartTitlePrice").text('￥'+totalPrice);
+    		} 
 
     		//添加事件
     		$("img.cartProductItemIfSelected").click(function(){
-                console.log($(this).attr("oiid"));
+                //console.log($(this).attr("oiid"));
                 if($(this).attr("selectit") === "false")
                 {
                 	$(this).attr("src","static/img/site/cartSelected.png");
@@ -122,6 +143,7 @@
                 }
 
                 syncCreateOrderButton();
+                syncTotalPriceAndCount();
     		});
 
     		//全选
@@ -145,9 +167,71 @@
                 }
 
                 syncCreateOrderButton();
+                syncTotalPriceAndCount();
 			});
-			//加 减按钮
 
+			//加 减按钮（不能小于1，不能大于他的库存stock ，不能输入非数字）
+			//减号Minus
+			$(".numberMinus").click(function(){
+				
+				//1.获取唯一的商品id
+				var pid = $(this).attr("pid");
+				var stock = Number($(".orderItemStock[pid="+pid+"]").text());
+				var ele = $(".orderItemNumberSetting[pid="+pid+"]");
+				var count =  Number(ele.val()) - 1;
+				count = Math.max(1,count);     //不能小于1
+				count = Math.min(count,stock); //不能大于stock
+				//2.数量减1
+				ele.val(count);
+				var price = $(".orderItemPromotePrice[pid="+pid+"]").text();
+				var eleMoney = $(".cartProductItemSmallSumPrice[pid="+pid+"]");
+				eleMoney.text('￥'+Math.floor(price*count*100)/100);
+				//console.log(price); 
+				syncTotalPriceAndCount();
+			});
+			//加法
+			$(".numberPlus").click(function(){
+				//1.获取唯一的商品id
+				var pid = $(this).attr("pid");
+				var stock = Number($(".orderItemStock[pid="+pid+"]").text());
+				var ele = $(".orderItemNumberSetting[pid="+pid+"]");//输入框的元素
+				var count =  Number(ele.val()) + 1;
+				count = Math.max(1,count);     //不能小于1
+				count = Math.min(count,stock); //不能大于stock
+				//2.数量+1
+				ele.val(count);
+				var price = $(".orderItemPromotePrice[pid="+pid+"]").text();
+				var eleMoney = $(".cartProductItemSmallSumPrice[pid="+pid+"]");
+				eleMoney.text('￥'+Math.floor(price*count*100)/100);
+				//console.log(pid,ele.val());
+				syncTotalPriceAndCount();
+			});
+			//输入框验证
+			$(".orderItemNumberSetting").change(function(){
+				//console.log();
+				var pid = $(this).attr("pid");
+				var val = $(this).val();
+				var stock = Number($(".orderItemStock[pid="+pid+"]").text());
+				if(isNaN(val)){
+					val = 1;
+					$(this).val(val);
+				}
+				else{
+					val = Math.max(1,val);     //不能小于1
+					val = Math.min(val,stock); //不能大于stock
+					$(this).val(val);
+				}
+
+				var price = $(".orderItemPromotePrice[pid="+pid+"]").text();
+				var eleMoney = $(".cartProductItemSmallSumPrice[pid="+pid+"]");
+				eleMoney.text('￥'+Math.floor(price*val*100)/100);
+				syncTotalPriceAndCount();
+			});
+
+			//计算它的商品总量和总价格
+			//单价不可变
+			//每一次数量改变 都要重新计算
+			//每一次选择框改变 也要重新计算
     	});
     </script>
 </head>

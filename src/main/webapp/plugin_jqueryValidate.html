@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>jqueryValidate参数验证插件</title>
+	<!--  
+        ####################CSS区域####################
+    -->
+
+    <!-- 主体CSS -->
+	<link href="Public/css/bootstrap.min.css-v=3.3.5.css" rel="stylesheet">
+    
+    <!-- 一套绝佳的图标字体库和CSS框架 -->
+    <link href="Public/font-awesome/css/font-awesome.css" rel="stylesheet">
+	<link href="Public/css/animate.css" rel="stylesheet">
+    <link href="Public/css/style.css" rel="stylesheet"><!-- 自定义style风格 -->
+	
+	<!--  
+        ####################JS插件区域####################
+      -->
+    <!-- 主体JS框架 -->
+	<script src="Public/js/jquery.min.js-v=2.1.4"></script>
+	<script src="Public/js/bootstrap.min.js-v=3.3.5"></script>
+
+
+	<!-- jqueryValidate插件 -->
+	<script src="Public/js/plugins/validate/jquery.validate.min.js"></script>
+	<!-- jqueryValidate插件#错误信息 -->
+	<script src="Public/js/plugins/validate/messages_zh.min.js"></script>
+    <script>
+         $(document).ready(function(){
+
+             $("#form").validate({ //参数验证规则
+                 rules: {
+                     password: {
+                         required: true,
+                         minlength: 3
+                     },
+                     url: {
+                         required: true,
+                         url: true
+                     },
+                     number: {
+                         required: true,
+                         number: true
+                     },
+                     min: {
+                         required: true,
+                         minlength: 6
+                     },
+                     max: {
+                         required: true,
+                         maxlength: 4
+                     }
+                 }
+             });
+        });
+    </script>
+
+</head>
+<body>
+
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="ibox ">
+            <div class="ibox-title"><h5>参数验证插件JqueryValidation</h5></div>
+            <div class="ibox-content">
+                <h2>参数验证插件 - jQuery Validation Plugin</h2>
+                <p>
+                    JqueryValidation参数验证插件例子.
+                </p>
+
+                <p class="font-bold">参数验证插件</p>
+                <form role="form" id="form">
+                    <div class="form-group">
+                    	<label>Email-邮件</label> 
+                    	<input type="email" placeholder="输入邮件" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                    	<label>Password-密码</label> 
+                    	<input type="password" placeholder="密码" class="form-control" name="password">
+                    </div>
+                    
+                    <div class="form-group">
+                    	<label>Url</label> 
+                    	<input type="text" placeholder="输入URL" class="form-control" name="url">
+                    </div>
+                     
+                    <div class="form-group">
+                     	<label>Number-数字</label> 
+                     	<input type="text" placeholder="输入数字" class="form-control" name="number">
+                    </div>
+                    
+                    <div class="form-group">
+                    	<label>MinLength-最小长度</label> 
+                    	<input type="text" placeholder="最小长度" class="form-control" name="min">
+                    </div>
+                    
+                    <div class="form-group">
+                    	<label>MaxLength-最大长度</label> 
+                    	<input type="text" placeholder="最大长度" class="form-control" name="max">
+                    </div>
+                    
+                    <div>
+                         <button class="btn btn-sm btn-primary m-t-n-xs" type="submit"><strong>提交</strong></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+	
+
+	<div class="col-lg-6">
+        <div class="ibox ">
+        	<div class="ibox-title"><h5>方法参数说明</h5></div>
+        	<div class="ibox-content">
+               
+                            <p>
+                                A set of standard validation methods is provided:
+                            </p>
+
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Method</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>remote</td>
+                                    <td>Requests a resource to check the element for validity.</td>
+                                </tr>
+                                <tr>
+                                    <td>minlength</td>
+                                    <td>Makes the element require a given minimum length.</td>
+                                </tr>
+                                <tr>
+                                    <td>   maxlength</td>
+                                    <td>Makes the element require a given maxmimum length.</td>
+                                </tr>
+                                <tr>
+                                    <td> rangelength</td>
+                                    <td> Makes the element require a given value range.</td>
+                                </tr>
+                                <tr>
+                                    <td>  min</td>
+                                    <td>  Makes the element require a given minimum.</td>
+                                </tr>
+                                <tr>
+                                    <td>   max</td>
+                                    <td> Makes the element require a given maximum.</td>
+                                </tr>
+                                <tr>
+                                    <td> range</td>
+                                    <td> Makes the element require a given value range.</td>
+                                </tr>
+                                <tr>
+                                    <td> email</td>
+                                    <td> Makes the element require a valid email</td>
+                                </tr>
+                                <tr>
+                                    <td>  url</td>
+                                    <td>  Makes the element require a valid url</td>
+                                </tr>
+                                <tr>
+                                    <td>   date</td>
+                                    <td> Makes the element require a date.</td>
+                                </tr>
+                                <tr>
+                                    <td> dateISO</td>
+                                    <td> Makes the element require an ISO date.</td>
+                                </tr>
+                                <tr>
+                                    <td> number</td>
+                                    <td> Makes the element require a decimal number.</td>
+                                </tr>
+                                <tr>
+                                    <td> digits</td>
+                                    <td>  Makes the element require digits only.</td>
+                                </tr>
+                                <tr>
+                                    <td> creditcard</td>
+                                    <td> Makes the element require a credit card number.</td>
+                                </tr>
+                                <tr>
+                                    <td> equalTo</td>
+                                    <td> Requires the element to be the same as another one</td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

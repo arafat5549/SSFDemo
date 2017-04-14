@@ -23,7 +23,7 @@
 
 	 <script type="text/javascript">
         
-         
+        
         /*
         window.onload = function(){//dom树加载完成，我才运行
             //习题1-----------------------------------
@@ -149,14 +149,57 @@
 		$(function(){//等价于window.onload
 			//习题1-----------------------------------------
 			$("#btn").click(function(){//根据id获取元素
-				//var first  = parseInt($('#btnFirst').val());
-                //var second = parseInt($('#btnSecond').val());//不会处理小数
                 var first  = Number($('#btnFirst').val());
                 var second = Number($('#btnSecond').val());
                 var sum = first + second;
-                $('#btnResult').val(sum);
+                $('#btnResult').val(sum);//
 			}); 
 			//习题2--------------------------------------
+			var _i = 5;
+			$("#btnShow").val('请仔细阅读协议(' + _i + ')');
+			var setId = setInterval(function(){
+					_i-=1;
+					if(_i>0){
+						$("#btnShow").val('请仔细阅读协议(' + _i + ')');		
+					}
+					else{
+						$("#btnShow").val('同意');
+						$("#btnShow").attr("disabled",false);
+						clearInterval(setId);
+					}
+			},1000);
+			//习题3-------------------------------------------------
+			$("#btn1").click(function(){
+				//$("tr")    //根据标签名获取
+				//$("<tr>")  //创建tr标签
+				$("<tr><td>"+$("#txt").val()+"</td><td>"+$("#textContent").val()+"</td></tr>")
+				.appendTo($("#tb"));
+			});
+			//习题4
+			$("div#div4 input").blur(function(){
+	            if ($(this).val().length == 0) {
+                	$(this).css('backgroundColor', 'red');
+                }
+                else {
+                    $(this).css('backgroundColor','');
+                }
+			});
+			//习题5
+			$("#uul li")
+			.mouseover(function(){
+				$(this).css("cursor","pointer").css("backgroundColor","red");
+			})
+			.mouseout(function(){
+				$(this).css({"cursor":"pointer","backgroundColor":""});
+				$(this).css('cursor', 'pointer').css('backgroundColor', '');
+			})
+			.click(function(){
+				$(this).unbind();
+				//$(this).css('cursor', '').css('backgroundColor', '');
+				$(this).css({"cursor":"","backgroundColor":""});
+				$(this).appendTo($("#ul2"));
+
+			});
 		});
 		
 

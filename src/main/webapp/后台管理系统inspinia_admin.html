@@ -49,7 +49,7 @@
                         </span>
                         </div>
                     </li>
-
+                    
                     <li>
                         <a href="#">
                             <i class="fa fa-home"></i>
@@ -152,7 +152,7 @@
 
 
 
-<!-- 主体部分 -->
+<!-- 主题部分 -->
 <div class="wrapper wrapper-content animated fadeInRight">
 
 <div class="row">
@@ -210,7 +210,7 @@
               </div>
           </div>
       </div>
-      <!-- 第二行 -->
+      
       <div class="col-sm-3">
           <div class="ibox float-e-margins">
               <div class="ibox-title">
@@ -355,6 +355,9 @@
 	</div>
 </div>
 </div>
+
+
+<IFRAME ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING=AUTO width=100%  height=600px SRC="plugin_jqueryValidate.html"></IFRAME>
 
 <!-- 选择还款时间模态窗口开始 -->
 <div class="modal inmodal fade" id="user_relation" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
@@ -765,6 +768,24 @@
                 '</table>';
             };
 
+            var index_data = [
+                  [
+                      "Tiger Nixon",
+                      "System Architect",
+                      "Edinburgh",
+                      "5421",
+                      "2011/04/25",
+                      "$3,120"
+                  ],
+                  [
+                      "Garrett Winters",
+                      "Director",
+                      "Edinburgh",
+                      "8422",
+                      "2011/07/25",
+                      "$5,300"
+                  ]
+              ];
             $(document).ready(function() {
 
                 // 还款列表
@@ -794,10 +815,11 @@
                       "orderMulti": true,
                       "processing": true,
                       "serverSide": true,
-                      ajax: {
-                            url: '__MODULE__/Index/ajaxquery',
-                            dataSrc: 'data',
-                      },
+                      // ajax: {
+                      //       url: '__MODULE__/Index/ajaxquery',
+                      //       dataSrc: 'data',
+                      // },
+                      data:index_data,
                       "columnDefs": [ {
                       "targets": 8,
                       "orderable": false
