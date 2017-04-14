@@ -15,11 +15,11 @@ public class Category implements Serializable {
     
     @JsonProperty("pId")  //jackson的注解
     private Integer parentId;
-    @JsonIgnore
+    //@JsonIgnore
     private String parentIds;
-    @JsonIgnore
+    //@JsonIgnore
     private Date createTime;
-    @JsonIgnore
+    //@JsonIgnore
     private Date updateTime;
 
     private static final long serialVersionUID = 1L;

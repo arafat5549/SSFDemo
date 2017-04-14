@@ -11,8 +11,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ssf.dao.ICategoryDao;
 import com.ssf.dao.IUserDao;
+import com.ssf.model.Category;
 import com.ssf.model.User;
 import com.ssf.service.back.AdminService;
 
@@ -30,9 +33,23 @@ public class AdminController
 	AdminService adminService;
 	@Autowired
 	IUserDao userDao;
-	
+	@Autowired
+	ICategoryDao categoryDao;
 	
 	static final String VIEW_PATH = "/admin/";
+	
+	
+	@RequestMapping(value="/demo",method=RequestMethod.GET)
+	public String index(Model model){
+		return VIEW_PATH+"demo";
+	}
+	@RequestMapping(value="/ajaxquery",method=RequestMethod.GET)
+	@ResponseBody 
+	public List<Category> ajaxquery(Model model){
+		System.out.println("==ajaxquery===");
+		return categoryDao.findAll();
+	}
+	
 	
 	@RequestMapping(value="/",method=RequestMethod.GET)
 	public String adminUI(){

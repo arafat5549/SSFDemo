@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	var zTreeNodes;
+    var setting={
+        view: {
+            showLine: false,
+            showIcon: false,
+            addDiyDom:addDiyDom
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        }
+    };
+    /**
+     * 自定义DOM节点
+     */
+    function addDiyDom(treeId, treeNode) {
+        var spaceWidth = 15;
+        var liObj = $("#" + treeNode.tId);
+        var aObj = $("#" + treeNode.tId + "_a");
+        var switchObj = $("#" + treeNode.tId + "_switch");
+        var icoObj = $("#" + treeNode.tId + "_ico");
+        var spanObj = $("#" + treeNode.tId + "_span");
+        aObj.attr('title','');
+        aObj.append('<div class="diy swich"></div>');
+        var div = $(liObj).find('div').eq(0);
+        switchObj.remove();
+        spanObj.remove();
+        icoObj.remove();
+        div.append(switchObj);
+        div.append(spanObj);
+        var spaceStr = "<span style='height:1px;display: inline-block;width:" + (spaceWidth * treeNode.level) + "px'></span>";
+        switchObj.before(spaceStr);
+        var editStr = '';
+        editStr += '<div class="diy">' + (treeNode.CONTACT_USER==null?'&nbsp;':treeNode.CONTACT_USER) + '</div>';
+        editStr += '<div class="diy">' + (treeNode.CORP_CAT=='-'?'&nbsp;':treeNode.CORP_CAT )+ '</div>';
+        editStr += '<div class="diy">' + (treeNode.CONTACT_PHONE==null?'&nbsp;':treeNode.CONTACT_PHONE )+ '</div>';
+        editStr += '<div class="diy">' + formatHandle(treeNode) + '</div>';
+        aObj.append(editStr);
+    }
+
+
+    $(function(){
+        //加载zTree
+        $.ajax({
+            url:'<%=request.getContextPath()%>/sys/orgStructure/ajaxDatagrid',
+            data:{areaId:areaId,level:$('#level').val(),orgName:$('#orgName').val(),sectorName:$('#sectorName').val()},
+            type:'post',
+            dataType:'json',
+            success:function(data){
+                //初始化列表
+                zTreeNodes=data;
+                //初始化树
+                $.fn.zTree.init($("#dataTree"), setting, zTreeNodes);
+                //添加表头
+                var li_head=' <li class="head"><a><div class="diy">名称</div><div class="diy">联系人</div><div class="diy">主管行业</div>' +
+                        '<div class="diy">联系方式</div><div class="diy">操作</div></a></li>';
+                var rows = $("#dataTree").find('li');
+                if(rows.length>0){
+                    rows.eq(0).before(li_head)
+                }else{
+                    $("#dataTree").append(li_head);
+                    $("#dataTree").append('<li ><div style="text-align: center;line-height: 30px;" >无符合条件数据</div></li>')
+                }
+            }
+        })
+    })
+</script>
+</body>
+</html>
