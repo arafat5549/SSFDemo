@@ -1,11 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
+ 	<meta charset="utf-8">
 	<title></title>
+	<style type="text/css">
+		/*ztree表格*/
+.ztree{
+    padding:0;
+    border:2px solid #CDD6D5;
+}
+.ztree li a{
+    vertical-align: middle;
+    height: 30px;
+}
+.ztree li>a{
+    width:100%;
+}
+.ztree li>a,
+.ztree li a.curSelectedNode{
+    padding-top: 0px;
+    background: none;
+    height: auto;
+    border:none;
+    cursor: default;
+    opacity: 1;
+}
+.ztree li ul{
+    padding-left:0px
+}
+.ztree div.diy span{
+    line-height: 30px;
+    vertical-align: middle;
+}
+.ztree div.diy{
+    height: 100%;
+    width:20%;
+    line-height: 30px;
+    border-top:1px dotted #ccc;
+    border-left:1px solid #eeeeee;
+    text-align: center;
+    display: inline-block;
+    box-sizing: border-box;
+    color:#6c6c6c;
+    font-family: "SimSun";
+    font-size: 12px;
+}
+.ztree div.diy:first-child{
+    text-align: left;
+    text-indent: 10px;
+    border-left: none;
+}
+.ztree .head{
+    background: #5787EB;
+}
+.ztree .head div.diy{
+    border-top:none;
+    border-right: 1px solid #CDD2D4;
+    color:#fff;
+    font-family: "Microsoft YaHei";
+    font-size: 14px;
+}
+/*end--ztree表格*/
+</style>
 </head>
 <body>
+
+<div class="zTreeDemoBackground left" id="dataTree" class="ztree">
+		
+</div>
+
+
+<script src="products.js"></script><!--测试数据-->
+
+<script type="text/javascript" src="static/js/ztree/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="static/js/ztree/jquery.ztree.core.min.js"></script>
+
 <script type="text/javascript">
-	var zTreeNodes;
+	var zTreeNodes = productConfig;
     var setting={
         view: {
             showLine: false,
@@ -23,11 +94,12 @@
      */
     function addDiyDom(treeId, treeNode) {
         var spaceWidth = 15;
-        var liObj = $("#" + treeNode.tId);
-        var aObj = $("#" + treeNode.tId + "_a");
-        var switchObj = $("#" + treeNode.tId + "_switch");
-        var icoObj = $("#" + treeNode.tId + "_ico");
-        var spanObj = $("#" + treeNode.tId + "_span");
+        //console.log(treeNode);
+        var liObj = $("#" + treeNode.id);
+        var aObj = $("#" + treeNode.id + "_a");
+        var switchObj = $("#" + treeNode.id + "_switch");
+        var icoObj = $("#" + treeNode.id + "_ico");
+        var spanObj = $("#" + treeNode.id + "_span");
         aObj.attr('title','');
         aObj.append('<div class="diy swich"></div>');
         var div = $(liObj).find('div').eq(0);
@@ -42,13 +114,27 @@
         editStr += '<div class="diy">' + (treeNode.CONTACT_USER==null?'&nbsp;':treeNode.CONTACT_USER) + '</div>';
         editStr += '<div class="diy">' + (treeNode.CORP_CAT=='-'?'&nbsp;':treeNode.CORP_CAT )+ '</div>';
         editStr += '<div class="diy">' + (treeNode.CONTACT_PHONE==null?'&nbsp;':treeNode.CONTACT_PHONE )+ '</div>';
-        editStr += '<div class="diy">' + formatHandle(treeNode) + '</div>';
+        editStr += '<div class="diy">' + (treeNode) + '</div>';
         aObj.append(editStr);
     }
 
 
     $(function(){
+    	$.fn.zTree.init($("#dataTree"), setting, zTreeNodes);
+    	//添加表头
+                var li_head=' <li class="head"><a><div class="diy">名称</div><div class="diy">联系人</div><div class="diy">主管行业</div>' +
+                        '<div class="diy">联系方式</div><div class="diy">操作</div></a></li>';
+                var rows = $("#dataTree").find('li');
+                if(rows.length>0){
+                    rows.eq(0).before(li_head)
+                }else{
+                    $("#dataTree").append(li_head);
+                    $("#dataTree").append('<li ><div style="text-align: center;line-height: 30px;" >无符合条件数据</div></li>')
+                }
+
+
         //加载zTree
+        /*
         $.ajax({
             url:'<%=request.getContextPath()%>/sys/orgStructure/ajaxDatagrid',
             data:{areaId:areaId,level:$('#level').val(),orgName:$('#orgName').val(),sectorName:$('#sectorName').val()},
@@ -71,7 +157,8 @@
                 }
             }
         })
-    })
+        */
+    });
 </script>
 </body>
 </html>

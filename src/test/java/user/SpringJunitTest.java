@@ -62,6 +62,10 @@ public class SpringJunitTest {
 	
 	@Test
 	public void jsonTest(){
+		
+		List<Category> l1 = categoryDao.findPage(0, 20);
+		System.out.println(l1);
+		
 //		List<Map<String, Object>> list = treeData();
 //		String json = JsonMapper.getInstance().toJson(list);
 //		System.out.println(json);
@@ -71,9 +75,9 @@ public class SpringJunitTest {
 //		json = JsonMapper.getInstance().toJson(c);
 //		System.out.println("JSON:"+json);
 		
-		List<Category> list = categoryDao.findAll();
-		String json = JsonMapper.getInstance().toJson(list);
-		System.out.println("JSON:"+json);
+//		List<Category> list = categoryDao.findAll();
+//		String json = JsonMapper.getInstance().toJson(list);
+//		System.out.println("JSON:"+json);
 		//JSON:{"id":1,"name":"个人用品/服饰","parentId":0,"parentIds":"0,1","createTime":1491874738000,"updateTime":1491874738000}
 		
 //		System.out.println(c);

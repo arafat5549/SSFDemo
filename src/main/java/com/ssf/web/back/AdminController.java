@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ssf.dao.ICategoryDao;
 import com.ssf.dao.IUserDao;
 import com.ssf.model.Category;
+import com.ssf.model.Pagenation;
 import com.ssf.model.User;
 import com.ssf.service.back.AdminService;
 
@@ -38,16 +40,44 @@ public class AdminController
 	
 	static final String VIEW_PATH = "/admin/";
 	
+	//分页内容{page} 第几页#limit固定20
+	@RequestMapping(value="/demo/{page}",method=RequestMethod.GET)
+	public String pagenation(@PathVariable("page") Integer page,Model model){
+		List<Category> list = categoryDao.findAll();
+		int limit = 20;
+		int total = list.size();
+		int totalPage = total % limit ==0 ? total/limit : total/limit+1; 
+		page = page - 1;//
+		page = Math.max(0, page);
+		page = Math.min(totalPage, page);
+		int offset = page * limit;
+		list = categoryDao.findPage(offset, limit);
+		//model.addAttribute("categoryList",list);//jsp的做法
+		
+		Pagenation<Category> pagenation = new Pagenation<Category>();
+		pagenation.setData(list);
+		pagenation.setLimit(limit);
+		pagenation.setOffset(offset);
+		pagenation.setTotal(total);
+		pagenation.setTotalPage(totalPage);
+		pagenation.setPage(page+1);
+		model.addAttribute("pagenation",pagenation);
+		
+		return VIEW_PATH+"demo";  
+	}
 	
 	@RequestMapping(value="/demo",method=RequestMethod.GET)
 	public String index(Model model){
+		List<Category> list = categoryDao.findAll();
+		model.addAttribute("categoryList",list);//jsp的做法
 		return VIEW_PATH+"demo";
 	}
 	@RequestMapping(value="/ajaxquery",method=RequestMethod.GET)
 	@ResponseBody 
 	public List<Category> ajaxquery(Model model){
 		System.out.println("==ajaxquery===");
-		return categoryDao.findAll();
+		List<Category> list = categoryDao.findAll();
+		return list;
 	}
 	
 	

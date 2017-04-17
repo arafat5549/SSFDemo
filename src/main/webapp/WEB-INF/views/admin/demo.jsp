@@ -14,8 +14,12 @@
 
 <div id="wrapper"> 
 	<%@ include file="/Public/include/layout.jsp" %>
-	
+	<%-- Body主面板内容 --%>
 	<%@ include file="/Public/include/category/list.jsp" %>
+	<%-- Body主面板内容2 --%>
+	<%@ include file="/Public/include/category/mylist.jsp" %>
+	
+
 </div>
 
 <%@ include file="/Public/jslib.jsp" %>
@@ -25,8 +29,6 @@
 
 <!-- 表格管理  表格id为category_table -->
 <script>
-
-
 function category_table_info ( d ) {
     // `d` is the original data object for the row
     return '<table class="table table-striped">'+
@@ -41,7 +43,7 @@ $(document).ready(function() {
 	
     // 还款列表
     var category_table =  $("#category_table").DataTable({
-          "language": {
+          "language": {//I18n国际化
                 "decimal":        "",
                 "emptyTable":     "没有数据",
                 "info":           "从 第_START_ 到 _END_条 /共 _TOTAL_ 条数据",
@@ -61,14 +63,14 @@ $(document).ready(function() {
                     "previous":   "前一页"
                 },
           },
-          // 设置相关排列
+          // 设置相关排列 - col-sm bootstrap来做响应式编程
           "dom": 't<".col-sm-4"l><".col-sm-4"i><".col-sm-4"p>',
-          "orderMulti": true,
-          "processing": true,
-          //"serverSide": true,
+          "orderMulti": true, //可以多行排序
+          "processing": true, //进度条
+           //"serverSide": true,  //服务端#分页 
            ajax: {
                  url: '/MySSMShop/admin/ajaxquery',
-                 dataSrc: ''
+                 dataSrc: '' // data:{分类列表}，page：1
            },
            /**/
           //data: productConfig,
@@ -93,15 +95,15 @@ $(document).ready(function() {
                     	function(data, type, full) {  
                         	return '<a href ="__URL__/id/'+data+'"><span class="fa fa-plus-circle" style="font-size:20px;"></span></a>'+  
                         	'<a href ="__URL__/id/'+data+'"><span class="fa fa-minus-circle" style="font-size:20px;"></span></a>';  
-                    	}  
+                    }  
                 }
                     
           ],
-          "order": [ 1, 'asc' ],
-          "lengthMenu": [ [ 5, 20, 100], [ 5, 20, 100] ]
+          "order": [ 1, 'asc' ],                         //按第几列排序
+          "lengthMenu": [ [ 5, 20, 100], [ 5, 20, 100] ] //每页显示多少条
     });
    //------------------------ 
-    $('#id').on('change', function () {
+    $('#id').on('change', function () { //根据输入数据查找
     	category_table
         .columns(1)
         .search(this.value)
@@ -115,6 +117,7 @@ $(document).ready(function() {
         .draw();
 	});
    
+    //显示备注信息
     $('#category_table tbody').on('click', 'td.details-control', function () {
         var tr = $(this).closest('tr');
         var row = category_table.row( tr );

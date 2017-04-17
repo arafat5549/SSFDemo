@@ -7,4 +7,6 @@ import com.ssf.model.Category;
 
 public interface ICategoryDao extends BaseDao<Category>{
 	List<Category> findAllList();
+	
+	List<Category> findPage(Integer offset,Integer limit);
 }
