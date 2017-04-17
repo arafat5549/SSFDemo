@@ -27,10 +27,10 @@
                     </a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a class="J_menuItem" href="${context }/admin/demo/1" data-index="0">分类列表</a>
+                                <a class="J_menuItem" href="${context }/admin/category/list/1" data-index="0">分类列表</a>
                             </li>
                             <li>
-                                <a class="J_menuItem" href="${context }/admin/add" data-index="1">添加分类</a>
+                                <a class="J_menuItem" href="${context }/admin/category/add" data-index="1">添加分类</a>
                             </li>
                         </ul>
                 </li>
@@ -38,15 +38,12 @@
 				<li>
                     <a href="#">
                         <i class="fa fa-home"></i>
-                        <span class="nav-label">借款管理</span>
+                        <span class="nav-label">用户管理</span>
                         <span class="fa arrow"></span>
                     </a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a class="J_menuItem" href="#" data-index="0">添加借款</a>
-                            </li>
-                            <li>
-                                <a class="J_menuItem" href="#" data-index="1">借款列表</a>
+                                <a class="J_menuItem" href="${context }/admin/user/userInfo" data-index="0">个人信息</a>
                             </li>
                         </ul>
                 </li>                
@@ -65,7 +62,7 @@
 				</div>	
 					<ul class="nav navbar-top-links navbar-left">
                        <li>
-                           <a class="m-r-lg text-muted welcome-message">{$title}</a>
+                           <a class="m-r-lg text-muted welcome-message">欢迎来到XX后台管理系统</a>
                       </li>
                    </ul>
 
@@ -73,11 +70,11 @@
                         <span class="m-r-sm text-muted welcome-message">欢迎你,</span>
                         <li class="dropdown">
                                 <a class="dropdown-toggle count-info" data-toggle="dropdown" href="javascript:void(0)">
-                                       <strong><span class="text-success">{$Think.session.name}</span></strong>
+                                       <strong><span class="text-success">#${sessionScope.session_user.username}</span></strong>
                                 </a>
                                 <ul class="dropdown-menu dropdown-messages" style="width: 120px;">
                                     <li>
-                                        <strong><a href="#">个人信息</a></strong>
+                                        <strong><a href="${context }/admin/user/userInfo">个人信息</a></strong>
                                     </li>
                                      <li>
                                         <strong><a href="#">退出登陆</a></strong>

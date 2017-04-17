@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="ibox-content">
-                <form method="post" class="form-horizontal" action="${context }/admin/demo/add" id="add_borrow">
+                <form method="post" class="form-horizontal" action="${context }/admin/category/add" id="add_category">
                     
                     <div class="form-group">
                          <label class="col-sm-2 control-label">分类名</label>

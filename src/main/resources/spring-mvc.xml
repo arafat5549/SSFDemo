@@ -24,12 +24,12 @@
         <property name="prefix" value="/WEB-INF/views/"></property>
         <property name="suffix" value=".jsp"></property>
     </bean>
-    <!-- 多段文件上传 需要commons-fileupload.jar和commons-io.jar 
+    <!-- 多段文件上传 需要commons-fileupload.jar和commons-io.jar--> 
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="1073741824"/>
     </bean>
-    -->
+    
     <!-- 对静态资源文件的访问， 将无法mapping到Controller的path交给default servlet handler处理 -->
     <mvc:default-servlet-handler/>
     

@@ -27,6 +27,14 @@ public class User extends DateEntity{
 	//@Not999
 	private String password;
 	
+	private String avartarUrl;
+	
+	public String getAvartarUrl() {
+		return avartarUrl;
+	}
+	public void setAvartarUrl(String avartarUrl) {
+		this.avartarUrl = avartarUrl;
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -48,7 +56,7 @@ public class User extends DateEntity{
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password="
-				+ password + "]";
+				+ password + "],avartarUrl="+avartarUrl;
 	}
 	
 	//打印对象 需要重写他的toString
