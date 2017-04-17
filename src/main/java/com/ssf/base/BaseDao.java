@@ -31,7 +31,7 @@ public interface BaseDao<T> {
 	 * 保存对象(泛型的参数)
 	 * @param t
 	 */
-	boolean save(T t);
+	Integer save(T t);
 	/**
 	 * 更新对象
 	 */

@@ -50,6 +50,9 @@
     <script src="${contextStatic }/js/jquery-ui.custom.min.js"></script>
     <script src="${contextStatic }/js/plugins/fullcalendar/fullcalendar.min.js"></script>	
 
+    <!-- 树形菜单 -->
+    <script src="${contextStatic }/js/plugins/ztree/jquery.ztree.core.min.js"></script>	
+
     <!-- 菜单 -->
     <script>
             var s_url=window.location.pathname;

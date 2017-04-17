@@ -41,7 +41,7 @@ function category_table_info ( d ) {
 
 $(document).ready(function() {
 	
-    // 还款列表
+    //DataTable表格插件
     var category_table =  $("#category_table").DataTable({
           "language": {//I18n国际化
                 "decimal":        "",
@@ -67,7 +67,7 @@ $(document).ready(function() {
           "dom": 't<".col-sm-4"l><".col-sm-4"i><".col-sm-4"p>',
           "orderMulti": true, //可以多行排序
           "processing": true, //进度条
-           //"serverSide": true,  //服务端#分页 
+          //"serverSide": true,  //服务端#分页 
            ajax: {
                  url: '/MySSMShop/admin/ajaxquery',
                  dataSrc: '' // data:{分类列表}，page：1

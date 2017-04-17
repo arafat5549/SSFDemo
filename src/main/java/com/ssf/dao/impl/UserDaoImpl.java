@@ -45,9 +45,9 @@ public class UserDaoImpl implements IUserDao{
 	}
 
 	@Override
-	public boolean save(User t) {
+	public Integer save(User t) {
 		// TODO Auto-generated method stub
-		return false;
+		return 0;
 	}
 
 	@Override

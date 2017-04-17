@@ -2,6 +2,7 @@ package com.ssf.web.back;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,6 @@ import com.ssf.service.back.AdminService;
 
 
 //3.全局错误管理，不再用返回一个错误string判断你有没有错误
-
 @Controller
 @RequestMapping("/admin/") //   /admin/login
 public class AdminController 
@@ -68,19 +68,42 @@ public class AdminController
 	
 	@RequestMapping(value="/demo",method=RequestMethod.GET)
 	public String index(Model model){
-		List<Category> list = categoryDao.findAll();
-		model.addAttribute("categoryList",list);//jsp的做法
-		return VIEW_PATH+"demo";
-	}
+		return "redirect:/admin/demo/1";//重定向
+	} 
 	@RequestMapping(value="/ajaxquery",method=RequestMethod.GET)
 	@ResponseBody 
-	public List<Category> ajaxquery(Model model){
-		System.out.println("==ajaxquery===");
+	public List<Category> ajaxquery(HttpServletRequest req,Model model){		
+		//System.out.println("==ajaxquery===");
 		List<Category> list = categoryDao.findAll();
 		return list;
 	}
 	
+	@RequestMapping(value="/add",method=RequestMethod.GET)
+	public String addUI(){
+		return VIEW_PATH+"add";
+	}
+	@RequestMapping(value="/demo/add",method=RequestMethod.POST)
+	public String addAction(Category category){
+		//System.out.println(category);
+		//构建我的parentIds
+		int newid = categoryDao.findMaxId();
+		category.setParentIds(category.getParentIds()+","+newid);
+		category.preInsert();
+		categoryDao.save(category);
+		return "redirect:/admin/demo/1";
+	} 
 	
+	/**
+	 * 往前台传JSON对象（直接把你需要的数据给你）
+	 * @return
+	 */
+	@RequestMapping(value="/demo/getJson", produces={"application/json;charset=UTF-8"})  //默认类型是JSON
+	@ResponseBody 
+	public List<Category> treeData(){
+		List<Category> list = categoryDao.findAll();
+		return list;
+	}
+	//----------------------------------------------------------------
 	@RequestMapping(value="/",method=RequestMethod.GET)
 	public String adminUI(){
 		return VIEW_PATH+"login";

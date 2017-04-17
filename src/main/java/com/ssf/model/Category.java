@@ -1,14 +1,12 @@
 package com.ssf.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)//所有不为空的对象都会被转化
-public class Category implements Serializable {
+public class Category extends DateEntity {
     private Integer id;
 
     private String name;
@@ -17,10 +15,10 @@ public class Category implements Serializable {
     private Integer parentId;
     //@JsonIgnore
     private String parentIds;
-    //@JsonIgnore
-    private Date createTime;
-    //@JsonIgnore
-    private Date updateTime;
+//    //@JsonIgnore
+//    private Date createTime;
+//    //@JsonIgnore
+//    private Date updateTime;
 
     private static final long serialVersionUID = 1L;
 
@@ -56,21 +54,21 @@ public class Category implements Serializable {
         this.parentIds = parentIds == null ? null : parentIds.trim();
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
+//    public Date getCreateTime() {
+//        return createTime;
+//    }
+//
+//    public void setCreateTime(Date createTime) {
+//        this.createTime = createTime;
+//    }
+//
+//    public Date getUpdateTime() {
+//        return updateTime;
+//    }
+//
+//    public void setUpdateTime(Date updateTime) {
+//        this.updateTime = updateTime;
+//    }
 
     @Override
     public boolean equals(Object that) {
@@ -109,7 +107,7 @@ public class Category implements Serializable {
 	public String toString() {
 		return "Category [id=" + id + ", name=" + name + ", parentId="
 				+ parentId + ", parentIds=" + parentIds + ", createTime="
-				+ createTime + ", updateTime=" + updateTime + "]";
+				+ getCreateTime() + ", updateTime=" + getUpdateTime() + "]";
 	}
     
     

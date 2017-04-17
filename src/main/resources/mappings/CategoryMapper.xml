@@ -11,6 +11,28 @@
        a.update_time AS 'updateTime'
     </sql>
     
+    <insert id="save">
+        INSERT INTO sys_category
+        (
+            id,
+			name,
+			parent_id,
+			parent_ids,
+			create_time,
+			update_time
+        )
+        VALUES(
+        #{id},
+        #{name},
+        #{parentId},
+        #{parentIds},
+		#{createTime},
+		#{updateTime}
+        )
+        
+    </insert>
+    
+    
     <select id="findAll" resultType="Category"><!-- 如果你定义了别名你就可以简化你的写法 -->
          SELECT 
          	<include refid="columns"/> 
@@ -39,4 +61,7 @@
 		LIMIT #{0},#{1}
 	</select>
 	
+	<select id="findMaxId" resultType="int">
+	     SELECT MAX(id)+1 FROM sys_category
+	</select>
 </mapper>

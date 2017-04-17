@@ -55,15 +55,16 @@ public class OriginUserDaoImpl implements IUserDao{
 	}
 
 	@Override
-	public boolean save(User t) {
+	public Integer save(User t) {
 		String sql = "INSERT INTO sys_user(username,password,create_time,update_time) VALUES (?,?,?,?)";
 		t.preInsert();
-		return DBUtils.getInstance().execute(
+	 DBUtils.getInstance().execute(
 				sql, 
 				t.getUsername(),
 				t.getPassword(),
 				t.getCreateTime(),
 				t.getUpdateTime());
+	 return 0;
 		
 	}
 

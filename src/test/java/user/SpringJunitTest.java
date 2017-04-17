@@ -62,9 +62,10 @@ public class SpringJunitTest {
 	
 	@Test
 	public void jsonTest(){
-		
-		List<Category> l1 = categoryDao.findPage(0, 20);
-		System.out.println(l1);
+		int newid = categoryDao.findMaxId();
+		System.out.println(newid);
+		//List<Category> l1 = categoryDao.findPage(0, 20);
+		//System.out.println(l1);
 		
 //		List<Map<String, Object>> list = treeData();
 //		String json = JsonMapper.getInstance().toJson(list);

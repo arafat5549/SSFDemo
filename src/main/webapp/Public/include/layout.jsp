@@ -13,7 +13,7 @@
                         </span>
                         <span class="clear">
                         <span class="block m-t-xs" style = "color:#fff;">
-                        <strong class="font-bold">借贷管理系统</strong>
+                        <strong class="font-bold">后台管理系统</strong>
                         </span> 
                         </span>
                    </div>
@@ -22,15 +22,15 @@
 		 	   <li>
                     <a href="#">
                         <i class="fa fa-home"></i>
-                        <span class="nav-label">借款管理</span>
+                        <span class="nav-label">分类管理</span>
                         <span class="fa arrow"></span>
                     </a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a class="J_menuItem" href="#" data-index="0">添加借款</a>
+                                <a class="J_menuItem" href="${context }/admin/demo/1" data-index="0">分类列表</a>
                             </li>
                             <li>
-                                <a class="J_menuItem" href="#" data-index="1">借款列表</a>
+                                <a class="J_menuItem" href="${context }/admin/add" data-index="1">添加分类</a>
                             </li>
                         </ul>
                 </li>
