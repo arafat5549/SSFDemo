@@ -69,7 +69,15 @@ public class CategoryDao implements BaseDao<Category>{
 		String sql ="SELECT " + COLUMNS +" FROM sys_category a";
 		return DBUtils.getInstance().listBean(sql, Category.class);
 	}
-
+	
+	/*
+	@Override
+	public List<Chengji> findAll() {
+		String sql ="SELECT " + COLUMNS +" FROM sys_chengji a";
+		return DBUtils.getInstance().listBean(sql, Chengji.class);
+	}
+	*/
+	
 	@Override
 	public Category findById(Integer id) {
 		String sql ="SELECT " + COLUMNS +" FROM sys_category a WHERE a.id=?";
