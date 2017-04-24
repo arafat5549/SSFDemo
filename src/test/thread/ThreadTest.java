@@ -1,14 +1,121 @@
 package test.thread;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import org.junit.Test;
 
-public class ThreadTest {
+/**
+ * 区分哪些代码是线程安全 哪些代码是线程不安全
+ * 
+ * 怎么判读一个类是线程安全
+ * 
+ * 原子性
+ * 有序性
+ * 可见性
+ * 
+ * 三种实现线程安全的方式：如何实现线程安全
+ * synchrinzed  (互斥锁[我没有释放我锁定的资源之前 别人不能访问资源]，非公平锁[只要我请求就一定是我的]) 推荐方式
+ * Atomic*
+ * Lock         (隐式锁)
+ * 
+ * 并发包的内容：
+ * 1.生产者和消费者问题
+ * 2.Java中的锁机制？JAVA怎么线程安全? synchonrized
+ *  - synchonrized 互斥锁(悲观锁（无法被抢占），非公平锁（我请求我占领）)
+ *  - 怎么保证线程安全? 原子性，有序性和可见性
+ *       多个线程访问同一个资源(临界区)就由可能出现线程安全问题。
+ *    synchonrized(保证 原子性，有序性)
+ *    volatile(保证 可见性)
+ * 3.wait和sleep有什么区别
+ * wait会释放锁，sleep不会释放锁
+ * notify就是释放锁的方法  wait和notify一起出现
+ * 4.什么是死锁(deadlock)？
+ *	两个进程都在等待对方执行完毕才能继续往下执行的时候就发生了死锁。结果就是两个进程都陷入了无限的等待中。
+ */
 
+
+/**
+ * 并发Concurrent包
+ * 
+ * 连接池 - 线程池 Executor
+ * 阻塞队列 BlockingQueue- 生产者和消费者问题()
+ * CountDownLacth 闸门# 让线程阻塞在某个时间点 一起运行
+ * Semaphore  信号量 # 控制固定线程的并发
+ * 
+ * ConcurrentHashMap：        线程安全/锁分离（每一把锁只会锁Map某一块区域） #对比数据库 行级锁InnoDB和表级锁MyISAM
+ * CopyOnWriteArrayList: 线程安全
+ * 
+ * 多线程相关部分：
+ * 数据库表级锁和行级锁,事务,每一次request请求都是一次线程进来
+*/
+public class ThreadTest {
+    //dxzt2yc吊销枝头二月春
+	private List list = new ArrayList();//能不能作为多线程的容器
+	
+	//1.Executor 线程池
+	public static void excutorTest(){
+		//newFixedThreadPool 开一个容量为1的线程池
+		ExecutorService es = Executors.newFixedThreadPool(1);
+		
+//		//匿名内部类
+//		es.execute(new Runnable() {
+//			@Override
+//			public void run() {
+//				for(int i=0;i<10;i++)
+//				{
+//					System.out.println("匿名内部类");
+//					try {
+//						Thread.sleep(100);
+//					} catch (InterruptedException e) {
+//						e.printStackTrace();
+//					}
+//				}
+//			}
+//		});
+//		
+//		es.execute(new Runnable() {
+//			@Override
+//			public void run() {
+//				for(int i=0;i<10;i++)
+//					System.out.println("匿名内部类2");
+//			}
+//		});
+		
+		
+		//2.自动增长
+		ExecutorService es2 = Executors.newCachedThreadPool();
+		
+		//3.schdule #自定义执行的间隔时间
+		ScheduledExecutorService service = Executors.newScheduledThreadPool(10);
+		long initialDelay1 = 1;
+		long period1 = 1;
+        // 从现在开始1秒钟之后，每隔1秒钟执行一次job1
+		service.scheduleAtFixedRate(
+		        new Runnable() {
+					@Override
+					public void run() {
+						System.out.println("匿名内部类");
+					}
+				}, initialDelay1,
+				period1, TimeUnit.SECONDS);
+//
+//		long initialDelay2 = 1;
+//		long delay2 = 1;
+//        // 从现在开始2秒钟之后，每隔2秒钟执行一次job2
+//		service.scheduleWithFixedDelay(
+//		        new ScheduledExecutorTest("job2"), initialDelay2,
+//				delay2, TimeUnit.SECONDS);
+	}
 	
 	
 	
@@ -83,8 +190,9 @@ public class ThreadTest {
 //		System.out.println(c);
 		
 		//t1();
-		countterTest();
+		//countterTest();
 		
+		excutorTest();
 	}
 }
 
@@ -144,25 +252,7 @@ class T3 implements Callable<Integer>{
 }
 
 
-/**
- * 区分哪些代码是线程安全 哪些代码是线程不安全
- * 
- * 怎么判读一个类是线程安全
- * 
- * 原子性
- * 有序性
- * 可见性
- * 
- * 三种实现线程安全的方式：如何实现线程安全
- * synchrinzed  (互斥锁[我没有释放我锁定的资源之前 别人不能访问资源]，非公平锁[只要我请求就一定是我的]) 推荐方式
- * Atomic*
- * Lock         (隐式锁)
- * 
- * 并发包的内容：
- * 
- * 1.生产者和消费者问题
- * 
- */
+
 
 class Counter implements Runnable{
 	private int count = 0;
@@ -223,3 +313,6 @@ class LockCounter implements Runnable
 	}
 	public  int getCount(){return count;}
 }
+
+
+
