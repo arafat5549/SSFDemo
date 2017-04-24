@@ -82,7 +82,6 @@ public class UserController extends HttpServlet
 		user.setPassword(password);
 		
 		
-		
 		String error = userService.login(user);
 		if(error!=null && !"".equals(error)){
 			req.setAttribute("msg", error);

@@ -1,0 +1,31 @@
+//#优先级高一点
+
+#1.使用封装类型，和基本类型有什么区别?
+
+#2.Statment和preparedStatement有什么区别？
+
+3.什么是Maven
+
+4.数据库事务
+- 为什么要有它？他有什么用处？
+- 优点和缺点？ -》他的应用范围
+
+5.四个作用域和JSP的九大内置对象？
+ - page
+ - request
+ - session
+ - application
+
+ - response
+ - out
+ - pageContext
+ - config    配置对象
+ - exception 错误对象
+
+6.请求转发forward，disptacher和重定向redirect？
+
+7.web工程的组织方式?
+
+8.为什么页面要放在WEB-INF下?所有静态资源尽量放在一起 建个Public或者Static文件夹?
+
+9.

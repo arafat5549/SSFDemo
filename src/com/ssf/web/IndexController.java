@@ -37,4 +37,12 @@ public class IndexController extends HttpServlet{
 		
 		req.getRequestDispatcher(VIEW_PATH+"home.jsp").forward(req, resp);
 	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		//...处理xxxx
+		//跳转到主页
+		req.getRequestDispatcher(VIEW_PATH+"home.jsp").forward(req, resp);
+	}
 }
