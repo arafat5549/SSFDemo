@@ -368,59 +368,11 @@ public class DBUtils {
 	}
 	
 	public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException {
-		//DBUtils db = DBUtils.getInstance();
-		//Connection conn = db.openConnection();
-		//System.out.println(conn);
-//		String sql = "SELECT * FROM sys_user";
-//		List<User> lists = db.listBean(sql,User.class);
-//		
-//		System.out.println(lists);
-//		
-//		String sql2 = "SELECT * FROM test_department";
-//		List<Department> lists2 = db.listBean(sql2,Department.class);
-//		System.out.println(lists2);
-		
-		//1.泛型 （类，方法，属性，参数）
-		/**
-		 * 基于继承的泛型实现会带来两个问题：
-		 * 1.第一个问题是有关get方法的，我们每次调用get方法都会返回一个Object对象，
-		 * 每一次都要强制类型转换为我们需要的类型，这样会显得很麻烦；
-		 * 
-		 * 2.第二个问题是有关add方法的，假如我们往聚合了String对象的ArrayList中加入一个File对象
-		 * ，编译器不会产生任何错误提示，而这不是我们想要的。
-		 */
-//		List<Object> mylist = new ArrayList<Object>();
-//		mylist.add(new User());
-//		mylist.add(new Department());
-//		for (Object object : mylist) {
-//			User user =(User)object;//运行时错误 #每一次都需要强转
-//		}
-//		List<User> mylist2 = new ArrayList<User>();
-//		mylist2.add(new User());
-//		mylist2.add(new Department());//源码时期错误
-		
-		//2.反射reflect
-		//反射的作用概括地说是运行时获取类的各种定义信息，比如定义了哪些属性与方法。
-		//原理是通过类的class对象来获取它的各种信息。
-
-		User user =new User();//我就知道了用户的所有信息
-		Class cls3 = user.getClass();
-		Class cls = User.class;
-		Class cls2 = Class.forName("com.ssf.model.User");
-		
-		Object obj = cls.newInstance();
-		Method ms[]=cls.getMethods();
-		for (Method method : ms) { 
-			
-			if(method.getName().equals("setUsername")){
-				System.out.println(method);
-				method.invoke(obj, new Object[]{"测试用户名"});
-			}
-			//
+		DBUtils db = DBUtils.getInstance();
+		List<User> lists = db.listBean("SELECT * FROM sys_user", User.class);
+		for (User user : lists) {
+			System.out.println(user);
 		}
-		
-		System.out.println(obj);
-		//我还没创建对象 我能不能调用对象的方法
 		
 	}
 	

@@ -135,9 +135,10 @@ JAVAEE三大框架：
 				Struts和Springmvc都是View显示层，参数传递和页面跳转
 				Hibernate和Mybatis是ORM框架Model实体层，负责数据库和java对象之间的映射
 
+	非侵入式，解耦合，轻量级
 	#Spring框架
 		IOC/DI：
-		    #什么是控制反转？
+		    #什么是控制反转？ 
 			IOC(InverseOfController控制的反转): 
 
 			我们不再创建手动new我们的Bean对象，交给我们的Bean工厂或者叫Spring容器(ApplicationContext 读取你的spring配置文件来生成)
@@ -206,8 +207,33 @@ JAVAEE三大框架：
 	        <aop:advisor advice-ref="txadvice" pointcut-ref="txpointcut"/>
 	    </aop:config>
 
-	#Struts2和SpringMVC:
+	#Struts2和SpringMVC的区别:
 
+	//不使用框架 servlet+jsp
+	1.获取参数 - String username = req.getPameter("username")
+	2.参数验证
+	3.业务方法
+	4.异常处理
+	5.逻辑处理-成功
+              -失败
+    6.在web.xml注册 url指定到类那一级别 
+
+    //Struts2
+    1.简化获取参数 -   username;
+    2.简化了页面跳转 - 
+    3.url可以指定方法那一级别
+    缺点：
+    团队太久没人维护
+    13-14爆出安全漏洞，官方直接把漏洞公布出来
+
+    //SpringMVC
+    1.进一步简化封装User    public String login(User user,Model model)
+    2.简化了页面跳转
+    3.url可以指定到方法那一级别
+    4.RESTFUL风格  user/list/1  用url来传参
+    5.非常容易整合JSON等数据处理，有利于手机端的数据操作
+    6.天然跟Spring整合(本身就是spring的一个模块)
+    7.使用注解配置的方式能极大简化配置(约定大于配置#你只需要修改你要改变的部分 提供默认配置)
 
 
 	#额外知识：
