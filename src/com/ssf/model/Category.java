@@ -11,6 +11,10 @@ import java.util.List;
  */
 public class Category extends DateEntity{
 	
+//	public Category(List<Product> products){
+//		
+//	}
+	
 	private Integer id;
 	private String name;
 	private Integer parentId;

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ssf.model.Category;
+import com.ssf.service.CartItemService;
 import com.ssf.service.CategoryService;
 
 /**
@@ -21,7 +22,7 @@ import com.ssf.service.CategoryService;
  */
 @SuppressWarnings("serial")
 public class IndexController extends HttpServlet{
-
+	CartItemService cartItemService = new CartItemService();
 	//private UserService userService = new UserService();
 	private CategoryService categoryService  = new CategoryService();
 	

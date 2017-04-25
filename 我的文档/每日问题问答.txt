@@ -119,6 +119,107 @@ JAVA多线程和并发:
 	Socket是一套API，不是网络协议。来简化网络传输的编程。
 	Socket是对网络各层的抽象，简化了网络传输的步骤。
 
-JAVAEE三大框架
+JAVAEE三大框架：
 
-2.
+//1.什么是IOC
+//2.如何实现IOC
+//3.IOC有什么作用
+
+1.讲一下你对JAVAEE三大框架的理解?
+	第一步(拆分问题 大的问题拆分成小的问题)
+	#概念的描述：什么是三大框架？
+	SSH(SpringStruts2Hibernate):
+	SSM(SpringSpringMvcMybatis):
+	类比MVC模式 Spring相当于:
+	Controller控制层，  由它来负责管理其他两个框架
+				Struts和Springmvc都是View显示层，参数传递和页面跳转
+				Hibernate和Mybatis是ORM框架Model实体层，负责数据库和java对象之间的映射
+
+	#Spring框架
+		IOC/DI：
+		    #什么是控制反转？
+			IOC(InverseOfController控制的反转): 
+
+			我们不再创建手动new我们的Bean对象，交给我们的Bean工厂或者叫Spring容器(ApplicationContext 读取你的spring配置文件来生成)
+
+			首先需要在容器里面注册它（由你编写的java对象转化为spring的bean对象）
+			1.注解的方式(注解扫描)
+				IOC注解 (相当于在容器里面注册这个对象) 放置在类上面
+				@Component   model层
+				@Repository  dao层
+				@Service     service层
+				@Controller  web层
+				这四个注解逻辑上完全一致(在容器里面注册这个对象)，只是为了被封装的对象属于哪一层
+
+			2.XML的方式
+			<bean id="proxy" class="com.ssf.proxy.AOPProxy"></bean>
+
+            #为什么我们要使用它？
+            	IOC是Spring框架的基础为了进行统一管理，所有的对象必须先在容器里面注册
+
+            #什么是依赖注入?
+            DI(DependInject依赖注入):
+
+            我们的Bean对象A需要依赖另外一个Bean对象B的方法，就需要把B依赖注入.
+
+            1.注解的方式
+            	DI注解
+            	首先A和B都需要先被注册，如果是接口你的IOC注解应该放在实现类上面
+            	引入DI注解
+            	@Autowired  Spring的注解，按类型注入
+            	@Resource   JDK的注解，   按名称注入(默认名称是 类名的首字母小写)
+
+            2.XML的方式
+               <bean id="A" class="com.ssf.proxy.A">
+					<property name="B" ref="B"/> <!-- 对象B的注入 -->
+      				<property name="typeAliasesPackage" value="com.ssf.model"/> <!-- 属性的注入 -->
+               </bean>
+               <bean id="B" class="com.ssf.proxy.B"></bean>
+
+            依赖注入的方式：
+            	setter注入：需要由setter和getter方法（默认都是setter的方式）
+            	构造器注入：需要改写构造方法
+
+            总结：singleton单例模式（节省内存的消耗），lazy_init 延迟加载（节省内存的消耗，很多对象我只在需要的时候才生成它,因为一开始大量的对象是还没使用到的不需要一开始就创建出来）
+
+		AOP：
+			AOP(AspectOrientProgramming面对切面编程)
+			我们的java程序时是线性执行的，AOP提供了另外一种横向切入功能。
+			# 在哪里切入，切入的方法是什么 (切入到某一个方法里面)
+			- JointPoint连接点:   AOP跟我们JAVA程序交接的地方
+			- PointCut切入点： 在哪里切入(方法的集合)
+			- Advice通知（增强方法）：切入的方法是什么(你要增强的功能)
+			- Aspect切面: 相当于切入点+增强方法 ，可以有多个切面
+
+			框架是怎么实现AOP功能
+			动态代理 JDK(代理接口)和CGLib动态代理(接口和非接口都能代理)
+
+		事务处理：
+		   Spring的事务就是靠AOP来实现的
+		   一般是在Service层来处理事务
+		   根据切入点来过滤方法，引入增强方法（事务）
+
+	    <aop:config>
+	        <aop:pointcut
+	           expression="execution(* com.ssf.service.impl.*.*(..))"
+	           id="txpointcut"/>
+	        <aop:advisor advice-ref="txadvice" pointcut-ref="txpointcut"/>
+	    </aop:config>
+
+	#Struts2和SpringMVC:
+
+
+
+	#额外知识：
+		1.Bean工厂，Spring容器，SpringContextSpring上下文: 	ApplicationContext 继承了 BeanFactory
+		2.Bean对象 是对你的编写的java对象进行了一层封装（在容器里面注册它）
+		3.注解方式和XML配置方式有什么区别?
+
+Java虚拟机与GC：
+
+1.JAVA里面谁来负责对象的销毁?
+	
+1.什么是对象的生命周期
+	init
+	service
+	destory
