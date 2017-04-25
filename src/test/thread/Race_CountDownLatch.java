@@ -93,7 +93,7 @@ public class Race_CountDownLatch {
 					e.printStackTrace();
 				}
 				System.out.println("----");
-				start.countDown();
+				start.countDown();//计数器减1 减到0继续执行await后面的代码
 			}
 		};
 		
@@ -101,7 +101,7 @@ public class Race_CountDownLatch {
 		for (int i = 0; i <6; i++) {
 			new Thread(r).start();
 		}
-		start.await();
+		start.await();//阻塞线程
 		System.out.println("线程执行完之后执行这句话");
 	}
 }
