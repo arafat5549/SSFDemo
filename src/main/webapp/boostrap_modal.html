@@ -24,6 +24,7 @@
 </head>
 <body>
 <div class="row">
+
 	<div class="col-lg-4">
         <div class="ibox ">
 
@@ -52,21 +53,24 @@
                         <div class="modal-content animated bounceInRight">
 
                            <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                            <i class="fa fa-laptop modal-icon"></i>
-                                            <h4 class="modal-title">Modal title</h4>
-                                            <small class="font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>
+                                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                                 </button>
+                                <!--<i class="fa fa-laptop modal-icon"></i>-->
+                                <h4 class="modal-title">Modal 标题</h4>
+                                 
                             </div>
                             
                             <div class="modal-body">
-                                <p><strong>Lorem Ipsum is simply dummy</strong> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-                                                printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-                                                remaining essentially unchanged.</p>
+                                <p id="modalBodyMsg">
+                                    <strong>粗体信息</strong> 
+                                    信息
+                                </p>
 
-                                <div class="form-group">
-                                	<label>Sample Input</label> 
-                                	<input type="email" placeholder="Enter your email" class="form-control">
-                                </div>
+                                <form id="modalFrom">
+                                    <div class="form-group">
+                                    	<input type="email" placeholder="邮件" class="form-control">
+                                    </div>
+                                </form>
                             </div>
 
                             <div class="modal-footer">
@@ -80,6 +84,11 @@
             </div>
         </div>
     </div>
+ 
+    <!-- -->
+    
+
+
 </div>
 
 </body>

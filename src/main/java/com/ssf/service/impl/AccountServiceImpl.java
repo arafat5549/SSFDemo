@@ -8,16 +8,21 @@ import org.springframework.stereotype.Service;
 import com.ssf.dao.IAccountDao;
 import com.ssf.service.AccountService;
 
-@Service
+@Service(value="r1")//支付宝
 public class AccountServiceImpl implements AccountService{
 	
 	@Autowired
-	IAccountDao accountDao;
+	IAccountDao accountDao; 
 	
 	public void transferAccount(int from ,int to ,BigDecimal money) throws Exception
 	{
 		accountDao.minusMoney(from, money);
 		int i= 1/0;
 		accountDao.addMoney(to, money);
+	}
+
+	@Override
+	public void test() {
+		System.out.println("支付宝");
 	}
 }

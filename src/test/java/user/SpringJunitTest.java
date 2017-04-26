@@ -7,6 +7,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -20,6 +22,7 @@ import com.ssf.service.AccountService;
 import com.ssf.service.UserService;
 import com.ssf.service.back.AdminService;
 import com.ssf.utils.JsonMapper;
+import com.ssf.web.AccountController;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)//由Junit单元测试整合Spring
@@ -38,6 +41,12 @@ public class SpringJunitTest {
 	
 	@Autowired
 	AccountService accountService;
+	
+	@Autowired
+	AccountController accountController;
+	
+	@Test
+	public 
 	
 	List<Map<String, Object>> treeData(){
 		String extId = "";
@@ -100,7 +109,10 @@ public class SpringJunitTest {
 	@Test  
 	public void userTest(){
 		
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("");
 		
+		ctx.getBean(UserService.class);
+		UserService userService = new UserService();
 		
 		//userDao.sayHello();
 		//System.out.println(2&3);

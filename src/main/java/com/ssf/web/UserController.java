@@ -2,17 +2,23 @@ package com.ssf.web;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.ssf.dao.ICategoryDao;
 import com.ssf.model.User;
 
 @Controller
 @RequestMapping("/user")   //  /user/inex
 public class UserController {
 
+	
+	@Autowired
+	ICategoryDao categoryDao;
+	
 	private static final String VIEW_PATH = "/user/";
 	
 	@RequestMapping("/index")

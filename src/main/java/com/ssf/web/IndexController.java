@@ -14,15 +14,24 @@ import com.ssf.dao.ICategoryDao;
 import com.ssf.dao.IUserDao;
 import com.ssf.model.Category;
 import com.ssf.model.User;
+import com.ssf.service.back.AdminService;
 
-@Controller
+@Controller  //<bean id="indexController" class="com.ssf.web.IndexController">
 @RequestMapping("/") 
 public class IndexController {
 
-	@Autowired
-	ICategoryDao categoryDao;
+	@Autowired//<property name="categoryDao" ref="categoryDao" />
+	ICategoryDao categoryDao; 
 	@Autowired
 	IUserDao userDao;
+	
+	@Autowired
+	AdminService adminService;
+	
+	@Autowired
+	public AdminService getAdminService(){
+		return adminService;
+	}
 	
 	@RequestMapping("/index")
 	public String index(Model model){

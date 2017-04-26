@@ -1,8 +1,11 @@
 package user;
 
-import java.net.URL;
-
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.ssf.utils.DBUtils;
+import com.ssf.web.AccountController;
 
 public class UserTest {
 
@@ -27,8 +30,23 @@ public class UserTest {
 	
 	@Test
 	public void readConf(){
-		//1.读取properties文件
-		URL url = getClass().getClassLoader().getResource("");
-		System.out.println(url);
+//		//1.读取properties文件
+//		URL url = getClass().getClassLoader().getResource("");
+//		System.out.println(url);
+	}
+	
+	@Test
+	public void applicationContextTest(){
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-context.xml");
+		
+		AccountController ac = (AccountController)ctx.getBean("accountController");
+		ac.test();
+		//System.out.println(ac);
+		
+//		AccountController ac2 =ctx.getBean(AccountController.class);
+//		System.out.println(ac2);
+//		
+//		DBUtils ac3 =ctx.getBean(DBUtils.class);
+//		System.out.println(ac3);
 	}
 }

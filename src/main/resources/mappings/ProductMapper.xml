@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssf.dao.IProductDao">
+    
+    <sql id="columns">
+       a.id,
+       a.name,
+       a.parent_id AS 'parentId',
+       a.parent_ids AS 'parentIds',
+       a.create_time AS 'createTime',
+       a.update_time AS 'updateTime'
+    </sql>
+    
+    <insert id="save">
+        INSERT INTO sys_product
+        (
+            id,
+			name,
+			parent_id,
+			parent_ids,
+			create_time,
+			update_time
+        )
+        VALUES(
+        #{id},
+        #{name},
+        #{parentId},
+        #{parentIds},
+		#{createTime},
+		#{updateTime}
+        )
+        
+    </insert>
+    
+    
+    <select id="findAll" resultType="Product"><!-- 如果你定义了别名你就可以简化你的写法 -->
+         SELECT 
+         	<include refid="columns"/> 
+         FROM sys_product a
+    </select>
+    
+    <select id="findById" resultType="Category">
+		SELECT
+			<include refid="columns"/>
+		FROM sys_product a
+		WHERE a.id = #{id}
+	</select>
+  
+   <!--  -->
+   <select id="findAllList" resultType="Product">
+		SELECT
+			<include refid="columns"/>
+		FROM sys_category a
+		LEFT JOIN sys_product p ON p.id = a.parent_id
+	</select>
+	
+	 <select id="findPage" resultType="Product" parameterType="int">
+		SELECT
+			<include refid="columns"/>
+		FROM sys_product a
+		LIMIT #{0},#{1}
+	</select>
+	
+	<select id="findMaxId" resultType="int">
+	     SELECT MAX(id)+1 FROM sys_product
+	</select>
+</mapper>

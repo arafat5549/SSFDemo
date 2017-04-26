@@ -17,7 +17,8 @@ import com.ssf.model.User;
  */
 @Service //ioc注解
 public class UserService {
-
+	@Autowired
+	IAccountDao accountDao;
 //	//SLF4J :日记的接口类
 //	//jpa   :持久化的东西的接口类
 //	//1.解耦合 - 实现类的解耦合
@@ -50,8 +51,7 @@ public class UserService {
 	
 	//IUserDao userDao;
 	
-	@Autowired
-	IAccountDao accountDao;
+	
 	
 	/**
 	 * 直接使用事务的注解

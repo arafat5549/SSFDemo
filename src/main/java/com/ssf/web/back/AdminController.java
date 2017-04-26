@@ -124,7 +124,7 @@ public class AdminController
 	private void uploadImage(User user, HttpSession session, MultipartFile file) {
         //1.要有一个唯一的名字 时间片
 		String fileName = new Date().getTime() + ".jpg";
-        //获取真实路径
+        //获取真实路径-物理地址
         String path = session.getServletContext().getRealPath("/upload");
         
         String serverFile = path + "/" + fileName;
@@ -148,6 +148,7 @@ public class AdminController
         } catch (Exception e) {
             e.printStackTrace();
         }
+        //如果要知道图片的原始名称
         user.setAvartarUrl("/upload/" + fileName);
         session.setAttribute("session_user", user);
         logger.info(user.toString());
@@ -165,7 +166,7 @@ public class AdminController
 		for (ObjectError objectError : errors) {
 			sb.append(objectError.getDefaultMessage()+"\r\n");
 		}
-		System.out.println(sb.toString());
+		//System.out.println(sb.toString());
 		model.addAttribute("msg", sb.toString());
 		
 		
