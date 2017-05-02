@@ -67,6 +67,7 @@ public class ThreadTest {
 		//newFixedThreadPool 开一个容量为1的线程池
 		ExecutorService es = Executors.newFixedThreadPool(1);
 		
+	
 //		//匿名内部类
 //		es.execute(new Runnable() {
 //			@Override
