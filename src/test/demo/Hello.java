@@ -28,9 +28,39 @@ class A {
 }
  
 
+class C{
+    public Object x; //obj.x
+}
+
+//静态嵌套类(Static Nested Class)和内部类（Inner Class）的不同？
+class Outer {
+	 
+    static class Inner {}
+ 
+    public static void foo() { new Inner(); }
+    //public static void foo() { new Outer().new Inner(); }
+    public void bar() { new Inner(); }
+ 
+    public static void main(String[] args) {
+        new Inner();
+    	//new Outer().new Inner();
+    }
+    //28、是否可以从一个静态（static）方法内部发出对非静态（non-static）方法的调用？
+    public static void foo2() { new Outer().bar(); }
+}
+
  
 public class Hello {
- 
+	//会不会GC掉,并不会 为什么！
+	static void Test3(){
+		C obj1 = new C();
+		C obj2 = new C();
+		obj1.x = obj2;
+		obj2.x = obj1;
+		obj1 = null;
+		obj2 = null;
+	}
+	
 	static void Test1(){
 		 A ab = new B();
 	        ab = new B();
