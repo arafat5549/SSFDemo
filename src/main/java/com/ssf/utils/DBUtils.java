@@ -1,7 +1,6 @@
 package com.ssf.utils;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,8 +14,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
-
-import com.ssf.model.User;
 
 /**
  * DBUtils工具类(只有一份实例,单例模式)
@@ -76,76 +73,76 @@ public class DBUtils {
 //	}
 	
 	
-	/**
-	 * 2.操作数据库 (让Java执行SQL语句) - executeQuery查询获取返回数据
-	 * @param sql
-	 * @return
-	 */
-	public List<User> query(String sql){
-		List<User> lists = new ArrayList<User>();
-		Connection conn = openConnection();
-		if(conn!=null){
-			try {
-				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery(sql); 
-				while(rs.next()){//1.读完了一行
-					User user =new User();
-					int id = rs.getInt("id");
-					String username = rs.getString("username");
-					String password = rs.getString("password");
-					//String describe = rs.getString("describe");
-					user.setId(id);
-					user.setUsername(username);
-					user.setPassword(password);
-					lists.add(user);
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return lists;
-	}
-	/**
-	 * 2-1.规范化的代码(数据库也是IO连接记得关闭流)
-	 */
-	public List<User> query2(String sql){
-		List<User> lists = new ArrayList<User>();
-		Connection conn = null;
-		Statement  stmt = null;
-		ResultSet  rs   = null;
-		try {
-			conn = openConnection();
-			stmt = conn.createStatement();//避免一个连接对硬一个SQL
-			rs = stmt.executeQuery(sql);
-			//mapping映射 
-			//ORM(ObjectRelativeMapping)对象关系映射,
-			//将数据库类型转化为JAVA的属性,封装为JAVA的对象
-			while(rs.next()){ //数据库一般从1#(0代表连接或者读取数据成功)
-				User user =new User();
-				int id = rs.getInt("id");
-				String username = rs.getString("username");
-				String password = rs.getString("password");
-				//String describe = rs.getString("describe");
-				user.setId(id);
-				user.setUsername(username);
-				user.setPassword(password);
-				lists.add(user);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		finally{//从后往前关,先进后出
-			try {
-				if(rs!=null )   rs.close();
-				if(stmt!=null ) stmt.close();
-				if(conn!=null ) conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return lists;
-	}
+//	/**
+//	 * 2.操作数据库 (让Java执行SQL语句) - executeQuery查询获取返回数据
+//	 * @param sql
+//	 * @return
+//	 */
+//	public List<User> query(String sql){
+//		List<User> lists = new ArrayList<User>();
+//		Connection conn = openConnection();
+//		if(conn!=null){
+//			try {
+//				Statement stmt = conn.createStatement();
+//				ResultSet rs = stmt.executeQuery(sql); 
+//				while(rs.next()){//1.读完了一行
+//					User user =new User();
+//					int id = rs.getInt("id");
+//					String username = rs.getString("username");
+//					String password = rs.getString("password");
+//					//String describe = rs.getString("describe");
+//					user.setId(id);
+//					user.setUsername(username);
+//					user.setPassword(password);
+//					lists.add(user);
+//				}
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		return lists;
+//	}
+//	/**
+//	 * 2-1.规范化的代码(数据库也是IO连接记得关闭流)
+//	 */
+//	public List<User> query2(String sql){
+//		List<User> lists = new ArrayList<User>();
+//		Connection conn = null;
+//		Statement  stmt = null;
+//		ResultSet  rs   = null;
+//		try {
+//			conn = openConnection();
+//			stmt = conn.createStatement();//避免一个连接对硬一个SQL
+//			rs = stmt.executeQuery(sql);
+//			//mapping映射 
+//			//ORM(ObjectRelativeMapping)对象关系映射,
+//			//将数据库类型转化为JAVA的属性,封装为JAVA的对象
+//			while(rs.next()){ //数据库一般从1#(0代表连接或者读取数据成功)
+//				User user =new User();
+//				int id = rs.getInt("id");
+//				String username = rs.getString("username");
+//				String password = rs.getString("password");
+//				//String describe = rs.getString("describe");
+//				user.setId(id);
+//				user.setUsername(username);
+//				user.setPassword(password);
+//				lists.add(user);
+//			}
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		finally{//从后往前关,先进后出
+//			try {
+//				if(rs!=null )   rs.close();
+//				if(stmt!=null ) stmt.close();
+//				if(conn!=null ) conn.close();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		return lists;
+//	}
 	//Statement的方式
 	/**
 	 * queryBean 只返回一个结果
@@ -187,6 +184,7 @@ public class DBUtils {
 					String key = rsmd.getColumnName(i+1);
 					Object value = rs.getObject(key);
 					maps.put(key, value);
+					//Reflections.setFieldValue(obj, key, value);
 				}
 				//3.反射类，将值赋给对象
 				BeanUtils.populate(obj, maps);
@@ -396,23 +394,23 @@ public class DBUtils {
 		//反射的作用概括地说是运行时获取类的各种定义信息，比如定义了哪些属性与方法。
 		//原理是通过类的class对象来获取它的各种信息。
 
-		User user =new User();//我就知道了用户的所有信息
-		Class cls3 = user.getClass();
-		Class cls = User.class;
-		Class cls2 = Class.forName("com.ssf.model.User");
-		
-		Object obj = cls.newInstance();
-		Method ms[]=cls.getMethods();
-		for (Method method : ms) { 
-			
-			if(method.getName().equals("setUsername")){
-				System.out.println(method);
-				method.invoke(obj, new Object[]{"测试用户名"});
-			}
-			//
-		}
-		
-		System.out.println(obj);
+//		User user =new User();//我就知道了用户的所有信息
+//		Class cls3 = user.getClass();
+//		Class cls = User.class;
+//		Class cls2 = Class.forName("com.ssf.model.User");
+//		
+//		Object obj = cls.newInstance();
+//		Method ms[]=cls.getMethods();
+//		for (Method method : ms) { 
+//			
+//			if(method.getName().equals("setUsername")){
+//				System.out.println(method);
+//				method.invoke(obj, new Object[]{"测试用户名"});
+//			}
+//			//
+//		}
+//		
+//		System.out.println(obj);
 		//我还没创建对象 我能不能调用对象的方法
 		
 	}

@@ -12,6 +12,9 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
+ * 
+ * 图片处理工具类
+ * 
  * EasyImage lets you do all the basic image operations -
  * converting, cropping, resizing, rotating, flipping…
  * Plus it let’s you do some really cool affects.

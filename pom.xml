@@ -161,11 +161,13 @@
 	    <groupId>javax.servlet</groupId>
 	    <artifactId>javax.servlet-api</artifactId>
 	    <version>3.1.0</version>
+	    <scope>provided</scope>
 	</dependency>
 	<dependency>
 		<groupId>javax.servlet.jsp</groupId>
 		<artifactId>jsp-api</artifactId>
 		<version>2.2</version>
+		<scope>provided</scope>
 	</dependency>
 	<dependency>
 	    <groupId>javax.servlet</groupId>
@@ -202,6 +204,12 @@
 	</dependency>
 	
 	<dependency>
+   		 <groupId>commons-codec</groupId>
+    	<artifactId>commons-codec</artifactId>
+    	<version>1.10</version>
+	</dependency>
+
+	<dependency>
     	<groupId>com.google.guava</groupId>
     	<artifactId>guava</artifactId>
    		 <version>19.0</version>
@@ -233,6 +241,12 @@
 	</dependency>
 		
 
+	<!-- dom4j解析XML文档 -->
+	<dependency>
+	    <groupId>dom4j</groupId>
+	    <artifactId>dom4j</artifactId>
+	    <version>1.6.1</version>
+	</dependency>
 		
 	<!-- JSoup解析HTML文件 -->
     <dependency>
