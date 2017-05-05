@@ -65,7 +65,7 @@ public class ThreadTest {
 	//1.Executor 线程池
 	public static void excutorTest(){
 		//newFixedThreadPool 开一个容量为1的线程池
-		ExecutorService es = Executors.newFixedThreadPool(1);
+//		ExecutorService es = Executors.newFixedThreadPool(1);
 		
 	
 //		//匿名内部类
@@ -93,22 +93,22 @@ public class ThreadTest {
 //		});
 		
 		
-		//2.自动增长
-		ExecutorService es2 = Executors.newCachedThreadPool();
-		
-		//3.schdule #自定义执行的间隔时间
-		ScheduledExecutorService service = Executors.newScheduledThreadPool(10);
-		long initialDelay1 = 1;
-		long period1 = 1;
-        // 从现在开始1秒钟之后，每隔1秒钟执行一次job1
-		service.scheduleAtFixedRate(
-		        new Runnable() {
-					@Override
-					public void run() {
-						System.out.println("匿名内部类");
-					}
-				}, initialDelay1,
-				period1, TimeUnit.SECONDS);
+//		//2.自动增长
+//		ExecutorService es2 = Executors.newCachedThreadPool();
+//		
+//		//3.schdule #自定义执行的间隔时间
+//		ScheduledExecutorService service = Executors.newScheduledThreadPool(10);
+//		long initialDelay1 = 1;
+//		long period1 = 1;
+//        // 从现在开始1秒钟之后，每隔1秒钟执行一次job1
+//		service.scheduleAtFixedRate(
+//		        new Runnable() {
+//					@Override
+//					public void run() {
+//						System.out.println("匿名内部类");
+//					}
+//				}, initialDelay1,
+//				period1, TimeUnit.SECONDS);
 //
 //		long initialDelay2 = 1;
 //		long delay2 = 1;
@@ -148,36 +148,34 @@ public class ThreadTest {
 	 */
 	static void countterTest() throws InterruptedException{
 		int SUM = 10000;
-//		Counter c = new Counter();
-//		for (int i = 0;i<SUM;i++){
-//			   Thread t = new Thread(c);
-//			   t.start(); 
-//			//c.run();
-//		 } 
-//		Thread.sleep(1000);//等待线程运行完毕
-//		System.out.println("总计:"+c.getCount());
-		
-		SynCounter c2 = new SynCounter();
+		Counter c = new Counter();
 		for (int i = 0;i<SUM;i++){
-			   Thread t = new Thread(c2);
-			   t.start(); 
+			   Thread t = new Thread(c);
+			   t.start(); //开启线程
+			   //t.run();     //调用方法
 		 } 
 		Thread.sleep(1000);//等待线程运行完毕
-		System.out.println("2#总计:"+c2.getCount());
+		System.out.println("总计:"+c.getCount());
 		
-		AtmoicCounter c3 = new AtmoicCounter();
-		for (int i = 0;i<SUM;i++){
-			   Thread t = new Thread(c3);
-			   t.start(); 
-		 } 
-		Thread.sleep(1000);
-		System.out.println("3#总计:"+c3.getCount());
+//		SynCounter c2 = new SynCounter();
+//		for (int i = 0;i<SUM;i++){
+//			   Thread t = new Thread(c2);
+//			   t.start(); 
+//		 } 
+//		Thread.sleep(1000);//等待线程运行完毕
+//		System.out.println("2#总计:"+c2.getCount());
+//		
+//		AtmoicCounter c3 = new AtmoicCounter();
+//		for (int i = 0;i<SUM;i++){
+//			   Thread t = new Thread(c3);
+//			   t.start(); 
+//		 } 
+//		Thread.sleep(1000);
+//		System.out.println("3#总计:"+c3.getCount());
 	}
 	
 	public static void main(String[] args) throws Exception {
-		//T1 t = new T1();
-		//t.start();
-		
+		countterTest();
 		
 		//T2 t2 = new T2();
 		//t2.run();//以类的方式来处理
@@ -193,7 +191,7 @@ public class ThreadTest {
 		//t1();
 		//countterTest();
 		
-		excutorTest();
+		//excutorTest();
 	}
 }
 
@@ -266,7 +264,7 @@ class Counter implements Runnable{
 	}
 }
 
-//使用synchronized来实现线程安全  本质上互斥锁  原子性和有序性 
+//使用synchronized来实现线程安全  本质上互斥锁  原子性和有序性 可见性
 //JAVA默认都是最保守的方式
 //servlet每次请求都是一个线程 10万人访问如何正确计算
 //推荐方式 只有synchronized达不到你的要求 再考虑其他方式

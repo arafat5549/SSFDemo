@@ -24,7 +24,7 @@ public class DynamicProxy implements InvocationHandler{
 		this.target = p;
 		return Proxy.newProxyInstance(
 				target.getClass().getClassLoader(), 
-				target.getClass().getInterfaces(),//JDK动态代理默认靠接口来接口
+				target.getClass().getInterfaces(),//JDK动态代理默认靠接口来接口 ，CGLIB代理
 				this);
 	}
 	

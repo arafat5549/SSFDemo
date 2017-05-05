@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * 生产者和消费者模型
- * 并发经典的案例
+ * 并发concurrent经典的案例
  * 
  * ArrayBlockingQueue阻塞队列
  * 
@@ -25,7 +25,6 @@ public class ProducterConsumer_BlockingQueue
 {
 	private static int size =20;
 	ArrayBlockingQueue<Integer> queue = new ArrayBlockingQueue<>(size);
-	
 	
 	public static void main(String[] args) 
 	{

@@ -8,6 +8,8 @@ import com.ssf.model.Account;
 
 public class IOCBeanFactory {
 	
+	//private String s = 静态方法区.xxx;
+	
 	private IOCBeanFactory(){};
 	private static IOCBeanFactory instance;
 	public static IOCBeanFactory getInstance(){
