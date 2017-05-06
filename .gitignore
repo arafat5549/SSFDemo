@@ -1,3 +1,13 @@
-/target/
-/catalina.base_IS_UNDEFINED/
-/.settings/
+.DS_Store
+*/.DS_Store
+
+target/
+target/*
+.settings/
+.settings/*
+.classpath
+.project
+velocity.log
+
+src/main/webapp/WEB-INF/lib/
+src/main/webapp/WEB-INF/lib/*

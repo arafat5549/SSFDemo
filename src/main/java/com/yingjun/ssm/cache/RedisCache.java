@@ -117,7 +117,7 @@ public class RedisCache {
 	 * @param pattern
 	 */
 	public void deleteCacheWithPattern(String pattern) {
-		Set<String> keys = redisTemplate.keys(pattern);
+		Set<String> keys = redisTemplate.keys(RedisCache.CAHCENAME + "|" + pattern);
 		redisTemplate.delete(keys);
 	}
 

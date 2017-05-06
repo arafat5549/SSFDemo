@@ -1,4 +1,3 @@
-
 -- 需要 MySQL 5.6.5以上的版本
 CREATE DATABASE beauty_ssm;
 USE beauty_ssm;
@@ -52,4 +51,3 @@ INSERT INTO
 VALUES
 	('iphone7', 1, 3999, 100),
 	('ipad3', 1, 1999, 2000);
-	
