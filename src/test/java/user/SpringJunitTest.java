@@ -45,10 +45,8 @@ public class SpringJunitTest {
 	@Autowired
 	AccountController accountController;
 	
-	@Test
-	public 
-	
-	List<Map<String, Object>> treeData(){
+	//@Test
+	public List<Map<String, Object>> treeData(){
 		String extId = "";
 		String isShowHide = null;
 		List<Map<String, Object>> mapList = Lists.newArrayList();
@@ -69,7 +67,7 @@ public class SpringJunitTest {
 		return mapList;
 	}
 	
-	@Test
+	//@Test
 	public void jsonTest(){
 		int newid = categoryDao.findMaxId();
 		System.out.println(newid);
@@ -106,7 +104,7 @@ public class SpringJunitTest {
 	
 	
 	
-	@Test  
+	//@Test  
 	public void userTest(){
 		
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("");

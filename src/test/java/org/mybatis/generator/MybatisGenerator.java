@@ -1,4 +1,4 @@
-﻿package org.mybatis.generator;
+package org.mybatis.generator;
 
 import java.net.URISyntaxException;
 
