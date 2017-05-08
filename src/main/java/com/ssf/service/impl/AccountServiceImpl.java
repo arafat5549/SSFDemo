@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.ssf.dao.IAccountDao;
 import com.ssf.service.AccountService;
 
-@Service(value="r1")//支付宝
+@Service
 public class AccountServiceImpl implements AccountService{
 	
 	@Autowired

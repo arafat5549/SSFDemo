@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.ssf.service.AccountService;
 
-@Service(value="r2")//银行
+//@Service(value="r2")//银行
 public class AccountServiceImpl2 implements AccountService{
 
 	@Override

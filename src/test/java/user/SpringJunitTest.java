@@ -21,7 +21,6 @@ import com.ssf.model.User;
 import com.ssf.service.AccountService;
 import com.ssf.service.UserService;
 import com.ssf.service.back.AdminService;
-import com.ssf.utils.JsonMapper;
 import com.ssf.web.AccountController;
 
 
@@ -42,8 +41,11 @@ public class SpringJunitTest {
 	@Autowired
 	AccountService accountService;
 	
-	@Autowired
-	AccountController accountController;
+	
+	@Test
+	public void baseTest(){
+		System.out.println("运行SprinTest---");
+	}
 	
 	//@Test
 	public List<Map<String, Object>> treeData(){
