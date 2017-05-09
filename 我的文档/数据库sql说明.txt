@@ -1,2 +1,2 @@
-myshop_schema.sql£º½¨¿â½¨±í
-myshop_data.sql: ²åÈë²âÊÔ£¨£©»ù´¡£©Êý¾Ý
+myshop_schema.sqlï¼šå»ºåº“å»ºè¡¨
+myshop_data.sql: æ’å…¥æµ‹è¯•ï¼ˆï¼‰åŸºç¡€ï¼‰æ•°æ®
