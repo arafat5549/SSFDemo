@@ -287,8 +287,12 @@ JAVAEE三大框架：
 	        <aop:advisor advice-ref="txadvice" pointcut-ref="txpointcut"/>
 	    </aop:config>
 
-	#Struts2和SpringMVC的区别:
+	#什么是SpringMvc?
+		Spring Web MVC是一种基于Java的实现了WebMVC设计模式的请求驱动类型的轻量级Web框架，即使用了MVC架构模式的思想，将web层进行职责解耦，基于请求驱动指的就是使用请求-响应模型，框架的目的就是帮助我们简化开发，SpringWebMVC也是要简化我们日常Web开发的。
 
+
+
+	#Struts2和SpringMVC的区别:
 	//不使用框架 servlet+jsp
 	1.获取参数 - String username = req.getPameter("username")
 	2.参数验证
@@ -307,9 +311,9 @@ JAVAEE三大框架：
     13-14爆出安全漏洞，官方直接把漏洞公布出来
 
     //SpringMVC的作用
-    1.进一步简化请求参数封装User    public String login(User user,Model model)
-    2.简化了页面跳转
-    3.url可以指定到方法那一级别
+    1.请求参数封装#为了简化WEB开发(应用到了反射 前台是你有对应参数名的getter和setter方法)
+    2.简化了页面跳转，非常容易与其他视图技术集成，如Velocity、FreeMarker等等，因为模型数据不放在特定的API里，而是放在一个Model里（Map数据结构实现，因此很容易被其他框架使用）；
+    3.url可以指定到方法那一级别#支持灵活的URL到页面控制器的映射；
     4.RESTFUL风格  user/list/1  用url来传参
     5.非常容易整合JSON等数据处理，有利于手机端的数据操作
     6.天然跟Spring整合(本身就是spring的一个模块)
