@@ -577,6 +577,50 @@ WEB基础：
      1.数据库的横向划分
      2、数据库的纵向划分(分库)
 
+2.主流数据库?
+	关系型数据库RMDBS：
+		Mysql(开源): 免费->很多人用->活跃社区->出现问题很大概率别人已经解决过了->进一步吸引新的用户来使用
+		Oracle(商业):使用Maven的时候 需要手动下载oracle的连接包 然后手动安装到maven本地(不开源要付法律责任)
+
+		功能强大而完整->笨重->政府企业(非技术导向的企业 又需要一定的技术支持)
+		SqlServer(微软):
+			微软全家桶
+	非关系型数据库NOSQL:(大数据火起来,数据结构基本都是文件+索引)
+		MongoDB
+
+	缓存 键值对的内存数据库
+	    Reis
+	    MemCache
+2-2.WEB服务器
+	开源(Tomcat # Servlet/JSP容器):
+		主要应对JavaWEB程序
+	商业(WebLogic/WebShere):
+		包含了主流的中间件技术(用来支持你的整个业务模式)
+	微软(IIS):
+		.net系列
+2-3.HTTP服务器(只能处理静态资源)
+	Nginx:俄国人为俄国的百度开发的一个高性能低消耗的HTTP服务器
+	ApacheHTTP:经典的WAMP(WindowsApachehttpMysqlPHP)
+    Jetty：
+    
+    WEB服务器和HTTP服务器如何进行的协作的：
+    集群(cluster):通过Nginx进行请求转发,处理静态请求，将动态请求交给Tomcat来处理
+    反向代理:代理的是服务器而不是客户端
+
+    优点：1.分流 2.利用网站的运营(服务器宕机不会整体崩溃,网站更新可以逐步进行更新等)
+
+
+3.Maven引入本地工程的两种方式:
+ 		<!-- 本地工程包 -->
+		<dependency>
+			<groupId>com.springside4</groupId>
+			<artifactId>springside-utils</artifactId>
+			<version>5.0.0</version>
+			<scope>system</scope>   
+            <systemPath>${project.basedir}/LocalLibs/springside-utils-5.0.0-SNAPSHOT.jar</systemPath>  
+		</dependency>
+
+
 
 String相关模型:
 	#
