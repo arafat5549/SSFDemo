@@ -702,3 +702,10 @@ String相关模型:
 
 Linux命令行
 	Java开发必会的Linux命令-http://www.hollischuang.com/archives/800
+
+基础工程操作部分:
+
+怎么将Maven工程转成原生WEB工程:
+1.将src/main/java即源代码目录和src/main/resources配置文件目录都拷贝到src路径下
+2.将webapp的内容拷贝到原生工程的webapp下
+3.先mvn install生成Target目录下 然后将生成WEB-INF/LIB下所有包拷贝到原生工程的WEB-INF/LIB下
