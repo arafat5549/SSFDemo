@@ -204,8 +204,6 @@ public class LessonText_20170526 {
 		return password.equals(encodeHex(salt)+encodeHex(hashPassword)); // encodeHex(salt)+ encodeHex(hashPassword)
 	}
 	
-	
-	
 	/**
 	 * ***********************************************************************************
 	 * 3.题库随机抽取

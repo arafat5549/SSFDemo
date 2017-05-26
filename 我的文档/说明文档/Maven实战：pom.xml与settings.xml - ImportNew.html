@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)http://www.importnew.com/22779.html -->
+<html dir="ltr" lang="zh-CN" xmlns:wb="http://open.weibo.com/wb" class=" js rgba borderradius boxshadow textshadow opacity cssanimations cssgradients csstransitions fontface generatedcontent video audio js"><!--<![endif]--><!-- BEGIN head --><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shares.php" charset="utf-8"></script><div class="fit-vids-style">­<style>               .fluid-width-video-wrapper {                 width: 100%;                              position: relative;                       padding: 0;                            }                                                                                   .fluid-width-video-wrapper iframe,        .fluid-width-video-wrapper object,        .fluid-width-video-wrapper embed {           position: absolute;                       top: 0;                                   left: 0;                                  width: 100%;                              height: 100%;                          }                                       </style></div><script src="./Maven实战：pom.xml与settings.xml - ImportNew_files/id.php" charset="utf-8"></script>
+
+	<!-- Title -->
+	<title>Maven实战：pom.xml与settings.xml  - ImportNew</title>
+	
+	<!-- Meta Tags -->
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!-- Favicon & Mobileicon -->
+	<link rel="shortcut icon" href="http://www.importnew.com/wp-content/uploads/2014/12/d02a42d9cb3dec9320e5f550278911c7.ico">
+	<link rel="apple-touch-icon" href="http://www.importnew.com/wp-content/themes/jobbolev4blog/mobileicon.png">
+	
+	<!-- RSS, Atom & Pingbacks -->
+		<link rel="alternate" title="ImportNew RSS Feed" href="http://www.importnew.com/feed">
+		<link rel="alternate" title="RSS .92" href="http://www.importnew.com/feed/rss">
+	<link rel="alternate" title="Atom 0.3" href="http://www.importnew.com/feed/atom">
+	<link rel="pingback" href="http://www.importnew.com/xmlrpc.php">
+	
+	<!-- Theme Hook -->
+	<link rel="stylesheet" id="lightboxStyle-css" href="./Maven实战：pom.xml与settings.xml - ImportNew_files/colorbox.css" type="text/css" media="screen">
+<link rel="stylesheet" id="core3.0-css" href="./Maven实战：pom.xml与settings.xml - ImportNew_files/shCore.css" type="text/css" media="all">
+<link rel="stylesheet" id="core-Default3.0-css" href="./Maven实战：pom.xml与settings.xml - ImportNew_files/shCoreDefault.css" type="text/css" media="all">
+<link rel="stylesheet" id="theme-Default3.0-css" href="./Maven实战：pom.xml与settings.xml - ImportNew_files/shThemeDefault.css" type="text/css" media="all">
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/jquery.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/q2w3-fixed-widget.min.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/modernizr.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/comment-reply.js.下载"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.importnew.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.importnew.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Spring8：一些常用的Spring Bean扩展接口" href="http://www.importnew.com/22775.html">
+<link rel="next" title="MyBatis（1）：MyBatis入门" href="http://www.importnew.com/22783.html">
+<link rel="shortlink" href="http://www.importnew.com/?p=22779">
+
+<!-- All in One SEO Pack 1.6.15.2 by Michael Torbert of Semper Fi Web Design[465,511] -->
+<link rel="author" href="http://www.importnew.com/liuchi1993">
+<meta name="description" content="pom.xml与setting.xml，可以说是Maven中最重要的两个配置文件，决定了Maven的核心功能，虽然之前的文章零零碎碎有提到过pom.xml和settings.xml里面的内容，但都是大略带过，学习与研究地并不细致，本文的目的就是详细研究下这两个Maven重要的配置文件，从这两个配置文件可以牵出非常多的Maven话题。">
+<meta name="keywords" content="maven">
+<link rel="canonical" href="http://www.importnew.com/22779.html">
+<!-- /all in one seo pack -->
+
+<!-- Comment Rating plugin Version: 2.9.32 by Bob King, http://wealthynetizen.com/, dynamic comment voting & styling. --> 
+<style type="text/css" media="screen">
+   .ckrating_highly_rated {background-color:#FFFFCC !important;}
+   .ckrating_poorly_rated {opacity:0.6;filter:alpha(opacity=60) !important;}
+   .ckrating_hotly_debated {background-color:#FFF0F5 !important;}
+</style>
+
+
+<!-- WP SyntaxHighlighter Ver.1.7.3 CSS for code Begin -->
+<style type="text/css">
+.syntaxhighlighter,
+.syntaxhighlighter a,
+.syntaxhighlighter div,
+.syntaxhighlighter code,
+.syntaxhighlighter table,
+.syntaxhighlighter table td,
+.syntaxhighlighter table tr,
+.syntaxhighlighter table tbody,
+.syntaxhighlighter table thead,
+.syntaxhighlighter table caption,
+.syntaxhighlighter textarea {
+font-size: 12px !important; /* Set the font size in pixels */  
+font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important; /* Set the font type */  
+}
+.syntaxhighlighter table caption {
+/* For Title(Caption) */  
+font-size: 14px !important; /* Set the font size in pixels */  
+font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important; /* Set the font type */  
+}
+.syntaxhighlighter.nogutter td.code .line {
+/* Set the left padding space when no-gutter in ver. 3.0 */  
+padding-left: 3px !important;
+}
+.syntaxhighlighter {
+/* For Chrome/Safari(WebKit) */  
+/* Hide the superfluous vertical scrollbar in ver. 3.0 */  
+overflow-y: hidden !important;
+padding: 1px !important;
+}
+.widget-area.syntaxhighlighter a,
+.widget-area.syntaxhighlighter div,
+.widget-area.syntaxhighlighter code,
+.widget-area.syntaxhighlighter table,
+.widget-area.syntaxhighlighter table td,
+.widget-area.syntaxhighlighter table tr,
+.widget-area.syntaxhighlighter table tbody,
+.widget-area.syntaxhighlighter table thead,
+.widget-area.syntaxhighlighter table caption,
+.widget-area.syntaxhighlighter textarea {
+/* For Widget */  
+font-size: 14px !important; /* Set the font size in pixels */  
+font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important; /* Set the font type */  
+}
+.widget-area table caption {
+/* For Widget */  
+/* For Title(Caption) */  
+font-size: 10px !important; /* Set the font size in pixels */  
+font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important; /* Set the font type */  
+}
+</style>
+<!-- WP SyntaxHighlighter Ver.1.7.3 CSS for code End -->
+	
+	<!-- CSS -->
+	<link rel="stylesheet" href="./Maven实战：pom.xml与settings.xml - ImportNew_files/style.css" media="screen">
+	<!-- link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noticia+Text:400,700italic,700,400italic" media="screen" / -->
+	<style>
+				*::selection { background: #0099cc; }
+		*::-moz-selection { background: #0099cc; }
+		body { background: #ffffff  }
+		a, .tabs ul.nav li a:hover, .tabs ul.nav li.active a, .dropcap, .toggle.hover .toggle-title, li.comment cite a:hover, h3.widget-title, .post-meta .meta-title:hover, .the-latest a:hover h4, .aw_socialcounter_widget li a:hover, .aw_tabbed_widget #tab-latest-comments a:hover { color: #0099cc; }
+		a:hover { color: #b30000; }
+		input:focus, textarea:focus { border-color: #0099cc; }
+		#searchsubmit, .highlight, .aw_tabbed_widget .tabs ul.nav li.active a, footer .aw_tabbed_widget .tabs ul.nav li.active a, #top .aw_tabbed_widget .tabs ul.nav li.active a, .aw_tabbed_widget .tabs ul.nav li a:hover, footer .aw_tabbed_widget .tabs ul.nav li a:hover, #top .aw_tabbed_widget .tabs ul.nav li a:hover, .aw_twitter_widget .twitter-icon, .testimonial-icon, #top-closed:hover, .flex-control-nav a:hover, .flex-control-nav a.flex-active { background-color: #0099cc; }
+		.submit { background-color: #0099cc; border-color: #007399; }
+		.submit:hover { background-color: #b30000; border-color: #860000; }
+		#searchsubmit:hover { background-color: #b30000; }
+		.toggle.hover .toggle-icon { border-top-color: #0099cc; }
+		.toggle.hover.active .toggle-icon { border-bottom-color: #0099cc; }
+		.flex-direction-nav li .flex-prev:hover { border-right-color: #0099cc; }
+		.flex-direction-nav li .flex-next:hover { border-left-color: #0099cc; }
+		@media only screen and (min-width: 768px) and (max-width: 959px) {
+			.aw_tabbed_widget .tabs ul.nav li a:hover, .tabs ul.nav li.active a { color: #0099cc; }
+		}
+		@media screen and (max-width: 767px) {
+			.tabs ul.nav li a:hover, .tabs ul.nav li.active a { color: #0099cc; }
+		}
+	</style>
+		
+	<!--[if IE 8]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+    <![endif]-->
+
+	<!-- Links: RSS + Atom Syndication + Pingback etc. -->
+	<link rel="alternate" type="application/rss+xml" title="ImportNew RSS Feed" href="http://www.importnew.com/feed">
+	<link rel="alternate" type="text/xml" title="RSS .92" href="http://www.importnew.com/feed/rss">
+	<link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="http://www.importnew.com/feed/atom">
+	<link rel="pingback" href="http://www.importnew.com/xmlrpc.php">
+    <script src="./Maven实战：pom.xml与settings.xml - ImportNew_files/wb.js.下载" type="text/javascript" charset="utf-8"></script><script charset="UTF-8" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/query"></script>
+
+<!-- END head -->
+<style>html, * {-webkit-user-select:text!important; -moz-user-select:text!important;}</style></head>
+
+<!-- BEGIN body -->
+<body class="single single-post postid-22779 single-format-standard chrome"><link href="./Maven实战：pom.xml与settings.xml - ImportNew_files/jiathis_counter.css" rel="stylesheet" type="text/css"><link href="./Maven实战：pom.xml与settings.xml - ImportNew_files/jiathis_share.css" rel="stylesheet" type="text/css"><iframe frameborder="0" style="position: absolute; display: none; opacity: 0;" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/saved_resource.html"></iframe><div class="jiathis_style" style="position: absolute; z-index: 1000000000; display: none; top: 50%; left: 50%; overflow: auto;"></div><div class="jiathis_style" style="position: absolute; z-index: 1000000000; display: none; overflow: auto;"></div><iframe frameborder="0" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/jiathis_utility.html" style="display: none;"></iframe>
+
+		
+	
+	<!-- BEGIN #top-nav -->
+	<nav id="top-nav" class="menu-nav">
+		
+		<!-- BEGIN .container -->
+		<div class="container">
+
+			            <div class="grid-12">
+            </div>
+			<div class="clear"></div>
+		
+		</div>
+		<!-- END .container -->
+    
+	</nav>
+	<!-- END #top-nav -->
+	
+	  	
+	<!-- BEGIN #wrapper -->
+	<div id="wrapper" class="container">
+
+		<!-- BEGIN header -->
+		<header>
+		
+						
+			<div class="header-wrapper">
+								
+				<!-- BEGIN #logo -->
+				<div id="logo" class="leaderboard-true">
+				
+										<a href="http://www.importnew.com/"><img src="./Maven实战：pom.xml与settings.xml - ImportNew_files/6c537425c9ad078efe656a346e5facec.png" width="137" height="85" alt="ImportNew"></a>
+									
+				</div>
+				<!-- END #logo -->
+				
+				<!-- BEGIN #leaderboard -->
+				<div id="leaderboard">
+				
+					<a href="http://blog.jobbole.com/106093/" target="_blank" class="external" rel="nofollow"><img width="728" height="90" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/bfdcef89gw1f9cf7deatvj20k802idgf.jpg"></a>				
+				</div>
+				<!-- END #leaderboard -->
+				
+				<div class="clear"></div>
+			
+			</div>
+			
+						
+			<div class="clear"></div>
+			
+			<!-- BEGIN #main-nav -->
+			<nav id="main-nav" class="grid-12 menu-nav">
+
+				<div class="menu-main-container"><ul id="main-nav-menu" class="menu sf-js-enabled"><li id="menu-item-14265" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14265"><a href="http://www.importnew.com/">首页</a></li>
+<li id="menu-item-14278" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-14278"><a href="http://www.importnew.com/all-posts">所有文章</a></li>
+<li id="menu-item-858" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-858"><a href="http://www.importnew.com/cat/news">资讯</a></li>
+<li id="menu-item-1120" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1120"><a href="http://www.importnew.com/cat/web-development">Web</a></li>
+<li id="menu-item-1923" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1923"><a href="http://www.importnew.com/cat/architecture">架构</a></li>
+<li id="menu-item-832" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-832"><a href="http://www.importnew.com/cat/basic">基础技术</a></li>
+<li id="menu-item-836" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-836"><a href="http://www.importnew.com/cat/books">书籍</a></li>
+<li id="menu-item-2183" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2183"><a href="http://www.importnew.com/cat/tutorial">教程</a></li>
+<li id="menu-item-20858" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20858"><a href="http://group.jobbole.com/category/tech/java/" class="external" rel="nofollow" target="_blank">Java小组</a></li>
+<li id="menu-item-20859" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20859"><a href="http://hao.jobbole.com/?catid=32" class="external" rel="nofollow" target="_blank">工具资源</a></li>
+</ul><select class="selectnav" id="selectnav1"><option value="">- 导航条 -</option><option value="http://www.importnew.com/">首页</option><option value="http://www.importnew.com/all-posts">所有文章</option><option value="http://www.importnew.com/cat/news">资讯</option><option value="http://www.importnew.com/cat/web-development">Web</option><option value="http://www.importnew.com/cat/architecture">架构</option><option value="http://www.importnew.com/cat/basic">基础技术</option><option value="http://www.importnew.com/cat/books">书籍</option><option value="http://www.importnew.com/cat/tutorial">教程</option><option value="http://group.jobbole.com/category/tech/java/">Java小组</option><option value="http://hao.jobbole.com/?catid=32">工具资源</option></select></div>				
+				<div class="clear"></div>
+            
+			</nav>
+			<!-- END #main-nav -->
+			
+			<div class="clear"></div>
+		
+		</header>
+		<!-- END header -->
+		
+		
+
+<!-- BEGIN .grid-8 -->
+<div class="grid-8">
+
+		
+	<!-- BEGIN .post -->
+<div class="post-22779 post type-post status-publish format-standard hentry category-basic tag-maven odd" id="post-22779">
+	
+	<!-- BEGIN .entry-header -->
+	<div class="entry-header">
+	
+				
+		<h1>Maven实战：pom.xml与settings.xml</h1>
+		
+							
+	</div>
+	<!-- BEGIN .entry-header -->
+	
+	<!-- BEGIN .entry-meta -->
+	<div class="entry-meta">
+	
+		<p class="entry-meta-hide-on-mobile">2016/12/17 | 分类： <a href="http://www.importnew.com/cat/basic" title="查看 基础技术 中的全部文章" rel="category tag">基础技术</a> | <a href="http://www.importnew.com/22779.html#respond" title="《Maven实战：pom.xml与settings.xml》上的评论">0 条评论</a>
+
+		 | 标签： <a href="http://www.importnew.com/tag/maven">maven</a></p>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style" style="display: block; margin: 0 0px; clear: both;"><span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_tsina" title="分享到微博"><span class="jiathis_txt jtico jtico_tsina"></span></a>
+<a class="jiathis_button_weixin" title="分享到微信"><span class="jiathis_txt jtico jtico_weixin"></span></a>
+<a class="jiathis_button_qzone" title="分享到QQ空间"><span class="jiathis_txt jtico jtico_qzone"></span></a>
+<a class="jiathis_button_fb" title="分享到Facebook"><span class="jiathis_txt jtico jtico_fb"></span></a>
+<a class="jiathis_button_renren" title="分享到人人网"><span class="jiathis_txt jtico jtico_renren"></span></a>
+<a class="jiathis_button_douban" title="分享到豆瓣"><span class="jiathis_txt jtico jtico_douban"></span></a>
+<a class="jiathis_button_readitlater"></a>
+<a class="jiathis_button_evernote" title="分享到印象笔记"><span class="jiathis_txt jtico jtico_evernote"></span></a>
+<a class="jiathis_button_ydnote" title="分享到有道云笔记"><span class="jiathis_txt jtico jtico_ydnote"></span></a>
+<a href="http://www.jiathis.com/share?uid=1745061" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+<a class="jiathis_counter_style"><span class="jiathis_button_expanded jiathis_counter jiathis_bubble_style" id="jiathis_counter_26" title="累计分享11次">11</span></a>
+</div>
+<!-- JiaThis Button END -->
+
+
+	</div>
+	<!-- END .entry-meta -->
+
+	<!-- BEGIN .entry -->
+	<div class="entry">
+
+        
+		<div class="copyright-area">原文出处： <a ref="nofollow" target="_blank" href="http://www.cnblogs.com/xrq730/p/5530069.html">五月的仓颉</a></div>
+<p><strong>pom.xml与settings.xml</strong></p>
+<p>pom.xml与setting.xml，可以说是Maven中最重要的两个配置文件，决定了Maven的核心功能，虽然之前的文章零零碎碎有提到过pom.xml和settings.xml里面的内容，但都是大略带过，学习与研究地并不细致，本文的目的就是详细研究下这两个Maven重要的配置文件，从这两个配置文件可以牵出非常多的Maven话题。</p>
+<p><strong>Maven坐标</strong></p>
+<p>首先谈一下为什么要使用Maven坐标。</p>
+<p>Maven世界拥有数量非常巨大的构件，也就是平时使用的一些jar、war等文件，在Maven为这些构件引入坐标概念之前，我们无法使用任何一种方式来唯一标识所有这些构件。因此，如果需要使用Spring依赖，那么就去Spring官网寻找；如果需要使用log4j依赖，那么又去Apache官网寻找。又因为各个网站风格迥异，大量时间花费在了搜索和浏览网页的工作上。<strong>没有统一规范与法则，工作就无法自动化，重复性的劳动本来就应该交给机器来做</strong>。</p>
+<p>Maven定义了这样一组规则：<strong>世界上任何一个构件都可以使用Maven坐标唯一标识</strong>，Maven坐标元素包括groupId、artifactId、version、packaging、classifier，现在只要我们提供正确的元素坐标，Maven就能找到对应的构件。至于去哪里下载，Maven本身内置了一个中央仓库的地址”http://repo1.maven.org/maven2″，该中央仓库包含了世界上绝大部分流行的开源项目构件，Mavne会在需要的时候去那里下载，当然也可以配置自己的中央仓库地址，去自己的中央仓库下载构件。</p>
+<p>举个例子，Spring的context：</p>
+<div>
+<div><div id="highlighter_199263" class="syntaxhighlighter notranslate xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">dependency</code><code class="xml plain">&gt;</code></div><div class="line number2 index1 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">groupId</code><code class="xml plain">&gt;org.springframework&lt;/</code><code class="xml keyword">groupId</code><code class="xml plain">&gt;</code></div><div class="line number3 index2 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">artifactId</code><code class="xml plain">&gt;spring-context&lt;/</code><code class="xml keyword">artifactId</code><code class="xml plain">&gt;</code></div><div class="line number4 index3 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">version</code><code class="xml plain">&gt;4.2.6.RELEASE&lt;/</code><code class="xml keyword">version</code><code class="xml plain">&gt;</code></div><div class="line number5 index4 alt2"><code class="xml plain">&lt;/</code><code class="xml keyword">dependency</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>看一下下属的各个元素：</p>
+<ul>
+<li>groupId：定义当前Maven项目隶属的实际项目。由于Maven项目和实际项目未必是一对一的关系，比如SpringFramework这个实际项目可能对应的Maven项目有很多，像core、context、expression等等，因此<strong>groupId不应该对应项目隶属的公司或组织</strong>，否则artifact将很难定义</li>
+<li>artifactId：定义实际项目中的一个Maven模块，推荐的做法是使用实际项目名称作为artifactId的前缀，这样会很方便去寻找实际构件</li>
+<li>version：定义Maven项目当前所处的版本，如上面的spring-context就是4.2.6的，RELEASE表示正式发行版本</li>
+<li>packing：定义Maven项目的打包方式，这项不是必须的，没列出来，不定义默认就是jar的打包方式</li>
+<li>classifier：帮助定义构件输出的一些附属构件，比如xxx-javadoc.jar、xxx-sources.jar，附属构件与主构件对应，这项是不能直接定义的</li>
+</ul>
+<p>Maven坐标的概念大致上就是这样，理解Maven坐标，是理解Maven很重要的一步。</p>
+<p><strong>传递性依赖</strong></p>
+<p>什么是传递性依赖，以Spring举一个例子。使用Spring的时候会依赖于其他开源的类库，此时有两种做法：</p>
+<p>1、下载一个很大的.zip包，里面包含了所有Spring的jar，但是这么做往往就引入了许多不必要的依赖</p>
+<p>2、只下载spring相关的.zip包，不包含依赖，实际使用的时候根据出错信息，加入需要的其他依赖</p>
+<p>显然这两种做法都非常麻烦，Maven的传递性依赖机制很好地解决了这一问题。打开spring-core-4.1.0.RELEASE的pom.xml，我截取一段关键部分：</p>
+<div>
+<div><div id="highlighter_25393" class="syntaxhighlighter notranslate xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">dependencies</code><code class="xml plain">&gt;</code></div><div class="line number2 index1 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">dependency</code><code class="xml plain">&gt;</code></div><div class="line number3 index2 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">groupId</code><code class="xml plain">&gt;commons-codec&lt;/</code><code class="xml keyword">groupId</code><code class="xml plain">&gt;</code></div><div class="line number4 index3 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">artifactId</code><code class="xml plain">&gt;commons-codec&lt;/</code><code class="xml keyword">artifactId</code><code class="xml plain">&gt;</code></div><div class="line number5 index4 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">version</code><code class="xml plain">&gt;1.9&lt;/</code><code class="xml keyword">version</code><code class="xml plain">&gt;</code></div><div class="line number6 index5 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">scope</code><code class="xml plain">&gt;compile&lt;/</code><code class="xml keyword">scope</code><code class="xml plain">&gt;</code></div><div class="line number7 index6 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">optional</code><code class="xml plain">&gt;true&lt;/</code><code class="xml keyword">optional</code><code class="xml plain">&gt;</code></div><div class="line number8 index7 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;/</code><code class="xml keyword">dependency</code><code class="xml plain">&gt;</code></div><div class="line number9 index8 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">dependency</code><code class="xml plain">&gt;</code></div><div class="line number10 index9 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">groupId</code><code class="xml plain">&gt;commons-logging&lt;/</code><code class="xml keyword">groupId</code><code class="xml plain">&gt;</code></div><div class="line number11 index10 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">artifactId</code><code class="xml plain">&gt;commons-logging&lt;/</code><code class="xml keyword">artifactId</code><code class="xml plain">&gt;</code></div><div class="line number12 index11 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">version</code><code class="xml plain">&gt;1.1.3&lt;/</code><code class="xml keyword">version</code><code class="xml plain">&gt;</code></div><div class="line number13 index12 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">scope</code><code class="xml plain">&gt;compile&lt;/</code><code class="xml keyword">scope</code><code class="xml plain">&gt;</code></div><div class="line number14 index13 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;/</code><code class="xml keyword">dependency</code><code class="xml plain">&gt;</code></div><div class="line number15 index14 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">...</code></div><div class="line number16 index15 alt1"><code class="xml plain">&lt;/</code><code class="xml keyword">dependencies</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>比如A项目依赖了spring-core，spring-core又依赖了commons-codec和commons-logging，那么commons-codec和commons-logging就是A项目的一个传递性依赖。有了传递性依赖机制，在使用spring-core的时候就不用去考虑它依赖了什么，也不用担心引入多余的依赖，Maven会解析各个直接依赖的POM，将那些必要的间接依赖，以传递性依赖的形式引入到当前的项目中去。</p>
+<p>有了传递性依赖机制，一方面大大简化和方便了依赖声明，另一方面在大部分情况下我们只需要关心项目的直接依赖是什么而不用考虑这些直接依赖会引入什么传递性依赖，不过有时候传递性依赖也会有一些问题，此时我们就需要清除地知道该传递性依赖是从哪条路径引入的，这就叫依赖调解，依赖调解主要有两点原则：</p>
+<p>1、A-&gt;B-&gt;C-&gt;X(1.0)，A-&gt;D-&gt;X(2.0)，此时两条依赖路径上有两个版本的X，此时遵循<strong>路径最近者优先</strong>，因此X(2.0)将被解析使用</p>
+<p>2、A-&gt;B-&gt;Y(1.0)，A-&gt;C-&gt;Y(2.0)，Y(1.0)和Y(2.0)的依赖长度是一样的，从Maven2.0.9开始，此时遵循<strong>第一声明者优先</strong>，即顺序最靠前的那个依赖优先</p>
+<p><strong>排除依赖</strong></p>
+<p>传递性依赖会给项目隐式地引入很多依赖，这极大地简化了项目依赖的管理，但是有时候这种特性也会带来问题。比如有种情况：</p>
+<div>
+<blockquote><p>当前项目依赖A，A由于某些原因依赖了另外一个类库的SNAPSHOT版本，那么这个SNAPSHOT就会成为当前项目的传递性依赖，二SNAPSHOT的不稳定性将直接影响到当前的项目，此时就需要排除该SNAPSHOT，并且在当前项目中声明该类库的某个正式发布的版本</p></blockquote>
+</div>
+<p>排除依赖很简单，看一下写法：</p>
+<div>
+<div><div id="highlighter_47530" class="syntaxhighlighter notranslate xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">dependency</code><code class="xml plain">&gt;</code></div><div class="line number2 index1 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">groupId</code><code class="xml plain">&gt;com.alibaba.rocketmq&lt;/</code><code class="xml keyword">groupId</code><code class="xml plain">&gt;</code></div><div class="line number3 index2 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">artifactId</code><code class="xml plain">&gt;rocketmq-client&lt;/</code><code class="xml keyword">artifactId</code><code class="xml plain">&gt;</code></div><div class="line number4 index3 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">version</code><code class="xml plain">&gt;3.2.7&lt;/</code><code class="xml keyword">version</code><code class="xml plain">&gt;</code></div><div class="line number5 index4 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">exclusions</code><code class="xml plain">&gt;</code></div><div class="line number6 index5 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">exclusion</code><code class="xml plain">&gt;</code></div><div class="line number7 index6 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">groupId</code><code class="xml plain">&gt;apache-lang&lt;/</code><code class="xml keyword">groupId</code><code class="xml plain">&gt;</code></div><div class="line number8 index7 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">artifactId</code><code class="xml plain">&gt;commons-lang&lt;/</code><code class="xml keyword">artifactId</code><code class="xml plain">&gt;</code></div><div class="line number9 index8 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;/</code><code class="xml keyword">exclusion</code><code class="xml plain">&gt;</code></div><div class="line number10 index9 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;/</code><code class="xml keyword">exclusions</code><code class="xml plain">&gt;</code></div><div class="line number11 index10 alt2"><code class="xml plain">&lt;/</code><code class="xml keyword">dependency</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>这里我引入了rocketmq的依赖，但是我不想依赖rocketmq里面的apache-lang，而想要自己引入依赖，所以我就把apache-lang给排除了。</p>
+<p>这里需要注意的是，声明exclusion的时候只需要groupId和artifactId即可，而不需要version元素，这是因为只需要groupId和artifactId就能唯一定位依赖图中的某个依赖。换句话说，Maven解析后的依赖中，不可能出现groupId和artifactId相同，但是version不同的两个依赖。</p>
+<p><strong>settings.xml</strong></p>
+<p>settings.xml里面是Maven的基本配置，元素比较多，逐一看一下</p>
+<p><strong>1、proxy</strong></p>
+<p>proxy表示Maven的代理，看一下写法：</p>
+<div>
+<div><div id="highlighter_981242" class="syntaxhighlighter notranslate xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">proxies</code><code class="xml plain">&gt;</code></div><div class="line number2 index1 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">proxy</code><code class="xml plain">&gt;</code></div><div class="line number3 index2 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">id</code><code class="xml plain">&gt;optional&lt;/</code><code class="xml keyword">id</code><code class="xml plain">&gt;</code></div><div class="line number4 index3 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">active</code><code class="xml plain">&gt;true&lt;/</code><code class="xml keyword">active</code><code class="xml plain">&gt;</code></div><div class="line number5 index4 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">protocol</code><code class="xml plain">&gt;http&lt;/</code><code class="xml keyword">protocol</code><code class="xml plain">&gt;</code></div><div class="line number6 index5 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">username</code><code class="xml plain">&gt;proxyuser&lt;/</code><code class="xml keyword">username</code><code class="xml plain">&gt;</code></div><div class="line number7 index6 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">password</code><code class="xml plain">&gt;proxypass&lt;/</code><code class="xml keyword">password</code><code class="xml plain">&gt;</code></div><div class="line number8 index7 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">host</code><code class="xml plain">&gt;proxy.host.net&lt;/</code><code class="xml keyword">host</code><code class="xml plain">&gt;</code></div><div class="line number9 index8 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">port</code><code class="xml plain">&gt;80&lt;/</code><code class="xml keyword">port</code><code class="xml plain">&gt;</code></div><div class="line number10 index9 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">nonProxyHosts</code><code class="xml plain">&gt;local.net|some.host.com&lt;/</code><code class="xml keyword">nonProxyHosts</code><code class="xml plain">&gt;</code></div><div class="line number11 index10 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;/</code><code class="xml keyword">proxy</code><code class="xml plain">&gt;</code></div><div class="line number12 index11 alt1"><code class="xml plain">&lt;/</code><code class="xml keyword">proxies</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>需要proxy是因为很多时候你所在的公司基于安全因素考虑，要求你使用通过安全认证的代理访问因特网。这种情况下，就需要为Maven配置HTTP代理，才能让它正常访问外部仓库，以下载所需要的资源。proxies下可以配置多个proxy元素，如果声明了多个proxy元素，则默认情况下第一个被激活的proxy会生效。active为true表示激活该代理，protocol表示使用的代理协议，当然最重要的是指定正确的主机名（host）和端口（port），如果代理服务器需要认证则配置username和password，nonProxyHost元素表示指定哪些主机名不需要代理，可以用”|”分隔多个主机名，也支持通配符”*”。</p>
+<p><strong>2、repository</strong></p>
+<p>repository表示Maven的中央仓库，因为尽管默认的远程仓库中的构件非常庞大，但是总归会有不满足我们需求的时候，这时候就要用到别的中央仓库了。看一下写法：</p>
+<div>
+<div><div id="highlighter_331872" class="syntaxhighlighter notranslate xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">repository</code><code class="xml plain">&gt;</code></div><div class="line number2 index1 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">id</code><code class="xml plain">&gt;public&lt;/</code><code class="xml keyword">id</code><code class="xml plain">&gt;</code></div><div class="line number3 index2 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">name</code><code class="xml plain">&gt;local private nexus&lt;/</code><code class="xml keyword">name</code><code class="xml plain">&gt;</code></div><div class="line number4 index3 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">url</code><code class="xml plain">&gt;http://192.168.1.6:8081/nexus/content/groups/public&lt;/</code><code class="xml keyword">url</code><code class="xml plain">&gt;</code></div><div class="line number5 index4 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">releases</code><code class="xml plain">&gt;</code></div><div class="line number6 index5 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">enabled</code><code class="xml plain">&gt;true&lt;/</code><code class="xml keyword">enabled</code><code class="xml plain">&gt;</code></div><div class="line number7 index6 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;/</code><code class="xml keyword">releases</code><code class="xml plain">&gt;</code></div><div class="line number8 index7 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">snapshots</code><code class="xml plain">&gt;</code></div><div class="line number9 index8 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">enabled</code><code class="xml plain">&gt;false&lt;/</code><code class="xml keyword">enabled</code><code class="xml plain">&gt;</code></div><div class="line number10 index9 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;/</code><code class="xml keyword">snapshots</code><code class="xml plain">&gt;</code></div><div class="line number11 index10 alt2"><code class="xml plain">&lt;/</code><code class="xml keyword">repository</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>可以声明多个repository。id必须是唯一的，尤其注意，Maven自带的中央仓库使用的id为central，如果其他仓库声明也用该id，就会覆盖中央仓库的配置。releases和snapshots比较重要，前者表示开启仓库的发布版本下载支持，后者表示关闭仓库的快照版本下载支持，这样一来，Maven就会去仓库下载发布版本的构件而不会下载快照版本的构件了。</p>
+<p><strong>3、server</strong></p>
+<p>大部分远程仓库无须认证就可以访问，但是有时候处于安全方面的因素考虑，需要提供认证信息才能访问一些远程仓库，处于安全考虑，认证信息一般只放在settings.xml中，server就是认证元素。看一下配置：</p>
+<div>
+<div><div id="highlighter_774634" class="syntaxhighlighter notranslate xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">server</code><code class="xml plain">&gt;</code></div><div class="line number2 index1 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">id</code><code class="xml plain">&gt;nexus-releases&lt;/</code><code class="xml keyword">id</code><code class="xml plain">&gt;</code></div><div class="line number3 index2 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">username</code><code class="xml plain">&gt;deployment&lt;/</code><code class="xml keyword">username</code><code class="xml plain">&gt;</code></div><div class="line number4 index3 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">password</code><code class="xml plain">&gt;deployment&lt;/</code><code class="xml keyword">password</code><code class="xml plain">&gt;</code></div><div class="line number5 index4 alt2"><code class="xml plain">&lt;/</code><code class="xml keyword">server</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>这里的关键是id，这个id必须与需要认证的repositiry元素的id完全一致才行，换句话说，正式这个id将认证信息和仓库配置联系在了一起。</p>
+<p><strong>4、mirror</strong></p>
+<p>如果仓库X可以提供仓库Y存储的所有内容，那么就可以认为仓库X是仓库Y的一个镜像（mirror），换句话说，任何一个可以从Y中获取到的构件够可以从X中获取到。举个例子，”http://maven.net.cn/content/groups/public/”是中央仓库”http://repo1.maven.org/maven2/”在中国的镜像，由于地理位置的因素，该镜像往往能够提供比中央仓库更快的服务，这就是为什么要使用mirror的原因。</p>
+<p>看一下mirror的配置：</p>
+<div>
+<div><div id="highlighter_534786" class="syntaxhighlighter notranslate xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">mirror</code><code class="xml plain">&gt;</code></div><div class="line number2 index1 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">id</code><code class="xml plain">&gt;nexus&lt;/</code><code class="xml keyword">id</code><code class="xml plain">&gt;</code></div><div class="line number3 index2 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">name</code><code class="xml plain">&gt;internal nexus repository&lt;/</code><code class="xml keyword">name</code><code class="xml plain">&gt;</code></div><div class="line number4 index3 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">url</code><code class="xml plain">&gt;http://192.168.1.6:8081/nexus/content/groups/public&lt;/</code><code class="xml keyword">url</code><code class="xml plain">&gt;</code></div><div class="line number5 index4 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">mirrorOf</code><code class="xml plain">&gt;*&lt;/</code><code class="xml keyword">mirrorOf</code><code class="xml plain">&gt;</code></div><div class="line number6 index5 alt1"><code class="xml plain">&lt;/</code><code class="xml keyword">mirror</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>该例子中，mirrof为*，表示该配置为所有中央仓库的镜像，任何对于中央仓库的请求都会转至该镜像。另外三个元素id、name、url与一般仓库配置无异，表示该镜像仓库的唯一标识符、名称以及地址。类似的，如果该镜像需要认证，也可以基于该id配置仓库认证。</p>
+
+        
+        
+        <!-- BEGIN #author-bio -->
+
+
+<!-- END #author-bio -->
+	</div>
+	<!-- END .entry -->
+
+
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_24x24">
+<a class="jiathis_button_tsina" title="分享到微博"><span class="jiathis_txt jtico jtico_tsina"></span></a>
+<a class="jiathis_button_weixin" title="分享到微信"><span class="jiathis_txt jtico jtico_weixin"></span></a>
+<a class="jiathis_button_qzone" title="分享到QQ空间"><span class="jiathis_txt jtico jtico_qzone"></span></a>
+<a class="jiathis_button_fb" title="分享到Facebook"><span class="jiathis_txt jtico jtico_fb"></span></a>
+<a class="jiathis_button_renren" title="分享到人人网"><span class="jiathis_txt jtico jtico_renren"></span></a>
+<a class="jiathis_button_douban" title="分享到豆瓣"><span class="jiathis_txt jtico jtico_douban"></span></a>
+<a class="jiathis_button_googleplus" title="分享到Google+"><span class="jiathis_txt jtico jtico_googleplus"></span></a>
+<a class="jiathis_button_readitlater"></a>
+<a class="jiathis_button_evernote" title="分享到印象笔记"><span class="jiathis_txt jtico jtico_evernote"></span></a>
+<a class="jiathis_button_ydnote" title="分享到有道云笔记"><span class="jiathis_txt jtico jtico_ydnote"></span></a>
+<a href="http://www.jiathis.com/share?uid=1745061" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis external" target="_blank" rel="nofollow"></a>
+<a class="jiathis_counter_style"><span class="jiathis_button_expanded jiathis_counter jiathis_bubble_style" id="jiathis_counter_39" title="累计分享11次">11</span></a>
+</div>
+
+
+<script type="text/javascript">
+var jiathis_config={
+	data_track_clickback:false,
+	title:"《Maven实战：pom.xml与settings.xml》",
+	summary:"pom.xml与setting.xml，可以说是Maven中最重要的两个配置文件，决定了Maven的核心功能，虽然之前的文章零零碎碎有提到过pom.xml和settings.xml里面的内容，但都是大略带过，学习与研究地并不细致，本文的目的就是详细研究下这两个Maven重要的配置文件，从这两个配置文件可以牵出非常多的Maven话题。",
+	pic:"http://incdn1.b0.upaiyun.com/2014/05/269dfc21075e4d0df4bb37a0c251dff9.jpg",
+	appkey:{
+                "tsina":2284713194 //for importnew
+        },
+	ralateuid:{
+		"tsina":2991905905 //for importnew
+	},
+	hideMore:false
+}
+</script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/jia.js.下载" charset="utf-8"></script><script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/plugin.client.js.下载" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+<br><br>
+<div id="text-13">			<div class="textwidget"><p><a href="http://blog.jobbole.com/106093/" target="_blank" class="external" rel="nofollow"><img src="./Maven实战：pom.xml与settings.xml - ImportNew_files/bfdcef89gw1f9cf7iwi24j20h802sjrz.jpg"></a></p>
+</div>
+		</div>
+</div>
+<!-- END .post -->	
+	
+<script type="text/javascript">
+window._wp_rp_static_base_url = "http://dtmvdvtzf8rz0.cloudfront.net/static/";
+
+</script>
+<h3 class="related_post_title">相关文章</h3><ul class="related_post wp_rp" style="visibility:visible;"><li position="0"><a href="http://www.importnew.com/23138.html">用Maven部署war包到远程Tomcat服务器 </a></li><li position="1"><a href="http://www.importnew.com/22992.html">利用github搭建个人maven仓库</a></li><li position="2"><a href="http://www.importnew.com/21269.html">Maven那点事儿（Eclipse版）</a></li><li position="3"><a href="http://www.importnew.com/19178.html">利用github搭建个人maven仓库</a></li><li position="4"><a href="http://www.importnew.com/18353.html">maven环境快速搭建</a></li><li position="5"><a href="http://www.importnew.com/18008.html">Maven和Gradle对比</a></li><li position="6"><a href="http://www.importnew.com/13718.html">使用Maven配置JBoss、Wildfly数据源</a></li><li position="7"><a href="http://www.importnew.com/13573.html">Java EE7和Maven工程入门（5）</a></li><li position="8"><a href="http://www.importnew.com/13530.html">Java EE7和Maven工程入门（4）</a></li><li position="9"><a href="http://www.importnew.com/13420.html">Java EE7和Maven工程入门（7）</a></li></ul>
+
+			
+	
+<!-- BEGIN #respond -->
+<div id="respond">
+
+	<h3 class="widget-title">发表评论</h3>
+	
+	<!-- BEGIN .cancel-comment-reply -->
+	<p class="cancel-comment-reply">
+		
+		<a rel="nofollow" id="cancel-comment-reply-link" href="http://www.importnew.com/22779.html#respond" style="display:none;">点击这里取消回复。</a>		
+	</p>
+	<!-- END .cancel-comment-reply -->
+
+		
+	<!-- BEGIN #comment-form -->
+	<form action="http://www.importnew.com/wp-comments-post.php" method="post" id="comment-form">
+		
+		<fieldset>
+		
+			<legend class="none">Comment form</legend>
+			
+			<!-- BEGIN .container -->
+			<div class="container">
+			
+							
+				<div class="grid-4 margin-20">
+					<label for="author">Name<span class="red">*</span></label>
+				</div>
+				
+				<div class="grid-4 margin-20">
+					<div class="input-wrapper"><input type="text" name="author" id="author" value="" tabindex="1" size="30" class="required" placeholder="姓名"></div>
+				</div>
+				<div class="clear"></div>
+				
+				<div class="grid-4 margin-20">
+					<label for="email">邮箱<span class="red">*</span></label>
+				</div>
+				
+				<div class="grid-4 margin-20">
+					<div class="input-wrapper"><input type="email" name="email" id="email" value="" tabindex="2" size="30" class="required email" placeholder="请填写邮箱"></div>
+				</div>
+				<div class="clear"></div>
+				
+				<div class="grid-4 margin-20">
+					<label for="url">网站 (请以 http://开头)</label>
+				</div>
+				
+				<div class="grid-4 margin-20">
+					<div class="input-wrapper"><input type="url" name="url" id="url" value="" tabindex="3" size="30" placeholder="请填写网站地址"></div>
+				</div>
+				<div class="clear"></div>
+				
+								
+				<div class="grid-8 margin-20">
+					<label for="comment" class="none margin-20">评论内容<span class="red">*</span></label>
+					<div class="input-wrapper"><textarea name="comment" id="comment" rows="20" cols="30" class="required" tabindex="4" onkeydown="if(event.ctrlKey &amp;&amp; event.keyCode==13){document.getElementById(&#39;comment-form-submit&#39;).click(); return false;}" placeholder="请填写评论内容"></textarea></div>
+				</div>
+				<div class="clear"></div>
+				
+			</div>
+			<!-- END .container -->
+			
+			<p>(<span class="red">*</span>) 表示必填项</p>
+			<p></p><div class="submit-wrapper"><a id="comment-form-submit" class="submit">提交评论</a></div><p></p>
+			<input type="hidden" name="comment_post_ID" value="22779" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+			<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="c1ed743a1b"></p>			
+		</fieldset>
+		
+	</form>
+	<!-- END #comment-form -->
+	
+	
+</div>
+<!-- END #respond -->
+
+
+			<p class="nocomments none">还没有评论。</p>
+	 
+
+
+
+		
+				
+	<!-- BEGIN .navigation -->
+	<div class="navigation margin-20">
+	
+		<div class="alignleft"><a href="http://www.importnew.com/22775.html" rel="prev">« Spring8：一些常用的Spring Bean扩展接口</a></div>
+		<div class="alignright"><a href="http://www.importnew.com/22783.html" rel="next">MyBatis（1）：MyBatis入门 »</a></div>
+		<div class="clear"></div>
+
+	</div>
+	<!-- END .navigation -->
+	
+		
+</div>
+<!-- END .grid-8 -->
+
+<!-- BEGIN #sidebar -->
+<div id="sidebar" class="grid-4">
+
+	<div id="search-3" class="widget widget_search"><!-- BEGIN #searchform -->
+<form method="get" id="searchform" action="http://www.importnew.com/">
+
+	<label class="none" for="s">Search for:</label>
+	<div class="input-wrapper"><input type="text" value="" name="s" id="s" placeholder="Search"></div>
+	<input type="submit" id="searchsubmit" value="Search">
+	
+</form>
+<!-- END #searchform --></div><div id="text-14" class="widget widget_text">			<div class="textwidget"><p><a href="http://blog.jobbole.com/84342/?utm_source=www.importnew.com&amp;utm_medium=rightBanner-1&amp;utm_content=2015.9.16" target="_blank" class="external" rel="nofollow"><img src="./Maven实战：pom.xml与settings.xml - ImportNew_files/e5298966gw1evyjrd4iqcj208c03c0t0.jpg"></a></p>
+</div>
+		</div><div id="aw_tabbed_widget-2" class="widget aw_tabbed_widget"><div class="tabs"><ul class="nav clearfix"><li class="active"><a id="link-most-discussed" href="http://www.importnew.com/22779.html#tab-most-discussed" title="本周热门文章">本周热门文章</a></li><li><a id="link-latest-comments" href="http://www.importnew.com/22779.html#tab-latest-comments" title="本月热门">本月热门</a></li><li><a id="link-tags" href="http://www.importnew.com/22779.html#tab-tags" title="热门标签">热门标签</a></li></ul><div id="tab-most-discussed" class="tab" style="display: block;"><div class="floated-thumb">							
+							
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta ">
+							
+								<p>
+								    <span class="numb">0</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/23699.html" title="保障服务的持续高可用、高性能及负载均衡 ">保障服务的持续高可用、高性能及负载...</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+							
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta ">
+							
+								<p>
+								    <span class="numb">1</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/23645.html" title="JVM方法调用的那些事">JVM方法调用的那些事</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+							
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta ">
+							
+								<p>
+								    <span class="numb">2</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/23650.html" title="JVM类加载的那些事">JVM类加载的那些事</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+							
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta ">
+							
+								<p>
+								    <span class="numb">3</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/23658.html" title="清蒸 JVM （一）">清蒸 JVM （一）</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+							
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta ">
+							
+								<p>
+								    <span class="numb">4</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/23663.html" title="JVM源码分析之Java类的加载过程">JVM源码分析之Java类的加载过程</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+							
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta ">
+							
+								<p>
+								    <span class="numb">5</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/23667.html" title="JVM源码分析之如何触发并执行GC线程">JVM源码分析之如何触发并执行GC...</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+							
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta ">
+							
+								<p>
+								    <span class="numb">6</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/23669.html" title="JVM源码分析之Java对象的创建过程">JVM源码分析之Java对象的创建过程</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+							
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta ">
+							
+								<p>
+								    <span class="numb">7</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/23677.html" title="JVM源码分析之垃圾收集的执行过程">JVM源码分析之垃圾收集的执行过程</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+							
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta ">
+							
+								<p>
+								    <span class="numb">8</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/23683.html" title="JVM源码分析之新生代DefNewGeneration的实现">JVM源码分析之新生代DefNewGenera...</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+							
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta ">
+							
+								<p>
+								    <span class="numb">9</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/23689.html" title="JVM源码分析之老年代TenuredGeneration的垃圾回收算法实现">JVM源码分析之老年代TenuredGenera...</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+						</div></div><div id="tab-latest-comments" class="tab" style="display: none;"><div class="floated-thumb">							
+											
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta ">
+							
+								<p>
+								    <span class="numb">0</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/23491.html" title="《Head first设计模式》学习笔记 - 单件模式 ">《Head first设计模式》学习笔记 ...</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+											
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta ">
+							
+								<p>
+								    <span class="numb">1</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/23450.html" title="5亿整数的大文件，怎么排？">5亿整数的大文件，怎么排？</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+											
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta ">
+							
+								<p>
+								    <span class="numb">2</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/23511.html" title="死磕Java并发：深入分析synchronized的实现原理 ">死磕Java并发：深入分析synchronize...</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+											
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta ">
+							
+								<p>
+								    <span class="numb">3</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/23358.html" title="spring整合ehcache注解实现查询缓存，并实现实时缓存更新或删除">spring整合ehcache注解实现查询缓存...</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+											
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta ">
+							
+								<p>
+								    <span class="numb">4</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/23549.html" title="面试的角度诠释Java工程师（一）">面试的角度诠释Java工程师（一）</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+											
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta ">
+							
+								<p>
+								    <span class="numb">5</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/23601.html" title="如何使用jstack分析线程状态 ">如何使用jstack分析线程状态 </a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+											
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta ">
+							
+								<p>
+								    <span class="numb">6</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/23640.html" title="Java GC的那些事（下）">Java GC的那些事（下）</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+											
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta ">
+							
+								<p>
+								    <span class="numb">7</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/23334.html" title="Vert.x 线程模型揭秘">Vert.x 线程模型揭秘</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+											
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta  no-thumb">
+							
+								<p>
+								    <span class="numb">8</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/23342.html" title="Java RESTful框架的性能比较">Java RESTful框架的性能比较</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+													
+											
+							<!-- BEGIN .post-meta -->
+							<div class="post-meta  no-thumb">
+							
+								<p>
+								    <span class="numb">9</span>
+								    <a class="meta-title" target="_blank" href="http://www.importnew.com/23348.html" title="在命令行中使用Eclipse MAT工具">在命令行中使用Eclipse MAT工具</a><br>
+								</p>
+									
+							</div>
+							<!-- END .post-meta -->
+							
+							<div class="clear"></div>
+							
+						</div></div><div id="tab-tags" class="tab" style="display: none;"><p><a href="http://www.importnew.com/tag/android23days" class="tag-link-240" title="8 个话题" style="font-size: 9.1111111111111px;">android23days</a>
+<a href="http://www.importnew.com/tag/android" class="tag-link-36" title="64 个话题" style="font-size: 18.666666666667px;">Android开发</a>
+<a href="http://www.importnew.com/tag/aop" class="tag-link-204" title="15 个话题" style="font-size: 11.888888888889px;">AOP</a>
+<a href="http://www.importnew.com/tag/api" class="tag-link-308" title="6 个话题" style="font-size: 8px;">API</a>
+<a href="http://www.importnew.com/tag/arraylist" class="tag-link-314" title="7 个话题" style="font-size: 8.5555555555556px;">ArrayList</a>
+<a href="http://www.importnew.com/tag/concurrenthashmap" class="tag-link-355" title="12 个话题" style="font-size: 10.888888888889px;">ConcurrentHashMap</a>
+<a href="http://www.importnew.com/tag/controller" class="tag-link-797" title="7 个话题" style="font-size: 8.5555555555556px;">Controller</a>
+<a href="http://www.importnew.com/tag/eclipse" class="tag-link-81" title="27 个话题" style="font-size: 14.666666666667px;">Eclipse</a>
+<a href="http://www.importnew.com/tag/gc" class="tag-link-87" title="38 个话题" style="font-size: 16.222222222222px;">GC</a>
+<a href="http://www.importnew.com/tag/guava" class="tag-link-554" title="11 个话题" style="font-size: 10.555555555556px;">Guava</a>
+<a href="http://www.importnew.com/tag/hadoop" class="tag-link-140" title="13 个话题" style="font-size: 11.333333333333px;">Hadoop</a>
+<a href="http://www.importnew.com/tag/hashmap" class="tag-link-284" title="29 个话题" style="font-size: 15px;">HashMap</a>
+<a href="http://www.importnew.com/tag/hashset" class="tag-link-60" title="9 个话题" style="font-size: 9.6666666666667px;">HashSet</a>
+<a href="http://www.importnew.com/tag/hbase" class="tag-link-128" title="14 个话题" style="font-size: 11.666666666667px;">HBase</a>
+<a href="http://www.importnew.com/tag/hibernate" class="tag-link-109" title="12 个话题" style="font-size: 10.888888888889px;">Hibernate</a>
+<a href="http://www.importnew.com/tag/intellij" class="tag-link-213" title="8 个话题" style="font-size: 9.1111111111111px;">IntelliJ</a>
+<a href="http://www.importnew.com/tag/io" class="tag-link-70" title="12 个话题" style="font-size: 10.888888888889px;">io</a>
+<a href="http://www.importnew.com/tag/java" class="tag-link-35" title="126 个话题" style="font-size: 21.888888888889px;">Java</a>
+<a href="http://www.importnew.com/tag/java-8" class="tag-link-50" title="32 个话题" style="font-size: 15.444444444444px;">java 8</a>
+<a href="http://www.importnew.com/tag/java8" class="tag-link-354" title="32 个话题" style="font-size: 15.444444444444px;">java8</a>
+<a href="http://www.importnew.com/tag/java9" class="tag-link-436" title="9 个话题" style="font-size: 9.6666666666667px;">Java9</a>
+<a href="http://www.importnew.com/tag/javaee%e4%b8%8emaven%e6%95%99%e7%a8%8b" class="tag-link-462" title="7 个话题" style="font-size: 8.5555555555556px;">JavaEE与Maven教程</a>
+<a href="http://www.importnew.com/tag/java-gc" class="tag-link-115" title="6 个话题" style="font-size: 8px;">Java GC</a>
+<a href="http://www.importnew.com/tag/java-nio" class="tag-link-750" title="13 个话题" style="font-size: 11.333333333333px;">Java NIO</a>
+<a href="http://www.importnew.com/tag/java%e4%b9%b1%e7%a0%81" class="tag-link-807" title="8 个话题" style="font-size: 9.1111111111111px;">Java乱码</a>
+<a href="http://www.importnew.com/tag/java%e7%bc%96%e7%a8%8b%e5%85%a5%e9%97%a8" class="tag-link-639" title="24 个话题" style="font-size: 14.111111111111px;">Java编程入门</a>
+<a href="http://www.importnew.com/tag/java%e8%99%9a%e6%8b%9f%e6%9c%ba" class="tag-link-671" title="7 个话题" style="font-size: 8.5555555555556px;">java虚拟机</a>
+<a href="http://www.importnew.com/tag/jdbc" class="tag-link-122" title="15 个话题" style="font-size: 11.888888888889px;">JDBC</a>
+<a href="http://www.importnew.com/tag/jdk" class="tag-link-44" title="12 个话题" style="font-size: 10.888888888889px;">JDK</a>
+<a href="http://www.importnew.com/tag/jpa" class="tag-link-161" title="8 个话题" style="font-size: 9.1111111111111px;">JPA</a>
+<a href="http://www.importnew.com/tag/jsoup" class="tag-link-703" title="9 个话题" style="font-size: 9.6666666666667px;">Jsoup</a>
+<a href="http://www.importnew.com/tag/junit" class="tag-link-337" title="7 个话题" style="font-size: 8.5555555555556px;">JUnit</a>
+<a href="http://www.importnew.com/tag/jvm" class="tag-link-80" title="118 个话题" style="font-size: 21.666666666667px;">JVM</a>
+<a href="http://www.importnew.com/tag/lambda" class="tag-link-92" title="9 个话题" style="font-size: 9.6666666666667px;">Lambda</a>
+<a href="http://www.importnew.com/tag/linkedhashmap" class="tag-link-306" title="7 个话题" style="font-size: 8.5555555555556px;">LinkedHashMap</a>
+<a href="http://www.importnew.com/tag/mapreduce" class="tag-link-106" title="7 个话题" style="font-size: 8.5555555555556px;">MapReduce</a>
+<a href="http://www.importnew.com/tag/maven" class="tag-link-385" title="15 个话题" style="font-size: 11.888888888889px;">maven</a>
+<a href="http://www.importnew.com/tag/mybatis" class="tag-link-820" title="13 个话题" style="font-size: 11.333333333333px;">Mybatis</a>
+<a href="http://www.importnew.com/tag/netty" class="tag-link-130" title="16 个话题" style="font-size: 12.222222222222px;">Netty</a>
+<a href="http://www.importnew.com/tag/nio" class="tag-link-69" title="16 个话题" style="font-size: 12.222222222222px;">nio</a>
+<a href="http://www.importnew.com/tag/nio2-0" class="tag-link-116" title="6 个话题" style="font-size: 8px;">NIO2.0</a>
+<a href="http://www.importnew.com/tag/oracle" class="tag-link-153" title="9 个话题" style="font-size: 9.6666666666667px;">oracle</a>
+<a href="http://www.importnew.com/tag/orm" class="tag-link-451" title="10 个话题" style="font-size: 10.111111111111px;">ORM</a>
+<a href="http://www.importnew.com/tag/restful" class="tag-link-196" title="10 个话题" style="font-size: 10.111111111111px;">RESTful</a>
+<a href="http://www.importnew.com/tag/scala" class="tag-link-89" title="18 个话题" style="font-size: 12.777777777778px;">Scala</a>
+<a href="http://www.importnew.com/tag/scala-tutorial" class="tag-link-155" title="6 个话题" style="font-size: 8px;">Scala tutorial</a>
+<a href="http://www.importnew.com/tag/servlet" class="tag-link-320" title="9 个话题" style="font-size: 9.6666666666667px;">Servlet</a>
+<a href="http://www.importnew.com/tag/socket" class="tag-link-559" title="11 个话题" style="font-size: 10.555555555556px;">Socket</a>
+<a href="http://www.importnew.com/tag/solr" class="tag-link-429" title="8 个话题" style="font-size: 9.1111111111111px;">solr</a>
+<a href="http://www.importnew.com/tag/spring" class="tag-link-53" title="129 个话题" style="font-size: 22px;">Spring</a>
+<a href="http://www.importnew.com/tag/spring4" class="tag-link-771" title="8 个话题" style="font-size: 9.1111111111111px;">Spring4</a>
+<a href="http://www.importnew.com/tag/springmvc" class="tag-link-614" title="20 个话题" style="font-size: 13.222222222222px;">SpringMVC</a>
+<a href="http://www.importnew.com/tag/spring-mvc" class="tag-link-443" title="11 个话题" style="font-size: 10.555555555556px;">Spring MVC</a>
+<a href="http://www.importnew.com/tag/string" class="tag-link-252" title="31 个话题" style="font-size: 15.333333333333px;">String</a>
+<a href="http://www.importnew.com/tag/synchronized" class="tag-link-737" title="7 个话题" style="font-size: 8.5555555555556px;">synchronized</a>
+<a href="http://www.importnew.com/tag/threadlocal" class="tag-link-376" title="12 个话题" style="font-size: 10.888888888889px;">ThreadLocal</a>
+<a href="http://www.importnew.com/tag/tomcat" class="tag-link-225" title="19 个话题" style="font-size: 13px;">Tomcat</a>
+<a href="http://www.importnew.com/tag/volatile" class="tag-link-433" title="9 个话题" style="font-size: 9.6666666666667px;">volatile</a>
+<a href="http://www.importnew.com/tag/zookeeper" class="tag-link-828" title="7 个话题" style="font-size: 8.5555555555556px;">Zookeeper</a>
+<a href="http://www.importnew.com/tag/%e4%b9%a6%e7%b1%8d" class="tag-link-40" title="6 个话题" style="font-size: 8px;">书籍</a>
+<a href="http://www.importnew.com/tag/%e4%ba%8b%e5%8a%a1" class="tag-link-339" title="9 个话题" style="font-size: 9.6666666666667px;">事务</a>
+<a href="http://www.importnew.com/tag/%e4%bc%98%e5%8c%96" class="tag-link-171" title="6 个话题" style="font-size: 8px;">优化</a>
+<a href="http://www.importnew.com/tag/%e4%be%9d%e8%b5%96%e6%b3%a8%e5%85%a5" class="tag-link-293" title="6 个话题" style="font-size: 8px;">依赖注入</a>
+<a href="http://www.importnew.com/tag/%e5%86%85%e5%ad%98%e6%b3%84%e9%9c%b2" class="tag-link-124" title="6 个话题" style="font-size: 8px;">内存泄露</a>
+<a href="http://www.importnew.com/tag/%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86" class="tag-link-273" title="17 个话题" style="font-size: 12.555555555556px;">内存管理</a>
+<a href="http://www.importnew.com/tag/%e5%8f%82%e6%95%b0%e5%a4%aa%e5%a4%9a%e6%80%8e%e4%b9%88%e5%8a%9e" class="tag-link-470" title="8 个话题" style="font-size: 9.1111111111111px;">参数太多怎么办</a>
+<a href="http://www.importnew.com/tag/%e5%8f%8d%e5%b0%84" class="tag-link-301" title="8 个话题" style="font-size: 9.1111111111111px;">反射</a>
+<a href="http://www.importnew.com/tag/%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6" class="tag-link-575" title="15 个话题" style="font-size: 11.888888888889px;">垃圾回收</a>
+<a href="http://www.importnew.com/tag/%e5%9f%ba%e7%a1%80%e6%8a%80%e6%9c%af" class="tag-link-58" title="64 个话题" style="font-size: 18.666666666667px;">基础技术</a>
+<a href="http://www.importnew.com/tag/%e5%a4%9a%e7%ba%bf%e7%a8%8b" class="tag-link-46" title="22 个话题" style="font-size: 13.666666666667px;">多线程</a>
+<a href="http://www.importnew.com/tag/%e5%ad%97%e7%ac%a6%e4%b8%b2" class="tag-link-636" title="8 个话题" style="font-size: 9.1111111111111px;">字符串</a>
+<a href="http://www.importnew.com/tag/%e5%ad%97%e8%8a%82%e7%a0%81" class="tag-link-38" title="8 个话题" style="font-size: 9.1111111111111px;">字节码</a>
+<a href="http://www.importnew.com/tag/%e5%ae%89%e5%85%a8" class="tag-link-235" title="6 个话题" style="font-size: 8px;">安全</a>
+<a href="http://www.importnew.com/tag/%e5%b7%a5%e5%85%b7" class="tag-link-126" title="6 个话题" style="font-size: 8px;">工具</a>
+<a href="http://www.importnew.com/tag/%e5%b9%b6%e5%8f%91" class="tag-link-401" title="46 个话题" style="font-size: 17.111111111111px;">并发</a>
+<a href="http://www.importnew.com/tag/%e5%b9%b6%e5%8f%91%e7%bc%96%e7%a8%8b" class="tag-link-64" title="25 个话题" style="font-size: 14.222222222222px;">并发编程</a>
+<a href="http://www.importnew.com/tag/%e5%ba%8f%e5%88%97%e5%8c%96" class="tag-link-298" title="10 个话题" style="font-size: 10.111111111111px;">序列化</a>
+<a href="http://www.importnew.com/tag/%e5%bc%82%e5%b8%b8" class="tag-link-83" title="6 个话题" style="font-size: 8px;">异常</a>
+<a href="http://www.importnew.com/tag/%e5%bc%82%e5%b8%b8%e5%a4%84%e7%90%86" class="tag-link-214" title="15 个话题" style="font-size: 11.888888888889px;">异常处理</a>
+<a href="http://www.importnew.com/tag/%e6%80%a7%e8%83%bd" class="tag-link-47" title="17 个话题" style="font-size: 12.555555555556px;">性能</a>
+<a href="http://www.importnew.com/tag/%e6%80%a7%e8%83%bd%e4%bc%98%e5%8c%96" class="tag-link-88" title="16 个话题" style="font-size: 12.222222222222px;">性能优化</a>
+<a href="http://www.importnew.com/tag/%e6%80%a7%e8%83%bd%e8%b0%83%e4%bc%98" class="tag-link-282" title="9 个话题" style="font-size: 9.6666666666667px;">性能调优</a>
+<a href="http://www.importnew.com/tag/%e6%95%99%e7%a8%8b" class="tag-link-156" title="17 个话题" style="font-size: 12.555555555556px;">教程</a>
+<a href="http://www.importnew.com/tag/%e6%97%a5%e5%bf%97" class="tag-link-29" title="10 个话题" style="font-size: 10.111111111111px;">日志</a>
+<a href="http://www.importnew.com/tag/%e6%9e%b6%e6%9e%84" class="tag-link-139" title="9 个话题" style="font-size: 9.6666666666667px;">架构</a>
+<a href="http://www.importnew.com/tag/%e6%b3%9b%e5%9e%8b" class="tag-link-246" title="14 个话题" style="font-size: 11.666666666667px;">泛型</a>
+<a href="http://www.importnew.com/tag/%e6%b3%a8%e8%a7%a3" class="tag-link-360" title="11 个话题" style="font-size: 10.555555555556px;">注解</a>
+<a href="http://www.importnew.com/tag/%e6%b5%8b%e8%af%95" class="tag-link-237" title="8 个话题" style="font-size: 9.1111111111111px;">测试</a>
+<a href="http://www.importnew.com/tag/%e6%b8%b8%e6%88%8f" class="tag-link-184" title="9 个话题" style="font-size: 9.6666666666667px;">游戏</a>
+<a href="http://www.importnew.com/tag/%e7%ae%97%e6%b3%95" class="tag-link-270" title="8 个话题" style="font-size: 9.1111111111111px;">算法</a>
+<a href="http://www.importnew.com/tag/%e7%ba%bf%e7%a8%8b" class="tag-link-374" title="11 个话题" style="font-size: 10.555555555556px;">线程</a>
+<a href="http://www.importnew.com/tag/%e7%ba%bf%e7%a8%8b%e6%b1%a0" class="tag-link-297" title="12 个话题" style="font-size: 10.888888888889px;">线程池</a>
+<a href="http://www.importnew.com/tag/%e7%bc%93%e5%ad%98" class="tag-link-353" title="8 个话题" style="font-size: 9.1111111111111px;">缓存</a>
+<a href="http://www.importnew.com/tag/%e8%99%9a%e6%8b%9f%e6%9c%ba" class="tag-link-685" title="11 个话题" style="font-size: 10.555555555556px;">虚拟机</a>
+<a href="http://www.importnew.com/tag/%e8%a1%8c%e4%b8%9a%e8%b5%84%e8%ae%af" class="tag-link-129" title="6 个话题" style="font-size: 8px;">行业资讯</a>
+<a href="http://www.importnew.com/tag/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f" class="tag-link-30" title="51 个话题" style="font-size: 17.666666666667px;">设计模式</a>
+<a href="http://www.importnew.com/tag/%e8%b5%84%e8%ae%af" class="tag-link-108" title="9 个话题" style="font-size: 9.6666666666667px;">资讯</a>
+<a href="http://www.importnew.com/tag/%e9%9b%86%e5%90%88" class="tag-link-311" title="7 个话题" style="font-size: 8.5555555555556px;">集合</a>
+<a href="http://www.importnew.com/tag/%e9%9d%a2%e8%af%95" class="tag-link-31" title="21 个话题" style="font-size: 13.444444444444px;">面试</a>
+<a href="http://www.importnew.com/tag/%e9%9d%a2%e8%af%95%e9%a2%98" class="tag-link-27" title="11 个话题" style="font-size: 10.555555555556px;">面试题</a></p></div></div></div><div id="text-18" class="widget widget_text">			<div class="textwidget"><p><a href="http://date.jobbole.com/?utm_source=www.importnew.com&amp;utm_medium=rightBanner-2&amp;utm_content=2015.9.16" target="_blank" class="external" rel="nofollow"><img src="./Maven实战：pom.xml与settings.xml - ImportNew_files/bfdcef89gw1esk2g5dvq1j208c03cglu.jpg"></a></p>
+</div>
+		</div><div id="recent_comments_widget-2" class="widget recent_comments_widget">		<h3 class="widget-title">最新评论</h3>
+		<ul>
+		
+					
+			<li id="rc-comment-542805" class="rc-item rc-comment rc-clearfix">
+				<img class="rc-avatar rc-left" width="32" height="32" alt="" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/cb962c0fddc4ba5282bbf2996f3ee0d2.png">
+				<div class="rc-info">
+				Re:
+				<a class="rc-post" target="_blank" href="http://www.importnew.com/23549.html#comment-542805" rel="nofollow">面试的角度诠释Java工程师（一）</a>
+				</div>
+				<div class="rc-timestamp"></div>
+				<div class="rc-excerpt">
+				这篇文章的干货属性很强啊！！！如果以这篇文章为基础，可以扩展很多知识。非常不错的文章。								<span class="rc-reviewer"> Orange</span>
+								</div>
+			</li>
+			
+						
+			<li id="rc-comment-542745" class="rc-item rc-comment rc-clearfix">
+				<img class="rc-avatar rc-left" width="32" height="32" alt="" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/cb962c0fddc4ba5282bbf2996f3ee0d2.png">
+				<div class="rc-info">
+				Re:
+				<a class="rc-post" target="_blank" href="http://www.importnew.com/15768.html#comment-542745" rel="nofollow">构建Java Agent，而不是使用...</a>
+				</div>
+				<div class="rc-timestamp"></div>
+				<div class="rc-excerpt">
+				欢迎到 group.jobbole.com 交流讨论								<span class="rc-reviewer"> 唐尤华</span>
+								</div>
+			</li>
+			
+						
+			<li id="rc-comment-542725" class="rc-item rc-comment rc-clearfix">
+				<img class="rc-avatar rc-left" width="32" height="32" alt="" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/cb962c0fddc4ba5282bbf2996f3ee0d2.png">
+				<div class="rc-info">
+				Re:
+				<a class="rc-post" target="_blank" href="http://www.importnew.com/12773.html#comment-542725" rel="nofollow">Java线程面试题 Top 50</a>
+				</div>
+				<div class="rc-timestamp"></div>
+				<div class="rc-excerpt">
+				nice								<span class="rc-reviewer"> sirding</span>
+								</div>
+			</li>
+			
+						
+			<li id="rc-comment-542705" class="rc-item rc-comment rc-clearfix">
+				<img class="rc-avatar rc-left" width="32" height="32" alt="" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/cb962c0fddc4ba5282bbf2996f3ee0d2.png">
+				<div class="rc-info">
+				Re:
+				<a class="rc-post" target="_blank" href="http://www.importnew.com/15768.html#comment-542705" rel="nofollow">构建Java Agent，而不是使用...</a>
+				</div>
+				<div class="rc-timestamp"></div>
+				<div class="rc-excerpt">
+				在线上环境如何在某个方法出错时，在不改变源码的情况下，编写额外代码并打印出该方法的参数。用java ...								<span class="rc-reviewer"> 宋春平</span>
+								</div>
+			</li>
+			
+						
+			<li id="rc-comment-542691" class="rc-item rc-comment rc-clearfix">
+				<img class="rc-avatar rc-left" width="32" height="32" alt="" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/cb962c0fddc4ba5282bbf2996f3ee0d2.png">
+				<div class="rc-info">
+				Re:
+				<a class="rc-post" target="_blank" href="http://www.importnew.com/23511.html#comment-542691" rel="nofollow">死磕Java并发：深入分析synchroni...</a>
+				</div>
+				<div class="rc-timestamp"></div>
+				<div class="rc-excerpt">
+				好文章！								<span class="rc-reviewer"> alexpande</span>
+								</div>
+			</li>
+			
+						
+			<li id="rc-comment-542679" class="rc-item rc-comment rc-clearfix">
+				<img class="rc-avatar rc-left" width="32" height="32" alt="" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/cb962c0fddc4ba5282bbf2996f3ee0d2.png">
+				<div class="rc-info">
+				Re:
+				<a class="rc-post" target="_blank" href="http://www.importnew.com/13246.html#comment-542679" rel="nofollow">跟我一起学Spring 3(3)–使用Spr...</a>
+				</div>
+				<div class="rc-timestamp"></div>
+				<div class="rc-excerpt">
+				很棒！！在Spring入门的痛苦中看到了曙光！								<span class="rc-reviewer"> 虾乐B</span>
+								</div>
+			</li>
+			
+						
+			<li id="rc-comment-542676" class="rc-item rc-comment rc-clearfix">
+				<img class="rc-avatar rc-left" width="32" height="32" alt="" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/cb962c0fddc4ba5282bbf2996f3ee0d2.png">
+				<div class="rc-info">
+				Re:
+				<a class="rc-post" target="_blank" href="http://www.importnew.com/23246.html#comment-542676" rel="nofollow">伪共享（false sharing），并发...</a>
+				</div>
+				<div class="rc-timestamp"></div>
+				<div class="rc-excerpt">
+				这么好的文章， 居然没有评论？！ 收藏了先。								<span class="rc-reviewer"> quokka</span>
+								</div>
+			</li>
+			
+						
+			<li id="rc-comment-542663" class="rc-item rc-comment rc-clearfix">
+				<img class="rc-avatar rc-left" width="32" height="32" alt="" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/cb962c0fddc4ba5282bbf2996f3ee0d2.png">
+				<div class="rc-info">
+				Re:
+				<a class="rc-post" target="_blank" href="http://www.importnew.com/7099.html#comment-542663" rel="nofollow">HashMap的工作原理</a>
+				</div>
+				<div class="rc-timestamp"></div>
+				<div class="rc-excerpt">
+				You can get RSS update with http://www.importnew.c...								<span class="rc-reviewer"> 唐尤华</span>
+								</div>
+			</li>
+			
+					
+		</ul>
+        </div><div id="text-19" class="widget widget_text">			<div class="textwidget"><p><a href="http://fanyi.jobbole.com/" target="_blank" class="external" rel="nofollow"><img src="./Maven实战：pom.xml与settings.xml - ImportNew_files/bfdcef89gw1esnyzyrczej208c03cgm3.jpg"></a></p>
+</div>
+		</div>	
+	<!-- BEGIN .container -->
+	<div class="container">
+	
+		<!-- BEGIN .grid-2 -->
+		<div class="grid-2">
+			
+						
+		</div>
+		<!-- END .grid-2 -->
+		
+		<!-- BEGIN .grid-2 -->
+		<div class="grid-2">
+			
+						
+		</div>
+		<!-- END .grid-2 -->
+		
+		<div class="clear"></div>
+			
+	</div>
+	<!-- END .container -->
+
+</div>
+<!-- END #sidebar -->
+<div class="clear"></div>	
+
+
+</div>
+<!-- END #wrapper -->
+
+<!-- BEGIN footer -->
+<footer>
+
+	<!-- BEGIN .container -->
+	<div class="container">
+		
+		<!-- BEGIN .grid-4 -->
+		<div class="grid-4">
+			
+			<div id="text-15" class="widget widget_text"><h3 class="widget-title">关于ImportNew</h3>			<div class="textwidget"><p>ImportNew 专注于 Java 技术分享。于2012年11月11日 11:11正式上线。是的，这是一个很特别的时刻 :) </p>
+<p>ImportNew 由两个 Java 关键字 import 和 new 组成，意指：Java 开发者学习新知识的网站。 import 可认为是学习和吸收， new 则可认为是新知识、新技术圈子和新朋友……</p>
+<div id="aw_socialcounter_widget-2" class="widget aw_socialcounter_widget">
+<ul>
+<li>
+<a target="_blank" href="http://weibo.com/importnew" class="external" rel="nofollow"><img class="alignleft" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/sina_32.png" alt="关注我们的新浪微博" title="关注我们的新浪微博"></a><p></p>
+<div class="view-rss"><a target="_blank" href="http://www.importnew.com/feed/" class="rss-link"><img class="alignleft" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/rss_32.png" alt="RSS订阅" title="RSS订阅"></a></div>
+</li>
+</ul>
+</div>
+</div>
+		</div>			
+		</div>
+		<!-- END .grid-4 -->
+		
+		<!-- BEGIN .grid-4 -->
+		<div class="grid-4">
+			
+			<div id="text-17" class="widget widget_text"><h3 class="widget-title">联系我们</h3>			<div class="textwidget"><p>Email：<a href="mailto:ImportNew.com@gmail.com">ImportNew.com@gmail.com</a><br>
+新浪微博：<a href="http://weibo.com/importnew" target="_blank" class="external" rel="nofollow">@ImportNew</a><br>
+推荐微信号<br>
+<img src="./Maven实战：pom.xml与settings.xml - ImportNew_files/ImportNew_weixin.png" width="100" height="110"><img src="./Maven实战：pom.xml与settings.xml - ImportNew_files/android_weixin.png" width="100" height="110"><img src="./Maven实战：pom.xml与settings.xml - ImportNew_files/Linux_weixin.png" width="100" height="110"></p>
+<p>反馈建议：ImportNew.com@gmail.com<br>
+广告与商务合作QQ：2302462408 </p>
+</div>
+		</div>			
+		</div>
+		<!-- END .grid-4 -->
+		
+		<!-- BEGIN .grid-4 -->
+		<div class="grid-4">
+			
+			<div id="text-16" class="widget widget_text"><h3 class="widget-title">推荐关注</h3>			<div class="textwidget"><p><a href="http://group.jobbole.com/?utm_source=www.importnew.com&amp;utm_medium=bottomText" target="_blank" class="external" rel="nofollow">小组</a> – 好的话题、有启发的回复、值得信赖的圈子<br>
+<a href="http://top.jobbole.com/?utm_source=www.importnew.com&amp;utm_medium=bottomText" target="_blank" class="external" rel="nofollow">头条</a> – 写了文章？看干货？去头条！<br>
+<a href="http://date.jobbole.com/?utm_source=www.importnew.com&amp;utm_medium=bottomText" target="_blank" class="external" rel="nofollow">相亲</a> – 为IT单身男女服务的征婚传播平台<br>
+<a href="http://hao.jobbole.com/?utm_source=www.importnew.com&amp;utm_medium=bottomText" target="_blank" class="external" rel="nofollow">资源</a> – 优秀的工具资源导航<br>
+<a href="http://fanyi.jobbole.com/?utm_source=www.importnew.com&amp;utm_medium=bottomText" target="_blank" class="external" rel="nofollow">翻译</a> – 活跃 &amp; 专业的翻译小组<br>
+<a href="http://blog.jobbole.com/?utm_source=www.importnew.com&amp;utm_medium=bottomText" target="_blank" class="external" rel="nofollow">博客</a> – 国内外的精选博客文章<br>
+<a href="http://design.jobbole.com/?utm_source=www.importnew.com&amp;utm_medium=bottomText" target="_blank" class="external" rel="nofollow">设计</a> – UI,网页，交互和用户体验<br>
+<a href="http://web.jobbole.com/?utm_source=www.importnew.com&amp;utm_medium=bottomText" target="_blank" class="external" rel="nofollow">前端</a> – JavaScript, HTML5, CSS<br>
+<a href="http://android.jobbole.com/?utm_source=www.importnew.com&amp;utm_medium=bottomText" target="_blank" class="external" rel="nofollow">安卓</a> – 专注Android技术分享<br>
+<a href="http://ios.jobbole.com/?utm_source=www.importnew.com&amp;utm_medium=bottomText" target="_blank" class="external" rel="nofollow">iOS</a> – 专注iOS技术分享<br>
+<a href="http://www.importnew.com/?utm_source=www.importnew.com&amp;utm_medium=bottomText" target="_blank">Java</a> – 专注Java技术分享<br>
+<a href="http://python.jobbole.com/?utm_source=www.importnew.com&amp;utm_medium=bottomText" target="_blank" class="external" rel="nofollow">Python</a> – 专注Python技术分享</p>
+</div>
+		</div>			
+		</div>
+		<!-- END .grid-4 -->
+		
+		<div class="clear"></div>
+	
+	</div>
+	<!-- END .container -->
+
+	<!-- BEGIN #bottom -->
+	<div id="bottom">
+	
+		<!-- BEGIN .container -->
+		<div class="container">
+		
+			<!-- BEGIN .grid-12 -->
+			<div class="grid-12">
+	
+				<p>© 2017 ImportNew</p>
+			
+			</div>
+			<!-- END .grid-12 -->
+			
+			<div class="clear"></div>
+						
+		</div>
+		<!-- END .container -->
+		
+	</div>
+	<!-- END #bottom -->
+	
+</footer>
+<!-- END footer -->
+
+
+	
+<!-- Lightbox Plus v2.3 - 2011.08.11 - Message: 0-->
+<script type="text/javascript">
+jQuery(document).ready(function($){
+  $("a[rel*=lightbox]").colorbox({opacity:0.8});
+});
+</script>
+
+<!-- WP SyntaxHighlighter Ver.1.7.3 Begin -->
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shCore.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shLegacy.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shAutoloader.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shBrushAppleScript.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shBrushAS3.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shBrushBash.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shBrushColdFusion.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shBrushCpp.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shBrushCSharp.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shBrushCss.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shBrushDelphi.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shBrushDiff.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shBrushErlang.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shBrushGroovy.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shBrushJava.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shBrushJavaFX.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shBrushJScript.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shBrushPerl.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shBrushPhp.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shBrushPlain.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shBrushPowerShell.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shBrushPython.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shBrushRuby.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shBrushSass.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shBrushScala.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shBrushSql.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shBrushVb.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/shBrushXml.js.下载"></script>
+<script type="text/javascript">//<![CDATA[
+	SyntaxHighlighter.autoloader(
+	"applescript	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushAppleScript.js?ver=3.0"
+	,"as3 actionscript3	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushAS3.js?ver=3.0"
+	,"bash shell	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushBash.js?ver=3.0"
+	,"cf coldfusion	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushColdFusion.js?ver=3.0"
+	,"cpp c	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushCpp.js?ver=3.0"
+	,"c# c-sharp csharp	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushCSharp.js?ver=3.0"
+	,"css	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushCss.js?ver=3.0"
+	,"delphi pas pascal	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushDelphi.js?ver=3.0"
+	,"diff patch	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushDiff.js?ver=3.0"
+	,"erl erlang	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushErlang.js?ver=3.0"
+	,"groovy	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushGroovy.js?ver=3.0"
+	,"java	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushJava.js?ver=3.0"
+	,"jfx javafx	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushJavaFX.js?ver=3.0"
+	,"js jscript javascript	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushJScript.js?ver=3.0"
+	,"perl pl	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPerl.js?ver=3.0"
+	,"php	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPhp.js?ver=3.0"
+	,"plain text	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPlain.js?ver=3.0"
+	,"ps powershell	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPowerShell.js?ver=3.0"
+	,"py python	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPython.js?ver=3.0"
+	,"rails ror ruby rb	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushRuby.js?ver=3.0"
+	,"sass scss	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushSass.js?ver=3.0"
+	,"scala	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushScala.js?ver=3.0"
+	,"sql	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushSql.js?ver=3.0"
+	,"vb vbnet	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushVb.js?ver=3.0"
+	,"xml xhtml xslt html	http://www.importnew.com/wp-content/plugins/wp-syntaxhighlighter/syntaxhighlighter3/scripts/shBrushXml.js?ver=3.0"
+	);
+	SyntaxHighlighter.defaults['auto-links'] = false;
+	SyntaxHighlighter.defaults['quick-code'] = true;
+	SyntaxHighlighter.defaults['title'] = '';
+	SyntaxHighlighter.defaults['class-name'] = 'notranslate';
+	SyntaxHighlighter.defaults['collapse'] = false;
+	SyntaxHighlighter.defaults['first-line'] = 1;
+	SyntaxHighlighter.defaults['gutter'] = true;
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['smart-tabs'] = true;
+	SyntaxHighlighter.defaults['tab-size'] = 4;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+ SyntaxHighlighter.config.stripBrs = true;
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = "Can't find brush for: ";
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = "Brush wasn't configured for html-script option: ";
+	SyntaxHighlighter.all();
+	dp.SyntaxHighlighter.HighlightAll('code')
+//]]></script>
+<!-- WP SyntaxHighlighter Ver.1.7.3 End -->
+<link rel="stylesheet" id="wp_rp_scrollup-css" href="http://dtmvdvtzf8rz0.cloudfront.net/static/css-img/scrollup.css?ver=3.4.2" type="text/css" media="all">
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/ck-karma.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/jquery.colorbox-min.js.下载"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var viewsCacheL10n = {"admin_ajax_url":"http:\/\/www.importnew.com\/wp-admin\/admin-ajax.php","post_id":"22779"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/postviews-cache.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/ready.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/easing.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/superfish.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/validate.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/touchwipe.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/caroufredsel.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/flexslider.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/jplayer.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/fitvids.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/selectnav.js.下载"></script>
+<script type="text/javascript" src="./Maven实战：pom.xml与settings.xml - ImportNew_files/effects.js.下载"></script>
+<script type="text/javascript" src="http://dtmvdvtzf8rz0.cloudfront.net/static/js/scrollup.js?ver=3.4.2"></script>
+
+
+<div id="full-btm" style="position:fixed; left:50%; top:550px;  z-index:100; text-align:center; cursor:pointer;">
+<a><img src="./Maven实战：pom.xml与settings.xml - ImportNew_files/back-btm.png" width="20" border="0" alt="跳到底部" title="跳到底部"></a>
+</div>
+
+<script type="text/javascript">
+jQuery('#full-btm').click(function(){
+    jQuery('html, body').animate({scrollTop:jQuery(document).height()}, 'slow');
+    return false;
+});
+</script>
+
+<div id="full-top" style="position:fixed; left:50%; top:520px; margin-left:495px; z-index:100; text-align:center; cursor:pointer;">
+<a><img src="./Maven实战：pom.xml与settings.xml - ImportNew_files/back-top.png" width="20" border="0" alt="返回顶部" title="返回顶部"></a>
+</div>
+
+<script type="text/javascript">
+jQuery('#full-top').click(function(){
+    jQuery('html, body').animate({scrollTop:0}, 'slow');
+    return false;
+});
+</script>
+
+<!-- script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','/_assets/js/analytics.js','ga');
+
+    ga('create', 'UA-15621043-1', 'jobbole.com');
+    ga('send', 'pageview');
+
+</script -->
+
+
+<!-- END body -->
+
+
+<!-- END html -->
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+ Served from: importnew.com @ 2017-03-02 22:25:15 by W3 Total Cache --><div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" style="padding-bottom: 50px; padding-right: 50px; display: none;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxLoadedContent" style="width: 0px; height: 0px; overflow: hidden; float: left;"></div><div id="cboxLoadingOverlay" style="float: left;"></div><div id="cboxLoadingGraphic" style="float: left;"></div><div id="cboxTitle" style="float: left;"></div><div id="cboxCurrent" style="float: left;"></div><div id="cboxNext" style="float: left;"></div><div id="cboxPrevious" style="float: left;"></div><div id="cboxSlideshow" style="float: left;"></div><div id="cboxClose" style="float: left;"></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none;"></div></div></body></html>

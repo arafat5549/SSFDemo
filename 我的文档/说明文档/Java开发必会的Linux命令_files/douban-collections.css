@@ -1,0 +1,203 @@
+#douban_collections {
+}
+
+.douban_collections_column {
+  display: inline;
+  float: left;
+  margin: 0 15px;
+  overflow: hidden;
+  /* width: 900px; */
+}
+
+#douban_collections #dc_user {
+  margin: 25px 0 10px;
+  background-color: #0D0D0D;
+  padding: 7px 5px 7px 10px;
+  width: 495px;
+  height: 180px;
+  opacity: 0.8;
+  overflow: hidden;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  -moz-box-shadow: 5px 5px 10px #444;
+  -webkit-box-shadow: 5px 5px 10px #444;
+  box-shadow: 5px 5px 10px #444;
+  behavior: url(/wp-content/plugins/grid-archives/PIE.htc);
+}
+
+#douban_collections #dc_user #dc_user_pic {
+  float: left;
+  margin: 10px 5px;
+  width: 120px;
+  height: 120px;
+}
+
+#douban_collections #dc_user #dc_user_pic img.dc_user_image {
+  width: 120px;
+  height: 120px;
+}
+
+#douban_collections #dc_user #dc_user_pic img.dc_user_image:hover {
+  opacity: 0.5;
+}
+
+#douban_collections #dc_user ul#dc_user_info {
+  float: left;
+  margin: 0 5px 5px 10px;
+  width: 350px;
+}
+
+#douban_collections #dc_user ul#dc_user_info li.dc_user_info_title {
+  float: left;
+  overflow: hidden;
+  list-style-type: none;
+  width: 100%;
+  line-height: 130%;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+#douban_collections li.dc_user_info_title a, #douban_collections li.dc_user_info_title a:link, #douban_collections li.dc_user_info_title a:visited {
+  line-height: 125%;
+  color: #ABD1EA;
+}
+
+#douban_collections li.dc_user_info_title a:hover {
+  line-height: 125%;
+  color: #FF9933;
+}
+
+#douban_collections #dc_user ul#dc_user_info li.dc_user_info_title .dc_user_signature {
+  color: #555;
+  font-family: georgia,verdana;
+  font-size: 16px;
+  font-style: italic;
+  vertical-align: super;
+}
+
+#douban_collections #dc_user ul#dc_user_info li.dc_user_info_item {
+  float: left;
+  overflow: hidden;
+  list-style-type: none;
+  margin-bottom: 5px;
+  width: 100%;
+  line-height: 125%;
+}
+
+#douban_collections li.dc_user_info_item a, #douban_collections li.dc_user_info_item a:link, #douban_collections li.dc_user_info_item a:visited {
+  line-height: 125%;
+  color: #ABD1EA;
+}
+
+#douban_collections li.dc_user_info_item a:hover {
+  line-height: 125%;
+  color: #FF9933;
+}
+
+#douban_collections ul{
+  padding: 0;
+  margin: 0;
+}
+
+#douban_collections ul li.dc_status {
+  color: #ABD1EA;
+  font-size: 34px;
+  margin-bottom: 10px;
+  padding: 20px 0;
+  clear: left;
+}
+
+#douban_collections ul li.dc_list {
+  float: left;
+  overflow: visible;
+  list-style-type: none;
+  margin: 0 15px 15px 0;
+}
+
+#douban_collections ul li div.dc_entry {
+  background-color: #F6F6F6;
+  padding: 7px 5px 7px 10px;
+  width: 250px;
+  height: 150px;
+  opacity: 0.8;
+  overflow: hidden;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  -moz-box-shadow: 5px 5px 10px #444;
+  -webkit-box-shadow: 5px 5px 10px #444;
+  box-shadow: 5px 5px 10px #444;
+  behavior: url(/wp-content/plugins/grid-archives/PIE.htc);
+}
+
+#douban_collections ul li.dc_list div.dc_pic {
+  float: left;
+  overflow: hidden;
+  text-align: center;
+  width: 50%;
+  height: 100%;
+
+}
+
+#douban_collections ul li.dc_list div.dc_pic img.dc_image:hover {
+  opacity: 0.5;
+}
+
+#douban_collections ul li.dc_list ul.dc_info {
+  float: right;
+  margin-top: 5px;
+  margin-left: 10px;
+  width: 105px;
+  height: 90px;
+  color:black;
+}
+
+#douban_collections ul li.dc_list ul.dc_info li.dc_info_title {
+  list-style-type: none;
+  margin-bottom: 4px;
+  text-align: left;
+  font-size: 11px;
+  line-height: 130%;
+}
+
+#douban_collections ul li.dc_list ul.dc_info li.dc_info_item {
+  list-style-type: none;
+  text-align: left;
+  line-height: 125%;
+  font-size: 10px;
+}
+
+#douban_collections ul li.dc_list p.dc_info_footer {
+  margin: 0 10px 0 0;
+  float: right;
+  text-align: left;
+  line-height: 125%;
+  font-size: 9px;
+}
+
+#douban_collections ul li.dc_list a, #douban_collections ul li.dc_list a:link, #douban_collections ul li.dc_list a:visited {
+  line-height: 125%;
+  /* color: #A8EF9D; */
+  color: #0220B7;
+}
+
+#douban_collections ul li.dc_list a:hover {
+  line-height: 125%;
+  color: #FF9933;
+}
+
+#douban_collections ul li.dc_list p {
+  color: #666;
+  /* font-size: 8pt; */
+  font-size: 10.5px;
+  font-style: italic;
+  line-height: 135%;
+  padding: 8px 0 5px;
+}
+
+#douban_collections ul li.dc_list p.dc_updated {
+  font-family: 'Myriad Pro',Corbel,'Helvetica Neue',Helvetica,'Lucida Grande',Verdana,sans-serif;
+  font-style: normal;
+  text-align: right;
+}
